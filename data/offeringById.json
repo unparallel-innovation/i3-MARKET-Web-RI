@@ -1,0 +1,66 @@
+{
+  "active": "no",
+  "category": "manufacturing",
+  "dataOffering": "i3market",
+  "dataOfferingId": "server51id_dataoffering1",
+  "description": "test offering for i3market",
+  "activeContracts": 3,
+  "pendingContracts": 2,
+  "hasDataset": [
+    {
+      "accrualPeriodicity": " accuralPriodicity-13market",
+      "creator": "server 51",
+      "dataset": "13market-dataset",
+      "description": "dataset about 13market",
+      "distribution": [
+        {
+          "accessService": [
+            {
+              "conformsTo": "confomrsTo-13market",
+              "endpointDescription": "13market endpoint description",
+              "endpointURL": "http://13market.org",
+              "servesDataset": "servesdataset-13market",
+              "serviceSpecs": "servicespace-13market"
+            }
+          ],
+          "conformsTo": "conformsto-distribution-13market",
+          "description": "distribution-description-13market",
+          "distribution": "server51id_distribution1",
+          "license": "apache",
+          "mediaType": "13market media type",
+          "packageFormat": "13market package",
+          "title": "distribution title 13market"
+        }
+      ],
+      "issued": 1620655106600,
+      "language": "rdf",
+      "modified": 1620655106600,
+      "spatial": "spatial-13market",
+      "temporal": "temporal-13market",
+      "temporalResolution": "temporlaResolution-13market",
+      "theme": [
+        "13market them"
+        ],
+        "title": "dataset title for 13market"
+    }
+  ],
+  "hasPricingModel": [
+    {
+      "basicPrice": "20",
+      "currency": "euro",
+      "hasPaymentType": [
+        {
+          "fromValue": 1620655106600,
+          "hasSubscriptionPrice": "2",
+          "paymentType": "cash",
+          "repeat": "weekly",
+          "timeDuration": "one year",
+          "toValue": 1620655106600
+        }
+      ]
+    }
+  ],
+  "isProvidedBy": "server51id",
+  "offering": "i3market",
+  "title": "dataoffering title"
+}

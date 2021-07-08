@@ -1,1 +1,45 @@
-@import "node_modules/bootstrap/scss/bootstrap"
+$primary: #06b0f0;
+$secondary: #035178;
+$success: #89c886;
+$danger: #c1272d;
+$warning: #ffc107;
+$info: #06b0f0;
+$border-radius: 10px;
+$border-radius-lg: 50px;
+$border-radius-sm: 20px;
+$navbar-nav-link-padding-x: 15px;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.navbar {
+  background-color: $gray-100;
+}
+
+footer small.flex-grow-1 {
+  font-size: 8px;
+}
+
+.pagination {
+  margin-top: 1em;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.bg-lightgray {
+  background-color: $gray-200;
+}
+
+.text-darkblue {
+  color: #0B4166;
+}
+
+.bg-lightcyan {
+  background-color: #E6EEF0;
+}
+
+.price {
+  font-size: 55px;
+  font-weight: 700;
+}

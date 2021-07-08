@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import { PersonCircle, Bell } from 'react-bootstrap-icons'
 
 export default function Layout(props) {
+  const { className, children } = props;
+
   return (<div>
     <Head>
       <title>i3market-webri</title>
@@ -13,12 +16,11 @@ export default function Layout(props) {
     </Head>
 
     <header>
-      <Navbar sticky="top">
-        <Navbar.Brand href="#home">i3market web-ri</Navbar.Brand>
+      <Navbar className="px-5 py-3" sticky="top">
+        <Navbar.Brand href="/">
+          <img height="32" src="/img/web-ri_logo.png" />
+        </Navbar.Brand>
         <Nav className="justify-content-end" style={{ width: "100%" }}>
-          <Link href="/" passHref>
-              <Nav.Link>Home</Nav.Link>
-          </Link>
           <Link href="/offerings" passHref>
               <Nav.Link>Offerings</Nav.Link>
           </Link>
@@ -34,15 +36,36 @@ export default function Layout(props) {
           <Link href="/alerts" passHref>
               <Nav.Link>Alerts</Nav.Link>
           </Link>
+          <Link href="/account" passHref>
+              <Nav.Link className="px-2">
+                <PersonCircle size={24} />
+              </Nav.Link>
+          </Link>
+          <Link href="/notificationCentre" passHref>
+              <Nav.Link className="px-2">
+                <Bell size={24} />
+              </Nav.Link>
+          </Link>
         </Nav>
       </Navbar>
     </header>
 
-    <main>
-      {props.children}
+    <main className={className + " py-3"}>
+      {children}
     </main>
 
-    <footer>
+    <footer className="px-5 py-3 d-flex">
+      <img height="36" src="/img/EU_flag.png" />
+      <small className="ml-2 flex-grow-1">
+        i3-Market has received funding from the European Union's<br />
+        Horizon 2020 research and innovation programme under<br />
+        grant agreement no. B71754
+      </small>
+      <small className="ml-2">
+        Privacy Policy
+      </small>
+      <img height="36" src="/img/i3-MARKET-LOGO_2nd_Release.png"
+        className="ml-2" />
     </footer>
   </div>);
 }

@@ -25,12 +25,12 @@ function CustomToggle(props) {
   const isCurrentEventKey = currentEventKey === eventKey;
 
   const caretEl = isCurrentEventKey
-    ? <CaretDownFill />
-    : <CaretUpFill />;
+    ? <CaretUpFill />
+    : <CaretDownFill />;
 
   return (
     <Card.Header
-      className={className + " d-flex align-items-center"}
+      className={className + " d-flex align-items-center cursor-pointer"}
       onClick={decoratedOnClick}
     >
       <span className="flex-grow-1">{ children }</span>
@@ -40,9 +40,9 @@ function CustomToggle(props) {
   );
 }
 
-function ts2date(timestamp) {
+function ts2date(timestamp, options) {
   const date = new Date(timestamp);
-  return new Intl.DateTimeFormat().format(date);
+  return new Intl.DateTimeFormat("en", options).format(date);
 }
 
 function KVCol(props) {
@@ -199,18 +199,59 @@ function KVCol2(props) {
 }
 
 function PricingModel(props) {
-  const { basicPrice } = props;
+  const { hasPaymentType } = props;
+  const paymentType = hasPaymentType[0];
+  let paymentTypeEl = null;
+  let paymentTypeTitle = "Invalid payment type";
+  let price = null;
+  let repeatPrice = null;
+
+  const { hasSubscriptionPrice } = paymentType;
+
+  // TODO add other types
+  if (hasSubscriptionPrice) {
+    const {
+      timeDuration, repeat, fromValue,
+      toValue, hasSubscriptionPrice
+    } = paymentType;
+
+    const dateOpt = { year: "numeric", day: "numeric", month: "long" };
+
+    paymentTypeEl = (
+      <Card.Text>
+        Description<br />
+        Duration: { timeDuration }<br />
+        Repeat Mode: { repeat }<br />
+        Date: { ts2date(fromValue, dateOpt) } to { ts2date(toValue, dateOpt) }
+      </Card.Text>
+    );
+
+    price = hasSubscriptionPrice;
+
+    paymentTypeTitle = "Subscription example";
+
+    // TODO complete this
+    switch (repeat) {
+      case 'weekly':
+        repeatPrice = 'we';
+    }
+  }
 
   return (
     <Col xs="6" md="4" >
       <Card className="text-center">
+        <div className="p-2 bg-light">
+          { paymentTypeTitle }
+        </div>
         <Card.Body>
           <div>
-            <span className="price">{basicPrice}&euro;</span>
-            <span className="ml-2 h1 text-muted">/ mo</span>
+            <span className="price">{price}&euro;</span>
+            <span className="ml-2 h1 text-muted">/ {repeatPrice}</span>
           </div>
           <Card.Title>
+            Name plan
           </Card.Title>
+          { paymentTypeEl }
         </Card.Body>
       </Card>
     </Col>
@@ -223,7 +264,7 @@ export default function Offering() {
   const { data, error } = useData(`/api/offering/${offeringId}`);
 
   if (error)
-    return <Layout>Offerings failed to load</Layout>;
+    return <Layout>Offering failed to load</Layout>;
 
   if (!data)
     return <Layout>Loading...</Layout>;

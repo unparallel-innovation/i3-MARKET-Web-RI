@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import { PersonCircle, Bell } from 'react-bootstrap-icons'
 
+// import Breadcrumbs from 'nextjs-breadcrumbs'
+
 export default function Layout(props) {
   const { className, children } = props;
 
@@ -50,7 +52,10 @@ export default function Layout(props) {
       </Navbar>
     </header>
 
-    <main className={className + " py-3"}>
+    <main className={className + " mt-3"}>
+      {/* <div className="px-5"> */}
+      {/*   <Breadcrumbs useDefaultStyle rootLabel="Home" /> */}
+      {/* </div> */}
       {children}
     </main>
 

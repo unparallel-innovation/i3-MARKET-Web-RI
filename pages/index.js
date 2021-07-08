@@ -5,6 +5,8 @@ import Layout from '/components/Layout.js'
 
 export default function Home() {
   return (<Layout>
-    <h1>Home</h1>
+    <div className="px-5">
+      <h1>Home</h1>
+    </div>
   </Layout>);
 }

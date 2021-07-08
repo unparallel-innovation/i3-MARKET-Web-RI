@@ -1,4 +1,4 @@
-import { getOfferingsByCategory } from '@UNPARALLEL/connector-ri'
+// import { getOfferingsByCategory } from '@UNPARALLEL/connector-ri'
 // import { getOfferings } from '@UNPARALLEL/connector-ri'
 import offerings from '/data/offeringsByCategory.json'
 

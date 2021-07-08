@@ -75,15 +75,15 @@ export default function Offerings() {
     <Row>
       { offeringsEl }
     </Row>
-    <Pagination className="justify-content-center">
-      <Pagination.First />
-      <Pagination.Prev />
-      <Pagination.Item>{1}</Pagination.Item>
-      <Pagination.Item>{2}</Pagination.Item>
-      <Pagination.Item>{3}</Pagination.Item>
-      <Pagination.Next />
-      <Pagination.Last />
-    </Pagination>
+    {/* <Pagination className="justify-content-center"> */}
+    {/*   <Pagination.First /> */}
+    {/*   <Pagination.Prev /> */}
+    {/*   <Pagination.Item>{1}</Pagination.Item> */}
+    {/*   <Pagination.Item>{2}</Pagination.Item> */}
+    {/*   <Pagination.Item>{3}</Pagination.Item> */}
+    {/*   <Pagination.Next /> */}
+    {/*   <Pagination.Last /> */}
+    {/* </Pagination> */}
   </Layout>);
 }
 

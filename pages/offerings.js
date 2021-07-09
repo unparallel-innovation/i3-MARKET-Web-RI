@@ -13,7 +13,8 @@ function OfferingCard(props) {
   const router = useRouter();
   const {
     title, description, active,
-    hasContractWarning, dataOfferingId
+    hasContractWarning, dataOfferingId,
+    activeContracts
   } = props;
 
   const visIconEl = active === "yes"
@@ -48,7 +49,9 @@ function OfferingCard(props) {
         </Card.Body>
         <div className="d-flex bg-light">
           <span className="p-2 flex-grow-1">
-            <Badge pill variant="primary">X Contracts</Badge>
+            <Badge pill variant="primary">
+              { activeContracts || 0 } Contracts
+            </Badge>
           </span>
           { warningIconEl }
         </div>

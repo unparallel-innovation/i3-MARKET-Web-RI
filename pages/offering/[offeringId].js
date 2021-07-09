@@ -319,8 +319,8 @@ export default function Offering() {
 
       <span>
         <Button>View all Contracts</Button>
-        <span className="p-2 ml-2">{activeContracts || "-"} Active</span>|
-        <span className="p-2">{pendingContracts || "-"} Pending</span>
+        <span className="p-2 ml-2">{activeContracts || 0} Active</span>|
+        <span className="p-2">{pendingContracts || 0} Pending</span>
       </span>
 
       <hr />

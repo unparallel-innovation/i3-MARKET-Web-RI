@@ -1,5 +1,5 @@
 import { useData } from '/lib/effects.js'
-import Layout from '/components/Layout.js'
+import { Layout, Loading, ErrorC } from '/components/common.js'
 import colors from '/lib/colors.js'
 
 import Link from 'next/link'
@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 import { Card, Row, Col, Badge, Pagination } from 'react-bootstrap'
 // import { BsLock, BsGlobe } from 'react-icons/bs'
-import { Lock, Globe, ExclamationCircle } from 'react-bootstrap-icons'
+import { Lock, Globe, ExclamationCircle, PlusCircle } from 'react-bootstrap-icons'
 
 function OfferingCard(props) {
   const router = useRouter();
@@ -36,7 +36,7 @@ function OfferingCard(props) {
 
   return (
     <Col xs="12" md="6">
-      <Card className="overflow-hidden cursor-pointer"
+      <Card className="overflow-hidden cursor-pointer mb-3"
         onClick={onClick}
       >
         <Card.Body>
@@ -61,17 +61,24 @@ export default function Offerings() {
   const { data, error } = useData(`/api/offerings/${providerId}`);
 
   if (error)
-    return <Layout>Offerings failed to load</Layout>;
+    return <ErrorC error={error} />;
 
   if (!data)
-    return <Layout>Loading...</Layout>;
+    return <Loading />;
 
   const offeringsEl = data.map(offering => (
     <OfferingCard key={offering.title} {...offering} />
   ));
 
   return (<Layout className="px-5">
-    <h1>Offerings</h1>
+    <div className="d-flex p-3">
+      <h1 className="flex-grow-1">Offerings</h1>
+      <div className="text-primary">
+        <PlusCircle color={colors.primary} size={24} />
+        <span className="ml-2">Add new</span>
+      </div>
+
+    </div>
     <Row>
       { offeringsEl }
     </Row>

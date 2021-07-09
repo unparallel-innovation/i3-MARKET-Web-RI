@@ -5,7 +5,7 @@ import { PersonCircle, Bell } from 'react-bootstrap-icons'
 
 // import Breadcrumbs from 'nextjs-breadcrumbs'
 
-export default function Layout(props) {
+export function Layout(props) {
   const { className, children } = props;
 
   return (<div>
@@ -73,4 +73,24 @@ export default function Layout(props) {
         className="ml-2" />
     </footer>
   </div>);
+}
+
+export function Loading() {
+  return (<Layout>
+    <div className="px-5 py-3">
+      Loading...
+    </div>
+  </Layout>);
+}
+
+export function ErrorC(props) {
+  const { error } = props;
+  console.log(error);
+
+  return (<Layout>
+    <div className="px-5 py-3">
+      Error
+      { error }
+    </div>
+  </Layout>);
 }

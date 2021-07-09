@@ -1,11 +1,11 @@
 import { useData } from '/lib/effects.js'
-import Layout from '/components/Layout.js'
+import { Layout, Loading, ErrorC } from '/components/common.js'
 import colors from '/lib/colors.js'
 
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
 
-import { Button, Accordion, Card } from 'react-bootstrap'
+import { Button, Accordion, Card, Badge } from 'react-bootstrap'
 import { Lock, Globe, Pencil, Trash } from 'react-bootstrap-icons'
 
 import { AccordionContext, useAccordionToggle } from 'react-bootstrap'
@@ -54,7 +54,7 @@ function KVCol(props) {
         { title }
       </div>
       <div>
-        { children }
+        { children || "No information" }
       </div>
     </Col>
   );
@@ -129,8 +129,17 @@ function Dataset(props) {
     title, description, creator,
     issued, modified,
     language, temporal, temporalResolution,
-    accrualPeriodicity, spatial, distribution
+    accrualPeriodicity, spatial, distribution,
+    keywords, category
   } = props;
+
+  const keywordsEl = keywords ? keywords.map(item => (
+    <Badge key={0} pill variant="primary">{ item }</Badge>
+  )) : null;
+
+  const categoryEl = category ? category.map(item => (
+    <Badge key={0} pill variant="primary">{ item }</Badge>
+  )) : null;
 
   const distributionEl = distribution.map(dist => (
     <Distribution key={dist.title} { ...dist } />
@@ -148,8 +157,10 @@ function Dataset(props) {
 
             <Row className="text-center mt-3 bg-lightgray">
               <KVCol title="Keywords">
+                { keywordsEl }
               </KVCol>
               <KVCol title="Category">
+                { categoryEl }
               </KVCol>
               <KVCol title="Creator">
                 { creator }
@@ -193,7 +204,7 @@ function KVCol2(props) {
   return (
     <Col className="p-2">
       <span className="text-muted mr-3">{ title }</span>
-      <span>{ children }</span>
+      <span>{ children || "No information" }</span>
     </Col>
   );
 }
@@ -219,7 +230,7 @@ function PricingModel(props) {
 
     paymentTypeEl = (
       <Card.Text>
-        Description<br />
+        {/* Description<br /> */}
         Duration: { timeDuration }<br />
         Repeat Mode: { repeat }<br />
         Date: { ts2date(fromValue, dateOpt) } to { ts2date(toValue, dateOpt) }
@@ -228,12 +239,15 @@ function PricingModel(props) {
 
     price = hasSubscriptionPrice;
 
-    paymentTypeTitle = "Subscription example";
+    paymentTypeTitle = "Subscription";
 
     // TODO complete this
     switch (repeat) {
       case 'weekly':
         repeatPrice = 'we';
+      case 'monthly':
+      case 'Monthly':
+        repeatPrice = 'mo';
     }
   }
 
@@ -248,9 +262,9 @@ function PricingModel(props) {
             <span className="price">{price}&euro;</span>
             <span className="ml-2 h1 text-muted">/ {repeatPrice}</span>
           </div>
-          <Card.Title>
-            Name plan
-          </Card.Title>
+          {/* <Card.Title> */}
+          {/*   Name plan */}
+          {/* </Card.Title> */}
           { paymentTypeEl }
         </Card.Body>
       </Card>
@@ -264,10 +278,10 @@ export default function Offering() {
   const { data, error } = useData(`/api/offering/${offeringId}`);
 
   if (error)
-    return <Layout>Offering failed to load</Layout>;
+    return <ErrorC error={error} />;
 
   if (!data)
-    return <Layout>Loading...</Layout>;
+    return <Loading />;
 
   const {
     title, description, activeContracts,
@@ -305,8 +319,8 @@ export default function Offering() {
 
       <span>
         <Button>View all Contracts</Button>
-        <span className="p-2 ml-2">{activeContracts} Active</span>|
-        <span className="p-2">{pendingContracts} Pending</span>
+        <span className="p-2 ml-2">{activeContracts || "-"} Active</span>|
+        <span className="p-2">{pendingContracts || "-"} Pending</span>
       </span>
 
       <hr />

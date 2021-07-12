@@ -56,6 +56,81 @@
           "toValue": 1620655106600
         }
       ]
+    },
+
+    {
+      "basicPrice": "299",
+      "currency": "Euro",
+      "hasPaymentType": [
+        {
+          "fromValue": 1620655106600,
+          "hasSubscriptionPrice": "59",
+          "paymentType": "periodically",
+          "repeat": "Monthly",
+          "timeDuration": "unlimited",
+          "toValue": 1620655106600
+        }
+      ]
+    },
+
+    {
+      "basicPrice": "299",
+      "currency": "Euro",
+      "hasPaymentType": [
+        {
+          "fromValue": 1620655106600,
+          "hasSubscriptionPrice": "59",
+          "paymentType": "periodically",
+          "repeat": "Monthly",
+          "timeDuration": "unlimited",
+          "toValue": 1620655106600
+        }
+      ]
+    },
+
+    {
+      "basicPrice": "299",
+      "currency": "Euro",
+      "hasPaymentType": [
+        {
+          "fromValue": 1620655106600,
+          "hasSubscriptionPrice": "59",
+          "paymentType": "periodically",
+          "repeat": "Monthly",
+          "timeDuration": "unlimited",
+          "toValue": 1620655106600
+        }
+      ]
+    },
+
+    {
+      "basicPrice": "299",
+      "currency": "Euro",
+      "hasPaymentType": [
+        {
+          "fromValue": 1620655106600,
+          "hasSubscriptionPrice": "59",
+          "paymentType": "periodically",
+          "repeat": "Monthly",
+          "timeDuration": "unlimited",
+          "toValue": 1620655106600
+        }
+      ]
+    },
+
+    {
+      "basicPrice": "299",
+      "currency": "Euro",
+      "hasPaymentType": [
+        {
+          "fromValue": 1620655106600,
+          "hasSubscriptionPrice": "59",
+          "paymentType": "periodically",
+          "repeat": "Monthly",
+          "timeDuration": "unlimited",
+          "toValue": 1620655106600
+        }
+      ]
     }
   ],
   "isProvidedBy": "Siemens AG",

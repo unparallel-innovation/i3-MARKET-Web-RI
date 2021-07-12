@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { Card, Row, Col, Badge, Pagination } from 'react-bootstrap'
-// import { BsLock, BsGlobe } from 'react-icons/bs'
 import { Lock, Globe, ExclamationCircle, PlusCircle } from 'react-bootstrap-icons'
 
 function OfferingCard(props) {
@@ -18,8 +17,8 @@ function OfferingCard(props) {
   } = props;
 
   const visIconEl = active === "yes"
-    ? <Globe color={colors.primary} />
-    : <Lock color={colors.primary} />;
+    ? <Globe color={colors.primary} size={24} />
+    : <Lock color={colors.primary} size={24} />;
 
   let warningIconEl = null;
 
@@ -32,20 +31,35 @@ function OfferingCard(props) {
   }
 
   function onClick() {
-    router.push('/offering/' + dataOfferingId);
+    router.push('/offerings/' + dataOfferingId);
   }
 
+  const style = {
+    // width: "518px",
+    // width: "450px",
+  };
+
+  const titleStyle = {
+    height: "48px",
+  };
+
+  const descriptionStyle = {
+    height: "48px",
+  };
+
   return (
-    <Col xs="12" md="6">
+    <Col xs="12" md="6" xl="4">
       <Card className="overflow-hidden cursor-pointer mb-3"
-        onClick={onClick}
+        onClick={onClick} style={style}
       >
         <Card.Body>
-          <Card.Title className="d-flex justify-content-between">
+          <Card.Title className="d-flex justify-content-between" style={titleStyle}>
             { title }
             { visIconEl }
           </Card.Title>
-          <Card.Text>{ description }</Card.Text>
+          <Card.Text style={descriptionStyle} className="line-clamp-2">
+            { description }
+          </Card.Text>
         </Card.Body>
         <div className="d-flex bg-light">
           <span className="p-2 flex-grow-1">
@@ -73,18 +87,19 @@ export default function Offerings() {
     <OfferingCard key={offering.title} {...offering} />
   ));
 
-  return (<Layout className="px-5">
-    <div className="d-flex p-3">
-      <h1 className="flex-grow-1">Offerings</h1>
-      <div className="text-primary">
-        <PlusCircle color={colors.primary} size={24} />
-        <span className="ml-2">Add new</span>
-      </div>
+  return (<Layout>
+    <div className="px-5">
+      <div className="d-flex align-items-center mb-2">
+        <div className="flex-grow-1"></div>
+        <div className="text-primary">
+          <PlusCircle color={colors.primary} size={24} />
+          <span className="ml-2">Add new</span>
+        </div>
 
-    </div>
-    <Row>
-      { offeringsEl }
-    </Row>
+      </div>
+      <Row>
+        { offeringsEl }
+      </Row>
     {/* <Pagination className="justify-content-center"> */}
     {/*   <Pagination.First /> */}
     {/*   <Pagination.Prev /> */}
@@ -94,6 +109,7 @@ export default function Offerings() {
     {/*   <Pagination.Next /> */}
     {/*   <Pagination.Last /> */}
     {/* </Pagination> */}
+    </div>
   </Layout>);
 }
 

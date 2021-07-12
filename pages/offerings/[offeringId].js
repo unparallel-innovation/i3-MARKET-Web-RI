@@ -5,13 +5,16 @@ import colors from '/lib/colors.js'
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
 
-import { Button, Accordion, Card, Badge } from 'react-bootstrap'
-import { Lock, Globe, Pencil, Trash } from 'react-bootstrap-icons'
+import {
+  Button, Accordion, Card, Badge,
+  AccordionContext, useAccordionToggle,
+  Row, Col, Table
+} from 'react-bootstrap'
 
-import { AccordionContext, useAccordionToggle } from 'react-bootstrap'
-import { CaretDownFill, CaretUpFill } from 'react-bootstrap-icons'
-
-import { Row, Col, Table } from 'react-bootstrap'
+import {
+  Lock, Globe, Pencil, Trash,
+  CaretDownFill, CaretUpFill
+} from 'react-bootstrap-icons'
 
 function CustomToggle(props) {
   const { className, children, eventKey, callback } = props;
@@ -251,9 +254,13 @@ function PricingModel(props) {
     }
   }
 
+  const style = {
+    width: "350px",
+  };
+
   return (
-    <Col xs="6" md="4" >
-      <Card className="text-center">
+    <Col className="text-center">
+      <Card className="text-center mb-5 d-inline-block" style={style}>
         <div className="p-2 bg-light">
           { paymentTypeTitle }
         </div>
@@ -318,7 +325,9 @@ export default function Offering() {
       <hr />
 
       <span>
-        <Button>View all Contracts</Button>
+        <Button disabled={!activeContracts && !pendingContracts}>
+          View all Contracts
+        </Button>
         <span className="p-2 ml-2">{activeContracts || 0} Active</span>|
         <span className="p-2">{pendingContracts || 0} Pending</span>
       </span>

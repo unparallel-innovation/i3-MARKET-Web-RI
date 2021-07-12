@@ -43,3 +43,29 @@ footer small.flex-grow-1 {
   font-size: 55px;
   font-weight: 700;
 }
+
+.breadcrumbs ol {
+  list-style: none;
+  padding: 0;
+}
+
+.breadcrumbs li {
+  display: inline;
+}
+
+.breadcrumbs ol li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+.text-tiny {
+  font-size: 0.75rem;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

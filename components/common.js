@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import { PersonCircle, Bell } from 'react-bootstrap-icons'
 
-// import Breadcrumbs from 'nextjs-breadcrumbs'
+import Breadcrumbs from 'nextjs-breadcrumbs'
 
 export function Layout(props) {
   const { className, children } = props;
@@ -18,10 +18,12 @@ export function Layout(props) {
     </Head>
 
     <header>
-      <Navbar className="px-5 py-3" sticky="top">
-        <Navbar.Brand href="/">
-          <img height="32" src="/img/web-ri_logo.png" />
-        </Navbar.Brand>
+      <Navbar className="px-5 py-3">
+        <Link href="/offerings" passHref>
+          <Navbar.Brand>
+            <img height="32" src="/img/web-ri_logo.png" />
+          </Navbar.Brand>
+        </Link>
         <Nav className="justify-content-end" style={{ width: "100%" }}>
           <Link href="/offerings" passHref>
               <Nav.Link>Offerings</Nav.Link>
@@ -53,9 +55,9 @@ export function Layout(props) {
     </header>
 
     <main className={className + " mt-3"}>
-      {/* <div className="px-5"> */}
-      {/*   <Breadcrumbs useDefaultStyle rootLabel="Home" /> */}
-      {/* </div> */}
+      <div className="px-5 breadcrumbs">
+        <Breadcrumbs rootLabel="Home" />
+      </div>
       {children}
     </main>
 

@@ -67,7 +67,7 @@ function Distribution(props) {
   const {
     title, description,
     license, mediaType, packageFormat,
-    accessService,
+    accessService, eventKey
   } = props;
 
   const accessServiceEl = accessService.map(({
@@ -85,10 +85,11 @@ function Distribution(props) {
   return (
     <Accordion>
       <Card>
-        <CustomToggle className="bg-white" eventKey="0">
+        <CustomToggle className="bg-white" eventKey={eventKey}>
+          <div className="text-tiny text-muted">Distribution</div>
           { title }
         </CustomToggle>
-        <Accordion.Collapse eventKey="0">
+        <Accordion.Collapse eventKey={eventKey}>
           <Card.Body className="bg-light">
             { description }
 
@@ -133,7 +134,7 @@ function Dataset(props) {
     issued, modified,
     language, temporal, temporalResolution,
     accrualPeriodicity, spatial, distribution,
-    keywords, category
+    keywords, category, eventKey
   } = props;
 
   const keywordsEl = keywords ? keywords.map(item => (
@@ -144,17 +145,19 @@ function Dataset(props) {
     <Badge key={0} pill variant="primary">{ item }</Badge>
   )) : null;
 
-  const distributionEl = distribution.map(dist => (
-    <Distribution key={dist.title} { ...dist } />
+  const distributionEl = distribution.map((dist, idx) => (
+    <Distribution key={dist.title}
+      eventKey={`${eventKey}-distribution${idx}`} { ...dist } />
   ));
 
   return (
     <Accordion className="mt-3 mb-3">
       <Card>
-        <CustomToggle className="bg-primary text-white" eventKey="0">
+        <CustomToggle className="bg-primary text-white" eventKey={eventKey}>
+          <div className="text-tiny text-light">Dataset</div>
           { title }
         </CustomToggle>
-        <Accordion.Collapse eventKey="0">
+        <Accordion.Collapse eventKey={eventKey}>
           <Card.Body className="bg-light">
             { description }
 
@@ -301,8 +304,8 @@ export default function Offering() {
     ? <Globe color={colors.primary} size={24} />
     : <Lock color={colors.primary} size={24} />;
 
-  const datasetEl = hasDataset.map(dataset => (
-    <Dataset key={dataset.title} { ...dataset } />
+  const datasetEl = hasDataset.map((dataset, idx) => (
+    <Dataset key={dataset.title} eventKey={`dataset${idx}`} { ...dataset } />
   ));
 
   const pricingModelEl = hasPricingModel.map((item, idx) => (

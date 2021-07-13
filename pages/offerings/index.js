@@ -2,7 +2,6 @@ import { useData } from '/lib/effects.js'
 import { Layout, Loading, ErrorC } from '/components/common.js'
 import colors from '/lib/colors.js'
 
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { Card, Row, Col, Badge, Pagination } from 'react-bootstrap'
@@ -34,30 +33,17 @@ function OfferingCard(props) {
     router.push('/offerings/' + dataOfferingId);
   }
 
-  const style = {
-    // width: "518px",
-    // width: "450px",
-  };
-
-  const titleStyle = {
-    height: "48px",
-  };
-
-  const descriptionStyle = {
-    height: "48px",
-  };
-
   return (
     <Col xs="12" md="6" xl="4">
       <Card className="overflow-hidden cursor-pointer mb-3"
-        onClick={onClick} style={style}
+        onClick={onClick}
       >
         <Card.Body>
-          <Card.Title className="d-flex justify-content-between" style={titleStyle}>
+          <Card.Title className="d-flex justify-content-between h48">
             { title }
             { visIconEl }
           </Card.Title>
-          <Card.Text style={descriptionStyle} className="line-clamp-2">
+          <Card.Text className="line-clamp-2 h48">
             { description }
           </Card.Text>
         </Card.Body>

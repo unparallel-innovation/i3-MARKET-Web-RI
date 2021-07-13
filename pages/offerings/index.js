@@ -39,11 +39,11 @@ function OfferingCard(props) {
         onClick={onClick}
       >
         <Card.Body>
-          <Card.Title className="d-flex justify-content-between h48">
+          <Card.Title className="d-flex justify-content-between line-clamp-2 h3rem">
             { title }
             { visIconEl }
           </Card.Title>
-          <Card.Text className="line-clamp-2 h48">
+          <Card.Text className="line-clamp-2 h3rem">
             { description }
           </Card.Text>
         </Card.Body>

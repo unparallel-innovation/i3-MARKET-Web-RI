@@ -70,6 +70,18 @@ footer small.flex-grow-1 {
   overflow: hidden;
 }
 
+.fvw {
+  width: 100vw;
+}
+
+.fvh {
+  height: 100vh;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
 .h3rem {
     height: 3rem;
 }

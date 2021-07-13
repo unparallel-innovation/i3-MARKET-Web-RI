@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import { PersonCircle, Bell } from 'react-bootstrap-icons'
 
@@ -7,6 +9,7 @@ import Breadcrumbs from 'nextjs-breadcrumbs'
 
 export function Layout(props) {
   const { className, children } = props;
+  const router = useRouter();
 
   return (<div className="d-flex flex-column fvw fvh">
     <Head>
@@ -18,39 +21,44 @@ export function Layout(props) {
     </Head>
 
     <header>
-      <Navbar className="px-5 py-3">
-        <Link href="/offerings" passHref>
+      <Navbar className="px-5 py-3" expand="md">
+        <Link href="/" passHref>
           <Navbar.Brand>
             <img height="32" src="/img/web-ri_logo.png" />
           </Navbar.Brand>
         </Link>
-        <Nav className="justify-content-end" style={{ width: "100%" }}>
-          <Link href="/offerings" passHref>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="justify-content-end" style={{ width: "100%" }}
+            defaultActiveKey={router.pathname}
+          >
+            <Link href="/offerings" passHref>
               <Nav.Link>Offerings</Nav.Link>
-          </Link>
-          <Link href="/contracts" passHref>
+            </Link>
+            <Link href="/contracts" passHref>
               <Nav.Link>Contracts</Nav.Link>
-          </Link>
-          <Link href="/transactions" passHref>
+            </Link>
+            <Link href="/transactions" passHref>
               <Nav.Link>Transactions</Nav.Link>
-          </Link>
-          <Link href="/search" passHref>
+            </Link>
+            <Link href="/search" passHref>
               <Nav.Link>Search</Nav.Link>
-          </Link>
-          <Link href="/alerts" passHref>
+            </Link>
+            <Link href="/alerts" passHref>
               <Nav.Link>Alerts</Nav.Link>
-          </Link>
-          <Link href="/account" passHref>
+            </Link>
+            <Link href="/account" passHref>
               <Nav.Link className="px-2">
                 <PersonCircle size={24} />
               </Nav.Link>
-          </Link>
-          <Link href="/notificationCentre" passHref>
+            </Link>
+            <Link href="/notificationCentre" passHref>
               <Nav.Link className="px-2">
                 <Bell size={24} />
               </Nav.Link>
-          </Link>
-        </Nav>
+            </Link>
+          </Nav>
+          </Navbar.Collapse>
       </Navbar>
     </header>
 

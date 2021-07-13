@@ -19,6 +19,10 @@ footer small.flex-grow-1 {
   font-size: 8px;
 }
 
+.nav-link.active {
+  color: $primary !important;
+}
+
 .pagination {
   margin-top: 1em;
 }

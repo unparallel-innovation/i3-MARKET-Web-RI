@@ -1,6 +1,7 @@
 import { useData } from '/lib/effects.js'
 import { Layout, Loading, ErrorC } from '/components/common.js'
 import colors from '/lib/colors.js'
+import { ts2date } from '/lib/utils.js'
 
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
@@ -41,11 +42,6 @@ function CustomToggle(props) {
 
     </Card.Header>
   );
-}
-
-function ts2date(timestamp, options) {
-  const date = new Date(timestamp);
-  return new Intl.DateTimeFormat("en", options).format(date);
 }
 
 function KVCol(props) {
@@ -151,7 +147,7 @@ function Dataset(props) {
   ));
 
   return (
-    <Accordion className="mt-3 mb-3">
+    <Accordion>
       <Card>
         <CustomToggle className="bg-primary text-white" eventKey={eventKey}>
           <div className="text-tiny text-light">Dataset</div>
@@ -269,7 +265,7 @@ function PricingModel(props) {
         </div>
         <Card.Body>
           <div>
-            <span className="price">{price}&euro;</span>
+            <span className="display-4 font-weight-bold">{price}&euro;</span>
             <span className="ml-2 h1 text-muted">/ {repeatPrice}</span>
           </div>
           {/* <Card.Title> */}
@@ -300,9 +296,11 @@ export default function Offering() {
     hasPricingModel
   } = data;
 
+  console.log(data);
+
   const visIconEl = active === "yes"
-    ? <Globe color={colors.primary} size={24} />
-    : <Lock color={colors.primary} size={24} />;
+    ? <Globe color={colors.primary} size={20} />
+    : <Lock color={colors.primary} size={20} />;
 
   const datasetEl = hasDataset.map((dataset, idx) => (
     <Dataset key={dataset.title} eventKey={`dataset${idx}`} { ...dataset } />
@@ -313,15 +311,15 @@ export default function Offering() {
   ));
 
   return (<Layout>
-    <div className="px-5">
+    <div className="px-5 pb-3">
       <div className="d-flex">
-        <h2 className="flex-grow-1">{ title }</h2>
+        <h3 className="flex-grow-1 m-0">{ title }</h3>
         <span className="p-2">{ visIconEl }</span>
         <span className="p-2">
-          <Pencil color={colors.primary} size={24} />
+          <Pencil color={colors.primary} size={20} />
         </span>
         <span className="p-2">
-          <Trash color={colors.primary} size={24} />
+          <Trash color={colors.primary} size={20} />
         </span>
       </div>
 

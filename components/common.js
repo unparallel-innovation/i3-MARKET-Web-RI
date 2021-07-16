@@ -24,7 +24,8 @@ export function Layout(props) {
       <Navbar className="px-5 py-3" expand="md">
         <Link href="/" passHref>
           <Navbar.Brand>
-            <img height="32" src="/img/web-ri_logo.png" />
+            {/* <img height="32" src="/img/web-ri_logo.png" /> */}
+            <img height="32" src="/img/Web-ri_sep.png" />
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -63,25 +64,28 @@ export function Layout(props) {
     </header>
 
     <div className="flex-grow-1 overflow-scroll">
-      <main className={className + " mt-3"}>
-        <div className="px-5 breadcrumbs">
+      <main className={className || ''}>
+        <div className="px-5 breadcrumbs py-4 pb-5">
           <Breadcrumbs rootLabel="Home" />
         </div>
         {children}
       </main>
 
-      <footer className="px-5 py-3 d-flex">
+      <footer className="px-5 py-4 d-flex align-items-center">
         <img height="36" src="/img/EU_flag.png" />
-        <small className="ml-2 flex-grow-1">
-          i3-Market has received funding from the European Union's<br />
-          Horizon 2020 research and innovation programme under<br />
-          grant agreement no. B71754
-        </small>
-        <small className="ml-2">
+        {/* <small className="ml-3 flex-grow-1"> */}
+        <h6 className="ml-3 flex-grow-1">
+          <small>
+            i3-Market has received funding from the European Union's Horizon 2020 <br />
+            research and innovation programme under grant agreement no. B71754
+          </small>
+        </h6>
+        {/* </small> */}
+        <small className="ml-3 align-self-start">
           Privacy Policy
         </small>
-        <img height="36" src="/img/i3-MARKET-LOGO_2nd_Release.png"
-          className="ml-2" />
+        <img height="48" src="/img/i3-MARKET-LOGO_2nd_Release.png"
+          className="ml-4" />
       </footer>
     </div>
   </div>);

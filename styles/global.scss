@@ -16,7 +16,8 @@ $navbar-nav-link-padding-x: 15px;
 }
 
 footer small.flex-grow-1 {
-  font-size: 8px;
+  // font-size: 8px;
+  font-size: 10px;
 }
 
 .nav-link.active {
@@ -43,14 +44,10 @@ footer small.flex-grow-1 {
   background-color: #E6EEF0;
 }
 
-.price {
-  font-size: 55px;
-  font-weight: 700;
-}
-
 .breadcrumbs ol {
   list-style: none;
   padding: 0;
+  margin-bottom: 0;
 }
 
 .breadcrumbs li {

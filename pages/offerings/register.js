@@ -3,8 +3,218 @@ import { Layout } from '/components/common.js'
 import { Card, Form, Col, Row, Accordion } from 'react-bootstrap'
 import CustomToggle from '/components/CustomToggle.js'
 
-function RegisterOfferingDataset(props) {
+function RegisterOfferingDatasetInformation(props) {
   const { eventKey } = props;
+
+  // return (
+  //     <Form.Group controlId={eventKey + 'title'}>
+  //       <Form.Label>Title</Form.Label>
+  //       <Form.Control type="text" placeholder="Dataset Title" />
+  //     </Form.Group>
+  // )
+
+  return (
+      <Accordion>
+        <Card>
+          <CustomToggle eventKey={eventKey}>
+            Dataset Information
+          </CustomToggle>
+          <Accordion.Collapse eventKey={eventKey}>
+            <Card.Body>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'cppType'}>
+                    <Form.Label>cpp Type</Form.Label>
+                    <Form.Control type="text" placeholder="cpp Type" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'deviceID'}>
+                    <Form.Label>Device ID</Form.Label>
+                    <Form.Control type="text" placeholder="Device ID" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'measurementChannelType'}>
+                    <Form.Label>Measurement Channel Type</Form.Label>
+                    <Form.Control type="text" placeholder="Measurement Channel Type" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'measurementType'}>
+                    <Form.Label>Measurement Type</Form.Label>
+                    <Form.Control type="text" placeholder="Measurement Type" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'sensorID'}>
+                    <Form.Label>Sensor ID</Form.Label>
+                    <Form.Control type="text" placeholder="Sensor ID" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'sensorType'}>
+                    <Form.Label>Sensor Type</Form.Label>
+                    <Form.Control type="text" placeholder="Sensor Type" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+  );
+}
+
+function RegisterOfferingDatasetDistribution(props) {
+  const { eventKey, datasetDistributionAccessServiceN } = props;
+
+  const accessServiceEl = (Array.from(Array(datasetDistributionAccessServiceN).keys())).map((item, idx) => (
+      <RegisterOfferingDatasetDistributionAccessService key={idx} eventKey={`accessService${idx}`} />
+  ));
+
+  return (
+      <Accordion>
+        <Card>
+          <CustomToggle eventKey={eventKey}>
+            Distribution
+          </CustomToggle>
+          <Accordion.Collapse eventKey={eventKey}>
+            <Card.Body>
+              <Form.Group controlId={eventKey + 'title'}>
+                <Form.Label>Title</Form.Label>
+                <Form.Control type="text" placeholder="Distribution Title" />
+              </Form.Group>
+
+              <Form.Group controlId={eventKey + 'distribution'}>
+                <Form.Label>Description</Form.Label>
+                <Form.Control as="textarea" rows={3}
+                              placeholder="Distribution Description" />
+              </Form.Group>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'license'}>
+                    <Form.Label>License</Form.Label>
+                    <Form.Control type="text" placeholder="License" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'conformsTo'}>
+                    <Form.Label>conformsTo</Form.Label>
+                    <Form.Control type="text" placeholder="conformsTo" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'mediaType'}>
+                    <Form.Label>mediaType</Form.Label>
+                    <Form.Control type="text" placeholder="mediaType" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'packageFormat'}>
+                    <Form.Label>packageFormat</Form.Label>
+                    <Form.Control type="text" placeholder="packageFormat" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              {accessServiceEl}
+
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+  );
+}
+
+function RegisterOfferingDatasetDistributionAccessService(props) {
+  const { eventKey } = props;
+
+  // return (
+  //     <Form.Group controlId={eventKey + 'title'}>
+  //       <Form.Label>Title</Form.Label>
+  //       <Form.Control type="text" placeholder="Dataset Title" />
+  //     </Form.Group>
+  // )
+
+  return (
+      <Accordion>
+        <Card>
+          <CustomToggle eventKey={eventKey}>
+            Access Service
+          </CustomToggle>
+          <Accordion.Collapse eventKey={eventKey}>
+            <Card.Body>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'endpointDescription'}>
+                    <Form.Label>Endpoint Description</Form.Label>
+                    <Form.Control type="text" placeholder="Endpoint Description" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'endpointUrl'}>
+                    <Form.Label>Endpoint URL</Form.Label>
+                    <Form.Control type="text" placeholder="Endpoint URL" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'conformsTo'}>
+                    <Form.Label>Conforms To</Form.Label>
+                    <Form.Control type="text" placeholder="Conforms To" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'servesDataset'}>
+                    <Form.Label>Serves Dataset</Form.Label>
+                    <Form.Control type="text" placeholder="Serves Dataset" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'Service Specs'}>
+                    <Form.Label>Service Specs</Form.Label>
+                    <Form.Control type="text" placeholder="Service Specs" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+
+
+
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+  );
+}
+
+function RegisterOfferingDataset(props) {
+  const { eventKey, datasetsInfoN, datasetsDistributionN } = props;
+
+  const datasetInformationEl = (Array.from(Array(datasetsInfoN).keys())).map((item, idx) => (
+      <RegisterOfferingDatasetInformation key={idx} eventKey={`datasetInformation${idx}`} />
+  ));
+
+  const datasetDistributionEl = (Array.from(Array(datasetsDistributionN).keys())).map((item, idx) => (
+      <RegisterOfferingDatasetDistribution key={idx} eventKey={`datasetDistribution${idx}`} />
+  ));
 
   return (
     <Accordion>
@@ -81,12 +291,18 @@ function RegisterOfferingDataset(props) {
                 </Form.Group>
               </Col>
             </Row>
+
+            { datasetInformationEl}
+
+            { datasetDistributionEl}
           </Card.Body>
         </Accordion.Collapse>
       </Card>
     </Accordion>
   );
 }
+
+
 
 export default function RegisterOffering() {
   const [ datasetsN, setDatasetsN ] = useState(1);
@@ -97,6 +313,11 @@ export default function RegisterOffering() {
 
   // if (!data)
   //   return <Loading />;
+
+
+
+
+
   const datasetEl = (Array.from(Array(datasetsN).keys())).map((item, idx) => (
     <RegisterOfferingDataset key={idx} eventKey={`dataset${idx}`} />
   ));
@@ -147,6 +368,10 @@ export default function RegisterOffering() {
       </Row>
 
       { datasetEl }
+
+
+
+
     </Form>
   </Layout>);
 }

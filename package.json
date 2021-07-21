@@ -11,12 +11,12 @@
   "dependencies": {
     "@UNPARALLEL/connector-ri": "^1.0.0",
     "bootstrap": "^4.6.0",
-    "next": "11.0.1",
+    "next": "^11.0.1",
     "nextjs-breadcrumbs": "^1.1.4",
-    "react": "17.0.2",
+    "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-bootstrap-icons": "^1.5.0",
-    "react-dom": "17.0.2",
+    "react-dom": "^17.0.2",
     "react-grid-layout": "^1.2.5",
     "swr": "^0.5.6"
   },

@@ -79,10 +79,23 @@ footer small.flex-grow-1 {
   height: 100vh;
 }
 
+.fh {
+  height: 100%;
+}
+
 .overflow-scroll {
   overflow: scroll;
 }
 
 .h3rem {
     height: 3rem;
+}
+
+.welcome-card {
+  background: url(/img/card_welcome_wth_logo.png) no-repeat center center; 
+  // background: url(/img/card_welcome@4x.png) no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

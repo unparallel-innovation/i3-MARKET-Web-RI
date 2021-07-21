@@ -60,6 +60,8 @@ function OfferingCard(props) {
 }
 
 export default function Offerings() {
+  const router = useRouter();
+
   const providerId = 'Siemens';
   // const providerId = 'ADV01';
   const { data, error } = useData(`/api/offerings/${providerId}`);
@@ -74,11 +76,15 @@ export default function Offerings() {
     <OfferingCard key={offering.title} {...offering} />
   ));
 
+  function onClick() {
+    router.push('/offerings/register');
+  }
+
   return (<Layout>
     <div className="px-5">
       <div className="d-flex align-items-center mb-2">
         <div className="flex-grow-1"></div>
-        <div className="text-primary">
+        <div className="text-primary" onClick={onClick} >
           <PlusCircle color={colors.primary} size={24} />
           <span className="ml-2">Add new</span>
         </div>

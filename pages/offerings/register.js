@@ -15,7 +15,7 @@ function RegisterOfferingDatasetInformation(props) {
 
   return (
       <Accordion>
-        <Card>
+        <Card className="mb-3">
           <CustomToggle eventKey={eventKey}>
             Dataset Information
           </CustomToggle>
@@ -381,7 +381,7 @@ function RegisterOfferingPricingModel(props) {
 
   return (
       <Accordion>
-        <Card>
+        <Card className="my-3">
           <CustomToggle eventKey={eventKey}>
             Pricing Model
           </CustomToggle>
@@ -484,7 +484,7 @@ export default function RegisterOffering() {
       { pricingModelEl }
 
       <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button className="btn btn-secondary" type="button">Cancel</button>
+        <button className="btn btn-secondary mr-3" type="button">Cancel</button>
         <button className="btn btn-primary" type="button">Register</button>
       </div>
 

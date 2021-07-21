@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Layout } from '/components/common.js'
-import { Card, Form, Col, Row, Accordion } from 'react-bootstrap'
+import {Card, Form, Col, Row, Accordion, Button} from 'react-bootstrap'
 import CustomToggle from '/components/CustomToggle.js'
 
 function RegisterOfferingDatasetInformation(props) {
@@ -302,10 +302,118 @@ function RegisterOfferingDataset(props) {
   );
 }
 
+function RegisterOfferingPricingModelPaymentType(props) {
+  const { eventKey, paymentTypesN, datasetsDistributionN } = props;
 
+  const paymentTypel = (Array.from(Array(paymentTypesN).keys())).map((item, idx) => (
+      <RegisterOfferingPricingModelPaymentType key={idx} eventKey={`paymentType${idx}`} />
+  ));
+
+
+  return (
+      <Accordion>
+        <Card>
+          <CustomToggle eventKey={eventKey}>
+            Payment Type - Subscription
+          </CustomToggle>
+          <Accordion.Collapse eventKey={eventKey}>
+            <Card.Body>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'subscriptionPrice'}>
+                    <Form.Label>Subscription Price</Form.Label>
+                    <Form.Control type="text" placeholder="Subscription Price" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'from'}>
+                    <Form.Label>From</Form.Label>
+                    <Form.Control type="date" placeholder="From" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'to'}>
+                    <Form.Label>To</Form.Label>
+                    <Form.Control type="date" placeholder="To" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'paymentType'}>
+                    <Form.Label>Payment Type</Form.Label>
+                    <Form.Control type="text" placeholder="Payment Type" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'repeat'}>
+                    <Form.Label>Repeat</Form.Label>
+                    <Form.Control type="text" placeholder="repeat" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'timeDuration'}>
+                    <Form.Label>Time Duration</Form.Label>
+                    <Form.Control type="text" placeholder="Time Duration" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+  );
+}
+
+function RegisterOfferingPricingModel(props) {
+  const { eventKey, paymentTypesN } = props;
+
+  const paymentTypeEl = (Array.from(Array(paymentTypesN).keys())).map((item, idx) => (
+      <RegisterOfferingPricingModelPaymentType key={idx} eventKey={`paymentType${idx}`} />
+  ));
+
+
+  return (
+      <Accordion>
+        <Card>
+          <CustomToggle eventKey={eventKey}>
+            Pricing Model
+          </CustomToggle>
+          <Accordion.Collapse eventKey={eventKey}>
+            <Card.Body>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId={eventKey + 'basicPrice'}>
+                    <Form.Label>Basic Price</Form.Label>
+                    <Form.Control type="text" placeholder="Basic Price" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId={eventKey + 'currency'}>
+                    <Form.Label>Currency</Form.Label>
+                    <Form.Control type="text" placeholder="Currency" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              {paymentTypeEl}
+
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+  );
+}
 
 export default function RegisterOffering() {
-  const [ datasetsN, setDatasetsN ] = useState(1);
+  const [ datasetsN, pricingModelN, setDatasetsN ] = useState(1);
   // const { data, error } = useData(`/api/offerings/${providerId}`);
 
   // if (error)
@@ -320,6 +428,10 @@ export default function RegisterOffering() {
 
   const datasetEl = (Array.from(Array(datasetsN).keys())).map((item, idx) => (
     <RegisterOfferingDataset key={idx} eventKey={`dataset${idx}`} />
+  ));
+
+  const pricingModelEl = (Array.from(Array(pricingModelN).keys())).map((item, idx) => (
+      <RegisterOfferingPricingModel key={idx} eventKey={`princingModel${idx}`} />
   ));
 
   console.log(datasetsN, datasetEl);
@@ -369,6 +481,12 @@ export default function RegisterOffering() {
 
       { datasetEl }
 
+      { pricingModelEl }
+
+      <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button className="btn btn-secondary" type="button">Cancel</button>
+        <button className="btn btn-primary" type="button">Register</button>
+      </div>
 
 
 

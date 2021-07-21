@@ -25,7 +25,7 @@ export function Layout(props) {
         <Link href="/" passHref>
           <Navbar.Brand>
             {/* <img height="32" src="/img/web-ri_logo.png" /> */}
-            <img height="32" src="/img/Web-ri_sep.png" />
+            <img height="32" src="/img/manufacturing_marketplace.png" />
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

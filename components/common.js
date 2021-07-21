@@ -104,9 +104,8 @@ export function ErrorC(props) {
   console.log(error);
 
   return (<Layout>
-    <div className="px-5 py-3">
-      Error
-      { error }
+    <div className="px-5 py-3 bg-danger text-white">
+      { error.message }
     </div>
   </Layout>);
 }

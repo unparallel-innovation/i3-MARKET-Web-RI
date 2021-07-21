@@ -1,48 +1,19 @@
 import { useData } from '/lib/effects.js'
 import { Layout, Loading, ErrorC } from '/components/common.js'
+import CustomToggle from '/components/CustomToggle.js'
 import colors from '/lib/colors.js'
 import { ts2date } from '/lib/utils.js'
 
-import { useContext } from 'react'
 import { useRouter } from 'next/router'
 
 import {
   Button, Accordion, Card, Badge,
-  AccordionContext, useAccordionToggle,
   Row, Col, Table
 } from 'react-bootstrap'
 
 import {
   Lock, Globe, Pencil, Trash,
-  CaretDownFill, CaretUpFill
 } from 'react-bootstrap-icons'
-
-function CustomToggle(props) {
-  const { className, children, eventKey, callback } = props;
-  const currentEventKey = useContext(AccordionContext);
-
-  const decoratedOnClick = useAccordionToggle(
-    eventKey,
-    () => callback && callback(eventKey)
-  );
-
-  const isCurrentEventKey = currentEventKey === eventKey;
-
-  const caretEl = isCurrentEventKey
-    ? <CaretUpFill />
-    : <CaretDownFill />;
-
-  return (
-    <Card.Header
-      className={className + " d-flex align-items-center cursor-pointer"}
-      onClick={decoratedOnClick}
-    >
-      <span className="flex-grow-1">{ children }</span>
-      { caretEl }
-
-    </Card.Header>
-  );
-}
 
 function KVCol(props) {
   const { title, children } = props;

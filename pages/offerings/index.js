@@ -62,8 +62,8 @@ function OfferingCard(props) {
 export default function Offerings() {
   const router = useRouter();
 
-  const providerId = 'Siemens';
-  // const providerId = 'ADV01';
+  // const providerId = 'provider_webri';
+  const providerId = 'Siemens_AG';
   const { data, error } = useData(`/api/offerings/${providerId}`);
 
   if (error)

@@ -1,6 +1,7 @@
 import { useData } from '/lib/effects.js'
 import { Layout, Loading, ErrorC } from '/components/common.js'
 import colors from '/lib/colors.js'
+import user from '/lib/user.js'
 
 import { useRouter } from 'next/router'
 
@@ -62,9 +63,7 @@ function OfferingCard(props) {
 export default function Offerings() {
   const router = useRouter();
 
-  // const providerId = 'provider_webri';
-  const providerId = 'Siemens_AG';
-  const { data, error } = useData(`/api/offerings/${providerId}`);
+  const { data, error } = useData(`/api/offerings/${user.providerId}`);
 
   if (error)
     return <ErrorC error={error} />;
@@ -84,7 +83,7 @@ export default function Offerings() {
     <div className="px-5">
       <div className="d-flex align-items-center mb-2">
         <div className="flex-grow-1"></div>
-        <div className="text-primary" onClick={onClick} >
+        <div className="text-primary cursor-pointer" onClick={onClick} >
           <PlusCircle color={colors.primary} size={24} />
           <span className="ml-2">Add new</span>
         </div>

@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@UNPARALLEL/connector-ri": "^1.0.0",
+    "@UNPARALLEL/connector-ri": "^1.0.1",
     "bootstrap": "^4.6.0",
     "next": "^11.0.1",
     "nextjs-breadcrumbs": "^1.1.4",

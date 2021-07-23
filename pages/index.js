@@ -109,13 +109,13 @@ export default function Home() {
 
   const categoryEl = categories.map((category, idx) => (
     <div key={"category" + idx}>
-      { category.title } { category.count } 
+      { category.title } { category.count }
     </div>
   ));
 
   return (<Layout>
     <div className="px-5">
-      <ResponsiveGridLayout className="layout" 
+      <ResponsiveGridLayout className="layout"
         breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
         cols={{lg: 11, md: 10, sm: 6, xs: 4, xxs: 3}}
         layouts={layouts}
@@ -141,7 +141,7 @@ export default function Home() {
                   COMPANY
                 </small>
                 <h4>
-                  Siemens AG
+                  Siemens
                 </h4>
               </Col>
             </Row>
@@ -159,7 +159,7 @@ export default function Home() {
                   DATA PROVIDER ID
                 </small>
                 <h4>
-                  144565266553235
+                  Siemens_AG
                 </h4>
               </Col>
             </Row>
@@ -167,11 +167,11 @@ export default function Home() {
         </Card>
 
         <div key="c">
-          <NumberCard className="bg-primary" number={30} label="Data Providers" />
+          <NumberCard className="bg-primary" number={8} label="Data Providers" />
         </div>
 
         <div key="d">
-          <NumberCard className="bg-secondary" number={150} label="Offerings Available" />
+          <NumberCard className="bg-secondary" number={20} label="Offerings Available" />
         </div>
 
         {/* { categoryEl } */}

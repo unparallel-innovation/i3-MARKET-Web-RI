@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Col, Row} from 'react-bootstrap'
 import { PersonCircle, Bell } from 'react-bootstrap-icons'
 
 import Breadcrumbs from 'nextjs-breadcrumbs'
@@ -72,6 +72,8 @@ export function Layout(props) {
       </main>
 
       <footer className="px-5 py-4 d-flex align-items-center">
+        <Col>
+          <Row>
         <Image height="36" width="54" src="/img/EU_flag.png" alt="EU flag" />
         {/* <small className="ml-3 flex-grow-1"> */}
         <h6 className="ml-3 flex-grow-1">
@@ -80,6 +82,15 @@ export function Layout(props) {
             research and innovation programme under grant agreement no. B71754
           </small>
         </h6>
+          </Row>
+          <Row >
+            <h6 className>
+              <small className="text-dark">
+                Powered by Web-RI
+              </small>
+            </h6>
+          </Row>
+        </Col>
         {/* </small> */}
         <small className="ml-3 align-self-start">
           Privacy Policy

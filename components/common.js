@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
@@ -24,8 +25,7 @@ export function Layout(props) {
       <Navbar className="px-5 py-3" expand="md">
         <Link href="/" passHref>
           <Navbar.Brand>
-            {/* <img height="32" src="/img/web-ri_logo.png" /> */}
-            <img height="32" src="/img/manufacturing_marketplace.png" />
+            <Image height="32" src="/img/manufacturing_marketplace.png" alt="Web-ri logo" />
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -72,11 +72,11 @@ export function Layout(props) {
       </main>
 
       <footer className="px-5 py-4 d-flex align-items-center">
-        <img height="36" src="/img/EU_flag.png" />
+        <Image height="36" src="/img/EU_flag.png" alt="EU flag" />
         {/* <small className="ml-3 flex-grow-1"> */}
         <h6 className="ml-3 flex-grow-1">
           <small>
-            i3-Market has received funding from the European Union's Horizon 2020 <br />
+            i3-Market has received funding from the European Union&apos;s Horizon 2020 <br />
             research and innovation programme under grant agreement no. B71754
           </small>
         </h6>
@@ -84,8 +84,8 @@ export function Layout(props) {
         <small className="ml-3 align-self-start">
           Privacy Policy
         </small>
-        <img height="48" src="/img/i3-MARKET-LOGO_2nd_Release.png"
-          className="ml-4" />
+        <Image height="48" src="/img/i3-MARKET-LOGO_2nd_Release.png"
+          className="ml-4" alt="i3Market logo" />
       </footer>
     </div>
   </div>);

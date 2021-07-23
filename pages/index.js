@@ -1,6 +1,7 @@
 import { Layout } from '/components/common.js'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { Card, Col, Row } from 'react-bootstrap'
+import Image from 'next/image'
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -122,7 +123,7 @@ export default function Home() {
       >
         {/* <div key="a" className="welcome-card p-3 d-flex align-items-center"> */}
           <Card key="a" className="welcome-card p-3 d-flex align-items-center justify-content-center">
-            <img src="/img/manufacturing_marketplace.png" className="img-fluid" />
+            <Image src="/img/manufacturing_marketplace.png" className="img-fluid" />
           </Card>
         {/* </div> */}
 

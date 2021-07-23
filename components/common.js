@@ -84,7 +84,7 @@ export function Layout(props) {
         </h6>
           </Row>
           <Row >
-            <h6 className>
+            <h6 className="mt-3">
               <small className="text-dark">
                 Powered by Web-RI
               </small>
@@ -92,11 +92,11 @@ export function Layout(props) {
           </Row>
         </Col>
         {/* </small> */}
-        <small className="ml-3 align-self-start">
+        <small className="ml-3 mr-4 align-self-start">
           Privacy Policy
         </small>
         <Image height="48" width="61" src="/img/i3-MARKET-LOGO_2nd_Release.png"
-          className="ml-4" alt="i3Market logo" />
+         alt="i3Market logo" />
       </footer>
     </div>
   </div>);

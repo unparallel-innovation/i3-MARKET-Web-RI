@@ -1,5 +1,5 @@
 import { useData } from '/lib/effects.js'
-import { Layout, Loading, ErrorC } from '/components/common.js'
+import { Layout, ErrorC } from '/components/common.js'
 import CustomToggle from '/components/CustomToggle.js'
 import colors from '/lib/colors.js'
 import { ts2date } from '/lib/utils.js'
@@ -14,6 +14,7 @@ import {
 import {
   Lock, Globe, Pencil, Trash,
 } from 'react-bootstrap-icons'
+import {Loading} from "../../components/Loading";
 
 function KVCol(props) {
   const { title, children } = props;

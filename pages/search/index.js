@@ -1,13 +1,14 @@
 import { useData } from '/lib/effects.js'
-import { Layout, Loading, ErrorC } from '/components/common.js'
+import { Layout, ErrorC } from '/components/common.js'
 
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { Form, Button } from 'react-bootstrap'
+import {Loading} from "../../components/Loading";
 
 export default
-function Search() {
+function Index() {
   const router = useRouter();
   const { searchType = "provider", providerId, category } = router.query;
   const { data, error } = useData(
@@ -25,7 +26,7 @@ function Search() {
   console.log(`Searching for ${searchType} pid ${providerId} cat ${category}`, data);
 
   let selectEl = null;
-  
+
   if (_searchType == "provider") {
     selectEl = (<Form.Control as="select" className="mr-3"
       name="providerId" defaultValue={_searchType}>

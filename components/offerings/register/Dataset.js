@@ -1,0 +1,132 @@
+import {useState} from "react";
+import DatasetInformation from "./DatasetInformation";
+import DatasetDistribution from "./DatasetDistribution";
+import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
+import CustomToggle from "../../CustomToggle";
+
+export default function Dataset(props) {
+    const { eventKey } = props;
+    const [ informationN, setInformationN ] = useState(1);
+    const [ distributionN, setDistributionN ] = useState(1);
+
+    const datasetInformationEl = (Array.from(Array(informationN).keys())).map((item, idx) => (
+        <DatasetInformation key={idx}
+                            eventKey={`${eventKey}information${idx}`} />
+    ));
+
+    const datasetDistributionEl = (Array.from(Array(distributionN).keys())).map((item, idx) => (
+        <DatasetDistribution key={idx}
+                             eventKey={`${eventKey}distribution${idx}`} />
+    ));
+
+    return (
+        <Accordion>
+            <Card>
+                <CustomToggle eventKey={eventKey}>
+                    Dataset
+                </CustomToggle>
+                <Accordion.Collapse eventKey={eventKey}>
+                    <Card.Body>
+                        <Form.Group controlId={eventKey + 'title'}>
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control type="text" placeholder="Dataset Title"
+                                          name={eventKey + 'title'}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId={eventKey + 'description'}>
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control as="textarea" rows={3}
+                                          placeholder="Dataset Description"
+                                          name={eventKey + 'description'}
+                            />
+                        </Form.Group>
+
+                        <Row>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'creator'}>
+                                    <Form.Label>Creator</Form.Label>
+                                    <Form.Control type="text" placeholder="Creator"
+                                                  name={eventKey + 'creator'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'issued'}>
+                                    <Form.Label>Issued</Form.Label>
+                                    <Form.Control type="date" placeholder="Issued"
+                                                  name={eventKey + 'issued'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'modified'}>
+                                    <Form.Label>Modified</Form.Label>
+                                    <Form.Control type="date" placeholder="Modified"
+                                                  name={eventKey + 'modified'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'language'}>
+                                    <Form.Label>Language</Form.Label>
+                                    <Form.Control type="text" placeholder="Language"
+                                                  name={eventKey + 'language'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'temporal'}>
+                                    <Form.Label>Temporal</Form.Label>
+                                    <Form.Control type="text" placeholder="Temporal"
+                                                  name={eventKey + 'temporal'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'temporalResolution'}>
+                                    <Form.Label>Temporal Resolution</Form.Label>
+                                    <Form.Control type="text" placeholder="Temporal Resolution"
+                                                  name={eventKey + 'temporalResolution'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'spatial'}>
+                                    <Form.Label>Spatial</Form.Label>
+                                    <Form.Control type="text" placeholder="Spatial"
+                                                  name={eventKey + 'spatial'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'accrualPeriodicity'}>
+                                    <Form.Label>Accrual Periodicity</Form.Label>
+                                    <Form.Control type="text" placeholder="Accrual Periodicity"
+                                                  name={eventKey + 'accrualPeriodicity'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        { datasetInformationEl}
+
+                        { datasetDistributionEl}
+
+                        <input type="hidden" value={informationN}
+                               name={eventKey + 'informationN'} />
+                        <input type="hidden" value={distributionN}
+                               name={eventKey + 'distributionN'} />
+
+                    </Card.Body>
+                </Accordion.Collapse>
+            </Card>
+        </Accordion>
+    );
+}

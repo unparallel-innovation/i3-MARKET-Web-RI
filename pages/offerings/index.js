@@ -1,64 +1,12 @@
-import { useData } from '/lib/effects.js'
-import { Layout, Loading, ErrorC } from '/components/common.js'
+import {useData} from '/lib/effects.js'
+import {ErrorC, Layout} from '/components/common.js'
 import colors from '/lib/colors.js'
 import user from '/lib/user.js'
-
-import { useRouter } from 'next/router'
-
-import { Card, Row, Col, Badge, Pagination } from 'react-bootstrap'
-import { Lock, Globe, ExclamationCircle, PlusCircle } from 'react-bootstrap-icons'
-
-function OfferingCard(props) {
-  const router = useRouter();
-  const {
-    title, description, active,
-    hasContractWarning, dataOfferingId,
-    activeContracts
-  } = props;
-
-  const visIconEl = active === "yes"
-    ? <Globe color={colors.primary} size={24} />
-    : <Lock color={colors.primary} size={24} />;
-
-  let warningIconEl = null;
-
-  if (hasContractWarning) {
-    warningIconEl = (
-      <span className="p-2 px-3 bg-warning">
-        <ExclamationCircle size={24}/>
-      </span>
-    );
-  }
-
-  function onClick() {
-    router.push('/offerings/' + dataOfferingId);
-  }
-
-  return (
-    <Col xs="12" md="6" xl="4">
-      <Card className="overflow-hidden cursor-pointer mb-3"
-        onClick={onClick}
-      >
-        <Card.Body>
-          <Card.Title className="d-flex justify-content-between line-clamp-2 h3rem">
-            { title }
-            { visIconEl }
-          </Card.Title>
-          <Card.Text className="line-clamp-2 h3rem">
-            { description }
-          </Card.Text>
-        </Card.Body>
-        <div className="d-flex bg-light">
-          <span className="p-2 flex-grow-1">
-            <Badge pill variant="primary">
-              { activeContracts || 0 } Contracts
-            </Badge>
-          </span>
-          { warningIconEl }
-        </div>
-      </Card>
-    </Col>);
-}
+import {useRouter} from 'next/router'
+import {Row} from 'react-bootstrap'
+import {PlusCircle} from 'react-bootstrap-icons'
+import {Loading} from "../../components/Loading";
+import OfferingCard from "../../components/offerings/OfferingCard";
 
 export default function Offerings() {
   const router = useRouter();

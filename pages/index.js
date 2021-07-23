@@ -1,4 +1,5 @@
 import { Layout } from '/components/common.js'
+import user from '/lib/user.js'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { Card, Col, Row } from 'react-bootstrap'
 import Image from 'next/image'
@@ -133,7 +134,7 @@ export default function Home() {
                   USER
                 </small>
                 <h4>
-                  John James Doe
+                  { user.name }
                 </h4>
               </Col>
               <Col>
@@ -141,7 +142,7 @@ export default function Home() {
                   COMPANY
                 </small>
                 <h4>
-                  Siemens
+                  { user.company }
                 </h4>
               </Col>
             </Row>
@@ -159,7 +160,7 @@ export default function Home() {
                   DATA PROVIDER ID
                 </small>
                 <h4>
-                  Siemens_AG
+                  { user.providerId }
                 </h4>
               </Col>
             </Row>

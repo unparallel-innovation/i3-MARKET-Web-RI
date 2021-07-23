@@ -1,6 +1,7 @@
 import { useData } from '/lib/effects.js'
 import { Layout, Loading, ErrorC } from '/components/common.js'
 import colors from '/lib/colors.js'
+import user from '/lib/user.js'
 
 import { useRouter } from 'next/router'
 
@@ -62,9 +63,7 @@ function OfferingCard(props) {
 export default function Offerings() {
   const router = useRouter();
 
-  const providerId = 'provider_webri';
-  // const providerId = 'ADV01';
-  const { data, error } = useData(`/api/offerings/${providerId}`);
+  const { data, error } = useData(`/api/offerings/${user.providerId}`);
 
   if (error)
     return <ErrorC error={error} />;

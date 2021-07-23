@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import { Layout } from '/components/common.js'
-import {Card, Form, Col, Row, Accordion, Button} from 'react-bootstrap'
+import { Card, Form, Col, Row, Accordion, Button } from 'react-bootstrap'
 import CustomToggle from '/components/CustomToggle.js'
+import user from '/lib/user.js'
+
+function dateStrToISO(str) {
+  return (new Date(str)).toISOString();
+}
 
 function RegisterOfferingDatasetInformation(props) {
   const { eventKey } = props;
@@ -103,11 +108,11 @@ function RegisterOfferingDatasetDistribution(props) {
                 />
               </Form.Group>
 
-              <Form.Group controlId={eventKey + 'distribution'}>
+              <Form.Group controlId={eventKey + 'description'}>
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" rows={3}
                   placeholder="Distribution Description"
-                  name={eventKey + 'distribution'}
+                  name={eventKey + 'description'}
                 />
               </Form.Group>
 
@@ -210,9 +215,11 @@ function RegisterOfferingDatasetDistributionAccessService(props) {
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId={eventKey + 'Service Specs'}>
+                  <Form.Group controlId={eventKey + 'serviceSpecs'}>
                     <Form.Label>Service Specs</Form.Label>
-                    <Form.Control type="text" placeholder="Service Specs" />
+                    <Form.Control type="text" placeholder="Service Specs"
+                      name={eventKey + 'serviceSpecs'}
+                    />
                   </Form.Group>
                 </Col>
               </Row>
@@ -485,16 +492,125 @@ export default function RegisterOffering() {
   ));
 
   const pricingModelEl = (Array.from(Array(pricingModelN).keys())).map((item, idx) => (
-      <RegisterOfferingPricingModel key={idx} eventKey={`princingModel${idx}`} />
+      <RegisterOfferingPricingModel key={idx} eventKey={`pricingModel${idx}`} />
   ));
 
   function onSubmit(e) {
     e.preventDefault();
-    const fd = new FormData(e.target);
-    let res = {
+    const form = e.target;
+    const fd = new FormData(form);
 
+    const datasetN = parseInt(fd.get("datasetN"));
+    console.log('SUBMIT', datasetN, [...fd.entries()]);
+
+    const hasDataset = (Array.from(Array(datasetN).keys())).map((item, idx) => {
+      const datasetEK = "dataset" + idx;
+
+      const distributionN = parseInt(fd.get(datasetEK + "distributionN"));
+
+      const distribution = (Array.from(Array(distributionN).keys())).map((item, idx) => {
+        const distributionEK = datasetEK + "distribution" + idx;
+
+        const accessServiceN = parseInt(fd.get(distributionEK + "accessServiceN"));
+
+        const accessService = (Array.from(Array(distributionN).keys())).map((item, idx) => {
+          const accessServiceEK = distributionEK + "accessService" + idx;
+
+          return {
+            endpointDescription: fd.get(accessServiceEK + "endpointDescription"),
+            endpointURL: fd.get(accessServiceEK + "endpointUrl"),
+            conformsTo: fd.get(accessServiceEK + "conformsTo"),
+            servesDataset: fd.get(accessServiceEK + "servesDataset"),
+            serviceSpecs: fd.get(accessServiceEK + "serviceSpecs"),
+          };
+        });
+
+        return {
+          title: fd.get(distributionEK + "title"),
+          description: fd.get(distributionEK + "description"),
+          license: fd.get(distributionEK + "license"),
+          conformsTo: fd.get(distributionEK + "conformsTo"),
+          mediaType: fd.get(distributionEK + "mediaType"),
+          packageFormat: fd.get(distributionEK + "packageFormat"),
+          accessService,
+        };
+      });
+
+      const datasetInformationN = parseInt(fd.get(datasetEK + "informationN"));
+
+      const datasetInformation = (Array.from(Array(distributionN).keys())).map((item, idx) => {
+        const informationEK = datasetEK + "information" + idx;
+
+        return {
+          cppType: fd.get(informationEK + "cppType"),
+          deviceID: fd.get(informationEK + "deviceID"),
+          measurementChannelType: fd.get(informationEK + "measurementChannelType"),
+          measurementType: fd.get(informationEK + "measurementType"),
+          sensorID: fd.get(informationEK + "sensorID"),
+          sensorType: fd.get(informationEK + "sensorType"),
+        };
+      });
+
+      return {
+        title: fd.get(datasetEK + "title"),
+        description: fd.get(datasetEK + "description"),
+        creator: fd.get(datasetEK + "creator"),
+        issued: dateStrToISO(fd.get(datasetEK + "issued")),
+        modified: dateStrToISO(fd.get(datasetEK + "modified")),
+        language: fd.get(datasetEK + "language"),
+        temporal: fd.get(datasetEK + "temporal"),
+        temporalResolution: fd.get(datasetEK + "temporalResolution"),
+        spatial: fd.get(datasetEK + "spatial"),
+        accrualPeriodicity: fd.get(datasetEK + "accrualPeriodicity"),
+        distribution,
+        datasetInformation,
+      };
+    });
+
+    const pricingModelN = parseInt(fd.get("pricingModelN"));
+
+    const hasPricingModel = (Array.from(Array(pricingModelN).keys())).map((item, idx) => {
+      const pricingModelEK = "pricingModel" + idx;
+
+      const paymentTypeN = parseInt(fd.get(pricingModelEK + "paymentTypeN"));
+
+      const hasPaymentType = (Array.from(Array(paymentTypeN).keys())).map((item, idx) => {
+        const paymentTypeEK = pricingModelEK + "paymentType" + idx;
+
+        return {
+          hasSubscriptionPrice: fd.get(paymentTypeEK + "subscriptionPrice"),
+          fromValue: dateStrToISO(fd.get(paymentTypeEK + "from")),
+          toValue: dateStrToISO(fd.get(paymentTypeEK + "to")),
+          paymentType: fd.get(paymentTypeEK + "paymentType"),
+          repeat: fd.get(paymentTypeEK + "repeat"),
+          timeDuration: fd.get(paymentTypeEK + "timeDuration"),
+        }
+      });
+
+      return {
+        basicPrice: fd.get(pricingModelEK + "basicPrice"),
+        currency: fd.get(pricingModelEK + "currency"),
+        hasPaymentType,
+      };
+    });
+
+    let res = {
+      title: fd.get("title"),
+      description: fd.get("description"),
+      category: fd.get("category"),
+      isProvidedBy: fd.get("isProvidedBy"),
+      label: fd.get("label"),
+      hasDataset,
+      hasPricingModel,
     };
-    // fetch(form.action, { method: 'post', body: fd });
+
+    console.log(res);
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(res),
+    });
   }
 
   return (<Layout>
@@ -520,7 +636,9 @@ export default function RegisterOffering() {
         <Col>
           <Form.Group controlId="provider">
             <Form.Label>Provider</Form.Label>
-            <Form.Control type="text" placeholder="Provider" name="provider" disabled />
+            <Form.Control type="text" placeholder="Provider"
+              name="provider" disabled value={user.providerId} />
+            <input type="hidden" name="isProvidedBy" value={user.providerId} />
           </Form.Group>
         </Col>
       </Row>
@@ -548,8 +666,8 @@ export default function RegisterOffering() {
       <input type="hidden" value={pricingModelN} name="pricingModelN" />
 
       <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button className="btn btn-secondary mr-3" type="button">Cancel</button>
-        <button className="btn btn-primary" type="button">Register</button>
+        <Button variant="secondary">Cancel</Button>
+        <Button type="submit" className="ml-3">Register</Button>
       </div>
     </Form>
   </Layout>);

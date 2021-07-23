@@ -25,7 +25,7 @@ export function Layout(props) {
       <Navbar className="px-5 py-3" expand="md">
         <Link href="/" passHref>
           <Navbar.Brand>
-            <Image height="32" src="/img/manufacturing_marketplace.png" alt="Web-ri logo" />
+            <Image height="32" width="191" src="/img/manufacturing_marketplace.png" alt="Web-ri logo" />
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -72,7 +72,7 @@ export function Layout(props) {
       </main>
 
       <footer className="px-5 py-4 d-flex align-items-center">
-        <Image height="36" src="/img/EU_flag.png" alt="EU flag" />
+        <Image height="36" width="54" src="/img/EU_flag.png" alt="EU flag" />
         {/* <small className="ml-3 flex-grow-1"> */}
         <h6 className="ml-3 flex-grow-1">
           <small>
@@ -84,7 +84,7 @@ export function Layout(props) {
         <small className="ml-3 align-self-start">
           Privacy Policy
         </small>
-        <Image height="48" src="/img/i3-MARKET-LOGO_2nd_Release.png"
+        <Image height="48" width="61" src="/img/i3-MARKET-LOGO_2nd_Release.png"
           className="ml-4" alt="i3Market logo" />
       </footer>
     </div>

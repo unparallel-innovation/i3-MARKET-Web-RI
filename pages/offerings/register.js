@@ -434,7 +434,14 @@ export default function RegisterOffering() {
       <RegisterOfferingPricingModel key={idx} eventKey={`princingModel${idx}`} />
   ));
 
-  console.log(datasetsN, datasetEl);
+  function onSubmit(e) {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    let res = {
+
+    };
+    // fetch(form.action, { method: 'post', body: fd });
+  }
 
   return (<Layout>
     <Form className="px-5">

@@ -121,11 +121,9 @@ export default function Home() {
         layouts={layouts}
         rowHeight={100}
       >
-        {/* <div key="a" className="welcome-card p-3 d-flex align-items-center"> */}
-          <Card key="a" className="welcome-card p-3 d-flex align-items-center justify-content-center">
-            <Image src="/img/manufacturing_marketplace.png" className="img-fluid" />
-          </Card>
-        {/* </div> */}
+        <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
+          <Image src="/img/manufacturing_marketplace.png" layout="fill" objectFit="contain" className="p-3" />
+        </Card>
 
         <Card key="b">
           <Card.Body>

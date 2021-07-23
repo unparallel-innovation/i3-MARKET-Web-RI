@@ -1,11 +1,18 @@
 import { useState } from 'react'
 import { Layout } from '/components/common.js'
-import { Card, Form, Col, Row, Accordion, Button } from 'react-bootstrap'
 import CustomToggle from '/components/CustomToggle.js'
 import user from '/lib/user.js'
 
+import { Card, Form, Col, Row, Accordion, Button } from 'react-bootstrap'
+import { useRouter } from 'next/router'
+
 function dateStrToISO(str) {
   return (new Date(str)).toISOString();
+}
+
+function dateField(obj, okey, value) {
+  if (value)
+    obj[okey] = dateStrToISO(value);
 }
 
 function RegisterOfferingDatasetInformation(props) {
@@ -484,6 +491,7 @@ function RegisterOfferingPricingModel(props) {
 }
 
 export default function RegisterOffering() {
+  const router = useRouter();
   const [ datasetN, setDatasetN ] = useState(1);
   const [ pricingModelN, setPricingModelN ] = useState(1);
 
@@ -551,12 +559,12 @@ export default function RegisterOffering() {
         };
       });
 
-      return {
+      let ret = {
         title: fd.get(datasetEK + "title"),
         description: fd.get(datasetEK + "description"),
         creator: fd.get(datasetEK + "creator"),
-        issued: dateStrToISO(fd.get(datasetEK + "issued")),
-        modified: dateStrToISO(fd.get(datasetEK + "modified")),
+        // issued: dateStrToISO(fd.get(datasetEK + "issued")),
+        // modified: dateStrToISO(fd.get(datasetEK + "modified")),
         language: fd.get(datasetEK + "language"),
         temporal: fd.get(datasetEK + "temporal"),
         temporalResolution: fd.get(datasetEK + "temporalResolution"),
@@ -565,6 +573,11 @@ export default function RegisterOffering() {
         distribution,
         datasetInformation,
       };
+
+      dateField(ret, 'issued', fd.get(datasetEK + "issued"));
+      dateField(ret, 'modified', fd.get(datasetEK + "modified"));
+
+      return ret;
     });
 
     const pricingModelN = parseInt(fd.get("pricingModelN"));
@@ -577,14 +590,19 @@ export default function RegisterOffering() {
       const hasPaymentType = (Array.from(Array(paymentTypeN).keys())).map((item, idx) => {
         const paymentTypeEK = pricingModelEK + "paymentType" + idx;
 
-        return {
+        let ret = {
           hasSubscriptionPrice: fd.get(paymentTypeEK + "subscriptionPrice"),
-          fromValue: dateStrToISO(fd.get(paymentTypeEK + "from")),
-          toValue: dateStrToISO(fd.get(paymentTypeEK + "to")),
+          // fromValue: dateStrToISO(fd.get(paymentTypeEK + "from")),
+          // toValue: dateStrToISO(fd.get(paymentTypeEK + "to")),
           paymentType: fd.get(paymentTypeEK + "paymentType"),
           repeat: fd.get(paymentTypeEK + "repeat"),
           timeDuration: fd.get(paymentTypeEK + "timeDuration"),
         }
+
+        dateField(ret, 'fromValue', fd.get(paymentTypeEK + "from"));
+        dateField(ret, 'toValue', fd.get(paymentTypeEK + "to"));
+
+        return ret;
       });
 
       return {
@@ -610,7 +628,13 @@ export default function RegisterOffering() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(res),
+    }).then(res => {
+      router.push('/offerings');
     });
+  }
+
+  function onCancel() {
+      router.push('/offerings');
   }
 
   return (<Layout>
@@ -666,7 +690,7 @@ export default function RegisterOffering() {
       <input type="hidden" value={pricingModelN} name="pricingModelN" />
 
       <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-        <Button variant="secondary">Cancel</Button>
+        <Button onClick={onCancel} variant="secondary">Cancel</Button>
         <Button type="submit" className="ml-3">Register</Button>
       </div>
     </Form>

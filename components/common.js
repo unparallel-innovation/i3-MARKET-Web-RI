@@ -71,32 +71,30 @@ export function Layout(props) {
         {children}
       </main>
 
-      <footer className="px-5 py-4 d-flex align-items-center">
-        <Col>
-          <Row>
-        <Image height="36" width="54" src="/img/EU_flag.png" alt="EU flag" />
-        {/* <small className="ml-3 flex-grow-1"> */}
-        <h6 className="ml-3 flex-grow-1">
-          <small>
-            i3-Market has received funding from the European Union&apos;s Horizon 2020 <br />
-            research and innovation programme under grant agreement no. B71754
+      <footer className="px-5 py-4">
+        <div className="d-flex align-items-center">
+          <Image height="36" width="54" src="/img/EU_flag.png" alt="EU flag" />
+
+          <h6 className="ml-3 flex-grow-1">
+            <small>
+              i3-Market has received funding from the European Union&apos;s Horizon 2020 <br />
+              research and innovation programme under grant agreement no. B71754
+            </small>
+          </h6>
+
+          <small className="ml-3 mr-4 align-self-start">
+            Privacy Policy
+          </small>
+          <Image height="48" width="61" src="/img/i3-MARKET-LOGO_2nd_Release.png"
+            alt="i3Market logo" />
+        </div>
+
+        <h6 className="mt-3">
+          <small className="text-dark">
+            Powered by Web-RI
           </small>
         </h6>
-          </Row>
-          <Row >
-            <h6 className="mt-3">
-              <small className="text-dark">
-                Powered by Web-RI
-              </small>
-            </h6>
-          </Row>
-        </Col>
-        {/* </small> */}
-        <small className="ml-3 mr-4 align-self-start">
-          Privacy Policy
-        </small>
-        <Image height="48" width="61" src="/img/i3-MARKET-LOGO_2nd_Release.png"
-         alt="i3Market logo" />
+
       </footer>
     </div>
   </div>);

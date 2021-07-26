@@ -62,8 +62,8 @@ export function Layout(props) {
       </Navbar>
     </header>
 
-    <div className="flex-grow-1 overflow-scroll">
-      <main className={className || ''}>
+    <div className="flex-grow-1 overflow-scroll d-flex flex-column">
+      <main className={(className || '') + ' flex-grow-1'}>
         <div className="px-5 breadcrumbs py-4 pb-5">
           <Breadcrumbs rootLabel="Home" />
         </div>

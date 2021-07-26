@@ -1,7 +1,13 @@
 import { Form, Row, Col } from 'react-bootstrap';
 import user from '/lib/user.js'
 
-export default function General() {
+export default function General(props) {
+  const { categories } = props;
+
+  const categoryEl = categories.map(({ name }) => (
+      <option key={name} value={name}>{name}</option>
+  ));
+
   return (<>
       <Form.Group controlId="title">
         <Form.Label>Title</Form.Label>
@@ -18,7 +24,11 @@ export default function General() {
         <Col>
           <Form.Group controlId="category">
             <Form.Label>Category</Form.Label>
-            <Form.Control type="text" placeholder="Category" name="category"/>
+              <Form.Control as="select" className="mr-3" name="category"
+                  placeholder="Category"
+              >
+                  { categoryEl }
+              </Form.Control>
           </Form.Group>
         </Col>
         <Col>

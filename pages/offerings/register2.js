@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import {useRouter} from 'next/router'
-import { Layout } from '/components/common.js'
+import { useData } from '/lib/effects.js'
+import { Layout, ErrorC } from '/components/common.js'
+import {Loading} from "../../components/Loading";
 import General from "/components/offerings/register/General.js";
 import Dataset from "/components/offerings/register/Dataset";
 import PricingModel from "/components/offerings/register/PricingModel";
@@ -10,9 +12,18 @@ import { fd2register } from '/lib/form.js';
 
 export default function Register() {
   const router = useRouter();
+  const { data, error } = useData('/api/offerings/register');
   const [ datasetN, setDatasetN ] = useState(1);
   const [ pricingModelN, setPricingModelN ] = useState(1);
   const [ atIdx, setAtIdx ] = useState(0);
+
+  if (error)
+    return <ErrorC error={error} />;
+
+  if (!data)
+    return <Loading />;
+
+  const { categories } = data;
 
     function datasetOnDelete(e, eventKey) {
         // console.log("DELETE", e, eventKey);
@@ -71,7 +82,7 @@ export default function Register() {
             setAtIdx(parseInt(k.substr(3)));
         }} className="mb-3">
         <Tab eventKey="tab0" title="General">
-          <General />
+            <General categories={categories} />
         </Tab>
         <Tab eventKey="tab1" title="Datasets">
           <div className="d-flex align-items-center mb-3">

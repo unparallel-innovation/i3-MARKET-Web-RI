@@ -1,24 +1,30 @@
 import {useState} from "react";
 import PaymentType from "./PaymentType";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
-import CustomToggle from "../../CustomToggle";
+import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
 
 export default function PricingModel(props) {
+    const { eventKey, onDelete } = props;
     const [ paymentTypeN, setPaymentTypeN ] = useState(1);
-    const { eventKey } = props;
+
+    function paymentTypeOnDelete(e, eventKey) {
+        setPaymentTypeN(paymentTypeN - 1);
+    }
 
     const paymentTypeEl = (Array.from(Array(paymentTypeN).keys())).map((item, idx) => (
-        <PaymentType key={idx}
+        <PaymentType key={idx} onDelete={paymentTypeOnDelete}
                      eventKey={`${eventKey}paymentType${idx}`} />
     ));
 
     return (
         <Accordion>
             <Card className="my-3">
-                <CustomToggle eventKey={eventKey}>
+                <DeleteToggle eventKey={eventKey} onDelete={onDelete}
+                    className="bg-primary text-white"
+                >
                     Pricing Model
-                </CustomToggle>
+                </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Row>

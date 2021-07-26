@@ -1,15 +1,15 @@
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
-import CustomToggle from "../../CustomToggle";
+import DeleteToggle from "../../DeleteToggle";
 
 export default function AccessService(props) {
-    const { eventKey } = props;
+    const { eventKey, onDelete } = props;
 
     return (
         <Accordion>
             <Card className="mb-3">
-                <CustomToggle eventKey={eventKey}>
+                <DeleteToggle eventKey={eventKey} onDelete={onDelete}>
                     Access Service
-                </CustomToggle>
+                </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
 

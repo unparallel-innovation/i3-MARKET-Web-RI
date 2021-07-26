@@ -13,12 +13,23 @@ export default function Register() {
   const [ datasetN, setDatasetN ] = useState(1);
   const [ pricingModelN, setPricingModelN ] = useState(1);
 
+    function datasetOnDelete(e, eventKey) {
+        // console.log("DELETE", e, eventKey);
+        setDatasetN(datasetN - 1);
+    }
+
+    function pricingModelOnDelete(e, eventKey) {
+        setPricingModelN(pricingModelN - 1);
+    }
+
   const datasetEl = (Array.from(Array(datasetN).keys())).map((item, idx) => (
-      <Dataset key={idx} eventKey={`dataset${idx}`} />
+      <Dataset key={idx} eventKey={`dataset${idx}`}
+          onDelete={datasetOnDelete} />
   ));
 
   const pricingModelEl = (Array.from(Array(pricingModelN).keys())).map((item, idx) => (
-      <PricingModel key={idx} eventKey={`pricingModel${idx}`} />
+      <PricingModel key={idx} eventKey={`pricingModel${idx}`}
+          onDelete={pricingModelOnDelete} />
   ));
 
   function onSubmit(e) {

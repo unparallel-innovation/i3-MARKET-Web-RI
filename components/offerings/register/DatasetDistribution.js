@@ -1,23 +1,29 @@
 import {useState} from "react";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
-import CustomToggle from "../../CustomToggle";
+import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
 import AccessService from "./AccessService";
 
 export default function DatasetDistribution(props) {
-    const { eventKey } = props;
+    const { eventKey, onDelete } = props;
     const [ accessServiceN, setAccessServiceN ] = useState(1);
 
+    function accessServiceOnDelete(e, eventKey) {
+        setAccessServiceN(accessServiceN - 1);
+    }
+
     const accessServiceEl = (Array.from(Array(accessServiceN).keys())).map((item, idx) => (
-        <AccessService key={idx} eventKey={`${eventKey}accessService${idx}`} />
+        <AccessService key={idx} onDelete={accessServiceOnDelete}
+            eventKey={`${eventKey}accessService${idx}`} />
     ));
 
     return (
         <Accordion>
             <Card className="mb-3">
-                <CustomToggle eventKey={eventKey}>
+                <DeleteToggle eventKey={eventKey}
+                    className="bg-secondary text-white" onDelete={onDelete}>
                     Distribution
-                </CustomToggle>
+                </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'title'}>

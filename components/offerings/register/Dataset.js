@@ -2,30 +2,44 @@ import {useState} from "react";
 import DatasetInformation from "./DatasetInformation";
 import DatasetDistribution from "./DatasetDistribution";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
-import CustomToggle from "../../CustomToggle";
+// import CustomToggle from "../../CustomToggle";
+import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
 
 export default function Dataset(props) {
-    const { eventKey } = props;
+    const { eventKey, onDelete } = props;
     const [ informationN, setInformationN ] = useState(1);
     const [ distributionN, setDistributionN ] = useState(1);
 
+    function distributionOnDelete(e, eventKey) {
+        setDistributionN(distributionN - 1);
+    }
+
+    function informationOnDelete(e, eventKey) {
+        setInformationN(informationN - 1);
+    }
+
     const datasetInformationEl = (Array.from(Array(informationN).keys())).map((item, idx) => (
         <DatasetInformation key={idx}
-                            eventKey={`${eventKey}information${idx}`} />
+                            eventKey={`${eventKey}information${idx}`}
+            onDelete={informationOnDelete}
+        />
     ));
 
     const datasetDistributionEl = (Array.from(Array(distributionN).keys())).map((item, idx) => (
         <DatasetDistribution key={idx}
-                             eventKey={`${eventKey}distribution${idx}`} />
+                             eventKey={`${eventKey}distribution${idx}`}
+            onDelete={distributionOnDelete}
+        />
     ));
 
     return (
         <Accordion>
             <Card className="mb-3">
-                <CustomToggle eventKey={eventKey}>
+                <DeleteToggle eventKey={eventKey} onDelete={onDelete}
+                    className="bg-primary text-white">
                     Dataset
-                </CustomToggle>
+                </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'title'}>

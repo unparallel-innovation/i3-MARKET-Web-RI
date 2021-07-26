@@ -6,7 +6,7 @@ export default function PaymentType(props) {
 
     return (
         <Accordion>
-            <Card>
+            <Card className="mb-3">
                 <CustomToggle eventKey={eventKey}>
                     Payment Type - Subscription
                 </CustomToggle>

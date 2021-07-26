@@ -44,7 +44,9 @@ export default function PricingModel(props) {
                         <h5 className="flex-grow-1 mb-0">
                           Payment Type
                         </h5>
-                        <AddNew />
+                          <AddNew onClick={e => {
+                              setPaymentTypeN(paymentTypeN + 1);
+                          }} />
                       </div>
 
                         {paymentTypeEl}

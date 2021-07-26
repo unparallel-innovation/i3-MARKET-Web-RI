@@ -12,6 +12,7 @@ export default function Register() {
   const router = useRouter();
   const [ datasetN, setDatasetN ] = useState(1);
   const [ pricingModelN, setPricingModelN ] = useState(1);
+  const [ atIdx, setAtIdx ] = useState(0);
 
     function datasetOnDelete(e, eventKey) {
         // console.log("DELETE", e, eventKey);
@@ -65,11 +66,14 @@ export default function Register() {
 
       <hr className="mt-2 mb-4" />
 
-      <Tabs defaultActiveKey="general" className="mb-3">
-        <Tab eventKey="general" title="General">
+      {/* <Tabs defaultActiveKey="general" className="mb-3"> */}
+        <Tabs activeKey={"tab" + atIdx} onSelect={k => {
+            setAtIdx(parseInt(k.substr(3)));
+        }} className="mb-3">
+        <Tab eventKey="tab0" title="General">
           <General />
         </Tab>
-        <Tab eventKey="datasets" title="Datasets">
+        <Tab eventKey="tab1" title="Datasets">
           <div className="d-flex align-items-center mb-3">
             <div className="flex-grow-1"></div>
               <AddNew onClick={e => {
@@ -79,7 +83,7 @@ export default function Register() {
 
           { datasetEl }
         </Tab>
-        <Tab eventKey="pricingModels" title="Pricing Models">
+        <Tab eventKey="tab2" title="Pricing Models">
           <div className="d-flex align-items-center mb-3">
             <div className="flex-grow-1"></div>
             <AddNew onClick={e => {
@@ -95,9 +99,15 @@ export default function Register() {
       <input type="hidden" value={pricingModelN} name="pricingModelN" />
 
       <div className="d-flex mt-3">
-        <Button disabled>Previous</Button>
-        <div className="flex-grow-1" />
-        <Button>Next</Button>
+          <Button disabled={atIdx == 0} onClick={e => {
+              if (atIdx)
+                  setAtIdx(atIdx - 1);
+          }}>Previous</Button>
+          <div className="flex-grow-1" />
+          <Button disabled={atIdx == 2} onClick = {e => {
+              if (atIdx < 2)
+                  setAtIdx(atIdx + 1);
+          }}>Next</Button>
       </div>
     </Form>
   </Layout>

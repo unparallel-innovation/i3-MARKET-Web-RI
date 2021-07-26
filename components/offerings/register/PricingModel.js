@@ -2,6 +2,7 @@ import {useState} from "react";
 import PaymentType from "./PaymentType";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
 import CustomToggle from "../../CustomToggle";
+import { AddNew } from '/components/buttons.js';
 
 export default function PricingModel(props) {
     const [ paymentTypeN, setPaymentTypeN ] = useState(1);
@@ -12,7 +13,6 @@ export default function PricingModel(props) {
                      eventKey={`${eventKey}paymentType${idx}`} />
     ));
 
-
     return (
         <Accordion>
             <Card className="my-3">
@@ -21,7 +21,6 @@ export default function PricingModel(props) {
                 </CustomToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
-
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'basicPrice'}>
@@ -40,6 +39,13 @@ export default function PricingModel(props) {
                                 </Form.Group>
                             </Col>
                         </Row>
+
+                      <div className="d-flex align-items-center my-3">
+                        <h5 className="flex-grow-1 mb-0">
+                          Payment Type
+                        </h5>
+                        <AddNew />
+                      </div>
 
                         {paymentTypeEl}
 

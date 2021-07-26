@@ -3,6 +3,7 @@ import DatasetInformation from "./DatasetInformation";
 import DatasetDistribution from "./DatasetDistribution";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
 import CustomToggle from "../../CustomToggle";
+import { AddNew } from '/components/buttons.js';
 
 export default function Dataset(props) {
     const { eventKey } = props;
@@ -21,7 +22,7 @@ export default function Dataset(props) {
 
     return (
         <Accordion>
-            <Card>
+            <Card className="mb-3">
                 <CustomToggle eventKey={eventKey}>
                     Dataset
                 </CustomToggle>
@@ -115,7 +116,25 @@ export default function Dataset(props) {
                             </Col>
                         </Row>
 
+                      <div className="d-flex align-items-center my-3">
+                        <h5 className="flex-grow-1 mb-0">
+                          Dataset Information Details
+                        </h5>
+                          <AddNew onClick={e => {
+                              setInformationN(informationN + 1);
+                          }} />
+                      </div>
+
                         { datasetInformationEl}
+
+                      <div className="d-flex align-items-center my-3">
+                        <h5 className="flex-grow-1 mb-0">
+                          Distribution Details
+                        </h5>
+                        <AddNew onClick={e => {
+                              setDistributionN(distributionN + 1);
+                          }} />
+                      </div>
 
                         { datasetDistributionEl}
 

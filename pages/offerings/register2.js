@@ -4,6 +4,7 @@ import { Layout } from '/components/common.js'
 import General from "/components/offerings/register/General.js";
 import Dataset from "/components/offerings/register/Dataset";
 import PricingModel from "/components/offerings/register/PricingModel";
+import { AddNew } from '/components/buttons.js';
 import { Form, Tabs, Tab, Button } from 'react-bootstrap';
 import { fd2register } from '/lib/form.js';
 
@@ -58,9 +59,23 @@ export default function Register() {
           <General />
         </Tab>
         <Tab eventKey="datasets" title="Datasets">
+          <div className="d-flex align-items-center mb-3">
+            <div className="flex-grow-1"></div>
+              <AddNew onClick={e => {
+                  setDatasetN(datasetN + 1);
+              }} />
+          </div>
+
           { datasetEl }
         </Tab>
         <Tab eventKey="pricingModels" title="Pricing Models">
+          <div className="d-flex align-items-center mb-3">
+            <div className="flex-grow-1"></div>
+            <AddNew onClick={e => {
+                  setPricingModelN(pricingModelN + 1);
+              }} />
+          </div>
+
           { pricingModelEl }
         </Tab>
       </Tabs>

@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
 import CustomToggle from "../../CustomToggle";
+import { AddNew } from '/components/buttons.js';
 import AccessService from "./AccessService";
 
 export default function DatasetDistribution(props) {
@@ -71,6 +72,15 @@ export default function DatasetDistribution(props) {
                                 </Form.Group>
                             </Col>
                         </Row>
+
+                      <div className="d-flex align-items-center my-3">
+                        <h5 className="flex-grow-1 mb-0">
+                          Access Service
+                        </h5>
+                        <AddNew onClick={e => {
+                              setAccessServiceN(accessServiceN + 1);
+                          }} />
+                      </div>
 
                         {accessServiceEl}
 

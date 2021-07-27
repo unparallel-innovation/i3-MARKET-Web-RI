@@ -1,24 +1,47 @@
 import {useState} from 'react'
-import {Layout} from '/components/common.js'
-import user from '/lib/user.js'
-import {Button, Col, Form, Row} from "react-bootstrap";
 import {useRouter} from 'next/router'
-import Dataset from "../../components/offerings/register/Dataset";
-import PricingModel from "../../components/offerings/register/PricingModel";
+import { useData } from '/lib/effects.js'
+import { Layout, ErrorC } from '/components/common.js'
+import {Loading} from "../../components/Loading";
 import General from "/components/offerings/register/General.js";
+import Dataset from "/components/offerings/register/Dataset";
+import PricingModel from "/components/offerings/register/PricingModel";
+import { AddNew } from '/components/buttons.js';
+import { Form, Tabs, Tab, Button } from 'react-bootstrap';
 import { fd2register } from '/lib/form.js';
 
-export default function RegisterOffering() {
+export default function Register() {
   const router = useRouter();
+  const { data, error } = useData('/api/offerings/register');
   const [ datasetN, setDatasetN ] = useState(1);
   const [ pricingModelN, setPricingModelN ] = useState(1);
+  const [ atIdx, setAtIdx ] = useState(0);
+
+  if (error)
+    return <ErrorC error={error} />;
+
+  if (!data)
+    return <Loading />;
+
+  const { categories } = data;
+
+    function datasetOnDelete(e, eventKey) {
+        // console.log("DELETE", e, eventKey);
+        setDatasetN(datasetN - 1);
+    }
+
+    function pricingModelOnDelete(e, eventKey) {
+        setPricingModelN(pricingModelN - 1);
+    }
 
   const datasetEl = (Array.from(Array(datasetN).keys())).map((item, idx) => (
-      <Dataset key={idx} eventKey={`dataset${idx}`} />
+      <Dataset key={idx} eventKey={`dataset${idx}`}
+          onDelete={datasetOnDelete} />
   ));
 
   const pricingModelEl = (Array.from(Array(pricingModelN).keys())).map((item, idx) => (
-      <PricingModel key={idx} eventKey={`pricingModel${idx}`} />
+      <PricingModel key={idx} eventKey={`pricingModel${idx}`}
+          onDelete={pricingModelOnDelete} />
   ));
 
   function onSubmit(e) {
@@ -43,21 +66,61 @@ export default function RegisterOffering() {
   }
 
   return (<Layout>
-    <Form className="px-5" onSubmit={onSubmit} action='/api/offerings/register'>
-      <General />
+    <Form className="px-5 pb-3" onSubmit={onSubmit} action='/api/offerings/register'>
+      <div className="d-flex">
+        <h3 className="flex-grow-1 mb-0">Register New Offering</h3>
+        <Button variant="secondary" className="mr-3" onClick={onCancel}>
+          Cancel
+        </Button>
+        <Button type="submit">Submit</Button>
+      </div>
 
-      { datasetEl }
+      <hr className="mt-2 mb-4" />
 
-      { pricingModelEl }
+      {/* <Tabs defaultActiveKey="general" className="mb-3"> */}
+        <Tabs activeKey={"tab" + atIdx} onSelect={k => {
+            setAtIdx(parseInt(k.substr(3)));
+        }} className="mb-3">
+        <Tab eventKey="tab0" title="General">
+            <General categories={categories} />
+        </Tab>
+        <Tab eventKey="tab1" title="Datasets">
+          <div className="d-flex align-items-center mb-3">
+            <div className="flex-grow-1"></div>
+              <AddNew onClick={e => {
+                  setDatasetN(datasetN + 1);
+              }} />
+          </div>
+
+          { datasetEl }
+        </Tab>
+        <Tab eventKey="tab2" title="Pricing Models">
+          <div className="d-flex align-items-center mb-3">
+            <div className="flex-grow-1"></div>
+            <AddNew onClick={e => {
+                  setPricingModelN(pricingModelN + 1);
+              }} />
+          </div>
+
+          { pricingModelEl }
+        </Tab>
+      </Tabs>
 
       <input type="hidden" value={datasetN} name="datasetN" />
       <input type="hidden" value={pricingModelN} name="pricingModelN" />
 
-      <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-        <Button onClick={onCancel} variant="secondary">Cancel</Button>
-        <Button type="submit" className="ml-3">Register</Button>
+      <div className="d-flex mt-3">
+          <Button disabled={atIdx == 0} onClick={e => {
+              if (atIdx)
+                  setAtIdx(atIdx - 1);
+          }}>Previous</Button>
+          <div className="flex-grow-1" />
+          <Button disabled={atIdx == 2} onClick = {e => {
+              if (atIdx < 2)
+                  setAtIdx(atIdx + 1);
+          }}>Next</Button>
       </div>
     </Form>
-  </Layout>);
+  </Layout>
+  );
 }
-

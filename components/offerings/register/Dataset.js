@@ -5,23 +5,25 @@ import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
 // import CustomToggle from "../../CustomToggle";
 import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
+import { useMap } from '/lib/effects.js';
+
+// let informationC = 0;
 
 export default function Dataset(props) {
     const { eventKey, onDelete } = props;
-    const [ informationN, setInformationN ] = useState(1);
     const [ distributionN, setDistributionN ] = useState(1);
+    const [
+      informationMap, informationC,
+      informationOnDelete, informationAdd
+    ] = useMap(eventKey, "information");
 
     function distributionOnDelete(e, eventKey) {
         setDistributionN(distributionN - 1);
     }
 
-    function informationOnDelete(e, eventKey) {
-        setInformationN(informationN - 1);
-    }
-
-    const datasetInformationEl = (Array.from(Array(informationN).keys())).map((item, idx) => (
-        <DatasetInformation key={idx}
-                            eventKey={`${eventKey}information${idx}`}
+    const datasetInformationEl = (Object.keys(informationMap)).map((item, idx) => (
+        <DatasetInformation key={item}
+                            eventKey={item}
             onDelete={informationOnDelete}
         />
     ));
@@ -134,9 +136,7 @@ export default function Dataset(props) {
                         <h5 className="flex-grow-1 mb-0">
                           Dataset Information Details
                         </h5>
-                          <AddNew onClick={e => {
-                              setInformationN(informationN + 1);
-                          }} />
+                          <AddNew onClick={informationAdd} />
                       </div>
 
                         { datasetInformationEl}
@@ -152,8 +152,8 @@ export default function Dataset(props) {
 
                         { datasetDistributionEl}
 
-                        <input type="hidden" value={informationN}
-                               name={eventKey + 'informationN'} />
+                        <input type="hidden" value={informationC}
+                               name={eventKey + 'informationC'} />
                         <input type="hidden" value={distributionN}
                                name={eventKey + 'distributionN'} />
 

@@ -7,30 +7,25 @@ import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
 import { useMap } from '/lib/effects.js';
 
-// let informationC = 0;
-
 export default function Dataset(props) {
     const { eventKey, onDelete } = props;
-    const [ distributionN, setDistributionN ] = useState(1);
     const [
       informationMap, informationC,
       informationOnDelete, informationAdd
     ] = useMap(eventKey, "information");
-
-    function distributionOnDelete(e, eventKey) {
-        setDistributionN(distributionN - 1);
-    }
+    const [
+      distributionMap, distributionC,
+      distributionOnDelete, distributionAdd
+    ] = useMap(eventKey, "distribution");
 
     const datasetInformationEl = (Object.keys(informationMap)).map((item, idx) => (
-        <DatasetInformation key={item}
-                            eventKey={item}
+        <DatasetInformation key={item} eventKey={item}
             onDelete={informationOnDelete}
         />
     ));
 
-    const datasetDistributionEl = (Array.from(Array(distributionN).keys())).map((item, idx) => (
-        <DatasetDistribution key={idx}
-                             eventKey={`${eventKey}distribution${idx}`}
+    const datasetDistributionEl = (Object.keys(distributionMap)).map((item, idx) => (
+        <DatasetDistribution key={item} eventKey={item}
             onDelete={distributionOnDelete}
         />
     ));
@@ -145,17 +140,15 @@ export default function Dataset(props) {
                         <h5 className="flex-grow-1 mb-0">
                           Distribution Details
                         </h5>
-                        <AddNew onClick={e => {
-                              setDistributionN(distributionN + 1);
-                          }} />
+                        <AddNew onClick={distributionAdd} />
                       </div>
 
                         { datasetDistributionEl}
 
                         <input type="hidden" value={informationC}
                                name={eventKey + 'informationC'} />
-                        <input type="hidden" value={distributionN}
-                               name={eventKey + 'distributionN'} />
+                        <input type="hidden" value={distributionC}
+                               name={eventKey + 'distributionC'} />
 
                     </Card.Body>
                 </Accordion.Collapse>

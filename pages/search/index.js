@@ -5,46 +5,53 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 import {Form, Button, Row} from 'react-bootstrap'
-import {Loading} from "../../components/Loading";
 import OfferingCard from "../../components/offerings/OfferingCard";
 
-function Search(props) {
+
+
+function Search(props){
+  const router = useRouter()
   const { offerings, providers, categories, searchType } = props;
   const [ _searchType, setSearchType ] = useState(searchType);
 
-  const providerEl = providers.map((item, idx) => (
-      <option key={idx} value={item}>{item}</option>
-  ));
+  const selectOneEl = <option key={0} >Select One</option>
 
-  const categoriesEl = categories.map((item, idx) => (
-      <option key={idx} value={item.name}>{item.name}</option>
-  ));
+  const providerEl = [selectOneEl].concat(providers.map((item, idx) => (
+      <option key={idx+1} value={item.providerId}>{item.providerId}</option>
+  )));
+
+  const categoriesEl = [selectOneEl].concat(categories.map((item, idx) => (
+      <option key={idx+1} value={item.name}>{item.name}</option>
+  )));
 
   let selectEl = null;
 
   if (_searchType === "provider") {
     selectEl = (<Form.Control as="select" className="mr-3 dropdown-custom"
-      name="providerId">
+                              name="providerId">
       { providerEl}
     </Form.Control>);
   }
 
   if (_searchType === "category") {
     selectEl = (<Form.Control as="select" className="mr-3 dropdown-custom"
-      name="category"
+                              name="category"
     >
       { categoriesEl }
     </Form.Control>);
   }
 
-  const offeringsEl = offerings ? offerings.map(offering => (
-      <OfferingCard key={offering.title} {...offering} />
-  )) : <Col>Search for offerings</Col>;
+  // todo: search placeholder
+  const offeringsEl = offerings.length > 0 ? offerings.map(offering => (
+      <OfferingCard key={offering.dataOfferingId} {...offering} />
+  )) : <div>fjefliehwflhewf</div>
+
+  console.log(offeringsEl)
 
   return (<div>
     <Form className="d-inline-flex mb-5" onSubmit={onSubmit}>
       <Form.Control as="select" onChange={onChange} className="mr-3 bg-primary text-white dropdown-custom"
-        name="searchType" value={_searchType}
+                    name="searchType" value={_searchType}
       >
         <option value="provider">Provider</option>
         <option value="category">Category</option>
@@ -58,67 +65,53 @@ function Search(props) {
     </Row>
   </div>);
 
+  function onChange(e) {
+    setSearchType(e.target.value);
+  }
+
   function onSubmit(e) {
     e.preventDefault();
     const fd = new FormData(e.target);
     const fde = [...fd.entries()];
     const params = fde
-      .map(x => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`)
-      .join('&');
+        .map(x => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`)
+        .join('&');
+    console.log(params)
     router.push(`/search?${params}`);
-  }
-
-  function onChange(e) {
-    setSearchType(e.target.value);
   }
 }
 
-export default
-function Index() {
+
+
+
+
+
+export default function Index() {
   const router = useRouter();
   const { searchType = "provider", providerId, category } = router.query;
   const { data, error } = useData(
-    `/api/search?searchType=${searchType}&providerid=${providerId}&category=${category}`
+      `/api/search?searchType=${searchType}&providerid=${providerId}&category=${category}`
   );
-  // const [ _searchType, setSearchType ] = useState(searchType);
 
   if (error)
     return <ErrorC error={error} />;
 
   if (!data)
     return (<Layout>
+      <div>TESTING</div>
       <div className="px-5">
         <Search offerings={[]} providers={[]} categories={[]} searchType={searchType} />
       </div>
-    </Layout>);
-
-  console.log(`Searching for ${searchType} provider ${providerId} category ${category}`, data);
-
-  const { offerings, providers, categories} = data
+    </Layout>)
 
   return (<Layout>
     <div className="px-5">
       <Search { ...data } searchType={searchType} />
     </div>
-  </Layout>);
+  </Layout>)
 
-  // return (<Layout>
-  //   <div className="px-5">
-  //     <Form className="d-flex mb-5" onSubmit={onSubmit}>
-  //       <Form.Control as="select" onChange={onChange} className="mr-3"
-  //         name="searchType" value={_searchType}
-  //       >
-  //         <option value="provider">Provider</option>
-  //         <option value="category">Category</option>
-  //       </Form.Control>
-  //       { selectEl }
-  //       <Button type="submit">Search</Button>
-  //     </Form>
-  //
-  //     <Row>
-  //       { offeringsEl }
-  //     </Row>
-  //   </div>
-  // </Layout>);
+
 }
+
+
 

@@ -3,7 +3,6 @@ import { connector } from '/lib/server.js'
 export default async function handler(req, res) {
   const { searchType, providerId, category, page, size } = req.query;
   let offerings = [];
-  console.log(searchType, providerId, category, page, size)
 
   if (searchType === "provider")
     offerings = await connector.getProviderOfferings(providerId, page, size);
@@ -16,6 +15,5 @@ export default async function handler(req, res) {
     providers: await connector.getProviders(),
     offerings,
   }
-
   res.status(200).json(result);
 }

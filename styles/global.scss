@@ -40,6 +40,10 @@ footer small.flex-grow-1 {
   color: #0B4166;
 }
 
+.text-lightgray{
+  color: $gray-400
+}
+
 .bg-lightcyan {
   background-color: #E6EEF0;
 }
@@ -99,4 +103,8 @@ footer small.flex-grow-1 {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.dropdown-custom{
+  width: 200px;
 }

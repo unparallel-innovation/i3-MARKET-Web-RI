@@ -53,15 +53,15 @@ function Search(props){
     </Form.Control>);
   }
 
-  const searchPlaceholder = (<Form.Label className="d-flex w-100 justify-content-center align-items-center h3 text-lightgray">
+  const searchPlaceholder = (<div className="d-flex w-100 flex-grow-1 justify-content-center align-items-center h3 text-lightgray">
     {isLoading?"Loading results.. Please wait..":"Do a search and see the results here"}
-  </Form.Label>)
+  </div>)
 
-  const offeringsEl = offerings.length > 0 ? offerings.map(offering => (
+  const offeringsEl = offerings.length > 0 ? (<Row>{ offerings.map(offering => (
       <OfferingCard key={offering.dataOfferingId} {...offering} />
-  )) : searchPlaceholder
+  )) }</Row>) : searchPlaceholder
 
-  return (<div>
+  return (<>
     <Form className="d-inline-flex mb-5" onSubmit={onSubmit}>
       <Form.Control as="select" onChange={onChange} className="mr-3 bg-primary text-white dropdown-custom"
                     name="searchType" value={_searchType}
@@ -73,10 +73,8 @@ function Search(props){
       <Button type="submit">Search</Button>
     </Form>
 
-    <Row>
-      { offeringsEl }
-    </Row>
-  </div>);
+    { offeringsEl }
+  </>);
 
   function onChange(e) {
     setSearchType(e.target.value);
@@ -104,24 +102,19 @@ export default function Index() {
     return <ErrorC error={error} />;
 
   if (!data)
-    return (<Layout>
-      <div className="px-5">
+    return (<Layout className="d-flex flex-column">
+      <div className="px-5 flex-grow-1 d-flex flex-column">
         <Search offerings={[]} providers={[]} categories={[]}
           searchType={searchType} category={category ? category.toLowerCase(): category} providerId={providerId}
           isLoading />
       </div>
     </Layout>)
 
-  return (<Layout>
-    <div className="px-5">
+  return (<Layout className="d-flex flex-column">
+    <div className="px-5 flex-grow-1 d-flex flex-column">
       <Search { ...data } searchType={searchType}
         category={category ? category.toLowerCase(): category}
         providerId={providerId} />
     </div>
   </Layout>)
-
-
 }
-
-
-

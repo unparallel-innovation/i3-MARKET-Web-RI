@@ -7,40 +7,48 @@ import OfferingCard from "../../components/offerings/OfferingCard";
 
 function Search(props){
   const router = useRouter()
-  const { offerings, providers, categories, searchType, isLoading } = props;
+  const {
+    offerings, providers, categories, searchType,
+    category, providerId, isLoading
+  } = props;
   const [ _searchType, setSearchType ] = useState(searchType);
+  const [ _providerId, setProviderId ] = useState(providerId);
+  const [ _category, setCategory ] = useState(category);
 
-  console.log("searchType: " + searchType)
-  console.log("_searchType: " + _searchType)
+  useEffect(() => {
+    setSearchType(searchType)
+  }, [searchType])
 
-  // useEffect(() => {
-  //   setSearchType(searchType)
-  // }, [searchType])
-  //
-  // useEffect(() => {
-  //   setSearchType(_searchType)
-  // }, [_searchType])
+  useEffect(() => {
+    setCategory(category)
+  }, [category])
+
+  useEffect(() => {
+    setProviderId(providerId)
+  }, [providerId])
 
   const selectOneEl = <option key={0} >Select One</option>
 
   const providerEl = [selectOneEl].concat(providers.map((item, idx) => (
-      <option key={idx+1} value={item.providerId}>{item.providerId}</option>
+      <option key={idx+1} value={item.providerId.toLowerCase()}>{item.providerId}</option>
   )));
 
   const categoriesEl = [selectOneEl].concat(categories.map((item, idx) => (
-      <option key={idx+1} value={item.name}>{item.name}</option>
+      <option key={idx+1} value={item.name.toLowerCase()}>{item.name}</option>
   )));
 
   let selectEl = null;
 
   if (_searchType === "provider") {
-    selectEl = (<Form.Control as="select" className="mr-3 dropdown-custom" name="providerId">
+    selectEl = (<Form.Control as="select" className="mr-3 dropdown-custom" name="providerId"
+      value={_providerId} onChange={e => setProviderId(e.target.value)}>
       { providerEl}
     </Form.Control>);
   }
 
   if (_searchType === "category") {
-    selectEl = (<Form.Control as="select" className="mr-3 dropdown-custom" name="category" >
+    selectEl = (<Form.Control as="select" className="mr-3 dropdown-custom" name="category"
+      value={_category} onChange={e => setCategory(e.target.value)}>
       { categoriesEl }
     </Form.Control>);
   }
@@ -98,13 +106,16 @@ export default function Index() {
   if (!data)
     return (<Layout>
       <div className="px-5">
-        <Search offerings={[]} providers={[]} categories={[]} searchType={searchType} isLoading />
+        <Search offerings={[]} providers={[]} categories={[]}
+          searchType={searchType} category={category} providerId={providerId}
+          isLoading />
       </div>
     </Layout>)
 
   return (<Layout>
     <div className="px-5">
-      <Search { ...data } searchType={searchType} />
+      <Search { ...data } searchType={searchType}
+        category={category} providerId={providerId} />
     </div>
   </Layout>)
 

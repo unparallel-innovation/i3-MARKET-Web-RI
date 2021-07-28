@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import {useRouter} from 'next/router'
-import { useData } from '/lib/effects.js'
+import { useData, useMap } from '/lib/effects.js'
 import { Layout, ErrorC } from '/components/common.js'
 import {Loading} from "../../components/Loading";
 import General from "/components/offerings/register/General.js";
@@ -13,9 +13,15 @@ import { fd2register } from '/lib/form.js';
 export default function Register() {
   const router = useRouter();
   const { data, error } = useData('/api/offerings/register');
-  const [ datasetN, setDatasetN ] = useState(1);
-  const [ pricingModelN, setPricingModelN ] = useState(1);
   const [ atIdx, setAtIdx ] = useState(0);
+  const [
+    datasetMap, datasetC,
+    datasetOnDelete, datasetAdd
+  ] = useMap("", "dataset");
+  const [
+    pricingModelMap, pricingModelC,
+    pricingModelOnDelete, pricingModelAdd
+  ] = useMap("", "pricingModel");
 
   if (error)
     return <ErrorC error={error} />;
@@ -25,22 +31,12 @@ export default function Register() {
 
   const { categories } = data;
 
-    function datasetOnDelete(e, eventKey) {
-        // console.log("DELETE", e, eventKey);
-        setDatasetN(datasetN - 1);
-    }
-
-    function pricingModelOnDelete(e, eventKey) {
-        setPricingModelN(pricingModelN - 1);
-    }
-
-  const datasetEl = (Array.from(Array(datasetN).keys())).map((item, idx) => (
-      <Dataset key={idx} eventKey={`dataset${idx}`}
-          onDelete={datasetOnDelete} />
+  const datasetEl = (Object.keys(datasetMap)).map((item, idx) => (
+      <Dataset key={item} eventKey={item} onDelete={datasetOnDelete} />
   ));
 
-  const pricingModelEl = (Array.from(Array(pricingModelN).keys())).map((item, idx) => (
-      <PricingModel key={idx} eventKey={`pricingModel${idx}`}
+  const pricingModelEl = (Object.keys(pricingModelMap)).map((item, idx) => (
+      <PricingModel key={item} eventKey={item}
           onDelete={pricingModelOnDelete} />
   ));
 
@@ -87,9 +83,7 @@ export default function Register() {
         <Tab eventKey="tab1" title="Datasets">
           <div className="d-flex align-items-center mb-3">
             <div className="flex-grow-1"></div>
-              <AddNew onClick={e => {
-                  setDatasetN(datasetN + 1);
-              }} />
+              <AddNew onClick={datasetAdd} />
           </div>
 
           { datasetEl }
@@ -97,17 +91,15 @@ export default function Register() {
         <Tab eventKey="tab2" title="Pricing Models">
           <div className="d-flex align-items-center mb-3">
             <div className="flex-grow-1"></div>
-            <AddNew onClick={e => {
-                  setPricingModelN(pricingModelN + 1);
-              }} />
+            <AddNew onClick={pricingModelAdd} />
           </div>
 
           { pricingModelEl }
         </Tab>
       </Tabs>
 
-      <input type="hidden" value={datasetN} name="datasetN" />
-      <input type="hidden" value={pricingModelN} name="pricingModelN" />
+      <input type="hidden" value={datasetC} name="datasetC" />
+      <input type="hidden" value={pricingModelC} name="pricingModelC" />
 
       <div className="d-flex mt-3">
           <Button disabled={atIdx == 0} onClick={e => {

@@ -1,4 +1,5 @@
 import {useState} from "react";
+import { useMap } from '/lib/effects.js'
 import PaymentType from "./PaymentType";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
 import DeleteToggle from "../../DeleteToggle";
@@ -6,15 +7,14 @@ import { AddNew } from '/components/buttons.js';
 
 export default function PricingModel(props) {
     const { eventKey, onDelete } = props;
-    const [ paymentTypeN, setPaymentTypeN ] = useState(1);
+    const [
+      paymentTypeMap, paymentTypeC,
+      paymentTypeOnDelete, paymentTypeAdd
+    ] = useMap(eventKey, "paymentType");
 
-    function paymentTypeOnDelete(e, eventKey) {
-        setPaymentTypeN(paymentTypeN - 1);
-    }
-
-    const paymentTypeEl = (Array.from(Array(paymentTypeN).keys())).map((item, idx) => (
-        <PaymentType key={idx} onDelete={paymentTypeOnDelete}
-                     eventKey={`${eventKey}paymentType${idx}`} />
+    const paymentTypeEl = (Object.keys(paymentTypeMap)).map((item, idx) => (
+        <PaymentType key={item} eventKey={item}
+          onDelete={paymentTypeOnDelete} />
     ));
 
     return (
@@ -50,15 +50,13 @@ export default function PricingModel(props) {
                         <h5 className="flex-grow-1 mb-0">
                           Payment Type
                         </h5>
-                          <AddNew onClick={e => {
-                              setPaymentTypeN(paymentTypeN + 1);
-                          }} />
+                          <AddNew onClick={paymentTypeAdd} />
                       </div>
 
                         {paymentTypeEl}
 
-                        <input type="hidden" value={paymentTypeN}
-                               name={eventKey + 'paymentTypeN'} />
+                        <input type="hidden" value={paymentTypeC}
+                               name={eventKey + 'paymentTypeC'} />
 
                     </Card.Body>
                 </Accordion.Collapse>

@@ -1,22 +1,29 @@
 import {useState} from "react";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
-import CustomToggle from "../../CustomToggle";
+import DeleteToggle from "../../DeleteToggle";
+import { AddNew } from '/components/buttons.js';
 import AccessService from "./AccessService";
+import { useMap } from '/lib/effects.js';
 
 export default function DatasetDistribution(props) {
-    const { eventKey } = props;
-    const [ accessServiceN, setAccessServiceN ] = useState(1);
+    const { eventKey, onDelete } = props;
+    const [
+      accessServiceMap, accessServiceC,
+      accessServiceOnDelete, accessServiceAdd
+    ] = useMap(eventKey, "accessService");
 
-    const accessServiceEl = (Array.from(Array(accessServiceN).keys())).map((item, idx) => (
-        <AccessService key={idx} eventKey={`${eventKey}accessService${idx}`} />
+    const accessServiceEl = (Object.keys(accessServiceMap)).map((item, idx) => (
+        <AccessService key={item} onDelete={accessServiceOnDelete}
+            eventKey={item} />
     ));
 
     return (
         <Accordion>
-            <Card>
-                <CustomToggle eventKey={eventKey}>
+            <Card className="mb-3">
+                <DeleteToggle eventKey={eventKey}
+                    className="bg-secondary text-white" onDelete={onDelete}>
                     Distribution
-                </CustomToggle>
+                </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'title'}>
@@ -72,10 +79,17 @@ export default function DatasetDistribution(props) {
                             </Col>
                         </Row>
 
+                      <div className="d-flex align-items-center my-3">
+                        <h5 className="flex-grow-1 mb-0">
+                          Access Service
+                        </h5>
+                        <AddNew onClick={accessServiceAdd} />
+                      </div>
+
                         {accessServiceEl}
 
-                        <input type="hidden" value={accessServiceN}
-                               name={eventKey + 'accessServiceN'} />
+                        <input type="hidden" value={accessServiceC}
+                               name={eventKey + 'accessServiceC'} />
 
                     </Card.Body>
                 </Accordion.Collapse>

@@ -1,15 +1,16 @@
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
-import CustomToggle from "../../CustomToggle";
+import DeleteToggle from "../../DeleteToggle";
 
 export default function DatasetInformation(props) {
-    const { eventKey } = props;
+    const { eventKey, onDelete } = props;
 
     return (
         <Accordion>
             <Card className="mb-3">
-                <CustomToggle eventKey={eventKey}>
+                <DeleteToggle eventKey={eventKey}
+                    className="bg-secondary text-white" onDelete={onDelete}>
                     Dataset Information
-                </CustomToggle>
+                </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
 

@@ -2,29 +2,41 @@ import {useState} from "react";
 import DatasetInformation from "./DatasetInformation";
 import DatasetDistribution from "./DatasetDistribution";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
-import CustomToggle from "../../CustomToggle";
+// import CustomToggle from "../../CustomToggle";
+import DeleteToggle from "../../DeleteToggle";
+import { AddNew } from '/components/buttons.js';
+import { useMap } from '/lib/effects.js';
 
 export default function Dataset(props) {
-    const { eventKey } = props;
-    const [ informationN, setInformationN ] = useState(1);
-    const [ distributionN, setDistributionN ] = useState(1);
+    const { eventKey, onDelete } = props;
+    const [
+      informationMap, informationC,
+      informationOnDelete, informationAdd
+    ] = useMap(eventKey, "information");
+    const [
+      distributionMap, distributionC,
+      distributionOnDelete, distributionAdd
+    ] = useMap(eventKey, "distribution");
 
-    const datasetInformationEl = (Array.from(Array(informationN).keys())).map((item, idx) => (
-        <DatasetInformation key={idx}
-                            eventKey={`${eventKey}information${idx}`} />
+    const datasetInformationEl = (Object.keys(informationMap)).map((item, idx) => (
+        <DatasetInformation key={item} eventKey={item}
+            onDelete={informationOnDelete}
+        />
     ));
 
-    const datasetDistributionEl = (Array.from(Array(distributionN).keys())).map((item, idx) => (
-        <DatasetDistribution key={idx}
-                             eventKey={`${eventKey}distribution${idx}`} />
+    const datasetDistributionEl = (Object.keys(distributionMap)).map((item, idx) => (
+        <DatasetDistribution key={item} eventKey={item}
+            onDelete={distributionOnDelete}
+        />
     ));
 
     return (
         <Accordion>
-            <Card>
-                <CustomToggle eventKey={eventKey}>
+            <Card className="mb-3">
+                <DeleteToggle eventKey={eventKey} onDelete={onDelete}
+                    className="bg-primary text-white">
                     Dataset
-                </CustomToggle>
+                </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'title'}>
@@ -115,14 +127,28 @@ export default function Dataset(props) {
                             </Col>
                         </Row>
 
+                      <div className="d-flex align-items-center my-3">
+                        <h5 className="flex-grow-1 mb-0">
+                          Dataset Information Details
+                        </h5>
+                          <AddNew onClick={informationAdd} />
+                      </div>
+
                         { datasetInformationEl}
+
+                      <div className="d-flex align-items-center my-3">
+                        <h5 className="flex-grow-1 mb-0">
+                          Distribution Details
+                        </h5>
+                        <AddNew onClick={distributionAdd} />
+                      </div>
 
                         { datasetDistributionEl}
 
-                        <input type="hidden" value={informationN}
-                               name={eventKey + 'informationN'} />
-                        <input type="hidden" value={distributionN}
-                               name={eventKey + 'distributionN'} />
+                        <input type="hidden" value={informationC}
+                               name={eventKey + 'informationC'} />
+                        <input type="hidden" value={distributionC}
+                               name={eventKey + 'distributionC'} />
 
                     </Card.Body>
                 </Accordion.Collapse>

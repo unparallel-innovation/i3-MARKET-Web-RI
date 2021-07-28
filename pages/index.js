@@ -8,59 +8,6 @@ import Image from 'next/image'
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const categories = [{
-  title: "Agriculture",
-  count: 5,
-}, {
-  title: "Automotive",
-  count: 1,
-}, {
-  title: "Culture",
-  count: 3,
-}, {
-  title: "Economy",
-  count: 5,
-}, {
-  title: "Education",
-  count: 10,
-}, {
-  title: "Energy",
-  count: 12,
-}, {
-  title: "Environment",
-  count: 8,
-}, {
-  title: "Government",
-  count: 10,
-}, {
-  title: "Health",
-  count: 2,
-}, {
-  title: "International",
-  count: 4,
-}, {
-  title: "Justice",
-  count: 14,
-}, {
-  title: "Manufacturing",
-  count: 20,
-}, {
-  title: "Regions",
-  count: 2,
-}, {
-  title: "Science",
-  count: 5,
-}, {
-  title: "Transport",
-  count: 1,
-}, {
-  title: "Wellbeing",
-  count: 6,
-}, {
-  title: "Society",
-  count: 2,
-}];
-
 function NumberCard(props) {
   const { key, className, number, label } = props;
 
@@ -101,29 +48,70 @@ export default function Home() {
     i: 'd', w: 3, h: 2, isResizable: false,
   };
 
-  const layout = [
-    { ...layoutA, x: 0, y: 0 },
-    { ...layoutB, x: 5, y: 0 },
-    { ...layoutC, x: 5, y: 2 },
-    { ...layoutD, x: 8, y: 2 },
-    // ...(categories.map((category, idx) => ({
-    //   i: 'category' + idx, w: 2, h: 1, isResizable: false, x: 0, y: 4
-    // })))
-  ];
+  const { providersN, offeringsN, categories } = data;
+
+  function getCategoriesLayout(y, w) {
+    let res = [];
+    let i, x;
+
+    for (
+      i = 0, x = 0;
+      i < categories.length;
+      i++
+    ) {
+      res.push({
+        i: 'category' + i, w: 2, h: 1, isResizable: false,
+        x, y
+      });
+
+      x += 2;
+      if (x + 2 > w) {
+        x = 0;
+        y ++;
+      }
+    }
+
+    return res;
+  }
 
   const layouts = {
-    lg: layout,
-    md: layout,
-    sm: layout,
-    xs: layout,
+    lg: [
+      { ...layoutA, x: 0, y: 0 },
+      { ...layoutB, x: 5, y: 0 },
+      { ...layoutC, x: 5, y: 2 },
+      { ...layoutD, x: 8, y: 2 },
+      ...getCategoriesLayout(4, 11),
+    ],
+    md: [
+      { ...layoutA, x: 0, y: 0 },
+      { ...layoutB, x: 5, y: 0, w: 5 },
+      { ...layoutC, x: 5, y: 2, w: 2 },
+      { ...layoutD, x: 7, y: 2, w: 2 },
+      ...getCategoriesLayout(4, 10),
+    ],
+    sm: [
+      { ...layoutA, x: 0, y: 0, w: 6 },
+      { ...layoutB, x: 0, y: 4 },
+      { ...layoutC, x: 0, y: 6 },
+      { ...layoutD, x: 3, y: 6 },
+      ...getCategoriesLayout(8, 6),
+    ],
+    xs: [
+      { ...layoutA, x: 0, y: 0 },
+      { ...layoutB, x: 0, y: 4 },
+      { ...layoutC, x: 0, y: 6, w: 2 },
+      { ...layoutD, x: 2, y: 6, w: 2 },
+      ...getCategoriesLayout(8, 4),
+    ],
   };
 
-  const { providersN, offeringsN } = data;
-
   const categoryEl = categories.map((category, idx) => (
-    <div key={"category" + idx}>
-      { category.title } { category.count }
-    </div>
+    <Card key={"category" + idx}>
+      <Card.Body className="d-flex align-items-center justify-content-between">
+        { category.title }
+        <span className="ml-3 h3 text-primary">{ category.count }</span>
+      </Card.Body>
+    </Card>
   ));
 
   return (<Layout>
@@ -187,7 +175,7 @@ export default function Home() {
           <NumberCard className="bg-secondary" number={offeringsN} label="Offerings Available" />
         </div>
 
-        {/* { categoryEl } */}
+        { categoryEl }
       </ResponsiveGridLayout>
     </div>
   </Layout>);

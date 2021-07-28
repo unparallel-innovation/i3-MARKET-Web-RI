@@ -108,8 +108,8 @@ export default function Home() {
   const categoryEl = categories.map((category, idx) => (
     <Card key={"category" + idx}>
       <Card.Body className="d-flex align-items-center justify-content-between">
-        { category.title }
-        <span className="ml-3 h3 text-primary">{ category.count }</span>
+        { category.category }
+        <span className="ml-3 h3 text-primary">{ category.offerings }</span>
       </Card.Body>
     </Card>
   ));

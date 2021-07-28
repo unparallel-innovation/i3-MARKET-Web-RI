@@ -7,56 +7,56 @@ export default async function handler(req, res) {
       providersN: 8,
       offeringsN: 32,
       categories: [{
-        title: "Agriculture",
-        count: 5,
+        category: "Agriculture",
+        offerings: 5,
       }, {
-        title: "Automotive",
-        count: 1,
+        category: "Automotive",
+        offerings: 1,
       }, {
-        title: "Culture",
-        count: 3,
+        category: "Culture",
+        offerings: 3,
       }, {
-        title: "Economy",
-        count: 5,
+        category: "Economy",
+        offerings: 5,
       }, {
-        title: "Education",
-        count: 10,
+        category: "Education",
+        offerings: 10,
       }, {
-        title: "Energy",
-        count: 12,
+        category: "Energy",
+        offerings: 12,
       }, {
-        title: "Environment",
-        count: 8,
+        category: "Environment",
+        offerings: 8,
       }, {
-        title: "Government",
-        count: 10,
+        category: "Government",
+        offerings: 10,
       }, {
-        title: "Health",
-        count: 2,
+        category: "Health",
+        offerings: 2,
       }, {
-        title: "International",
-        count: 4,
+        category: "International",
+        offerings: 4,
       }, {
-        title: "Justice",
-        count: 14,
+        category: "Justice",
+        offerings: 14,
       }, {
-        title: "Manufacturing",
-        count: 20,
+        category: "Manufacturing",
+        offerings: 20,
       }, {
-        title: "Regions",
-        count: 2,
+        category: "Regions",
+        offerings: 2,
       }, {
-        title: "Science",
-        count: 5,
+        category: "Science",
+        offerings: 5,
       }, {
-        title: "Transport",
-        count: 1,
+        category: "Transport",
+        offerings: 1,
       }, {
-        title: "Wellbeing",
-        count: 6,
+        category: "Wellbeing",
+        offerings: 6,
       }, {
-        title: "Society",
-        count: 2,
+        category: "Society",
+        offerings: 2,
       }],
     });
 }

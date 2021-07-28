@@ -8,20 +8,18 @@ export default async function handler(req, res) {
   let offerings = [];
 
   if (searchType === "provider" && providerId !== "undefined"){
-    console.log("FETCH: " + providerId)
-    // offerings = await connector.getProviderOfferings(providerId, page, size);
+    offerings = await connector.getProviderOfferings(providerId, page, size);
   }
 
 
   if (searchType === "category" && category !== "undefined"){
-    console.log("FETCH: " + category)
-    // offerings = await connector.getCategoryOfferings(category, page, size);
+    offerings = await connector.getCategoryOfferings(category, page, size);
   }
 
   const result = {
-    categories: categoriesJSON, //await connector.getCategories(),
-    providers: providersJSON, //await connector.getProviders(),
-    offerings: offeringsJSON //offerings,
+    categories: await connector.getCategories(),
+    providers: await connector.getProviders(),
+    offerings: offerings,
   }
   res.status(200).json(result);
 }

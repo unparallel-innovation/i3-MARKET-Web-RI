@@ -107,7 +107,7 @@ export default function Index() {
     return (<Layout>
       <div className="px-5">
         <Search offerings={[]} providers={[]} categories={[]}
-          searchType={searchType} category={category} providerId={providerId}
+          searchType={searchType} category={category ? category.toLowerCase(): category} providerId={providerId}
           isLoading />
       </div>
     </Layout>)
@@ -115,7 +115,8 @@ export default function Index() {
   return (<Layout>
     <div className="px-5">
       <Search { ...data } searchType={searchType}
-        category={category} providerId={providerId} />
+        category={category ? category.toLowerCase(): category}
+        providerId={providerId} />
     </div>
   </Layout>)
 

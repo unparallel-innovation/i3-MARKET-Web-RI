@@ -1,4 +1,6 @@
-import { Layout } from '/components/common.js'
+import {useData} from '/lib/effects.js'
+import {ErrorC, Layout} from '/components/common.js'
+import {Loading} from "/components/Loading.js";
 import user from '/lib/user.js'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { Card, Col, Row } from 'react-bootstrap'
@@ -75,6 +77,14 @@ function NumberCard(props) {
 }
 
 export default function Home() {
+  const { data, error } = useData('/api/');
+
+  if (error)
+    return <ErrorC error={error} />;
+
+  if (!data)
+    return <Loading />;
+
   const layoutA = {
     i: 'a', w: 5, h: 4, isResizable: false
   };
@@ -107,6 +117,8 @@ export default function Home() {
     sm: layout,
     xs: layout,
   };
+
+  const { providersN, offeringsN } = data;
 
   const categoryEl = categories.map((category, idx) => (
     <div key={"category" + idx}>
@@ -168,11 +180,11 @@ export default function Home() {
         </Card>
 
         <div key="c">
-          <NumberCard className="bg-primary" number={8} label="Data Providers" />
+          <NumberCard className="bg-primary" number={providersN} label="Data Providers" />
         </div>
 
         <div key="d">
-          <NumberCard className="bg-secondary" number={20} label="Offerings Available" />
+          <NumberCard className="bg-secondary" number={offeringsN} label="Offerings Available" />
         </div>
 
         {/* { categoryEl } */}

@@ -1,6 +1,6 @@
 import { useData } from '/lib/effects.js'
 import { Layout, ErrorC } from '/components/common.js'
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import { useRouter } from 'next/router'
 import {Form, Button, Row} from 'react-bootstrap'
 import OfferingCard from "../../components/offerings/OfferingCard";
@@ -9,6 +9,17 @@ function Search(props){
   const router = useRouter()
   const { offerings, providers, categories, searchType, isLoading } = props;
   const [ _searchType, setSearchType ] = useState(searchType);
+
+  console.log("searchType: " + searchType)
+  console.log("_searchType: " + _searchType)
+
+  // useEffect(() => {
+  //   setSearchType(searchType)
+  // }, [searchType])
+  //
+  // useEffect(() => {
+  //   setSearchType(_searchType)
+  // }, [_searchType])
 
   const selectOneEl = <option key={0} >Select One</option>
 
@@ -41,9 +52,6 @@ function Search(props){
   const offeringsEl = offerings.length > 0 ? offerings.map(offering => (
       <OfferingCard key={offering.dataOfferingId} {...offering} />
   )) : searchPlaceholder
-
-  console.log("_searchType", _searchType)
-  console.log("searchType", searchType)
 
   return (<div>
     <Form className="d-inline-flex mb-5" onSubmit={onSubmit}>
@@ -80,9 +88,8 @@ function Search(props){
 export default function Index() {
   const router = useRouter();
   const { searchType = "provider", providerId, category } = router.query;
-
   const { data, error } = useData(
-      `/api/search?searchType=${searchType}&providerid=${providerId}&category=${category}`
+      `/api/search?searchType=${searchType}&providerId=${providerId}&category=${category}`
   );
 
   if (error)

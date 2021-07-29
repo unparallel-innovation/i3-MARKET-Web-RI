@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react'
 import {useData} from '/lib/effects.js'
 import {ErrorC, Layout} from '/components/common.js'
 import {Loading} from "/components/Loading.js";
@@ -7,6 +8,21 @@ import { Card, Col, Row } from 'react-bootstrap'
 import Image from 'next/image'
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
+
+function getFromLS(defaultValue) {
+  let ret = defaultValue;
+
+  try {
+    let val = JSON.parse(localStorage.getItem("homeLayouts"));
+    if (val)
+      ret = val;
+  } catch (e) {
+  }
+
+  // console.log('getFromLS', defaultValue, ret);
+
+  return ret;
+}
 
 function NumberCard(props) {
   const { key, className, number, label } = props;
@@ -23,14 +39,8 @@ function NumberCard(props) {
   );
 }
 
-export default function Home() {
-  const { data, error } = useData('/api/');
-
-  if (error)
-    return <ErrorC error={error} />;
-
-  if (!data)
-    return <Loading />;
+function HomePure(props) {
+  const { providersN, offeringsN, categories } = props;
 
   const layoutA = {
     i: 'a', w: 5, h: 4, isResizable: false
@@ -47,8 +57,6 @@ export default function Home() {
   const layoutD = {
     i: 'd', w: 3, h: 2, isResizable: false,
   };
-
-  const { providersN, offeringsN, categories } = data;
 
   function getCategoriesLayout(y, w) {
     let res = [];
@@ -105,6 +113,17 @@ export default function Home() {
     ],
   };
 
+  const [ _layouts, setLayouts ] = useState(getFromLS(layouts));
+
+  useEffect(() => {
+    setLayouts(layouts);
+  }, [categories]);
+
+  function onLayoutChange(layout, layouts) {
+    setLayouts(layouts);
+    localStorage.setItem("homeLayouts", JSON.stringify(layouts));
+  }
+
   const categoryEl = categories.map((category, idx) => (
     <Card key={"category" + idx}>
       <Card.Body className="d-flex align-items-center justify-content-between">
@@ -119,8 +138,9 @@ export default function Home() {
       <ResponsiveGridLayout className="layout"
         breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
         cols={{lg: 11, md: 10, sm: 6, xs: 4, xxs: 3}}
-        layouts={layouts}
+        layouts={_layouts}
         rowHeight={100}
+        onLayoutChange={onLayoutChange}
       >
         <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
           <Image src="/img/manufacturing_marketplace.png" layout="fill" objectFit="contain" className="p-3" />
@@ -179,4 +199,19 @@ export default function Home() {
       </ResponsiveGridLayout>
     </div>
   </Layout>);
+}
+
+export default function Home() {
+  const { data, error } = useData('/api/');
+
+  if (error)
+    return <ErrorC error={error} />;
+
+  if (!data)
+    return <HomePure providersN={0} offeringsN={0} categories={[]} />;
+
+  const { providersN, offeringsN, categories } = data;
+
+
+  return <HomePure { ...data } />;
 }

@@ -61,8 +61,9 @@ export default function Register() {
     router.push('/offerings');
   }
 
-  return (<Layout>
-    <Form className="px-5 pb-3" onSubmit={onSubmit} action='/api/offerings/register'>
+  return (<Layout className="d-flex flex-column">
+    <Form className="px-5 pb-3 d-flex flex-column flex-grow-1"
+      onSubmit={onSubmit} action='/api/offerings/register'>
       <div className="d-flex">
         <h3 className="flex-grow-1 mb-0">Register New Offering</h3>
         <Button variant="secondary" className="mr-3" onClick={onCancel}>
@@ -100,6 +101,8 @@ export default function Register() {
 
       <input type="hidden" value={datasetC} name="datasetC" />
       <input type="hidden" value={pricingModelC} name="pricingModelC" />
+
+      <div className="flex-grow-1" />
 
       <div className="d-flex mt-3">
           <Button disabled={atIdx == 0} onClick={e => {

@@ -2,8 +2,9 @@ import { connector } from '/lib/server.js'
 
 export default async function handler(req, res) {
     res.status(200).json({
-      // providersN: await connector.getProviders(),
-      // offeringsN: await connector.getOfferings(),
+      // providersN: (await connector.getProviders()).length,
+      // offeringsN: (await connector.getOfferings()).length,
+      // categories: await connector.getOfferingsByCategory(),
       providersN: 8,
       offeringsN: 32,
       categories: [{

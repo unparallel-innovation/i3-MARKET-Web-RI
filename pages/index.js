@@ -40,7 +40,11 @@ function NumberCard(props) {
 }
 
 function HomePure(props) {
-  const { providersN, offeringsN, categories } = props;
+  const {
+    providersN = "-",
+    offeringsN = "-",
+    categories = []
+  } = props;
 
   const layoutA = {
     i: 'a', w: 5, h: 4, isResizable: false
@@ -58,7 +62,7 @@ function HomePure(props) {
     i: 'd', w: 3, h: 2, isResizable: false,
   };
 
-  function getCategoriesLayout(y, w) {
+  function getCategoriesLayout(y, ncols) {
     let res = [];
     let i, x;
 
@@ -73,7 +77,7 @@ function HomePure(props) {
       });
 
       x += 2;
-      if (x + 2 > w) {
+      if (x + 2 > ncols) {
         x = 0;
         y ++;
       }
@@ -91,10 +95,10 @@ function HomePure(props) {
       ...getCategoriesLayout(4, 11),
     ],
     md: [
-      { ...layoutA, x: 0, y: 0 },
-      { ...layoutB, x: 5, y: 0, w: 5 },
-      { ...layoutC, x: 5, y: 2, w: 2 },
-      { ...layoutD, x: 7, y: 2, w: 2 },
+      { ...layoutA, x: 0, y: 0, w: 4 },
+      { ...layoutB, x: 4, y: 0 },
+      { ...layoutC, x: 4, y: 2 },
+      { ...layoutD, x: 7, y: 2 },
       ...getCategoriesLayout(4, 10),
     ],
     sm: [
@@ -113,15 +117,21 @@ function HomePure(props) {
     ],
   };
 
-  const [ _layouts, setLayouts ] = useState(getFromLS(layouts));
+  // console.log("RENDER", layouts, _layouts);
+  // console.log("RENDER", layouts);
 
-  useEffect(() => {
-    setLayouts(layouts);
-  }, [categories]);
+  // const [ _layouts, setLayouts ] = useState(getFromLS(layouts));
+
+  // useEffect(() => {
+  //   setLayouts(layouts);
+  //   // setLayouts(getFromLS(layouts));
+  // }, [categories]);
 
   function onLayoutChange(layout, layouts) {
-    setLayouts(layouts);
-    localStorage.setItem("homeLayouts", JSON.stringify(layouts));
+    // setLayouts(layouts);
+    console.log("onChange", layouts, categories);
+    // if (categories.length)
+    //   localStorage.setItem("homeLayouts", JSON.stringify(layouts));
   }
 
   const categoryEl = categories.map((category, idx) => (
@@ -138,7 +148,7 @@ function HomePure(props) {
       <ResponsiveGridLayout className="layout"
         breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
         cols={{lg: 11, md: 10, sm: 6, xs: 4, xxs: 3}}
-        layouts={_layouts}
+        layouts={layouts}
         rowHeight={100}
         onLayoutChange={onLayoutChange}
       >
@@ -208,10 +218,7 @@ export default function Home() {
     return <ErrorC error={error} />;
 
   if (!data)
-    return <HomePure providersN={0} offeringsN={0} categories={[]} />;
-
-  const { providersN, offeringsN, categories } = data;
-
+    return <HomePure />;
 
   return <HomePure { ...data } />;
 }

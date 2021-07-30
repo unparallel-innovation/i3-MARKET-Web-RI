@@ -24,7 +24,7 @@ export function Layout(props) {
       <Navbar className="px-5 py-3" expand="md">
         <Link href="/" passHref>
           <Navbar.Brand>
-            <Image height="32" width="191" src="/img/manufacturing_marketplace.png" alt="Web-ri logo" />
+            <Image height="32" width="122" src="/img/Web-ri_sep.png" alt="Web-ri logo" />
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

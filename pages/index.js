@@ -1,4 +1,7 @@
-import { Layout } from '/components/common.js'
+import {useEffect, useState} from 'react'
+import {useData} from '/lib/effects.js'
+import {ErrorC, Layout} from '/components/common.js'
+import {Loading} from "/components/Loading.js";
 import user from '/lib/user.js'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { Card, Col, Row } from 'react-bootstrap'
@@ -6,58 +9,20 @@ import Image from 'next/image'
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const categories = [{
-  title: "Agriculture",
-  count: 5,
-}, {
-  title: "Automotive",
-  count: 1,
-}, {
-  title: "Culture",
-  count: 3,
-}, {
-  title: "Economy",
-  count: 5,
-}, {
-  title: "Education",
-  count: 10,
-}, {
-  title: "Energy",
-  count: 12,
-}, {
-  title: "Environment",
-  count: 8,
-}, {
-  title: "Government",
-  count: 10,
-}, {
-  title: "Health",
-  count: 2,
-}, {
-  title: "International",
-  count: 4,
-}, {
-  title: "Justice",
-  count: 14,
-}, {
-  title: "Manufacturing",
-  count: 20,
-}, {
-  title: "Regions",
-  count: 2,
-}, {
-  title: "Science",
-  count: 5,
-}, {
-  title: "Transport",
-  count: 1,
-}, {
-  title: "Wellbeing",
-  count: 6,
-}, {
-  title: "Society",
-  count: 2,
-}];
+function getFromLS(defaultValue) {
+  let ret = defaultValue;
+
+  try {
+    let val = JSON.parse(localStorage.getItem("homeLayouts"));
+    if (val)
+      ret = val;
+  } catch (e) {
+  }
+
+  // console.log('getFromLS', defaultValue, ret);
+
+  return ret;
+}
 
 function NumberCard(props) {
   const { key, className, number, label } = props;
@@ -74,7 +39,13 @@ function NumberCard(props) {
   );
 }
 
-export default function Home() {
+function HomePure(props) {
+  const {
+    providersN = "-",
+    offeringsN = "-",
+    categories = []
+  } = props;
+
   const layoutA = {
     i: 'a', w: 5, h: 4, isResizable: false
   };
@@ -91,27 +62,85 @@ export default function Home() {
     i: 'd', w: 3, h: 2, isResizable: false,
   };
 
-  const layout = [
-    { ...layoutA, x: 0, y: 0 },
-    { ...layoutB, x: 5, y: 0 },
-    { ...layoutC, x: 5, y: 2 },
-    { ...layoutD, x: 8, y: 2 },
-    // ...(categories.map((category, idx) => ({
-    //   i: 'category' + idx, w: 2, h: 1, isResizable: false, x: 0, y: 4
-    // })))
-  ];
+  function getCategoriesLayout(y, ncols) {
+    let res = [];
+    let i, x;
+
+    for (
+      i = 0, x = 0;
+      i < categories.length;
+      i++
+    ) {
+      res.push({
+        i: 'category' + i, w: 2, h: 1, isResizable: false,
+        x, y
+      });
+
+      x += 2;
+      if (x + 2 > ncols) {
+        x = 0;
+        y ++;
+      }
+    }
+
+    return res;
+  }
 
   const layouts = {
-    lg: layout,
-    md: layout,
-    sm: layout,
-    xs: layout,
+    lg: [
+      { ...layoutA, x: 0, y: 0 },
+      { ...layoutB, x: 5, y: 0 },
+      { ...layoutC, x: 5, y: 2 },
+      { ...layoutD, x: 8, y: 2 },
+      ...getCategoriesLayout(4, 11),
+    ],
+    md: [
+      { ...layoutA, x: 0, y: 0, w: 4 },
+      { ...layoutB, x: 4, y: 0 },
+      { ...layoutC, x: 4, y: 2 },
+      { ...layoutD, x: 7, y: 2 },
+      ...getCategoriesLayout(4, 10),
+    ],
+    sm: [
+      { ...layoutA, x: 0, y: 0, w: 6 },
+      { ...layoutB, x: 0, y: 4 },
+      { ...layoutC, x: 0, y: 6 },
+      { ...layoutD, x: 3, y: 6 },
+      ...getCategoriesLayout(8, 6),
+    ],
+    xs: [
+      { ...layoutA, x: 0, y: 0 },
+      { ...layoutB, x: 0, y: 4 },
+      { ...layoutC, x: 0, y: 6, w: 2 },
+      { ...layoutD, x: 2, y: 6, w: 2 },
+      ...getCategoriesLayout(8, 4),
+    ],
   };
 
+  // console.log("RENDER", layouts, _layouts);
+  // console.log("RENDER", layouts);
+
+  // const [ _layouts, setLayouts ] = useState(getFromLS(layouts));
+
+  // useEffect(() => {
+  //   setLayouts(layouts);
+  //   // setLayouts(getFromLS(layouts));
+  // }, [categories]);
+
+  function onLayoutChange(layout, layouts) {
+    // setLayouts(layouts);
+    console.log("onChange", layouts, categories);
+    // if (categories.length)
+    //   localStorage.setItem("homeLayouts", JSON.stringify(layouts));
+  }
+
   const categoryEl = categories.map((category, idx) => (
-    <div key={"category" + idx}>
-      { category.title } { category.count }
-    </div>
+    <Card key={"category" + idx}>
+      <Card.Body className="d-flex align-items-center justify-content-between">
+        { category.category }
+        <span className="ml-3 h3 text-primary">{ category.offerings }</span>
+      </Card.Body>
+    </Card>
   ));
 
   return (<Layout>
@@ -121,6 +150,7 @@ export default function Home() {
         cols={{lg: 11, md: 10, sm: 6, xs: 4, xxs: 3}}
         layouts={layouts}
         rowHeight={100}
+        onLayoutChange={onLayoutChange}
       >
         <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
           <Image src="/img/manufacturing_marketplace.png" layout="fill" objectFit="contain" className="p-3" />
@@ -168,15 +198,27 @@ export default function Home() {
         </Card>
 
         <div key="c">
-          <NumberCard className="bg-primary" number={8} label="Data Providers" />
+          <NumberCard className="bg-primary" number={providersN} label="Data Providers" />
         </div>
 
         <div key="d">
-          <NumberCard className="bg-secondary" number={20} label="Offerings Available" />
+          <NumberCard className="bg-secondary" number={offeringsN} label="Offerings Available" />
         </div>
 
-        {/* { categoryEl } */}
+        { categoryEl }
       </ResponsiveGridLayout>
     </div>
   </Layout>);
+}
+
+export default function Home() {
+  const { data, error } = useData('/api/');
+
+  if (error)
+    return <ErrorC error={error} />;
+
+  if (!data)
+    return <HomePure />;
+
+  return <HomePure { ...data } />;
 }

@@ -123,7 +123,7 @@ export default function Home() {
         rowHeight={100}
       >
         <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
-          <Image src="/img/manufacturing_marketplace.png" layout="fill" objectFit="contain" className="p-3" />
+          <Image src="/img/Web-ri_sep.png" layout="fill" objectFit="contain" className="p-3" />
         </Card>
 
         <Card key="b">

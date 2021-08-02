@@ -27,11 +27,23 @@ function getFromLS(defaultValue) {
   return ret;
 }
 
+function ErrorCard(props) {
+    const { error } = props;
+
+    return (
+        <Card className="bg-danger text-white fh">
+            <Card.Body className="d-flex align-items-center justify-content-center">
+                { error.message }
+            </Card.Body>
+        </Card>
+    );
+}
+
 function NumberCard(props) {
-  const { key, className, number, label } = props;
+  const { className, number, label } = props;
 
   return (
-    <Card key={key} className={`${className} text-white text-center fh`}>
+    <Card className={`${className} text-white text-center fh`}>
       <Card.Body className="d-flex align-items-center justify-content-center">
         <div>
           <div className="display-4">{number}</div>
@@ -46,7 +58,7 @@ function ProvidersNumberCard(props) {
   const { data, error } = useData('/api/getProvidersN');
 
   if (error)
-    return <div className="bg-danger text-white">{ error.message }</div>;
+    return <ErrorCard error={error} />;
 
   if (!data)
     return <NumberCard className="bg-primary" number="-" label="Data Providers" />;
@@ -60,7 +72,7 @@ function OfferingsNumberCard(props) {
   const { data, error } = useData('/api/getOfferingsN');
 
   if (error)
-    return <div className="bg-danger text-white">{ error.message }</div>;
+    return <ErrorCard error={error} />;
 
   if (!data)
     return <NumberCard className="bg-secondary" number="-" label="Offerings Available" />;
@@ -74,10 +86,12 @@ function CategoryCardPure(props) {
   const { name, number = '-' } = props;
 
   return (
-    <Card.Body className="d-flex align-items-center justify-content-between">
-      { name }
-      <span className="ml-3 h3 text-primary">{ number }</span>
-    </Card.Body>
+    <Card className="fh">
+        <Card.Body className="d-flex align-items-center justify-content-between">
+            { name }
+            <span className="ml-3 h3 text-primary">{ number }</span>
+        </Card.Body>
+    </Card>
   );
 }
 
@@ -86,7 +100,7 @@ function CategoryCard(props) {
   const { data, error } = useData(`/api/getCategoryOfferingsN?category=${name}`);
 
   if (error)
-    return <div className="bg-danger text-white">{ error.message }</div>;
+    return <ErrorCard error={error} />;
 
   if (!data)
     return <CategoryCardPure name={name} />;
@@ -190,9 +204,9 @@ function HomePure(props) {
   }
 
   const categoryEl = categories.map((category, idx) => (
-    <Card key={"category" + idx}>
-      <CategoryCard name={category.category} />
-    </Card>
+      <div key={"category" + idx}>
+          <CategoryCard name={category.category} />
+      </div>
   ));
 
   return (<Layout>

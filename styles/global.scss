@@ -65,6 +65,10 @@ footer small.flex-grow-1 {
   content: "/\00a0";
 }
 
+.breadcrumbs li:not(:last-child) a {
+  color: $gray-500;
+}
+
 .text-tiny {
   font-size: 0.75rem;
 }

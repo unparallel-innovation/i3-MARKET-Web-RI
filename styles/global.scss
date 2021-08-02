@@ -61,7 +61,7 @@ footer small.flex-grow-1 {
 
 .breadcrumbs ol li+li:before {
   padding: 8px;
-  color: black;
+  color: $gray-500;
   content: "/\00a0";
 }
 

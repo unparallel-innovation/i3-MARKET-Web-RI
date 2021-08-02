@@ -35,18 +35,18 @@ export function Layout(props) {
             <Link href="/offerings" passHref>
               <Nav.Link>Offerings</Nav.Link>
             </Link>
-            <Link href="/contracts" passHref>
-              <Nav.Link>Contracts</Nav.Link>
-            </Link>
-            <Link href="/transactions" passHref>
-              <Nav.Link>Transactions</Nav.Link>
-            </Link>
+            {/*<Link href="/contracts" passHref>*/}
+            {/*  <Nav.Link>Contracts</Nav.Link>*/}
+            {/*</Link>*/}
+            {/*<Link href="/transactions" passHref>*/}
+            {/*  <Nav.Link>Transactions</Nav.Link>*/}
+            {/*</Link>*/}
             <Link href="/search" passHref>
               <Nav.Link>Search</Nav.Link>
             </Link>
-            <Link href="/alerts" passHref>
-              <Nav.Link>Alerts</Nav.Link>
-            </Link>
+            {/*<Link href="/alerts" passHref>*/}
+            {/*  <Nav.Link>Alerts</Nav.Link>*/}
+            {/*</Link>*/}
             <Link href="/account" passHref>
               <Nav.Link className="px-2">
                 <PersonCircle size={24} />

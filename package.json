@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@UNPARALLEL/connector-ri": "^1.0.3",
+    "@UNPARALLEL/connector-ri": "^1.0.4",
     "bootstrap": "^4.6.0",
     "next": "^11.0.1",
     "nextjs-breadcrumbs": "^1.1.4",
@@ -23,6 +23,6 @@
   "devDependencies": {
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",
-    "sass": "^1.35.2"
+    "sass": "^1.37.0"
   }
 }

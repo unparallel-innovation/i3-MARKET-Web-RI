@@ -47,16 +47,16 @@ export function Layout(props) {
             {/*<Link href="/alerts" passHref>*/}
             {/*  <Nav.Link>Alerts</Nav.Link>*/}
             {/*</Link>*/}
-            <Link href="/account" passHref>
-              <Nav.Link className="px-2">
-                <PersonCircle size={24} />
-              </Nav.Link>
-            </Link>
-            <Link href="/notificationCentre" passHref>
-              <Nav.Link className="px-2">
-                <Bell size={24} />
-              </Nav.Link>
-            </Link>
+            {/*<Link href="/account" passHref>*/}
+            {/*  <Nav.Link className="px-2">*/}
+            {/*    <PersonCircle size={24} />*/}
+            {/*  </Nav.Link>*/}
+            {/*</Link>*/}
+            {/*<Link href="/notificationCentre" passHref>*/}
+            {/*  <Nav.Link className="px-2">*/}
+            {/*    <Bell size={24} />*/}
+            {/*  </Nav.Link>*/}
+            {/*</Link>*/}
           </Nav>
           </Navbar.Collapse>
       </Navbar>

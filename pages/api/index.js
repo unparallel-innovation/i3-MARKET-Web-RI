@@ -1,7 +1,7 @@
-import { connector } from '/lib/server.js'
+import { connector, catchErrors } from '/lib/server.js'
 
-export default async function handler(req, res) {
-    res.status(200).json({
+export default catchErrors(async (req, res) => {
+    return {
       // providersN: (await connector.getProviders()).length,
       // offeringsN: (await connector.getOfferings()).length,
       // categories: await connector.getOfferingsByCategory(),
@@ -59,5 +59,5 @@ export default async function handler(req, res) {
         category: "Society",
         offerings: 2,
       }],
-    });
-}
+    };
+});

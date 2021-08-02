@@ -12,6 +12,9 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 function getFromLS(defaultValue) {
   let ret = defaultValue;
 
+  if (typeof window === 'undefined')
+    return ret;
+
   try {
     let val = JSON.parse(localStorage.getItem("homeLayouts"));
     if (val)
@@ -24,11 +27,23 @@ function getFromLS(defaultValue) {
   return ret;
 }
 
+function ErrorCard(props) {
+    const { error } = props;
+
+    return (
+        <Card className="bg-danger text-white fh">
+            <Card.Body className="d-flex align-items-center justify-content-center">
+                { error.message }
+            </Card.Body>
+        </Card>
+    );
+}
+
 function NumberCard(props) {
-  const { key, className, number, label } = props;
+  const { className, number, label } = props;
 
   return (
-    <Card key={key} className={`${className} text-white text-center fh`}>
+    <Card className={`${className} text-white text-center fh`}>
       <Card.Body className="d-flex align-items-center justify-content-center">
         <div>
           <div className="display-4">{number}</div>
@@ -39,10 +54,64 @@ function NumberCard(props) {
   );
 }
 
+function ProvidersNumberCard(props) {
+  const { data, error } = useData('/api/getProvidersN');
+
+  if (error)
+    return <ErrorCard error={error} />;
+
+  if (!data)
+    return <NumberCard className="bg-primary" number="-" label="Data Providers" />;
+
+  const { providersN } = data;
+
+  return <NumberCard className="bg-primary" number={providersN} label="Data Providers" />
+}
+
+function OfferingsNumberCard(props) {
+  const { data, error } = useData('/api/getOfferingsN');
+
+  if (error)
+    return <ErrorCard error={error} />;
+
+  if (!data)
+    return <NumberCard className="bg-secondary" number="-" label="Offerings Available" />;
+
+  const { offeringsN } = data;
+
+  return <NumberCard className="bg-secondary" number={offeringsN} label="Offerings Available" />;
+}
+
+function CategoryCardPure(props) {
+  const { name, number = '-' } = props;
+
+  return (
+    <Card className="fh">
+        <Card.Body className="d-flex align-items-center justify-content-between">
+            { name }
+            <span className="ml-3 h3 text-primary">{ number }</span>
+        </Card.Body>
+    </Card>
+  );
+}
+
+function CategoryCard(props) {
+  const { name } = props;
+  const { data, error } = useData(`/api/getCategoryOfferingsN?category=${name}`);
+
+  if (error)
+    return <ErrorCard error={error} />;
+
+  if (!data)
+    return <CategoryCardPure name={name} />;
+
+  const { offeringsN } = data;
+
+  return <CategoryCardPure name={name} number={offeringsN} />;
+}
+
 function HomePure(props) {
   const {
-    providersN = "-",
-    offeringsN = "-",
     categories = []
   } = props;
 
@@ -123,8 +192,8 @@ function HomePure(props) {
   // const [ _layouts, setLayouts ] = useState(getFromLS(layouts));
 
   // useEffect(() => {
-  //   setLayouts(layouts);
-  //   // setLayouts(getFromLS(layouts));
+  //   // setLayouts(layouts);
+  //   setLayouts(getFromLS(layouts));
   // }, [categories]);
 
   function onLayoutChange(layout, layouts) {
@@ -135,12 +204,9 @@ function HomePure(props) {
   }
 
   const categoryEl = categories.map((category, idx) => (
-    <Card key={"category" + idx}>
-      <Card.Body className="d-flex align-items-center justify-content-between">
-        { category.category }
-        <span className="ml-3 h3 text-primary">{ category.offerings }</span>
-      </Card.Body>
-    </Card>
+      <div key={"category" + idx}>
+          <CategoryCard name={category.category} />
+      </div>
   ));
 
   return (<Layout>
@@ -198,11 +264,11 @@ function HomePure(props) {
         </Card>
 
         <div key="c">
-          <NumberCard className="bg-primary" number={providersN} label="Data Providers" />
+          <ProvidersNumberCard />
         </div>
 
         <div key="d">
-          <NumberCard className="bg-secondary" number={offeringsN} label="Offerings Available" />
+          <OfferingsNumberCard />
         </div>
 
         { categoryEl }

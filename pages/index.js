@@ -40,7 +40,7 @@ function ErrorCard(props) {
 }
 
 function NumberCard(props) {
-  const { className, number, label } = props;
+  const { className, number = "-", label } = props;
 
   return (
     <Card className={`${className} text-white text-center fh`}>
@@ -57,11 +57,11 @@ function NumberCard(props) {
 function ProvidersNumberCard(props) {
   const { data, error } = useData('/api/getProvidersN');
 
-  if (error)
-    return <ErrorCard error={error} />;
+  // if (error)
+  //   return <ErrorCard error={error} />;
 
-  if (!data)
-    return <NumberCard className="bg-primary" number="-" label="Data Providers" />;
+  if (error || !data)
+    return <NumberCard className="bg-primary" label="Data Providers" />;
 
   const { providersN } = data;
 
@@ -71,11 +71,11 @@ function ProvidersNumberCard(props) {
 function OfferingsNumberCard(props) {
   const { data, error } = useData('/api/getOfferingsN');
 
-  if (error)
-    return <ErrorCard error={error} />;
+  // if (error)
+  //   return <ErrorCard error={error} />;
 
-  if (!data)
-    return <NumberCard className="bg-secondary" number="-" label="Offerings Available" />;
+  if (error || !data)
+    return <NumberCard className="bg-secondary" label="Offerings Available" />;
 
   const { offeringsN } = data;
 
@@ -99,10 +99,10 @@ function CategoryCard(props) {
   const { name } = props;
   const { data, error } = useData(`/api/getCategoryOfferingsN?category=${name}`);
 
-  if (error)
-    return <ErrorCard error={error} />;
+  // if (error)
+  //   return <ErrorCard error={error} />;
 
-  if (!data)
+  if (error || !data)
     return <CategoryCardPure name={name} />;
 
   const { offeringsN } = data;

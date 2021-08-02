@@ -5,8 +5,8 @@ export default async function handler(req, res) {
       // providersN: (await connector.getProviders()).length,
       // offeringsN: (await connector.getOfferings()).length,
       // categories: await connector.getOfferingsByCategory(),
-      providersN: 8,
-      offeringsN: 32,
+      // providersN: 8,
+      // offeringsN: 32,
       categories: [{
         category: "Agriculture",
         offerings: 5,

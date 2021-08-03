@@ -35,28 +35,28 @@ export function Layout(props) {
             <Link href="/offerings" passHref>
               <Nav.Link>Offerings</Nav.Link>
             </Link>
-            {/*<Link href="/contracts" passHref>*/}
-            {/*  <Nav.Link>Contracts</Nav.Link>*/}
-            {/*</Link>*/}
-            {/*<Link href="/transactions" passHref>*/}
-            {/*  <Nav.Link>Transactions</Nav.Link>*/}
-            {/*</Link>*/}
+            <Link href="/contracts" passHref>
+              <Nav.Link>Contracts</Nav.Link>
+            </Link>
+            <Link href="/transactions" passHref>
+              <Nav.Link>Transactions</Nav.Link>
+            </Link>
             <Link href="/search" passHref>
               <Nav.Link>Search</Nav.Link>
             </Link>
-            {/*<Link href="/alerts" passHref>*/}
-            {/*  <Nav.Link>Alerts</Nav.Link>*/}
-            {/*</Link>*/}
-            {/*<Link href="/account" passHref>*/}
-            {/*  <Nav.Link className="px-2">*/}
-            {/*    <PersonCircle size={24} />*/}
-            {/*  </Nav.Link>*/}
-            {/*</Link>*/}
-            {/*<Link href="/notificationCentre" passHref>*/}
-            {/*  <Nav.Link className="px-2">*/}
-            {/*    <Bell size={24} />*/}
-            {/*  </Nav.Link>*/}
-            {/*</Link>*/}
+            <Link href="/alerts" passHref>
+              <Nav.Link>Alerts</Nav.Link>
+            </Link>
+            <Link href="/account" passHref>
+              <Nav.Link className="px-2">
+                <PersonCircle size={24} />
+              </Nav.Link>
+            </Link>
+            <Link href="/notificationCentre" passHref>
+              <Nav.Link className="px-2">
+                <Bell size={24} />
+              </Nav.Link>
+            </Link>
           </Nav>
           </Navbar.Collapse>
       </Navbar>
@@ -87,12 +87,6 @@ export function Layout(props) {
           <Image height="48" width="61" src="/img/i3-MARKET-LOGO_2nd_Release.png"
             alt="i3Market logo" />
         </div>
-
-        <h6 className="mt-3">
-          <small className="text-dark">
-            Powered by Web-RI
-          </small>
-        </h6>
 
       </footer>
     </div>

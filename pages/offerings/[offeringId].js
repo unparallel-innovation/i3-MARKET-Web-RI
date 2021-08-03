@@ -16,7 +16,5 @@ export default function OfferingPage() {
   if (!data)
     return <Loading />;
 
-    return (<Layout>
-        <Offering { ...data } />
-    </Layout>);
+  return <Offering { ...data } />;
 }

@@ -5,6 +5,7 @@ import PricingModel from './PricingModel.js';
 import KVCol2 from './KVCol2.js';
 import { Button, Row } from 'react-bootstrap' 
 import { Lock, Globe, Pencil, Trash } from 'react-bootstrap-icons'
+import Layout from '/components/Layout.js'
 
 export default
 function Offering(props) {
@@ -27,7 +28,7 @@ function Offering(props) {
         <PricingModel key={idx} { ...item } />
     ));
 
-    return (<>
+    return (<Layout>
         <div className="px-5 pb-3">
             <div className="d-flex">
                 <h3 className="flex-grow-1 m-0">{ title }</h3>
@@ -75,5 +76,5 @@ function Offering(props) {
                 { pricingModelEl }
             </Row>
         </div>
-    </>);
+    </Layout>);
 }

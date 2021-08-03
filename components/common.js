@@ -52,7 +52,7 @@ export function Layout(props) {
                 <PersonCircle size={24} />
               </Nav.Link>
             </Link>
-            <Link href="/notificationCentre" passHref>
+            <Link href="/notificationCenter" passHref>
               <Nav.Link className="px-2">
                 <Bell size={24} />
               </Nav.Link>

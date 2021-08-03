@@ -1,5 +1,18 @@
-import CategoryCardPure from './CategoryCardPure';
+import { Card } from 'react-bootstrap';
 import { useData } from '/lib/hooks.js'
+
+function CategoryCardPure(props) {
+    const { name, number = '-' } = props;
+
+    return (
+        <Card className="fh">
+            <Card.Body className="d-flex align-items-center justify-content-between">
+                { name }
+                <span className="ml-3 h3 text-primary">{ number }</span>
+            </Card.Body>
+        </Card>
+    );
+}
 
 export default
 function CategoryCard(props) {

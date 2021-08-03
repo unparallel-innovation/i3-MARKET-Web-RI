@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap';
 import { useData } from '/lib/hooks.js'
 
-function CategoryCardPure(props) {
+function CategoryInfoCard(props) {
     const { name, number = '-' } = props;
 
     return (
@@ -23,9 +23,9 @@ function CategoryCard(props) {
     //   return <ErrorCard error={error} />;
 
     if (error || !data)
-        return <CategoryCardPure name={name} />;
+        return <CategoryInfoCard name={name} />;
 
     const { offeringsN } = data;
 
-    return <CategoryCardPure name={name} number={offeringsN} />;
+    return <CategoryInfoCard name={name} number={offeringsN} />;
 }

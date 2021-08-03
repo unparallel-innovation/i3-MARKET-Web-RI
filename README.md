@@ -56,3 +56,7 @@ The `lib` directory contains various files with things other than components or 
 - `lib/form.js` - contains auxiliary functions for dealing with forms.
 - `lib/util.js` - contains auxiliary functions that deal with other things.
 - `lib/user.js` - contains hardcoded user data (for now).
+
+## Configuring different endpoints
+
+If you want to use a different endpoint, edit `lib/server.js` and change the variable `endpoint` to your preference. You may use SDK-RI instead of the semantic engine by providing a username and a password.

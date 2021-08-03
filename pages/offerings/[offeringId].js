@@ -1,5 +1,6 @@
 import { useData } from '/lib/hooks.js'
-import { Layout, ErrorC } from '/components/common.js'
+import Layout from '/components/Layout.js'
+import ErrorC from '/components/ErrorC.js'
 import CustomToggle from '/components/CustomToggle.js'
 import colors from '/lib/colors.js'
 import { ts2date } from '/lib/utils.js'

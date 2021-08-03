@@ -1,5 +1,6 @@
 import { useData } from '/lib/hooks.js'
-import { Layout, ErrorC } from '/components/common.js'
+import Layout from '/components/Layout.js'
+import ErrorC from '/components/ErrorC.js'
 import {useEffect, useState} from 'react'
 import { useRouter } from 'next/router'
 import {Form, Button, Row} from 'react-bootstrap'

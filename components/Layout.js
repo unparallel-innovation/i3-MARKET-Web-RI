@@ -7,7 +7,8 @@ import {Bell, PersonCircle} from 'react-bootstrap-icons'
 
 import Breadcrumbs from 'nextjs-breadcrumbs'
 
-export function Layout(props) {
+export default
+function Layout(props) {
   const { className, children } = props;
   const router = useRouter();
 
@@ -93,13 +94,3 @@ export function Layout(props) {
   </div>);
 }
 
-export function ErrorC(props) {
-  const { error } = props;
-  console.log(error);
-
-  return (<Layout>
-    <div className="px-5 py-3 bg-danger text-white">
-      { error.message }
-    </div>
-  </Layout>);
-}

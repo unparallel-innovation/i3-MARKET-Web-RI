@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import {useData} from '/lib/hooks.js'
-import {ErrorC, Layout} from '/components/common.js'
+import Layout from '/components/Layout.js'
+import ErrorC from '/components/ErrorC.js'
 import {Loading} from "/components/Loading.js";
 import user from '/lib/user.js'
 import { Responsive, WidthProvider } from 'react-grid-layout'

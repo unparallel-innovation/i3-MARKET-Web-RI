@@ -39,7 +39,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Components
 
-You can find reusable components at the `components` directory. The directories inside it express how pages are layed out.
+You can find reusable components at the `components` directory. The directories inside it express how pages are layed out. Some of the most used components are:
+
+- `components/Layout.js` - Basic Layout around each page
+- `components/ErrorC.js` - Error component to be displayed after an api call fails
+- `components/Loading.js` - Loading component to be displayed when api call result is loading
+- `components/buttons.js` - Contains various buttons
 
 ## Lib
 

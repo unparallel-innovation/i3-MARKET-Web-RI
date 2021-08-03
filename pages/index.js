@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
-import {useData} from '/lib/effects.js'
-import {ErrorC, Layout} from '/components/common.js'
+import {useData} from '/lib/hooks.js'
+import Layout from '/components/Layout.js'
+import ErrorC from '/components/ErrorC.js'
 import {Loading} from "/components/Loading.js";
 import user from '/lib/user.js'
 import { Responsive, WidthProvider } from 'react-grid-layout'
@@ -219,7 +220,7 @@ function HomePure(props) {
         onLayoutChange={onLayoutChange}
       >
         <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
-          <Image src="/img/Web-ri_sep.png" layout="fill" objectFit="contain" className="p-3" />
+          <Image src="/img/Web-ri_sep.png" alt="Web-ri logo" layout="fill" objectFit="contain" className="p-3" />
         </Card>
 
         <Card key="b">

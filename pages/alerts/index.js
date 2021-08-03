@@ -1,4 +1,4 @@
-import {Layout} from '/components/common.js'
+import Layout from '/components/Layout.js'
 
 export default function Alerts() {
 

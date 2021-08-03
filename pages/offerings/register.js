@@ -1,7 +1,8 @@
 import {useState} from 'react'
 import {useRouter} from 'next/router'
-import { useData, useMap } from '/lib/effects.js'
-import { Layout, ErrorC } from '/components/common.js'
+import { useData, useMap } from '/lib/hooks.js'
+import Layout from '/components/Layout.js'
+import ErrorC from '/components/ErrorC.js'
 import {Loading} from "../../components/Loading";
 import General from "/components/offerings/register/General.js";
 import Dataset from "/components/offerings/register/Dataset";

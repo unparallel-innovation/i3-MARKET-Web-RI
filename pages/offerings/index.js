@@ -1,5 +1,6 @@
-import {useData} from '/lib/effects.js'
-import {ErrorC, Layout} from '/components/common.js'
+import {useData} from '/lib/hooks.js'
+import Layout from '/components/Layout.js'
+import ErrorC from '/components/ErrorC.js'
 import user from '/lib/user.js'
 import {useRouter} from 'next/router'
 import {Row} from 'react-bootstrap'

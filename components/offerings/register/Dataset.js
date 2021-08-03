@@ -5,7 +5,7 @@ import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
 // import CustomToggle from "../../CustomToggle";
 import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
-import { useMap } from '/lib/effects.js';
+import { useMap } from '/lib/hooks.js';
 
 export default function Dataset(props) {
     const { eventKey, onDelete } = props;

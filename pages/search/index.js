@@ -1,4 +1,4 @@
-import { useData } from '/lib/effects.js'
+import { useData } from '/lib/hooks.js'
 import { Layout, ErrorC } from '/components/common.js'
 import {useEffect, useState} from 'react'
 import { useRouter } from 'next/router'

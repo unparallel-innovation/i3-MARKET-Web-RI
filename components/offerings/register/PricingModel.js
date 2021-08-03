@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { useMap } from '/lib/effects.js'
+import { useMap } from '/lib/hooks.js'
 import PaymentType from "./PaymentType";
 import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
 import DeleteToggle from "../../DeleteToggle";

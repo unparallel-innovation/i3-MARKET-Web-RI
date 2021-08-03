@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {useData} from '/lib/effects.js'
+import {useData} from '/lib/hooks.js'
 import {ErrorC, Layout} from '/components/common.js'
 import {Loading} from "/components/Loading.js";
 import user from '/lib/user.js'

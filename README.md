@@ -36,3 +36,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Components
+
+You can find reusable components at the `components` directory. The directories inside it express how pages are layed out.
+
+## Lib
+
+The `lib` directory contains various files with things other than components or pages. Here are some of the most important ones:
+
+- `lib/server.js` - contains things that are useful on the backend side of the application (under `pages/api`).
+- `lib/hooks.js` - contains hooks that are useful throuought the application like useData and useMap.
+- `lib/colors.js` - contains the color definitions that we want to use in Javascript code.
+- `lib/form.js` - contains auxiliary functions for dealing with forms.
+- `lib/util.js` - contains auxiliary functions that deal with other things.
+- `lib/user.js` - contains hardcoded user data (for now).

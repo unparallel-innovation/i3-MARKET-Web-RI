@@ -1,4 +1,4 @@
-import {useData} from '/lib/effects.js'
+import {useData} from '/lib/hooks.js'
 import {ErrorC, Layout} from '/components/common.js'
 import user from '/lib/user.js'
 import {useRouter} from 'next/router'

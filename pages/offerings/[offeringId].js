@@ -1,4 +1,4 @@
-import { useData } from '/lib/effects.js'
+import { useData } from '/lib/hooks.js'
 import { Layout, ErrorC } from '/components/common.js'
 import CustomToggle from '/components/CustomToggle.js'
 import colors from '/lib/colors.js'

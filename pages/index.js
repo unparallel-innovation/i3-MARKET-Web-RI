@@ -14,7 +14,7 @@ function ErrorCard(props) {
     );
 }
 
-export default function Home() {
+export default function HomePage() {
   const { data, error } = useData('/api/');
 
   if (error)

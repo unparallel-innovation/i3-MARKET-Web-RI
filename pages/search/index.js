@@ -92,7 +92,7 @@ function Search(props){
   }
 }
 
-export default function Index() {
+export default function SearchPage() {
   const router = useRouter();
   const { searchType = "provider", providerId, category } = router.query;
   const { data, error } = useData(

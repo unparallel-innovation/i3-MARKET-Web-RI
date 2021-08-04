@@ -1,5 +1,5 @@
 import ComingSoon from '/components/ComingSoon.js'
 
-export default function Account() {
+export default function AccountPage() {
     return <ComingSoon />;
 }

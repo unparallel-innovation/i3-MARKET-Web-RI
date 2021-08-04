@@ -1,5 +1,5 @@
 import ComingSoon from '/components/ComingSoon.js'
 
-export default function Alerts() {
+export default function AlertsPage() {
     return <ComingSoon />;
 }

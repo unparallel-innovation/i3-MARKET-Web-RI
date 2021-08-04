@@ -1,4 +1,4 @@
-import Layout from '/components/Layout.js'
+import Layout from '/components/Layout.js';
 
 export function Loading() {
     return (<Layout>

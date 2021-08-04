@@ -1,4 +1,4 @@
-import { useData } from '/lib/hooks.js'
+import { useData } from '/lib/hooks.js';
 import NumberCard from './NumberCard';
 
 export default
@@ -13,5 +13,5 @@ function ProvidersNumberCard(props) {
 
     const { providersN } = data;
 
-    return <NumberCard className="bg-primary" number={providersN} label="Data Providers" />
+    return <NumberCard className="bg-primary" number={providersN} label="Data Providers" />;
 }

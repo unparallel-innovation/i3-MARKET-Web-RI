@@ -1,7 +1,7 @@
-import { SWRConfig } from 'swr'
-import '../styles/global.scss'
-import 'react-grid-layout/css/styles.css'
-import 'react-resizable/css/styles.css'
+import { SWRConfig } from 'swr';
+import '../styles/global.scss';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 
 function MyApp({ Component, pageProps }) {
   function onError(error, key) {
@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
 
   const options = {
     onError,
-  }
+  };
 
   return (
     <SWRConfig value={options}>
@@ -19,4 +19,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp
+export default MyApp;

@@ -1,9 +1,9 @@
-import { useData } from '/lib/hooks.js'
-import Layout from '/components/Layout.js'
+import { useData } from '/lib/hooks.js';
+import Layout from '/components/Layout.js';
 import { Loading } from "/components/Loading.js";
-import ErrorC from '/components/ErrorC.js'
-import Offering from '/components/offerings/offering';
-import { useRouter } from 'next/router'
+import ErrorC from '/components/ErrorC.js';
+import Offering from '/components/offerings/offering';;
+import { useRouter } from 'next/router';
 
 export default function OfferingPage() {
     const router = useRouter();

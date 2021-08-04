@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router'
-import Layout from '/components/Layout.js'
-import { Row } from 'react-bootstrap'
+import { useRouter } from 'next/router';
+import Layout from '/components/Layout.js';
+import { Row } from 'react-bootstrap';
 import OfferingCard from "../OfferingCard";
 import { AddNew } from '/components/buttons.js';
 

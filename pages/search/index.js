@@ -62,20 +62,22 @@ function Search(props){
       <OfferingCard key={offering.dataOfferingId} {...offering} />
   )) }</Row>) : searchPlaceholder
 
-  return (<>
-    <Form className="d-inline-flex mb-5" onSubmit={onSubmit}>
-      <Form.Control as="select" onChange={onChange} className="mr-3 bg-primary text-white dropdown-custom"
+    return (<Layout className="d-flex flex-column">
+        <div className="px-5 flex-grow-1 d-flex flex-column">
+            <Form className="d-inline-flex mb-5" onSubmit={onSubmit}>
+                <Form.Control as="select" onChange={onChange} className="mr-3 bg-primary text-white dropdown-custom"
                     name="searchType" value={_searchType}
-      >
-        <option value="provider">Provider</option>
-        <option value="category">Category</option>
-      </Form.Control>
-      { selectEl }
-      <Button type="submit">Search</Button>
-    </Form>
+                >
+                    <option value="provider">Provider</option>
+                    <option value="category">Category</option>
+                </Form.Control>
+                { selectEl }
+                <Button type="submit">Search</Button>
+            </Form>
 
-    { offeringsEl }
-  </>);
+            { offeringsEl }
+        </div>
+    </Layout>);
 
   function onChange(e) {
     setSearchType(e.target.value);
@@ -92,7 +94,7 @@ function Search(props){
   }
 }
 
-export default function Index() {
+export default function SearchPage() {
   const router = useRouter();
   const { searchType = "provider", providerId, category } = router.query;
   const { data, error } = useData(
@@ -103,19 +105,11 @@ export default function Index() {
     return <ErrorC error={error} />;
 
   if (!data)
-    return (<Layout className="d-flex flex-column">
-      <div className="px-5 flex-grow-1 d-flex flex-column">
-        <Search offerings={[]} providers={[]} categories={[]}
-          searchType={searchType} category={category ? category.toLowerCase(): category} providerId={providerId}
-          isLoading />
-      </div>
-    </Layout>)
+    return <Search offerings={[]} providers={[]} categories={[]}
+        searchType={searchType} providerId={providerId} isLoading
+        category={category ? category.toLowerCase(): category} />;
 
-  return (<Layout className="d-flex flex-column">
-    <div className="px-5 flex-grow-1 d-flex flex-column">
-      <Search { ...data } searchType={searchType}
-        category={category ? category.toLowerCase(): category}
-        providerId={providerId} />
-    </div>
-  </Layout>)
+  return <Search { ...data } searchType={searchType}
+      category={category ? category.toLowerCase(): category}
+      providerId={providerId} />;
 }

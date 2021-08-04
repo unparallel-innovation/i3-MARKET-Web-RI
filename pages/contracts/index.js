@@ -1,13 +1,5 @@
-import Layout from '/components/Layout.js'
+import ComingSoon from '/components/ComingSoon.js'
 
-export default function Contracts() {
-
-    return (
-        <Layout>
-            <div className="d-flex w-100 justify-content-center align-items-center h3 text-lightgray">
-                Coming soon
-            </div>
-        </Layout>
-    );
+export default function ContractsPage() {
+    return <ComingSoon />;
 }
-

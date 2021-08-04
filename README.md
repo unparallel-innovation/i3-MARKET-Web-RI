@@ -20,7 +20,7 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages. Some of the API routes correspond to full pages, while some only return the contents of specific components.
 
 ## Learn More
 
@@ -46,6 +46,8 @@ You can find reusable components at the `components` directory. The directories 
 - `components/Loading.js` - Loading component to be displayed when api call result is loading
 - `components/buttons.js` - Contains various buttons
 
+Each page has a corresponding folder in the `components` directory. For example you can find the components used in the home page in `components/index`.
+
 ## Lib
 
 The `lib` directory contains various files with things other than components or pages. Here are some of the most important ones:
@@ -60,3 +62,11 @@ The `lib` directory contains various files with things other than components or 
 ## Configuring different endpoints
 
 If you want to use a different endpoint, edit `lib/server.js` and change the variable `endpoint` to your preference. You may use SDK-RI instead of the semantic engine by providing a username and a password.
+
+## Features currently implemented
+
+- Home page with drag and drop grid, presenting various information.
+- Search page, with search by providerId and by category.
+- Offerings page, for the user to view his own offerings.
+- Offering page for the user to view a specific offering.
+- Register offering page, for offering registration.

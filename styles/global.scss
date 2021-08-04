@@ -11,77 +11,94 @@ $navbar-nav-link-padding-x: 15px;
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .navbar {
-  background-color: $gray-100;
+    background-color: $gray-100;
 }
 
 footer small.flex-grow-1 {
-  // font-size: 8px;
-  font-size: 10px;
+    // font-size: 8px;
+    font-size: 10px;
 }
 
 .nav-link.active {
-  color: $primary !important;
+    color: $primary !important;
 }
 
 .pagination {
-  margin-top: 1em;
+    margin-top: 1em;
 }
 
 .cursor-pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .bg-lightgray {
-  background-color: $gray-200;
+    background-color: $gray-200;
 }
 
 .text-darkblue {
-  color: #0B4166;
+    color: #0B4166;
 }
 
 .text-lightgray{
-  color: $gray-400
+    color: $gray-400
 }
 
 .bg-lightcyan {
-  background-color: #E6EEF0;
+    background-color: #E6EEF0;
 }
 
 .breadcrumbs ol {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 0;
-  text-transform: capitalize;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+    text-transform: capitalize;
 }
 
 .breadcrumbs li {
-  display: inline;
+    display: inline;
 }
 
 .breadcrumbs ol li+li:before {
-  padding: 8px;
-  color: $gray-500;
-  content: "/\00a0";
+    padding: 8px;
+    color: $gray-500;
+    content: "/\00a0";
 }
 
 .breadcrumbs li:not(:last-child) a {
-  color: $gray-500;
+    color: $gray-500;
 }
 
 .text-tiny {
-  font-size: 0.75rem;
+    font-size: 0.75rem;
 }
 
 .line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .overflow-scroll {
-  overflow: scroll;
+    overflow: scroll;
 }
 
 .h3rem {
@@ -89,14 +106,14 @@ footer small.flex-grow-1 {
 }
 
 .welcome-card {
-  background: url(/img/card_welcome_wth_logo.png) no-repeat center center;
-  // background: url(/img/card_welcome@4x.png) no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url(/img/card_welcome_wth_logo.png) no-repeat center center;
+    // background: url(/img/card_welcome@4x.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .dropdown-custom{
-  width: 200px;
+    width: 200px;
 }

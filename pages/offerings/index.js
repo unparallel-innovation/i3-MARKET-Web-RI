@@ -6,14 +6,14 @@ import user from '/lib/user.js'
 import Offerings from "/components/offerings/index";
 
 export default function OfferingsPage() {
-  const { data, error } = useData(`/api/offerings/${user.providerId}`);
+    const { data, error } = useData(`/api/offerings/${user.providerId}`);
 
-  if (error)
-    return <ErrorC error={error} />;
+    if (error)
+        return <ErrorC error={error} />;
 
-  if (!data)
-    return <Loading />;
+    if (!data)
+        return <Loading />;
 
-  return <Offerings offerings={data} />
+    return <Offerings offerings={data} />
 }
 

@@ -19,7 +19,7 @@ export default function DatasetInformation(props) {
                                 <Form.Group controlId={eventKey + 'cppType'}>
                                     <Form.Label>cpp Type</Form.Label>
                                     <Form.Control type="text" placeholder="cpp Type"
-                                                  name={eventKey + 'cppType'}
+                                        name={eventKey + 'cppType'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -27,7 +27,7 @@ export default function DatasetInformation(props) {
                                 <Form.Group controlId={eventKey + 'deviceID'}>
                                     <Form.Label>Device ID</Form.Label>
                                     <Form.Control type="text" placeholder="Device ID"
-                                                  name={eventKey + 'deviceID'}
+                                        name={eventKey + 'deviceID'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -38,7 +38,7 @@ export default function DatasetInformation(props) {
                                 <Form.Group controlId={eventKey + 'measurementChannelType'}>
                                     <Form.Label>Measurement Channel Type</Form.Label>
                                     <Form.Control type="text" placeholder="Measurement Channel Type"
-                                                  name={eventKey + 'measurementChannelType'}
+                                        name={eventKey + 'measurementChannelType'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -46,7 +46,7 @@ export default function DatasetInformation(props) {
                                 <Form.Group controlId={eventKey + 'measurementType'}>
                                     <Form.Label>Measurement Type</Form.Label>
                                     <Form.Control type="text" placeholder="Measurement Type"
-                                                  name={eventKey + 'measurementType'}
+                                        name={eventKey + 'measurementType'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -57,7 +57,7 @@ export default function DatasetInformation(props) {
                                 <Form.Group controlId={eventKey + 'sensorID'}>
                                     <Form.Label>Sensor ID</Form.Label>
                                     <Form.Control type="text" placeholder="Sensor ID"
-                                                  name={eventKey + 'sensorID'}
+                                        name={eventKey + 'sensorID'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -65,7 +65,7 @@ export default function DatasetInformation(props) {
                                 <Form.Group controlId={eventKey + 'sensorType'}>
                                     <Form.Label>Sensor Type</Form.Label>
                                     <Form.Control type="text" placeholder="Sensor Type"
-                                                  name={eventKey + 'sensorType'}
+                                        name={eventKey + 'sensorType'}
                                     />
                                 </Form.Group>
                             </Col>

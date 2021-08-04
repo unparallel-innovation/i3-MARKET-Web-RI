@@ -8,13 +8,13 @@ import { AddNew } from '/components/buttons.js';
 export default function PricingModel(props) {
     const { eventKey, onDelete } = props;
     const [
-      paymentTypeMap, paymentTypeC,
-      paymentTypeOnDelete, paymentTypeAdd
+        paymentTypeMap, paymentTypeC,
+        paymentTypeOnDelete, paymentTypeAdd
     ] = useMap(eventKey, "paymentType");
 
     const paymentTypeEl = (Object.keys(paymentTypeMap)).map((item, idx) => (
         <PaymentType key={item} eventKey={item}
-          onDelete={paymentTypeOnDelete} />
+            onDelete={paymentTypeOnDelete} />
     ));
 
     return (
@@ -32,7 +32,7 @@ export default function PricingModel(props) {
                                 <Form.Group controlId={eventKey + 'basicPrice'}>
                                     <Form.Label>Basic Price</Form.Label>
                                     <Form.Control type="text" placeholder="Basic Price"
-                                                  name={eventKey + 'basicPrice'}
+                                        name={eventKey + 'basicPrice'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -40,23 +40,23 @@ export default function PricingModel(props) {
                                 <Form.Group controlId={eventKey + 'currency'}>
                                     <Form.Label>Currency</Form.Label>
                                     <Form.Control type="text" placeholder="Currency"
-                                                  name={eventKey + 'currency'}
+                                        name={eventKey + 'currency'}
                                     />
                                 </Form.Group>
                             </Col>
                         </Row>
 
-                      <div className="d-flex align-items-center my-3">
-                        <h5 className="flex-grow-1 mb-0">
-                          Payment Type
-                        </h5>
-                          <AddNew onClick={paymentTypeAdd} />
-                      </div>
+                        <div className="d-flex align-items-center my-3">
+                            <h5 className="flex-grow-1 mb-0">
+                                Payment Type
+                            </h5>
+                            <AddNew onClick={paymentTypeAdd} />
+                        </div>
 
                         {paymentTypeEl}
 
                         <input type="hidden" value={paymentTypeC}
-                               name={eventKey + 'paymentTypeC'} />
+                            name={eventKey + 'paymentTypeC'} />
 
                     </Card.Body>
                 </Accordion.Collapse>

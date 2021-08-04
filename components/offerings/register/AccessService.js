@@ -18,7 +18,7 @@ export default function AccessService(props) {
                                 <Form.Group controlId={eventKey + 'endpointDescription'}>
                                     <Form.Label>Endpoint Description</Form.Label>
                                     <Form.Control type="text" placeholder="Endpoint Description"
-                                                  name={eventKey + 'endpointDescription'}
+                                        name={eventKey + 'endpointDescription'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -26,7 +26,7 @@ export default function AccessService(props) {
                                 <Form.Group controlId={eventKey + 'endpointUrl'}>
                                     <Form.Label>Endpoint URL</Form.Label>
                                     <Form.Control type="text" placeholder="Endpoint URL"
-                                                  name={eventKey + 'endpointUrl'}
+                                        name={eventKey + 'endpointUrl'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -37,7 +37,7 @@ export default function AccessService(props) {
                                 <Form.Group controlId={eventKey + 'conformsTo'}>
                                     <Form.Label>Conforms To</Form.Label>
                                     <Form.Control type="text" placeholder="Conforms To"
-                                                  name={eventKey + 'conformsTo'}
+                                        name={eventKey + 'conformsTo'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -45,7 +45,7 @@ export default function AccessService(props) {
                                 <Form.Group controlId={eventKey + 'servesDataset'}>
                                     <Form.Label>Serves Dataset</Form.Label>
                                     <Form.Control type="text" placeholder="Serves Dataset"
-                                                  name={eventKey + 'servesDataset'}
+                                        name={eventKey + 'servesDataset'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -53,7 +53,7 @@ export default function AccessService(props) {
                                 <Form.Group controlId={eventKey + 'serviceSpecs'}>
                                     <Form.Label>Service Specs</Form.Label>
                                     <Form.Control type="text" placeholder="Service Specs"
-                                                  name={eventKey + 'serviceSpecs'}
+                                        name={eventKey + 'serviceSpecs'}
                                     />
                                 </Form.Group>
                             </Col>

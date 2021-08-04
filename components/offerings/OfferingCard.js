@@ -20,8 +20,8 @@ export default function OfferingCard(props) {
     if (hasContractWarning) {
         warningIconEl = (
             <span className="p-2 px-3 bg-warning">
-        <ExclamationCircle size={24}/>
-      </span>
+                <ExclamationCircle size={24}/>
+            </span>
         );
     }
 
@@ -32,7 +32,7 @@ export default function OfferingCard(props) {
     return (
         <Col xs="12" md="6" xl="4">
             <Card className="overflow-hidden cursor-pointer mb-3"
-                  onClick={onClick}
+                onClick={onClick}
             >
                 <Card.Body>
                     <Card.Title className="d-flex justify-content-between line-clamp-2 h3rem">
@@ -44,11 +44,11 @@ export default function OfferingCard(props) {
                     </Card.Text>
                 </Card.Body>
                 <div className="d-flex bg-light">
-          <span className="p-2 flex-grow-1">
-            <Badge pill variant="primary">
-              { activeContracts || 0 } Contracts
-            </Badge>
-          </span>
+                    <span className="p-2 flex-grow-1">
+                        <Badge pill variant="primary">
+                            { activeContracts || 0 } Contracts
+                        </Badge>
+                    </span>
                     { warningIconEl }
                 </div>
             </Card>

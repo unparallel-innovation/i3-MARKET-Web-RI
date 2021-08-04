@@ -15,13 +15,13 @@ function ErrorCard(props) {
 }
 
 export default function HomePage() {
-  const { data, error } = useData('/api/');
+    const { data, error } = useData('/api/');
 
-  if (error)
-    return <ErrorC error={error} />;
+    if (error)
+        return <ErrorC error={error} />;
 
-  if (!data)
-    return <HomePure />;
+    if (!data)
+        return <HomePure />;
 
-  return <HomePure { ...data } />;
+    return <HomePure { ...data } />;
 }

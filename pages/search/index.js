@@ -1,9 +1,9 @@
-import { useData } from '/lib/hooks.js'
-import Layout from '/components/Layout.js'
-import ErrorC from '/components/ErrorC.js'
-import {useEffect, useState} from 'react'
-import { useRouter } from 'next/router'
-import {Form, Button, Row} from 'react-bootstrap'
+import { useData } from '/lib/hooks.js';
+import Layout from '/components/Layout.js';
+import ErrorC from '/components/ErrorC.js';
+import {useEffect, useState} from 'react';
+import { useRouter } from 'next/router';
+import {Form, Button, Row} from 'react-bootstrap';
 import OfferingCard from "../../components/offerings/OfferingCard";
 
 function Search(props){
@@ -18,21 +18,21 @@ function Search(props){
 
     useEffect(() => {
         setSearchType(searchType)
-    }, [searchType])
+    }, [searchType]);
 
     useEffect(() => {
         setCategory(category)
-    }, [category])
+    }, [category]);
 
     useEffect(() => {
         setProviderId(providerId)
-    }, [providerId])
+    }, [providerId]);
 
-    const selectOneEl = <option key={0} >Select One</option>
+    const selectOneEl = <option key={0}>Select One</option>;
 
-        const providerEl = [selectOneEl].concat(providers.map((item, idx) => (
-            <option key={idx+1} value={item.providerId.toLowerCase()}>{item.providerId}</option>
-        )));
+    const providerEl = [selectOneEl].concat(providers.map((item, idx) => (
+        <option key={idx+1} value={item.providerId.toLowerCase()}>{item.providerId}</option>
+    )));
 
     const categoriesEl = [selectOneEl].concat(categories.map((item, idx) => (
         <option key={idx+1} value={item.name.toLowerCase()}>{item.name}</option>
@@ -60,7 +60,7 @@ function Search(props){
 
     const offeringsEl = offerings.length > 0 ? (<Row>{ offerings.map(offering => (
         <OfferingCard key={offering.dataOfferingId} {...offering} />
-    )) }</Row>) : searchPlaceholder
+    )) }</Row>) : searchPlaceholder;
 
     return (<Layout className="d-flex flex-column">
         <div className="px-5 flex-grow-1 d-flex flex-column">

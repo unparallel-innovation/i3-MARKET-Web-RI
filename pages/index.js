@@ -2,18 +2,6 @@ import { useData } from '/lib/hooks.js';
 import ErrorC from '/components/ErrorC.js';
 import HomePure from '/components/index';
 
-function ErrorCard(props) {
-    const { error } = props;
-
-    return (
-        <Card className="bg-danger text-white h-100">
-            <Card.Body className="d-flex align-items-center justify-content-center">
-                { error.message }
-            </Card.Body>
-        </Card>
-    );
-}
-
 export default function HomePage() {
     const { data, error } = useData('/api/');
 

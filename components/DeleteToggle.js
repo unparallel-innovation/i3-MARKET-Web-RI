@@ -1,7 +1,6 @@
-import { useContext } from 'react'
-import { Card, useAccordionToggle, AccordionContext } from 'react-bootstrap'
-import { CaretDownFill, CaretUpFill, Trash } from 'react-bootstrap-icons'
-// import colors from '/lib/colors.js'
+import { useContext } from 'react';
+import { Card, useAccordionToggle, AccordionContext } from 'react-bootstrap';
+import { CaretDownFill, CaretUpFill, Trash } from 'react-bootstrap-icons';
 
 export default
 function DeleteToggle(props) {

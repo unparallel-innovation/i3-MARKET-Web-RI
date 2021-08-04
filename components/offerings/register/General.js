@@ -1,5 +1,5 @@
 import { Form, Row, Col } from 'react-bootstrap';
-import user from '/lib/user.js'
+import user from '/lib/user.js';
 
 export default function General(props) {
     const { categories } = props;

@@ -1,11 +1,11 @@
-import colors from '/lib/colors.js'
-import { ts2date } from '/lib/utils.js'
+import colors from '/lib/colors.js';
+import { ts2date } from '/lib/utils.js';
 import Dataset from './Dataset.js';
 import PricingModel from './PricingModel.js';
 import KVCol2 from './KVCol2.js';
-import { Button, Row } from 'react-bootstrap' 
-import { Lock, Globe, Pencil, Trash } from 'react-bootstrap-icons'
-import Layout from '/components/Layout.js'
+import { Button, Row } from 'react-bootstrap' ;
+import { Lock, Globe, Pencil, Trash } from 'react-bootstrap-icons';
+import Layout from '/components/Layout.js';
 
 export default
 function Offering(props) {

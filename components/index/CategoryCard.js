@@ -5,7 +5,7 @@ function CategoryInfoCard(props) {
     const { name, number = '-' } = props;
 
     return (
-        <Card className="fh">
+        <Card className="h-100">
             <Card.Body className="d-flex align-items-center justify-content-between">
                 { name }
                 <span className="ml-3 h3 text-primary">{ number }</span>

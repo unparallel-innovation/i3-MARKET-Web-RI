@@ -6,7 +6,7 @@ function ErrorCard(props) {
     const { error } = props;
 
     return (
-        <Card className="bg-danger text-white fh">
+        <Card className="bg-danger text-white h-100">
             <Card.Body className="d-flex align-items-center justify-content-center">
                 { error.message }
             </Card.Body>
@@ -15,13 +15,13 @@ function ErrorCard(props) {
 }
 
 export default function HomePage() {
-  const { data, error } = useData('/api/');
+    const { data, error } = useData('/api/');
 
-  if (error)
-    return <ErrorC error={error} />;
+    if (error)
+        return <ErrorC error={error} />;
 
-  if (!data)
-    return <HomePure />;
+    if (!data)
+        return <HomePure />;
 
-  return <HomePure { ...data } />;
+    return <HomePure { ...data } />;
 }

@@ -4,13 +4,13 @@ import { Loading } from "/components/Loading";
 import Register from "/components/offerings/register";
 
 export default function RegisterPage() {
-  const { data, error } = useData('/api/offerings/register');
+    const { data, error } = useData('/api/offerings/register');
 
-  if (error)
-    return <ErrorC error={error} />;
+    if (error)
+        return <ErrorC error={error} />;
 
-  if (!data)
-    return <Loading />;
+    if (!data)
+        return <Loading />;
 
-  return <Register { ...data } />;
+    return <Register { ...data } />;
 }

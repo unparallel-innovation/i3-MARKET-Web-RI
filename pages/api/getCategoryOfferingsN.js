@@ -6,7 +6,7 @@ export default catchErrors(async (req, res) => {
     // const offerings = await connector.getCategoryOfferings(category);
 
     return {
-      // offeringsN: offerings.length,
-      offeringsN: 3,
+        // offeringsN: offerings.length,
+        offeringsN: 3,
     };
 });

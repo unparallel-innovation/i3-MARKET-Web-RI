@@ -5,7 +5,7 @@ function NumberCard(props) {
     const { className, number = "-", label } = props;
 
     return (
-        <Card className={`${className} text-white text-center fh`}>
+        <Card className={`${className} text-white text-center h-100`}>
             <Card.Body className="d-flex align-items-center justify-content-center">
                 <div>
                     <div className="display-4">{number}</div>

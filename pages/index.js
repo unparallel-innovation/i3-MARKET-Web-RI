@@ -6,7 +6,7 @@ function ErrorCard(props) {
     const { error } = props;
 
     return (
-        <Card className="bg-danger text-white fh">
+        <Card className="bg-danger text-white h-100">
             <Card.Body className="d-flex align-items-center justify-content-center">
                 { error.message }
             </Card.Body>

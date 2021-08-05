@@ -61,12 +61,21 @@ The `lib` directory contains various files with things other than components or 
 
 ## Configuring different endpoints
 
-If you want to use a different endpoint, edit `lib/server.js` and change the variable `endpoint` to your preference. You may use SDK-RI instead of the semantic engine by providing a username and a password.
+If you want to use a different endpoint, edit `lib/server.js` and change the variable `endpoint` to your preference. You may use SDK-RI instead of the semantic engine by providing a username and a password. Here is the relevant part of this file:
+
+```js
+import Connector from 'connector-ri';
+// import FetchError from '@UNPARALLEL/connector-ri/error';
+
+// let endpoint = "http://95.211.3.251:9181/SdkRefImpl/api/sdk-ri";
+let endpoint = "95.211.3.244:3000";
+// let endpoint = "95.211.3.251:3000";
+```
 
 ## Features currently implemented
 
 - Home page with drag and drop grid, presenting various information.
 - Search page, with search by providerId and by category.
 - Offerings page, for the user to view his own offerings.
-- Offering page for the user to view a specific offering.
+- Offering details page for the user to view a specific offering.
 - Register offering page, for offering registration.

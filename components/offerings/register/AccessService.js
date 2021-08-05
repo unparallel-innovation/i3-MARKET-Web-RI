@@ -1,4 +1,4 @@
-import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
+import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
 import DeleteToggle from "../../DeleteToggle";
 
 export default function AccessService(props) {
@@ -17,7 +17,8 @@ export default function AccessService(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'endpointDescription'}>
                                     <Form.Label>Endpoint Description</Form.Label>
-                                    <Form.Control type="text" placeholder="Endpoint Description"
+                                    <Form.Control type="text"
+                                        placeholder="Endpoint Description"
                                         name={eventKey + 'endpointDescription'}
                                     />
                                 </Form.Group>
@@ -25,7 +26,8 @@ export default function AccessService(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'endpointUrl'}>
                                     <Form.Label>Endpoint URL</Form.Label>
-                                    <Form.Control type="text" placeholder="Endpoint URL"
+                                    <Form.Control type="text"
+                                        placeholder="Endpoint URL"
                                         name={eventKey + 'endpointUrl'}
                                     />
                                 </Form.Group>
@@ -36,7 +38,8 @@ export default function AccessService(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'conformsTo'}>
                                     <Form.Label>Conforms To</Form.Label>
-                                    <Form.Control type="text" placeholder="Conforms To"
+                                    <Form.Control type="text"
+                                        placeholder="Conforms To"
                                         name={eventKey + 'conformsTo'}
                                     />
                                 </Form.Group>
@@ -44,7 +47,8 @@ export default function AccessService(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'servesDataset'}>
                                     <Form.Label>Serves Dataset</Form.Label>
-                                    <Form.Control type="text" placeholder="Serves Dataset"
+                                    <Form.Control type="text"
+                                        placeholder="Serves Dataset"
                                         name={eventKey + 'servesDataset'}
                                     />
                                 </Form.Group>
@@ -52,7 +56,8 @@ export default function AccessService(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'serviceSpecs'}>
                                     <Form.Label>Service Specs</Form.Label>
-                                    <Form.Control type="text" placeholder="Service Specs"
+                                    <Form.Control type="text"
+                                        placeholder="Service Specs"
                                         name={eventKey + 'serviceSpecs'}
                                     />
                                 </Form.Group>

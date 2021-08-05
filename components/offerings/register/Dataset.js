@@ -1,7 +1,7 @@
-import {useState} from "react";
+import { useState } from "react";
 import DatasetInformation from "./DatasetInformation";
 import DatasetDistribution from "./DatasetDistribution";
-import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
+import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
 import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
 import { useMap } from '/lib/hooks.js';
@@ -40,7 +40,8 @@ export default function Dataset(props) {
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'title'}>
                             <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" placeholder="Dataset Title"
+                            <Form.Control type="text"
+                                placeholder="Dataset Title"
                                 name={eventKey + 'title'}
                             />
                         </Form.Group>
@@ -57,7 +58,8 @@ export default function Dataset(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'creator'}>
                                     <Form.Label>Creator</Form.Label>
-                                    <Form.Control type="text" placeholder="Creator"
+                                    <Form.Control type="text"
+                                        placeholder="Creator"
                                         name={eventKey + 'creator'}
                                     />
                                 </Form.Group>
@@ -65,7 +67,8 @@ export default function Dataset(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'issued'}>
                                     <Form.Label>Issued</Form.Label>
-                                    <Form.Control type="date" placeholder="Issued"
+                                    <Form.Control type="date"
+                                        placeholder="Issued"
                                         name={eventKey + 'issued'}
                                     />
                                 </Form.Group>
@@ -73,7 +76,8 @@ export default function Dataset(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'modified'}>
                                     <Form.Label>Modified</Form.Label>
-                                    <Form.Control type="date" placeholder="Modified"
+                                    <Form.Control type="date"
+                                        placeholder="Modified"
                                         name={eventKey + 'modified'}
                                     />
                                 </Form.Group>
@@ -84,7 +88,8 @@ export default function Dataset(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'language'}>
                                     <Form.Label>Language</Form.Label>
-                                    <Form.Control type="text" placeholder="Language"
+                                    <Form.Control type="text"
+                                        placeholder="Language"
                                         name={eventKey + 'language'}
                                     />
                                 </Form.Group>
@@ -92,7 +97,8 @@ export default function Dataset(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'temporal'}>
                                     <Form.Label>Temporal</Form.Label>
-                                    <Form.Control type="text" placeholder="Temporal"
+                                    <Form.Control type="text"
+                                        placeholder="Temporal"
                                         name={eventKey + 'temporal'}
                                     />
                                 </Form.Group>
@@ -100,7 +106,8 @@ export default function Dataset(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'temporalResolution'}>
                                     <Form.Label>Temporal Resolution</Form.Label>
-                                    <Form.Control type="text" placeholder="Temporal Resolution"
+                                    <Form.Control type="text"
+                                        placeholder="Temporal Resolution"
                                         name={eventKey + 'temporalResolution'}
                                     />
                                 </Form.Group>
@@ -111,7 +118,8 @@ export default function Dataset(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'spatial'}>
                                     <Form.Label>Spatial</Form.Label>
-                                    <Form.Control type="text" placeholder="Spatial"
+                                    <Form.Control type="text"
+                                        placeholder="Spatial"
                                         name={eventKey + 'spatial'}
                                     />
                                 </Form.Group>
@@ -119,7 +127,8 @@ export default function Dataset(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'accrualPeriodicity'}>
                                     <Form.Label>Accrual Periodicity</Form.Label>
-                                    <Form.Control type="text" placeholder="Accrual Periodicity"
+                                    <Form.Control type="text"
+                                        placeholder="Accrual Periodicity"
                                         name={eventKey + 'accrualPeriodicity'}
                                     />
                                 </Form.Group>
@@ -133,7 +142,7 @@ export default function Dataset(props) {
                             <AddNew onClick={informationAdd} />
                         </div>
 
-                        { datasetInformationEl}
+                        { datasetInformationEl }
 
                         <div className="d-flex align-items-center my-3">
                             <h5 className="flex-grow-1 mb-0">
@@ -142,7 +151,7 @@ export default function Dataset(props) {
                             <AddNew onClick={distributionAdd} />
                         </div>
 
-                        { datasetDistributionEl}
+                        { datasetDistributionEl }
 
                         <input type="hidden" value={informationC}
                             name={eventKey + 'informationC'} />

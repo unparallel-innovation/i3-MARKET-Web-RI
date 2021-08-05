@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
+import { useState } from "react";
+import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
 import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
 import AccessService from "./AccessService";
@@ -28,7 +28,8 @@ export default function DatasetDistribution(props) {
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'title'}>
                             <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" placeholder="Distribution Title"
+                            <Form.Control type="text"
+                                placeholder="Distribution Title"
                                 name={eventKey + 'title'}
                             />
                         </Form.Group>
@@ -45,7 +46,8 @@ export default function DatasetDistribution(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'license'}>
                                     <Form.Label>License</Form.Label>
-                                    <Form.Control type="text" placeholder="License"
+                                    <Form.Control type="text"
+                                        placeholder="License"
                                         name={eventKey + 'license'}
                                     />
                                 </Form.Group>
@@ -53,7 +55,8 @@ export default function DatasetDistribution(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'conformsTo'}>
                                     <Form.Label>conformsTo</Form.Label>
-                                    <Form.Control type="text" placeholder="conformsTo"
+                                    <Form.Control type="text"
+                                        placeholder="conformsTo"
                                         name={eventKey + 'conformsTo'}
                                     />
                                 </Form.Group>
@@ -64,7 +67,8 @@ export default function DatasetDistribution(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'mediaType'}>
                                     <Form.Label>mediaType</Form.Label>
-                                    <Form.Control type="text" placeholder="mediaType"
+                                    <Form.Control type="text"
+                                        placeholder="mediaType"
                                         name={eventKey + 'mediaType'}
                                     />
                                 </Form.Group>
@@ -72,7 +76,8 @@ export default function DatasetDistribution(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'packageFormat'}>
                                     <Form.Label>packageFormat</Form.Label>
-                                    <Form.Control type="text" placeholder="packageFormat"
+                                    <Form.Control type="text"
+                                        placeholder="packageFormat"
                                         name={eventKey + 'packageFormat'}
                                     />
                                 </Form.Group>
@@ -86,7 +91,7 @@ export default function DatasetDistribution(props) {
                             <AddNew onClick={accessServiceAdd} />
                         </div>
 
-                        {accessServiceEl}
+                        { accessServiceEl }
 
                         <input type="hidden" value={accessServiceC}
                             name={eventKey + 'accessServiceC'} />

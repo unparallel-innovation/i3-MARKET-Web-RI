@@ -13,5 +13,6 @@ function OfferingsNumberCard(props) {
 
     const { offeringsN } = data;
 
-    return <NumberCard className="bg-secondary" number={offeringsN} label="Offerings Available" />;
+    return <NumberCard className="bg-secondary" number={offeringsN}
+        label="Offerings Available" />;
 }

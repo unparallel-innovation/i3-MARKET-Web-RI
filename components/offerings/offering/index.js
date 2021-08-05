@@ -47,8 +47,8 @@ function Offering(props) {
                 <Button disabled={!activeContracts && !pendingContracts}>
                     View all Contracts
                 </Button>
-                <span className="p-2 ml-2">{activeContracts || 0} Active</span>|
-                <span className="p-2">{pendingContracts || 0} Pending</span>
+                <span className="p-2 ml-2">{ activeContracts || 0 } Active</span>|
+                <span className="p-2">{ pendingContracts || 0 } Pending</span>
             </span>
 
             <hr />

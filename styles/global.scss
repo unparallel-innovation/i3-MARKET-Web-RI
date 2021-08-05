@@ -19,16 +19,13 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
+hr { width: 100%; }
 
 .navbar {
     background-color: $gray-100;
 }
 
 footer small.flex-grow-1 {
-    // font-size: 8px;
     font-size: 10px;
 }
 
@@ -110,7 +107,6 @@ footer small.flex-grow-1 {
 
 .welcome-card {
     background: url(/img/card_welcome_wth_logo.png) no-repeat center center;
-    // background: url(/img/card_welcome@4x.png) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

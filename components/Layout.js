@@ -76,7 +76,8 @@ function Layout(props) {
                     <Image height="36" width="54" src="/img/EU_flag.png" alt="EU flag" />
 
                     <div className="ml-3 flex-grow-1">
-                        <small className="d-inline-block" style={{ maxWidth: "460px" }} > i3-Market has received funding from the European Union&apos;s Horizon 2020
+                        <small className="d-inline-block" style={{ maxWidth: "460px" }} >
+                            i3-Market has received funding from the European Union&apos;s Horizon 2020
                             research and innovation programme under grant agreement no. B71754
                         </small>
                     </div>

@@ -11,7 +11,6 @@ export default catchErrors(async (req, res) => {
         offerings = await connector.getProviderOfferings(providerId, page, size);
     }
 
-
     if (searchType === "category" && category !== "undefined"){
         offerings = await connector.getCategoryOfferings(category, page, size);
     }

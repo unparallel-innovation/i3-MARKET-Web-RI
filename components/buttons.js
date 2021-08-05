@@ -1,7 +1,7 @@
 import colors from '/lib/colors.js';
 import { PlusCircle } from 'react-bootstrap-icons';
 
-export 
+export
 function AddNew(props) {
     return (
         <div className="text-primary cursor-pointer" { ...props }>

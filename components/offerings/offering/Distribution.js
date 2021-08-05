@@ -69,5 +69,3 @@ function Distribution(props) {
         </Accordion>
     );
 }
-
-

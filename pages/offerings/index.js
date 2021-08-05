@@ -16,4 +16,3 @@ export default function OfferingsPage() {
 
     return <Offerings offerings={data} />;
 }
-

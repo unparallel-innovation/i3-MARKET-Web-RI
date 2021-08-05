@@ -72,5 +72,3 @@ function PricingModel(props) {
         </Col>
     );
 }
-
-

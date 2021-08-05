@@ -94,6 +94,13 @@ function Search(props){
         e.preventDefault();
         const fd = new FormData(e.target);
         const fde = [...fd.entries()];
+
+        if (
+            fd.get("providerId") == "Select One"
+            || fd.get("category") == "Select One"
+        )
+            return false;
+
         const params = fde
             .map(x => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`)
             .join('&');

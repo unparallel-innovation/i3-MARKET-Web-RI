@@ -9,7 +9,7 @@ function Offerings(props) {
     const { offerings } = props;
     const router = useRouter();
 
-    const offeringsEl = data.map(offering => (
+    const offeringsEl = offerings.map(offering => (
         <OfferingCard key={offering.title} {...offering} />
     ));
 

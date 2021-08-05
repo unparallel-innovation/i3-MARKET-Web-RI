@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Layout from '/components/Layout.js';
 import user from '/lib/user.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
@@ -28,82 +28,88 @@ function getFromLS(defaultValue) {
     return ret;
 }
 
+const layoutA = {
+    i: 'a', w: 5, h: 4, isResizable: false
+};
+
+const layoutB = {
+    i: 'b', w: 6, h: 2, isResizable: false,
+};
+
+const layoutC = {
+    i: 'c', w: 3, h: 2, isResizable: false,
+};
+
+const layoutD = {
+    i: 'd', w: 3, h: 2, isResizable: false,
+};
+
+function getCategoriesLayout(categories, y, ncols) {
+    let res = [];
+    let i, x;
+
+    for (
+        i = 0, x = 0;
+        i < categories.length;
+        i++
+    ) {
+        res.push({
+            i: 'category' + i, w: 2, h: 1, isResizable: false,
+            x, y
+        });
+
+        x += 2;
+        if (x + 2 > ncols) {
+            x = 0;
+            y ++;
+        }
+    }
+
+    return res;
+}
+
+function getInitialLayouts(categories) {
+  return {
+    lg: [
+      { ...layoutA, x: 0, y: 0 },
+      { ...layoutB, x: 5, y: 0 },
+      { ...layoutC, x: 5, y: 2 },
+      { ...layoutD, x: 8, y: 2 },
+      ...getCategoriesLayout(categories, 4, 11),
+    ],
+    md: [
+      { ...layoutA, x: 0, y: 0, w: 4 },
+      { ...layoutB, x: 4, y: 0 },
+      { ...layoutC, x: 4, y: 2 },
+      { ...layoutD, x: 7, y: 2 },
+      ...getCategoriesLayout(categories, 4, 10),
+    ],
+    sm: [
+      { ...layoutA, x: 0, y: 0, w: 6 },
+      { ...layoutB, x: 0, y: 4 },
+      { ...layoutC, x: 0, y: 6 },
+      { ...layoutD, x: 3, y: 6 },
+      ...getCategoriesLayout(categories, 8, 6),
+    ],
+    xs: [
+      { ...layoutA, x: 0, y: 0 },
+      { ...layoutB, x: 0, y: 4 },
+      { ...layoutC, x: 0, y: 6, w: 2 },
+      { ...layoutD, x: 2, y: 6, w: 2 },
+      ...getCategoriesLayout(categories, 8, 4),
+    ],
+  };
+}
+
 export default
 function HomePure(props) {
     const {
         categories = []
     } = props;
 
-    const layoutA = {
-        i: 'a', w: 5, h: 4, isResizable: false
-    };
-
-    const layoutB = {
-        i: 'b', w: 6, h: 2, isResizable: false,
-    };
-
-    const layoutC = {
-        i: 'c', w: 3, h: 2, isResizable: false,
-    };
-
-    const layoutD = {
-        i: 'd', w: 3, h: 2, isResizable: false,
-    };
-
-    function getCategoriesLayout(y, ncols) {
-        let res = [];
-        let i, x;
-
-        for (
-            i = 0, x = 0;
-            i < categories.length;
-            i++
-        ) {
-            res.push({
-                i: 'category' + i, w: 2, h: 1, isResizable: false,
-                x, y
-            });
-
-            x += 2;
-            if (x + 2 > ncols) {
-                x = 0;
-                y ++;
-            }
-        }
-
-        return res;
-    }
-
-    const layouts = {
-        lg: [
-            { ...layoutA, x: 0, y: 0 },
-            { ...layoutB, x: 5, y: 0 },
-            { ...layoutC, x: 5, y: 2 },
-            { ...layoutD, x: 8, y: 2 },
-            ...getCategoriesLayout(4, 11),
-        ],
-        md: [
-            { ...layoutA, x: 0, y: 0, w: 4 },
-            { ...layoutB, x: 4, y: 0 },
-            { ...layoutC, x: 4, y: 2 },
-            { ...layoutD, x: 7, y: 2 },
-            ...getCategoriesLayout(4, 10),
-        ],
-        sm: [
-            { ...layoutA, x: 0, y: 0, w: 6 },
-            { ...layoutB, x: 0, y: 4 },
-            { ...layoutC, x: 0, y: 6 },
-            { ...layoutD, x: 3, y: 6 },
-            ...getCategoriesLayout(8, 6),
-        ],
-        xs: [
-            { ...layoutA, x: 0, y: 0 },
-            { ...layoutB, x: 0, y: 4 },
-            { ...layoutC, x: 0, y: 6, w: 2 },
-            { ...layoutD, x: 2, y: 6, w: 2 },
-            ...getCategoriesLayout(8, 4),
-        ],
-    };
+    const layouts = useMemo(() => {
+        return getInitialLayouts(categories);
+    }, [categories]);;
 
     // console.log("RENDER", layouts, _layouts);
     // console.log("RENDER", layouts);
@@ -138,7 +144,8 @@ function HomePure(props) {
                 onLayoutChange={onLayoutChange}
             >
                 <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
-                    <Image src="/img/Web-ri_sep.png" alt="Web-ri logo" layout="fill" objectFit="contain" className="p-3" />
+                    <Image src="/img/Web-ri_sep.png" alt="Web-ri logo"
+                        layout="fill" objectFit="contain" className="p-3" />
                 </Card>
 
                 <Card key="b">

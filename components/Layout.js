@@ -75,12 +75,11 @@ function Layout(props) {
                 <div className="d-flex align-items-center">
                     <Image height="36" width="54" src="/img/EU_flag.png" alt="EU flag" />
 
-                    <h6 className="ml-3 flex-grow-1">
-                        <small>
-                            i3-Market has received funding from the European Union&apos;s Horizon 2020 <br />
+                    <div className="ml-3 flex-grow-1">
+                        <small className="d-inline-block" style={{ maxWidth: "460px" }} > i3-Market has received funding from the European Union&apos;s Horizon 2020
                             research and innovation programme under grant agreement no. B71754
                         </small>
-                    </h6>
+                    </div>
 
                     <small className="ml-3 mr-4 align-self-start">
                         Privacy Policy

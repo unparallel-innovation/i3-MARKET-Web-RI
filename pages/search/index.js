@@ -1,13 +1,13 @@
 import { useData } from '/lib/hooks.js';
 import Layout from '/components/Layout.js';
 import ErrorC from '/components/ErrorC.js';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import {Form, Button, Row} from 'react-bootstrap';
+import { Form, Button, Row } from 'react-bootstrap';
 import OfferingCard from "../../components/offerings/OfferingCard";
 
 function Search(props){
-    const router = useRouter()
+    const router = useRouter();
     const {
         offerings, providers, categories, searchType,
         category, providerId, isLoading
@@ -17,25 +17,25 @@ function Search(props){
     const [ _category, setCategory ] = useState(category);
 
     useEffect(() => {
-        setSearchType(searchType)
+        setSearchType(searchType);
     }, [searchType]);
 
     useEffect(() => {
-        setCategory(category)
+        setCategory(category);
     }, [category]);
 
     useEffect(() => {
-        setProviderId(providerId)
+        setProviderId(providerId);
     }, [providerId]);
 
     const selectOneEl = <option key={0}>Select One</option>;
 
     const providerEl = [selectOneEl].concat(providers.map((item, idx) => (
-        <option key={idx+1} value={item.providerId.toLowerCase()}>{item.providerId}</option>
+        <option key={idx + 1} value={item.providerId.toLowerCase()}>{item.providerId}</option>
     )));
 
     const categoriesEl = [selectOneEl].concat(categories.map((item, idx) => (
-        <option key={idx+1} value={item.name.toLowerCase()}>{item.name}</option>
+        <option key={idx + 1} value={item.name.toLowerCase()}>{item.name}</option>
     )));
 
     let selectEl = null;
@@ -55,8 +55,8 @@ function Search(props){
     }
 
     const searchPlaceholder = (<div className="d-flex w-100 flex-grow-1 justify-content-center align-items-center h3 text-lightgray">
-        {isLoading?"Loading results.. Please wait..":"Do a search and see the results here"}
-    </div>)
+        {isLoading ? "Loading results.. Please wait.." : "Do a search and see the results here"}
+    </div>);
 
     const offeringsEl = offerings.length > 0 ? (<Row>{ offerings.map(offering => (
         <OfferingCard key={offering.dataOfferingId} {...offering} />
@@ -107,9 +107,9 @@ export default function SearchPage() {
     if (!data)
         return <Search offerings={[]} providers={[]} categories={[]}
             searchType={searchType} providerId={providerId} isLoading
-            category={category ? category.toLowerCase(): category} />;
+            category={category ? category.toLowerCase() : category} />;
 
     return <Search { ...data } searchType={searchType}
-        category={category ? category.toLowerCase(): category}
+        category={category ? category.toLowerCase() : category}
         providerId={providerId} />;
 }

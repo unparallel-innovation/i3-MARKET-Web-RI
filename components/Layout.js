@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import {useRouter} from 'next/router';
-import {Nav, Navbar} from 'react-bootstrap';
-import {Bell, PersonCircle} from 'react-bootstrap-icons';
+import { useRouter } from 'next/router';
+import { Nav, Navbar } from 'react-bootstrap';
+import { Bell, PersonCircle } from 'react-bootstrap-icons';
 
 import Breadcrumbs from 'nextjs-breadcrumbs';
 

@@ -137,8 +137,8 @@ function HomePure(props) {
     return (<Layout>
         <div className="px-5">
             <ResponsiveGridLayout className="layout"
-                breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-                cols={{lg: 11, md: 10, sm: 6, xs: 4, xxs: 3}}
+                breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+                cols={{ lg: 11, md: 10, sm: 6, xs: 4, xxs: 3 }}
                 layouts={layouts}
                 rowHeight={100}
                 onLayoutChange={onLayoutChange}

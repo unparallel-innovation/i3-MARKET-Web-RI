@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
+import { useState } from "react";
+import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
 import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
 import AccessService from "./AccessService";

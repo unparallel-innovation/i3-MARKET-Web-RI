@@ -1,7 +1,7 @@
-import {useRouter} from "next/router";
-import {ExclamationCircle, Globe, Lock} from "react-bootstrap-icons";
+import { useRouter } from "next/router";
+import { ExclamationCircle, Globe, Lock } from "react-bootstrap-icons";
 import colors from "../../lib/colors";
-import {Badge, Card, Col} from "react-bootstrap";
+import { Badge, Card, Col } from "react-bootstrap";
 
 export default function OfferingCard(props) {
     const router = useRouter();

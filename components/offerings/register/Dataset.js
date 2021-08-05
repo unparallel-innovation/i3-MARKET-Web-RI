@@ -1,7 +1,7 @@
-import {useState} from "react";
+import { useState } from "react";
 import DatasetInformation from "./DatasetInformation";
 import DatasetDistribution from "./DatasetDistribution";
-import {Accordion, Card, Col, Form, Row} from "react-bootstrap";
+import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
 import DeleteToggle from "../../DeleteToggle";
 import { AddNew } from '/components/buttons.js';
 import { useMap } from '/lib/hooks.js';

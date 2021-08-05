@@ -1,5 +1,5 @@
 import colors from '/lib/colors.js';
-import {PlusCircle} from 'react-bootstrap-icons';
+import { PlusCircle } from 'react-bootstrap-icons';
 
 export 
 function AddNew(props) {

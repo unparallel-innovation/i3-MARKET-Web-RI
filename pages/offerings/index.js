@@ -14,6 +14,6 @@ export default function OfferingsPage() {
     if (!data)
         return <Loading />;
 
-    return <Offerings offerings={data} />
+    return <Offerings offerings={data} />;
 }
 

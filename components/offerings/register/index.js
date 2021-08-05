@@ -1,7 +1,7 @@
-import {useState} from 'react'
-import { useRouter } from 'next/router'
-import { useMap } from '/lib/hooks.js'
-import Layout from '/components/Layout.js'
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useMap } from '/lib/hooks.js';
+import Layout from '/components/Layout.js';
 import General from "./General.js";
 import Dataset from "./Dataset";
 import PricingModel from "./PricingModel";

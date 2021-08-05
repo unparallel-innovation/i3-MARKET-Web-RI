@@ -1,3 +1,8 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "extends": ["next", "next/core-web-vitals"],
+  "rules": {
+    "object-curly-spacing": ["warn", "always"],
+    "semi": ["warn", "always"],
+    "space-infix-ops": ["warn", { "int32Hint": false }],
+  }
 }

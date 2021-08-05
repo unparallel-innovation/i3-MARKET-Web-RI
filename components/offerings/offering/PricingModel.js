@@ -57,10 +57,10 @@ function PricingModel(props) {
                 <Card.Body>
                     <div>
                         <span className="display-4 font-weight-bold">
-                            {price}&euro;
+                            { price }&euro;
                         </span>
                         <span className="ml-2 h1 text-muted">
-                            / {repeatPrice}
+                            / { repeatPrice }
                         </span>
                     </div>
                     {/* <Card.Title> */}

@@ -8,8 +8,8 @@ function NumberCard(props) {
         <Card className={`${className} text-white text-center h-100`}>
             <Card.Body className="d-flex align-items-center justify-content-center">
                 <div>
-                    <div className="display-4">{number}</div>
-                    <div>{label}</div>
+                    <div className="display-4">{ number }</div>
+                    <div>{ label }</div>
                 </div>
             </Card.Body>
         </Card>

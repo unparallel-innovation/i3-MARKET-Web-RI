@@ -5,7 +5,7 @@ export default function General(props) {
     const { categories } = props;
 
     const categoryEl = categories.map(({ name }) => (
-        <option key={name} value={name}>{name}</option>
+        <option key={name} value={name}>{ name }</option>
     ));
 
     return (<>

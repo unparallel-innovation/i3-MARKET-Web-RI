@@ -18,7 +18,8 @@ export default function PaymentType(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'subscriptionPrice'}>
                                     <Form.Label>Subscription Price</Form.Label>
-                                    <Form.Control type="text" placeholder="Subscription Price"
+                                    <Form.Control type="text"
+                                        placeholder="Subscription Price"
                                         name={eventKey + 'subscriptionPrice'}
                                     />
                                 </Form.Group>
@@ -26,7 +27,8 @@ export default function PaymentType(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'from'}>
                                     <Form.Label>From</Form.Label>
-                                    <Form.Control type="date" placeholder="From"
+                                    <Form.Control type="date"
+                                        placeholder="From"
                                         name={eventKey + 'from'}
                                     />
                                 </Form.Group>
@@ -34,7 +36,8 @@ export default function PaymentType(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'to'}>
                                     <Form.Label>To</Form.Label>
-                                    <Form.Control type="date" placeholder="To"
+                                    <Form.Control type="date"
+                                        placeholder="To"
                                         name={eventKey + 'to'}
                                     />
                                 </Form.Group>
@@ -45,7 +48,8 @@ export default function PaymentType(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'paymentType'}>
                                     <Form.Label>Payment Type</Form.Label>
-                                    <Form.Control type="text" placeholder="Payment Type"
+                                    <Form.Control type="text"
+                                        placeholder="Payment Type"
                                         name={eventKey + 'paymentType'}
                                     />
                                 </Form.Group>
@@ -53,7 +57,8 @@ export default function PaymentType(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'repeat'}>
                                     <Form.Label>Repeat</Form.Label>
-                                    <Form.Control type="text" placeholder="repeat"
+                                    <Form.Control type="text"
+                                        placeholder="repeat"
                                         name={eventKey + 'repeat'}
                                     />
                                 </Form.Group>
@@ -64,7 +69,8 @@ export default function PaymentType(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'timeDuration'}>
                                     <Form.Label>Time Duration</Form.Label>
-                                    <Form.Control type="text" placeholder="Time Duration"
+                                    <Form.Control type="text"
+                                        placeholder="Time Duration"
                                         name={eventKey + 'timeDuration'}
                                     />
                                 </Form.Group>

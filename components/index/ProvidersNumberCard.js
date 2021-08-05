@@ -13,5 +13,6 @@ function ProvidersNumberCard(props) {
 
     const { providersN } = data;
 
-    return <NumberCard className="bg-primary" number={providersN} label="Data Providers" />;
+    return <NumberCard className="bg-primary" number={providersN}
+        label="Data Providers" />;
 }

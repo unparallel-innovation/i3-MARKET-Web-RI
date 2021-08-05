@@ -25,7 +25,8 @@ function Layout(props) {
             <Navbar className="px-5 py-3" expand="md">
                 <Link href="/" passHref>
                     <Navbar.Brand>
-                        <Image height="32" width="122" src="/img/Web-ri_sep.png" alt="Web-ri logo" />
+                        <Image height="32" width="122"
+                            src="/img/Web-ri_sep.png" alt="Web-ri logo" />
                     </Navbar.Brand>
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -68,12 +69,13 @@ function Layout(props) {
                 <div className="px-5 breadcrumbs py-4 pb-5">
                     <Breadcrumbs rootLabel="Home" />
                 </div>
-                {children}
+                { children }
             </main>
 
             <footer className="px-5 py-4">
                 <div className="d-flex align-items-center">
-                    <Image height="36" width="54" src="/img/EU_flag.png" alt="EU flag" />
+                    <Image height="36" width="54"
+                        src="/img/EU_flag.png" alt="EU flag" />
 
                     <div className="ml-3 flex-grow-1">
                         <small className="d-inline-block" style={{ maxWidth: "460px" }} >
@@ -85,7 +87,8 @@ function Layout(props) {
                     <small className="ml-3 mr-4 align-self-start">
                         Privacy Policy
                     </small>
-                    <Image height="48" width="61" src="/img/i3-MARKET-LOGO_2nd_Release.png"
+                    <Image height="48" width="61"
+                        src="/img/i3-MARKET-LOGO_2nd_Release.png"
                         alt="i3Market logo" />
                 </div>
 

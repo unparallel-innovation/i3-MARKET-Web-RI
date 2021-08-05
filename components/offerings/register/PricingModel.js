@@ -31,7 +31,8 @@ export default function PricingModel(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'basicPrice'}>
                                     <Form.Label>Basic Price</Form.Label>
-                                    <Form.Control type="text" placeholder="Basic Price"
+                                    <Form.Control type="text"
+                                        placeholder="Basic Price"
                                         name={eventKey + 'basicPrice'}
                                     />
                                 </Form.Group>
@@ -39,7 +40,8 @@ export default function PricingModel(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'currency'}>
                                     <Form.Label>Currency</Form.Label>
-                                    <Form.Control type="text" placeholder="Currency"
+                                    <Form.Control type="text"
+                                        placeholder="Currency"
                                         name={eventKey + 'currency'}
                                     />
                                 </Form.Group>
@@ -53,7 +55,7 @@ export default function PricingModel(props) {
                             <AddNew onClick={paymentTypeAdd} />
                         </div>
 
-                        {paymentTypeEl}
+                        { paymentTypeEl }
 
                         <input type="hidden" value={paymentTypeC}
                             name={eventKey + 'paymentTypeC'} />

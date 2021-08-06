@@ -31,7 +31,7 @@ function Layout(props) {
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="justify-content-end" style={{ width: "100%" }}
+                    <Nav className="justify-content-end" style={{ width: '100%' }}
                         defaultActiveKey={router.pathname}
                     >
                         <Link href="/offerings" passHref>
@@ -78,7 +78,7 @@ function Layout(props) {
                         src="/img/EU_flag.png" alt="EU flag" />
 
                     <div className="ml-3 flex-grow-1">
-                        <small className="d-inline-block" style={{ maxWidth: "460px" }} >
+                        <small className="d-inline-block" style={{ maxWidth: '460px' }} >
                             i3-Market has received funding from the European Union&apos;s Horizon 2020
                             research and innovation programme under grant agreement no. B71754
                         </small>

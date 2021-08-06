@@ -8,55 +8,55 @@ export default catchErrors(async (req, res) => {
         // providersN: 8,
         // offeringsN: 32,
         categories: [{
-            category: "Agriculture",
+            category: 'Agriculture',
             offerings: 5,
         }, {
-            category: "Automotive",
+            category: 'Automotive',
             offerings: 1,
         }, {
-            category: "Culture",
+            category: 'Culture',
             offerings: 3,
         }, {
-            category: "Economy",
+            category: 'Economy',
             offerings: 5,
         }, {
-            category: "Education",
+            category: 'Education',
             offerings: 10,
         }, {
-            category: "Energy",
+            category: 'Energy',
             offerings: 12,
         }, {
-            category: "Environment",
+            category: 'Environment',
             offerings: 8,
         }, {
-            category: "Government",
+            category: 'Government',
             offerings: 10,
         }, {
-            category: "Health",
+            category: 'Health',
             offerings: 2,
         }, {
-            category: "International",
+            category: 'International',
             offerings: 4,
         }, {
-            category: "Justice",
+            category: 'Justice',
             offerings: 14,
         }, {
-            category: "Manufacturing",
+            category: 'Manufacturing',
             offerings: 20,
         }, {
-            category: "Regions",
+            category: 'Regions',
             offerings: 2,
         }, {
-            category: "Science",
+            category: 'Science',
             offerings: 5,
         }, {
-            category: "Transport",
+            category: 'Transport',
             offerings: 1,
         }, {
-            category: "Wellbeing",
+            category: 'Wellbeing',
             offerings: 6,
         }, {
-            category: "Society",
+            category: 'Society',
             offerings: 2,
         }],
     };

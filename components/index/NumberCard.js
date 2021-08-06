@@ -2,7 +2,7 @@ import { Card } from 'react-bootstrap';
 
 export default
 function NumberCard(props) {
-    const { className, number = "-", label } = props;
+    const { className, number = '-', label } = props;
 
     return (
         <Card className={`${className} text-white text-center h-100`}>

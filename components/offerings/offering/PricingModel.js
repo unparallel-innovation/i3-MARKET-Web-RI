@@ -6,7 +6,7 @@ function PricingModel(props) {
     const { hasPaymentType } = props;
     const paymentType = hasPaymentType[0];
     let paymentTypeEl = null;
-    let paymentTypeTitle = "Invalid payment type";
+    let paymentTypeTitle = 'Invalid payment type';
     let price = null;
     let repeatPrice = null;
 
@@ -19,7 +19,7 @@ function PricingModel(props) {
             toValue, hasSubscriptionPrice
         } = paymentType;
 
-        const dateOpt = { year: "numeric", day: "numeric", month: "long" };
+        const dateOpt = { year: 'numeric', day: 'numeric', month: 'long' };
 
         paymentTypeEl = (
             <Card.Text>
@@ -32,7 +32,7 @@ function PricingModel(props) {
 
         price = hasSubscriptionPrice;
 
-        paymentTypeTitle = "Subscription";
+        paymentTypeTitle = 'Subscription';
 
         // TODO complete this
         switch (repeat) {
@@ -45,7 +45,7 @@ function PricingModel(props) {
     }
 
     const style = {
-        width: "350px",
+        width: '350px',
     };
 
     return (

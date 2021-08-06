@@ -20,7 +20,7 @@ function CustomToggle(props) {
 
     return (
         <Card.Header
-            className={className + " d-flex align-items-center cursor-pointer"}
+            className={className + ' d-flex align-items-center cursor-pointer'}
             onClick={decoratedOnClick}
         >
             <span className="flex-grow-1">{ children }</span>

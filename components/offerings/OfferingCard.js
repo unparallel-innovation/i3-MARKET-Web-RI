@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
-import { ExclamationCircle, Globe, Lock } from "react-bootstrap-icons";
-import colors from "../../lib/colors";
-import { Badge, Card, Col } from "react-bootstrap";
+import { useRouter } from 'next/router';
+import { ExclamationCircle, Globe, Lock } from 'react-bootstrap-icons';
+import colors from '../../lib/colors';
+import { Badge, Card, Col } from 'react-bootstrap';
 
 export default function OfferingCard(props) {
     const router = useRouter();
@@ -11,7 +11,7 @@ export default function OfferingCard(props) {
         activeContracts
     } = props;
 
-    const visIconEl = active === "yes"
+    const visIconEl = active === 'yes'
         ? <Globe color={colors.primary} size={24} />
         : <Lock color={colors.primary} size={24} />;
 

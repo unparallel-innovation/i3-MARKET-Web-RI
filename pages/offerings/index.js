@@ -1,9 +1,9 @@
 import { useData } from '/lib/hooks.js';
 import Layout from '/components/Layout.js';
 import ErrorC from '/components/ErrorC.js';
-import { Loading } from "/components/Loading";
+import { Loading } from '/components/Loading';
 import user from '/lib/user.js';
-import Offerings from "/components/offerings/index";
+import Offerings from '/components/offerings/index';
 
 export default function OfferingsPage() {
     const { data, error } = useData(`/api/offerings/${user.providerId}`);

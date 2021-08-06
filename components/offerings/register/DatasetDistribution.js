@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
-import DeleteToggle from "../../DeleteToggle";
+import { useState } from 'react';
+import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
+import DeleteToggle from '../../DeleteToggle';
 import { AddNew } from '/components/buttons.js';
-import AccessService from "./AccessService";
+import AccessService from './AccessService';
 import { useMap } from '/lib/hooks.js';
 
 export default function DatasetDistribution(props) {
@@ -10,7 +10,7 @@ export default function DatasetDistribution(props) {
     const [
         accessServiceMap, accessServiceC,
         accessServiceOnDelete, accessServiceAdd
-    ] = useMap(eventKey, "accessService");
+    ] = useMap(eventKey, 'accessService');
 
     const accessServiceEl = (Object.keys(accessServiceMap)).map((item, idx) => (
         <AccessService key={item} onDelete={accessServiceOnDelete}

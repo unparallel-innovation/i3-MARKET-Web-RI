@@ -4,8 +4,6 @@ FROM node:alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json  package-lock.json ./
-RUN npm config set @UNPARALLEL:registry=https://gitlab.com/api/v4/packages/npm/
-RUN echo //gitlab.com/api/v4/packages/npm/:_authToken=sXtcWC3sUkaaZFixL5WA > .npmrc 
 RUN npm install
 
 # Rebuild the source code only when needed

@@ -1,5 +1,6 @@
 import { useData } from '/lib/hooks.js';
 import { qs } from '/lib/utils.js';
+import { fd2qs } from '/lib/form.js';
 import Layout from '/components/Layout.js';
 import ErrorC from '/components/ErrorC.js';
 import { useEffect, useState } from 'react';
@@ -94,7 +95,6 @@ function Search(props) {
     function onSubmit(e) {
         e.preventDefault();
         const fd = new FormData(e.target);
-        const fde = [...fd.entries()];
 
         if (
             fd.get('providerId') == 'Select One'
@@ -102,10 +102,7 @@ function Search(props) {
         )
             return false;
 
-        const params = fde
-            .map(x => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`)
-            .join('&');
-        router.push(`/search?${params}`);
+        router.push(`/search?${fd2qs(fd)}`);
     }
 }
 

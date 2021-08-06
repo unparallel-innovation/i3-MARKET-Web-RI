@@ -1,4 +1,5 @@
 import { useData } from '/lib/hooks.js';
+import { qs } from '/lib/utils.js';
 import Layout from '/components/Layout.js';
 import ErrorC from '/components/ErrorC.js';
 import { useEffect, useState } from 'react';
@@ -111,9 +112,7 @@ function Search(props) {
 export default function SearchPage() {
     const router = useRouter();
     const { searchType = 'provider', providerId, category } = router.query;
-    const { data, error } = useData(
-        `/api/search?searchType=${searchType}&providerId=${providerId}&category=${category}`
-    );
+    const { data, error } = useData(`/api/search?${qs(router.query)}`);
 
     if (error)
         return <ErrorC error={error} />;

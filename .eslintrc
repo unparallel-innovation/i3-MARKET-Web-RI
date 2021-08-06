@@ -11,5 +11,6 @@
     "jsx-quotes": ["warn", "prefer-double"],
     "space-before-blocks": ["warn", "always"],
     "keyword-spacing": "warn",
+    "operator-linebreak": ["warn", "before"],
   }
 }

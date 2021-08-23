@@ -1,12 +1,14 @@
 import { useData } from '/lib/hooks.js';
+import { qs } from '/lib/utils.js';
+import { fd2qs } from '/lib/form.js';
 import Layout from '/components/Layout.js';
 import ErrorC from '/components/ErrorC.js';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button, Row } from 'react-bootstrap';
-import OfferingCard from "../../components/offerings/OfferingCard";
+import OfferingCard from '../../components/offerings/OfferingCard';
 
-function Search(props){
+function Search(props) {
     const router = useRouter();
     const {
         offerings, providers, categories, searchType,
@@ -44,7 +46,7 @@ function Search(props){
 
     let selectEl = null;
 
-    if (_searchType === "provider") {
+    if (_searchType === 'provider') {
         selectEl = (<Form.Control as="select"
             className="mr-3 dropdown-custom" name="providerId"
             value={_providerId} onChange={e => setProviderId(e.target.value)}>
@@ -52,7 +54,7 @@ function Search(props){
         </Form.Control>);
     }
 
-    if (_searchType === "category") {
+    if (_searchType === 'category') {
         selectEl = (<Form.Control as="select"
             className="mr-3 dropdown-custom" name="category"
             value={_category} onChange={e => setCategory(e.target.value)}>
@@ -61,7 +63,7 @@ function Search(props){
     }
 
     const searchPlaceholder = (<div className="d-flex w-100 flex-grow-1 justify-content-center align-items-center h3 text-lightgray">
-        { isLoading ? "Loading results.. Please wait.." : "Do a search and see the results here" }
+        { isLoading ? 'Loading results.. Please wait..' : 'Do a search and see the results here' }
     </div>);
 
     const offeringsEl = offerings.length > 0 ? (<Row>{ offerings.map(offering => (
@@ -93,27 +95,21 @@ function Search(props){
     function onSubmit(e) {
         e.preventDefault();
         const fd = new FormData(e.target);
-        const fde = [...fd.entries()];
 
         if (
-            fd.get("providerId") == "Select One"
-            || fd.get("category") == "Select One"
+            fd.get('providerId') == 'Select One'
+            || fd.get('category') == 'Select One'
         )
             return false;
 
-        const params = fde
-            .map(x => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`)
-            .join('&');
-        router.push(`/search?${params}`);
+        router.push(`/search?${fd2qs(fd)}`);
     }
 }
 
 export default function SearchPage() {
     const router = useRouter();
-    const { searchType = "provider", providerId, category } = router.query;
-    const { data, error } = useData(
-        `/api/search?searchType=${searchType}&providerId=${providerId}&category=${category}`
-    );
+    const { searchType = 'provider', providerId, category } = router.query;
+    const { data, error } = useData(`/api/search?${qs(router.query)}`);
 
     if (error)
         return <ErrorC error={error} />;

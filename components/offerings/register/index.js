@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useMap } from '/lib/hooks.js';
 import Layout from '/components/Layout.js';
-import General from "./General.js";
-import Dataset from "./Dataset";
-import PricingModel from "./PricingModel";
+import General from './General.js';
+import Dataset from './Dataset';
+import PricingModel from './PricingModel';
 import { AddNew } from '/components/buttons.js';
 import { Form, Tabs, Tab, Button } from 'react-bootstrap';
 import { fd2register } from '/lib/form.js';
@@ -18,12 +18,12 @@ function Register(props) {
     const [
         datasetMap, datasetC,
         datasetOnDelete, datasetAdd
-    ] = useMap("", "dataset");
+    ] = useMap('', 'dataset');
 
     const [
         pricingModelMap, pricingModelC,
         pricingModelOnDelete, pricingModelAdd
-    ] = useMap("", "pricingModel");
+    ] = useMap('', 'pricingModel');
 
     const router = useRouter();
 
@@ -59,7 +59,7 @@ function Register(props) {
 
     return (<Layout className="d-flex flex-column">
         <Form className="px-5 pb-3 d-flex flex-column flex-grow-1"
-            onSubmit={onSubmit} action='/api/offerings/register'>
+            onSubmit={onSubmit} action="/api/offerings/register">
             <div className="d-flex">
                 <h3 className="flex-grow-1 mb-0">Register New Offering</h3>
                 <Button variant="secondary" className="mr-3" onClick={onCancel}>
@@ -70,7 +70,7 @@ function Register(props) {
 
             <hr className="mt-2 mb-4" />
 
-            <Tabs activeKey={"tab" + atIdx} onSelect={k => {
+            <Tabs activeKey={'tab' + atIdx} onSelect={k => {
                 setAtIdx(parseInt(k.substr(3)));
             }} className="mb-3">
                 <Tab eventKey="tab0" title="General">

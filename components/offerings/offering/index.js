@@ -16,7 +16,7 @@ function Offering(props) {
         hasPricingModel
     } = props;
 
-    const visIconEl = active === "yes"
+    const visIconEl = active === 'yes'
         ? <Globe color={colors.primary} size={20} />
         : <Lock color={colors.primary} size={20} />;
 

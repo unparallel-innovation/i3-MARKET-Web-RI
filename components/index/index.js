@@ -17,7 +17,7 @@ function getFromLS(defaultValue) {
         return ret;
 
     try {
-        let val = JSON.parse(localStorage.getItem("homeLayouts"));
+        let val = JSON.parse(localStorage.getItem('homeLayouts'));
         if (val)
             ret = val;
     } catch (e) {
@@ -123,13 +123,13 @@ function HomePure(props) {
 
     function onLayoutChange(layout, layouts) {
         // setLayouts(layouts);
-        console.log("onChange", layouts, categories);
+        console.log('onChange', layouts, categories);
         // if (categories.length)
         //   localStorage.setItem("homeLayouts", JSON.stringify(layouts));
     }
 
     const categoryEl = categories.map((category, idx) => (
-        <div key={"category" + idx}>
+        <div key={'category' + idx}>
             <CategoryCard name={category.category} />
         </div>
     ));

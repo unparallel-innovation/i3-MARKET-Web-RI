@@ -7,5 +7,10 @@
     "no-trailing-spaces": "warn",
     "no-multi-spaces": "warn",
     "no-multiple-empty-lines": ["warn", { "max": 1 }],
+    "quotes": ["warn", "single"],
+    "jsx-quotes": ["warn", "prefer-double"],
+    "space-before-blocks": ["warn", "always"],
+    "keyword-spacing": "warn",
+    "operator-linebreak": ["warn", "before"],
   }
 }

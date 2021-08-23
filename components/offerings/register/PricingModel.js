@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { useMap } from '/lib/hooks.js';
-import PaymentType from "./PaymentType";
-import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
-import DeleteToggle from "../../DeleteToggle";
+import PaymentType from './PaymentType';
+import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
+import DeleteToggle from '../../DeleteToggle';
 import { AddNew } from '/components/buttons.js';
 
 export default function PricingModel(props) {
@@ -10,7 +10,7 @@ export default function PricingModel(props) {
     const [
         paymentTypeMap, paymentTypeC,
         paymentTypeOnDelete, paymentTypeAdd
-    ] = useMap(eventKey, "paymentType");
+    ] = useMap(eventKey, 'paymentType');
 
     const paymentTypeEl = (Object.keys(paymentTypeMap)).map((item, idx) => (
         <PaymentType key={item} eventKey={item}

@@ -1,8 +1,8 @@
-import { useState } from "react";
-import DatasetInformation from "./DatasetInformation";
-import DatasetDistribution from "./DatasetDistribution";
-import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
-import DeleteToggle from "../../DeleteToggle";
+import { useState } from 'react';
+import DatasetInformation from './DatasetInformation';
+import DatasetDistribution from './DatasetDistribution';
+import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
+import DeleteToggle from '../../DeleteToggle';
 import { AddNew } from '/components/buttons.js';
 import { useMap } from '/lib/hooks.js';
 
@@ -11,11 +11,11 @@ export default function Dataset(props) {
     const [
         informationMap, informationC,
         informationOnDelete, informationAdd
-    ] = useMap(eventKey, "information");
+    ] = useMap(eventKey, 'information');
     const [
         distributionMap, distributionC,
         distributionOnDelete, distributionAdd
-    ] = useMap(eventKey, "distribution");
+    ] = useMap(eventKey, 'distribution');
 
     const datasetInformationEl = (Object.keys(informationMap)).map((item, idx) => (
         <DatasetInformation key={item} eventKey={item}

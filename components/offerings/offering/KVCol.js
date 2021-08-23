@@ -10,7 +10,7 @@ function KVCol(props) {
                 { title }
             </div>
             <div>
-                { children || "No information" }
+                { children || 'No information' }
             </div>
         </Col>
     );

@@ -69,36 +69,36 @@ function getCategoriesLayout(categories, y, ncols) {
 }
 
 function getInitialLayouts(categories) {
-  return {
-    lg: [
-      { ...layoutA, x: 0, y: 0 },
-      { ...layoutB, x: 5, y: 0 },
-      { ...layoutC, x: 5, y: 2 },
-      { ...layoutD, x: 8, y: 2 },
-      ...getCategoriesLayout(categories, 4, 11),
-    ],
-    md: [
-      { ...layoutA, x: 0, y: 0, w: 4 },
-      { ...layoutB, x: 4, y: 0 },
-      { ...layoutC, x: 4, y: 2 },
-      { ...layoutD, x: 7, y: 2 },
-      ...getCategoriesLayout(categories, 4, 10),
-    ],
-    sm: [
-      { ...layoutA, x: 0, y: 0, w: 6 },
-      { ...layoutB, x: 0, y: 4 },
-      { ...layoutC, x: 0, y: 6 },
-      { ...layoutD, x: 3, y: 6 },
-      ...getCategoriesLayout(categories, 8, 6),
-    ],
-    xs: [
-      { ...layoutA, x: 0, y: 0 },
-      { ...layoutB, x: 0, y: 4 },
-      { ...layoutC, x: 0, y: 6, w: 2 },
-      { ...layoutD, x: 2, y: 6, w: 2 },
-      ...getCategoriesLayout(categories, 8, 4),
-    ],
-  };
+    return {
+        lg: [
+            { ...layoutA, x: 0, y: 0 },
+            { ...layoutB, x: 5, y: 0 },
+            { ...layoutC, x: 5, y: 2 },
+            { ...layoutD, x: 8, y: 2 },
+            ...getCategoriesLayout(categories, 4, 11),
+        ],
+        md: [
+            { ...layoutA, x: 0, y: 0, w: 4 },
+            { ...layoutB, x: 4, y: 0 },
+            { ...layoutC, x: 4, y: 2 },
+            { ...layoutD, x: 7, y: 2 },
+            ...getCategoriesLayout(categories, 4, 10),
+        ],
+        sm: [
+            { ...layoutA, x: 0, y: 0, w: 6 },
+            { ...layoutB, x: 0, y: 4 },
+            { ...layoutC, x: 0, y: 6 },
+            { ...layoutD, x: 3, y: 6 },
+            ...getCategoriesLayout(categories, 8, 6),
+        ],
+        xs: [
+            { ...layoutA, x: 0, y: 0 },
+            { ...layoutB, x: 0, y: 4 },
+            { ...layoutC, x: 0, y: 6, w: 2 },
+            { ...layoutD, x: 2, y: 6, w: 2 },
+            ...getCategoriesLayout(categories, 8, 4),
+        ],
+    };
 }
 
 export default

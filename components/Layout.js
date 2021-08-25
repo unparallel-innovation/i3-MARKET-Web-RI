@@ -4,13 +4,14 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Bell, PersonCircle } from 'react-bootstrap-icons';
-import user from '/lib/user.js';
+import useUser from '/lib/user.js';
 
 import Breadcrumbs from 'nextjs-breadcrumbs';
 
 export default
 function Layout(props) {
     const { className, children } = props;
+    const user = useUser();
     const router = useRouter();
 
     return (<div className="d-flex flex-column vw-100 vh-100">
@@ -35,7 +36,7 @@ function Layout(props) {
                     <Nav className="justify-content-end" style={{ width: '100%' }}
                         defaultActiveKey={router.pathname}
                     >
-                        { user.isProvider() ? (
+                        { user && user.isProvider() ? (
                             <Link href="/offerings" passHref>
                                 <Nav.Link>Offerings</Nav.Link>
                             </Link>

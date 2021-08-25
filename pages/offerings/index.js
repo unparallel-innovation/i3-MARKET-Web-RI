@@ -2,11 +2,15 @@ import { useData } from '/lib/hooks.js';
 import Layout from '/components/Layout.js';
 import ErrorC from '/components/ErrorC.js';
 import { Loading } from '/components/Loading';
-import user from '/lib/user.js';
+import useUser from '/lib/user.js';
 import Offerings from '/components/offerings/index';
 
 export default function OfferingsPage() {
-    const { data, error } = useData(`/api/offerings/${user.providerId}`);
+    const user = useUser();
+    const { data, error } = useData(user ? `/api/offerings/${user.providerId}` : '');
+
+    if (!user)
+        return null;
 
     if (error)
         return <ErrorC error={error} />;

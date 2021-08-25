@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Bell, PersonCircle } from 'react-bootstrap-icons';
-import user, { ROLE_PROVIDER } from '/lib/user.js';
+import user from '/lib/user.js';
 
 import Breadcrumbs from 'nextjs-breadcrumbs';
 

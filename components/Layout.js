@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Bell, PersonCircle } from 'react-bootstrap-icons';
+import user, { ROLE_PROVIDER } from '/lib/user.js';
 
 import Breadcrumbs from 'nextjs-breadcrumbs';
 
@@ -34,9 +35,11 @@ function Layout(props) {
                     <Nav className="justify-content-end" style={{ width: '100%' }}
                         defaultActiveKey={router.pathname}
                     >
-                        <Link href="/offerings" passHref>
-                            <Nav.Link>Offerings</Nav.Link>
-                        </Link>
+                        { user.isProvider() ? (
+                            <Link href="/offerings" passHref>
+                                <Nav.Link>Offerings</Nav.Link>
+                            </Link>
+                        ) : null }
                         <Link href="/contracts" passHref>
                             <Nav.Link>Contracts</Nav.Link>
                         </Link>

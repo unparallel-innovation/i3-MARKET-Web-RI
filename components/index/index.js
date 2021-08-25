@@ -174,16 +174,18 @@ function HomePure(props) {
                                     ROLE
                                 </small>
                                 <h4>
-                                    Data Provider
+                                    { user.rolesStr() }
                                 </h4>
                             </Col>
                             <Col>
-                                <small className="text-muted">
-                                    DATA PROVIDER ID
-                                </small>
-                                <h4>
-                                    { user.providerId }
-                                </h4>
+                                { user.isProvider() ? <>
+                                    <small className="text-muted">
+                                        DATA PROVIDER ID
+                                    </small>
+                                    <h4>
+                                        { user.providerId }
+                                    </h4>
+                                </> : null }
                             </Col>
                         </Row>
                     </Card.Body>

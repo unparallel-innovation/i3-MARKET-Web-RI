@@ -8,6 +8,8 @@ export default function Login() {
     function onSubmit(e) {
         e.preventDefault();
 
+        /* this info should come from api call */
+
         localStorage.setItem('user', JSON.stringify({
             name: 'John James Doe',
             company: 'Siemens',

@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import Layout from '/components/Layout.js';
-import user from '/lib/user.js';
+import useUser from '/lib/user.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Card, Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
@@ -107,6 +107,8 @@ function HomePure(props) {
         categories = []
     } = props;
 
+    const user = useUser();
+
     const layouts = useMemo(() => {
         return getInitialLayouts(categories);
     }, [categories]);;
@@ -127,6 +129,9 @@ function HomePure(props) {
         // if (categories.length)
         //   localStorage.setItem("homeLayouts", JSON.stringify(layouts));
     }
+
+    if (!user)
+        return null;
 
     const categoryEl = categories.map((category, idx) => (
         <div key={'category' + idx}>

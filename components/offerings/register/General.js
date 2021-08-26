@@ -1,8 +1,12 @@
 import { Form, Row, Col } from 'react-bootstrap';
-import user from '/lib/user.js';
+import useUser from '/lib/user.js';
 
 export default function General(props) {
     const { categories } = props;
+    const user = useUser();
+
+    if (!user)
+        return null;
 
     const categoryEl = categories.map(({ name }) => (
         <option key={name} value={name}>{ name }</option>

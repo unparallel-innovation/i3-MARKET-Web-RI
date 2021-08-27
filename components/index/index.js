@@ -135,7 +135,7 @@ function HomePure(props) {
 
     const categoryEl = categories.map((category, idx) => (
         <div key={'category' + idx}>
-            <CategoryCard name={category.category} />
+            <CategoryCard name={category} />
         </div>
     ));
 

@@ -1,12 +1,13 @@
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import colors from '/lib/colors.js';
 import { ts2date } from '/lib/utils.js';
 import Dataset from './Dataset.js';
 import PricingModel from './PricingModel.js';
 import KVCol2 from './KVCol2.js';
-import { Button, Row } from 'react-bootstrap' ;
+import { Button, Row, Modal } from 'react-bootstrap' ;
 import { Lock, Globe, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/Layout.js';
-import { useRouter } from 'next/router';
 
 export default
 function Offering(props) {
@@ -18,6 +19,8 @@ function Offering(props) {
         category, isProvidedBy, license,
         hasPricingModel
     } = props;
+
+    const [ show, setShow ] = useState(false);
 
     const visIconEl = active === 'yes'
         ? <Globe color={colors.primary} size={20} />
@@ -48,7 +51,8 @@ function Offering(props) {
                     <Pencil color={colors.primary} size={20} />
                 </span>
                 <span className="p-2">
-                    <Trash color={colors.primary} size={20} onClick={onDelete}
+                    <Trash color={colors.primary} size={20}
+                        onClick={() => setShow(true)}
                         className="cursor-pointer" />
                 </span>
             </div>
@@ -88,5 +92,22 @@ function Offering(props) {
                 { pricingModelEl }
             </Row>
         </div>
+
+        <Modal show={show} onHide={() => setShow(false)}>
+            <Modal.Header closeButton>
+                Delete offering
+            </Modal.Header>
+            <Modal.Body>
+                Are you sure you want to delete offering {offeringId}?
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => setShow(false)}>
+                    Cancel
+                </Button>
+                <Button variant="primary" onClick={onDelete}>
+                    Delete
+                </Button>
+            </Modal.Footer>
+        </Modal>
     </Layout>);
 }

@@ -6,9 +6,12 @@ import KVCol2 from './KVCol2.js';
 import { Button, Row } from 'react-bootstrap' ;
 import { Lock, Globe, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/Layout.js';
+import { useRouter } from 'next/router';
 
 export default
 function Offering(props) {
+    const router = useRouter();
+    const { offeringId } = router.query;
     const {
         title, description, activeContracts,
         pendingContracts, active, hasDataset,
@@ -28,6 +31,14 @@ function Offering(props) {
         <PricingModel key={idx} { ...item } />
     ));
 
+    function onDelete(e) {
+        fetch(`/api/offering/${offeringId}`, {
+            method: 'DELETE',
+        }).then(res => {
+            router.push('/offerings');
+        });
+    }
+
     return (<Layout>
         <div className="px-5 pb-3">
             <div className="d-flex">
@@ -37,7 +48,8 @@ function Offering(props) {
                     <Pencil color={colors.primary} size={20} />
                 </span>
                 <span className="p-2">
-                    <Trash color={colors.primary} size={20} />
+                    <Trash color={colors.primary} size={20} onClick={onDelete}
+                        className="cursor-pointer" />
                 </span>
             </div>
 

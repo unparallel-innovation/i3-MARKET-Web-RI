@@ -14,6 +14,9 @@ function Layout(props) {
     const user = useUser();
     const router = useRouter();
 
+    if (!user)
+        return null;
+
     return (<div className="d-flex flex-column vw-100 vh-100">
         <Head>
             <title>i3-Market Web-RI</title>
@@ -36,7 +39,7 @@ function Layout(props) {
                     <Nav className="justify-content-end" style={{ width: '100%' }}
                         defaultActiveKey={router.pathname}
                     >
-                        { user && user.isProvider() ? (
+                        { user.isProvider() ? (
                             <Link href="/offerings" passHref>
                                 <Nav.Link>Offerings</Nav.Link>
                             </Link>

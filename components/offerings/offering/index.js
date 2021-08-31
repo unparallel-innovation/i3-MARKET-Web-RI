@@ -1,20 +1,26 @@
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import colors from '/lib/colors.js';
 import { ts2date } from '/lib/utils.js';
 import Dataset from './Dataset.js';
 import PricingModel from './PricingModel.js';
 import KVCol2 from './KVCol2.js';
-import { Button, Row } from 'react-bootstrap' ;
+import { Button, Row, Modal } from 'react-bootstrap' ;
 import { Lock, Globe, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/Layout.js';
 
 export default
 function Offering(props) {
+    const router = useRouter();
+    const { offeringId } = router.query;
     const {
         title, description, activeContracts,
         pendingContracts, active, hasDataset,
         category, isProvidedBy, license,
         hasPricingModel
     } = props;
+
+    const [ show, setShow ] = useState(false);
 
     const visIconEl = active === 'yes'
         ? <Globe color={colors.primary} size={20} />
@@ -28,6 +34,14 @@ function Offering(props) {
         <PricingModel key={idx} { ...item } />
     ));
 
+    function onDelete(e) {
+        fetch(`/api/offering/${offeringId}`, {
+            method: 'DELETE',
+        }).then(res => {
+            router.push('/offerings');
+        });
+    }
+
     return (<Layout>
         <div className="px-5 pb-3">
             <div className="d-flex">
@@ -37,7 +51,9 @@ function Offering(props) {
                     <Pencil color={colors.primary} size={20} />
                 </span>
                 <span className="p-2">
-                    <Trash color={colors.primary} size={20} />
+                    <Trash color={colors.primary} size={20}
+                        onClick={() => setShow(true)}
+                        className="cursor-pointer" />
                 </span>
             </div>
 
@@ -76,5 +92,22 @@ function Offering(props) {
                 { pricingModelEl }
             </Row>
         </div>
+
+        <Modal show={show} onHide={() => setShow(false)}>
+            <Modal.Header closeButton>
+                Delete offering
+            </Modal.Header>
+            <Modal.Body>
+                Are you sure you want to delete offering {offeringId}?
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => setShow(false)}>
+                    Cancel
+                </Button>
+                <Button variant="primary" onClick={onDelete}>
+                    Delete
+                </Button>
+            </Modal.Footer>
+        </Modal>
     </Layout>);
 }

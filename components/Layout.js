@@ -10,12 +10,9 @@ import Breadcrumbs from 'nextjs-breadcrumbs';
 
 export default
 function Layout(props) {
-    const { className, children } = props;
-    const user = useUser();
+    const { className, children, noRedirect, noBreadcrumbs } = props;
+    const user = useUser(noRedirect);
     const router = useRouter();
-
-    if (!user)
-        return null;
 
     return (<div className="d-flex flex-column vw-100 vh-100">
         <Head>
@@ -39,33 +36,35 @@ function Layout(props) {
                     <Nav className="justify-content-end" style={{ width: '100%' }}
                         defaultActiveKey={router.pathname}
                     >
-                        { user.isProvider() ? (
-                            <Link href="/offerings" passHref>
+                        { user ? (<>
+                            { user.isProvider() ? (
+                                <Link href="/offerings" passHref>
                                 <Nav.Link>Offerings</Nav.Link>
+                                </Link>
+                            ) : null }
+                            <Link href="/contracts" passHref>
+                                <Nav.Link>Contracts</Nav.Link>
                             </Link>
-                        ) : null }
-                        <Link href="/contracts" passHref>
-                            <Nav.Link>Contracts</Nav.Link>
-                        </Link>
-                        <Link href="/transactions" passHref>
-                            <Nav.Link>Transactions</Nav.Link>
-                        </Link>
-                        <Link href="/search" passHref>
-                            <Nav.Link>Search</Nav.Link>
-                        </Link>
-                        <Link href="/alerts" passHref>
-                            <Nav.Link>Alerts</Nav.Link>
-                        </Link>
-                        <Link href="/account" passHref>
-                            <Nav.Link className="px-2">
-                                <PersonCircle size={24} />
-                            </Nav.Link>
-                        </Link>
-                        <Link href="/notificationCenter" passHref>
-                            <Nav.Link className="px-2">
-                                <Bell size={24} />
-                            </Nav.Link>
-                        </Link>
+                            <Link href="/transactions" passHref>
+                                <Nav.Link>Transactions</Nav.Link>
+                            </Link>
+                            <Link href="/search" passHref>
+                                <Nav.Link>Search</Nav.Link>
+                            </Link>
+                            <Link href="/alerts" passHref>
+                                <Nav.Link>Alerts</Nav.Link>
+                            </Link>
+                            <Link href="/account" passHref>
+                                <Nav.Link className="px-2">
+                                    <PersonCircle size={24} />
+                                </Nav.Link>
+                            </Link>
+                            <Link href="/notificationCenter" passHref>
+                                <Nav.Link className="px-2">
+                                    <Bell size={24} />
+                                </Nav.Link>
+                            </Link>
+                        </>) : null }
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -73,9 +72,12 @@ function Layout(props) {
 
         <div className="flex-grow-1 overflow-scroll d-flex flex-column">
             <main className={(className || '') + ' flex-grow-1'}>
-                <div className="px-5 breadcrumbs py-4 pb-5">
-                    <Breadcrumbs rootLabel="Home" />
-                </div>
+                { noBreadcrumbs ? null : (
+                    <div className="px-5 breadcrumbs py-4 pb-5">
+                        <Breadcrumbs rootLabel="Home" />
+                    </div>
+                ) }
+
                 { children }
             </main>
 
@@ -103,4 +105,3 @@ function Layout(props) {
         </div>
     </div>);
 }
-

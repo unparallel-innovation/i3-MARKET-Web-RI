@@ -14,7 +14,7 @@ export default function Login() {
             name: 'John James Doe',
             company: 'Siemens',
             roles: ROLE_PROVIDER | ROLE_CONSUMER,
-            providerId: 'Siemens_AG',
+            providerId: 'provider_webri',
         }));
 
         router.push('/');

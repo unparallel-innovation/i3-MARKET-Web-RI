@@ -79,3 +79,32 @@ let endpoint = "95.211.3.244:3000";
 - Offerings page, for the user to view his own offerings.
 - Offering details page for the user to view a specific offering.
 - Register offering page, for offering registration.
+- Delete offering feature
+
+## Lint with auto-fix
+Run the following command to auto-fix some eslint warnings:
+
+```sh
+make lint
+```
+
+## Tags
+For editors that support tags, you can run the following command to create the ./tags file.
+
+```sh
+make tags
+```
+
+## Editor settings
+The project uses 4 spaces for indentation, and although this is auto-fixable,
+we recommend that you set this preference in your editor settings, in case
+it uses different values by default.
+
+If you would like to use Vim, add the following to your .vimrc so that
+.vimrc.local in the project directory is automatically sourced.
+
+```
+autocmd VimEnter * if filereadable('.vimrc.local')
+			\ && 1 == confirm('.vimrc.local is present. Source?', "&Yes\n&No", 0)
+			\ | source .vimrc.local
+```

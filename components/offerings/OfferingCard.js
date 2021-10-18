@@ -1,17 +1,17 @@
-import { useRouter } from 'next/router';
-import { ExclamationCircle, Globe, Lock } from 'react-bootstrap-icons';
+import {useRouter} from 'next/router';
+import {ExclamationCircle, Globe, Lock} from 'react-bootstrap-icons';
 import colors from '../../lib/colors';
-import { Badge, Card, Col } from 'react-bootstrap';
+import {Badge, Card, Col} from 'react-bootstrap';
 
 export default function OfferingCard(props) {
     const router = useRouter();
     const {
-        title, description, active,
+        dataOfferingTitle, dataOfferingDescription, isActivated,
         hasContractWarning, dataOfferingId,
         activeContracts
     } = props;
 
-    const visIconEl = active === 'yes'
+    const visIconEl = isActivated === 'yes'
         ? <Globe color={colors.primary} size={24} />
         : <Lock color={colors.primary} size={24} />;
 
@@ -36,11 +36,11 @@ export default function OfferingCard(props) {
             >
                 <Card.Body>
                     <Card.Title className="d-flex justify-content-between line-clamp-2 h3rem">
-                        { title }
+                        { dataOfferingTitle }
                         { visIconEl }
                     </Card.Title>
                     <Card.Text className="line-clamp-2 h3rem">
-                        { description }
+                        { dataOfferingDescription }
                     </Card.Text>
                 </Card.Body>
                 <div className="d-flex bg-light">

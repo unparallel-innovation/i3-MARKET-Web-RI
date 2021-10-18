@@ -1,11 +1,7 @@
-import Layout from '/components/Layout.js';
+import BigText from '/components/BigText';
 
 export default function Custom404Page() {
-    return (
-        <Layout className="d-flex" noRedirect noBreadcrumbs>
-            <div className="px-5 d-flex w-100 justify-content-center align-items-center h3 text-lightgray">
-                404 - Page not found
-            </div>
-        </Layout>
-    );
+    return <BigText noRedirect noBreadcrumbs>
+        404 - Page not found
+    </BigText>;
 }

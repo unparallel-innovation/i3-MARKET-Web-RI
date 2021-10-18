@@ -1,8 +1,8 @@
-import { Accordion, Card, Badge, Row } from 'react-bootstrap';
+import {Accordion, Badge, Card, Row} from 'react-bootstrap';
 import CustomToggle from '/components/CustomToggle.js';
 import KVCol from './KVCol.js';
 import Distribution from './Distribution.js';
-import { ts2date } from '/lib/utils.js';
+import {ts2date} from '/lib/utils.js';
 
 export default
 function Dataset(props) {

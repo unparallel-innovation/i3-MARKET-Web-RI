@@ -1,48 +1,11 @@
-import { Card, Col } from 'react-bootstrap';
-import { ts2date } from '/lib/utils.js';
+import {Card, Col} from 'react-bootstrap';
+import {ts2date} from '/lib/utils.js';
 
-export default
-function PricingModel(props) {
-    const { hasPaymentType } = props;
-    const paymentType = hasPaymentType[0];
-    let paymentTypeEl = null;
-    let paymentTypeTitle = 'Invalid payment type';
-    let price = null;
-    let repeatPrice = null;
-
-    const { hasSubscriptionPrice } = paymentType;
-
-    // TODO add other types
-    if (hasSubscriptionPrice) {
-        const {
-            timeDuration, repeat, fromValue,
-            toValue, hasSubscriptionPrice
-        } = paymentType;
-
-        const dateOpt = { year: 'numeric', day: 'numeric', month: 'long' };
-
-        paymentTypeEl = (
-            <Card.Text>
-                {/* Description<br /> */}
-                Duration: { timeDuration }<br />
-                Repeat Mode: { repeat }<br />
-                Date: { ts2date(fromValue, dateOpt) } to { ts2date(toValue, dateOpt) }
-            </Card.Text>
-        );
-
-        price = hasSubscriptionPrice;
-
-        paymentTypeTitle = 'Subscription';
-
-        // TODO complete this
-        switch (repeat) {
-            case 'weekly':
-                repeatPrice = 'we';
-            case 'monthly':
-            case 'Monthly':
-                repeatPrice = 'mo';
-        }
-    }
+function PaymentType(props) {
+    const {
+        paymentTypeTitle, price,
+        repeatPrice, paymentTypeEl
+    } = props;
 
     const style = {
         width: '350px',
@@ -63,12 +26,167 @@ function PricingModel(props) {
                             / { repeatPrice }
                         </span>
                     </div>
-                    {/* <Card.Title> */}
-                    {/*   Name plan */}
-                    {/* </Card.Title> */}
                     { paymentTypeEl }
                 </Card.Body>
             </Card>
         </Col>
     );
+}
+
+export default
+function PricingModel(props) {
+    const {
+        hasFreePrice,
+        hasPaymentOnAPI,
+        hasPaymentOnPlan,
+        hasPaymentOnSize,
+        hasPaymentOnSubscription,
+        hasPaymentOnUnit,
+    } = props;
+
+    console.log('PricingModel', props);
+
+    const freeEl = hasFreePrice.map((item, idx) => {
+        return (
+            <PaymentType
+                key={'free' + idx}
+                paymentTypeTitle="Free"
+                price={0}
+                repeatPrice="mo"
+                paymentTypeEl={null}
+            />
+        );
+    });
+
+    const apiEl = hasPaymentOnAPI.map((item, idx) => {
+        const { hasAPIPrice, numberOfObject } = item;
+
+        const paymentTypeEl = (
+            <Card.Text>
+                Number Objects: { numberOfObject }<br />
+            </Card.Text>
+        );
+
+        return (
+            <PaymentType
+                key={'api' + idx}
+                paymentTypeTitle="API"
+                price={hasAPIPrice}
+                repeatPrice="mo"
+                paymentTypeEl={paymentTypeEl}
+            />
+        );
+    });
+
+    const planEl = hasPaymentOnPlan.map((item, idx) => {
+        const { hasPlanPrice, planDuration } = item;
+
+        const paymentTypeEl = (
+            <Card.Text>
+                Duration: { planDuration }<br />
+            </Card.Text>
+        );
+
+        return (
+            <PaymentType
+                key={'plan' + idx}
+                paymentTypeTitle="Plan"
+                price={hasPlanPrice}
+                repeatPrice="mo"
+                paymentTypeEl={paymentTypeEl}
+            />
+        );
+    });
+
+    const sizeEl = hasPaymentOnSize.map((item, idx) => {
+        const { hasSizePrice, dataSize } = item;
+
+        const paymentTypeEl = (
+            <Card.Text>
+                Size: { dataSize }<br />
+            </Card.Text>
+        );
+
+        return (
+            <PaymentType
+                key={'size' + idx}
+                paymentTypeTitle="Size"
+                price={hasSizePrice}
+                repeatPrice="GB"
+                paymentTypeEl={paymentTypeEl}
+            />
+        );
+    });
+
+    const subscriptionEl = hasPaymentOnSubscription.map((item, idx) => {
+        const {
+            timeDuration, repeat, fromValue,
+            toValue, hasSubscriptionPrice
+        } = item;
+
+        const dateOpt = { year: 'numeric', day: 'numeric', month: 'long' };
+
+        const paymentTypeEl = (
+            <Card.Text>
+                Duration: { timeDuration }<br />
+                Repeat Mode: { repeat }<br />
+                Date: { ts2date(fromValue, dateOpt) } to { ts2date(toValue, dateOpt) }
+            </Card.Text>
+        );
+
+        let repeatPrice = null;
+
+        // TODO complete this
+        switch (repeat) {
+            case 'weekly':
+                repeatPrice = 'we';
+                break;
+            case 'monthly':
+            case 'Monthly':
+                repeatPrice = 'mo';
+                break;
+            case 'Daily':
+                repeatPrice = 'day';
+        }
+
+        return (
+            <PaymentType
+                key={'subscription' + idx}
+                paymentTypeTitle="Subscription"
+                price={hasSubscriptionPrice}
+                repeatPrice={repeatPrice}
+                paymentTypeEl={paymentTypeEl}
+            />
+        );
+    });
+
+    const unitEl = hasPaymentOnUnit.map((item, idx) => {
+        const { hasUnitPrice, dataUnit, unitID } = item;
+
+        const paymentTypeEl = (
+            <Card.Text>
+                Data unit: { dataUnit }<br />
+                Unit ID: { unitID }<br />
+            </Card.Text>
+        );
+
+        return (
+            <PaymentType
+                key={'unit' + idx}
+                paymentTypeTitle="Unit"
+                price={hasUnitPrice}
+                repeatPrice="mo"
+                paymentTypeEl={paymentTypeEl}
+            />
+        );
+    });
+
+    return (<>
+        { freeEl }
+        { apiEl }
+        { planEl }
+        { sizeEl }
+        { subscriptionEl }
+        { unitEl }
+    </>);
 }

@@ -1,7 +1,4 @@
-import { connector, catchErrors } from '/lib/server.js';
-import categoriesJSON from '/data/categories.json';
-import providersJSON from '/data/providers.json';
-import offeringsJSON from '/data/offeringsByCategory.json';
+import {catchErrors, connector} from '/lib/server.js';
 
 export default catchErrors(async (req, res) => {
     const { searchType, providerId, category, page, size } = req.query;

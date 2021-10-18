@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { useMap } from '/lib/hooks.js';
+import {useState} from 'react';
+import {useRouter} from 'next/router';
+import {useMap} from '/lib/hooks.js';
 import Layout from '/components/Layout.js';
 import General from './General.js';
 import Dataset from './Dataset';
 import PricingModel from './PricingModel';
-import { AddNew } from '/components/buttons.js';
-import { Form, Tabs, Tab, Button } from 'react-bootstrap';
-import { fd2register } from '/lib/form.js';
+import {AddNew} from '/components/buttons.js';
+import {Button, Form, Tab, Tabs} from 'react-bootstrap';
+import {fd2register} from '/lib/form.js';
 
 export default
 function Register(props) {

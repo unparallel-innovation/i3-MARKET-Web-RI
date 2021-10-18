@@ -1,4 +1,4 @@
-import { Accordion, Card, Row, Table } from 'react-bootstrap';
+import {Accordion, Card, Row, Table} from 'react-bootstrap';
 import CustomToggle from '/components/CustomToggle.js';
 import KVCol from './KVCol.js';
 

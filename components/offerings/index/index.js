@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import Layout from '/components/Layout.js';
-import { Row } from 'react-bootstrap';
+import {Row} from 'react-bootstrap';
 import OfferingCard from '../OfferingCard';
-import { AddNew } from '/components/buttons.js';
+import {AddNew} from '/components/buttons.js';
 
 export default
 function Offerings(props) {
@@ -10,7 +10,7 @@ function Offerings(props) {
     const router = useRouter();
 
     const offeringsEl = offerings.map(offering => (
-        <OfferingCard key={offering.title} {...offering} />
+        <OfferingCard key={offering.dataOfferingId} {...offering} />
     ));
 
     function onClick() {

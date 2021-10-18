@@ -1,5 +1,5 @@
-import { Card } from 'react-bootstrap';
-import { useData } from '/lib/hooks.js';
+import {Card} from 'react-bootstrap';
+import {useData} from '/lib/hooks.js';
 
 function CategoryInfoCard(props) {
     const { name, number = '-' } = props;

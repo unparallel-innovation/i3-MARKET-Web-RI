@@ -1,4 +1,4 @@
-import { useData } from '/lib/hooks.js';
+import {useData} from '/lib/hooks.js';
 import NumberCard from './NumberCard';
 
 export default

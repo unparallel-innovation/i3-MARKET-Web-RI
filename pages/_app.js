@@ -1,4 +1,4 @@
-import { SWRConfig } from 'swr';
+import {SWRConfig} from 'swr';
 import '../styles/global.scss';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';

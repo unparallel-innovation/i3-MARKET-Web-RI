@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import { useMap } from '/lib/hooks.js';
+import {useMap} from '/lib/hooks.js';
 import PaymentType from './PaymentType';
-import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
+import {Accordion, Card, Col, Form, Row} from 'react-bootstrap';
 import DeleteToggle from '../../DeleteToggle';
-import { AddNew } from '/components/buttons.js';
+import {AddNew} from '/components/buttons.js';
 
 export default function PricingModel(props) {
     const { eventKey, onDelete } = props;

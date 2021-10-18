@@ -1,8 +1,8 @@
-import { useEffect, useState, useMemo } from 'react';
+import {useMemo} from 'react';
 import Layout from '/components/Layout.js';
 import useUser from '/lib/user.js';
-import { Responsive, WidthProvider } from 'react-grid-layout';
-import { Card, Col, Row } from 'react-bootstrap';
+import {Responsive, WidthProvider} from 'react-grid-layout';
+import {Card, Col, Row} from 'react-bootstrap';
 import Image from 'next/image';
 import OfferingsNumberCard from './OfferingsNumberCard';
 import ProvidersNumberCard from './ProvidersNumberCard';

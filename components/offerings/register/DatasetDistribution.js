@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
+import {Accordion, Card, Col, Form, Row} from 'react-bootstrap';
 import DeleteToggle from '../../DeleteToggle';
-import { AddNew } from '/components/buttons.js';
+import {AddNew} from '/components/buttons.js';
 import AccessService from './AccessService';
-import { useMap } from '/lib/hooks.js';
+import {useMap} from '/lib/hooks.js';
 
 export default function DatasetDistribution(props) {
     const { eventKey, onDelete } = props;

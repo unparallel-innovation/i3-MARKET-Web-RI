@@ -1,7 +1,6 @@
-import { useData } from '/lib/hooks.js';
-import Layout from '/components/Layout.js';
+import {useData} from '/lib/hooks.js';
 import ErrorC from '/components/ErrorC.js';
-import { Loading } from '/components/Loading';
+import {Loading} from '/components/Loading';
 import useUser from '/lib/user.js';
 import Offerings from '/components/offerings/index';
 

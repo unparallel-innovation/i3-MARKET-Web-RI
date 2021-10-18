@@ -1,11 +1,11 @@
-import { useData } from '/lib/hooks.js';
-import { qs } from '/lib/utils.js';
-import { fd2qs } from '/lib/form.js';
+import {useData} from '/lib/hooks.js';
+import {qs} from '/lib/utils.js';
+import {fd2qs} from '/lib/form.js';
 import Layout from '/components/Layout.js';
 import ErrorC from '/components/ErrorC.js';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { Form, Button, Row } from 'react-bootstrap';
+import {useEffect, useState} from 'react';
+import {useRouter} from 'next/router';
+import {Button, Form, Row} from 'react-bootstrap';
 import OfferingCard from '../../components/offerings/OfferingCard';
 
 function Search(props) {
@@ -33,8 +33,8 @@ function Search(props) {
     const selectOneEl = <option key={0}>Select One</option>;
 
     const providerEl = [selectOneEl].concat(providers.map((item, idx) => (
-        <option key={idx + 1} value={item.providerId.toLowerCase()}>
-            { item.providerId }
+        <option key={idx + 1} value={item.provider.toLowerCase()}>
+            { item.provider }
         </option>
     )));
 
@@ -97,8 +97,8 @@ function Search(props) {
         const fd = new FormData(e.target);
 
         if (
-            fd.get('providerId') == 'Select One'
-            || fd.get('category') == 'Select One'
+            fd.get('providerId') === 'Select One'
+            || fd.get('category') === 'Select One'
         )
             return false;
 

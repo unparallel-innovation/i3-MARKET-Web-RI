@@ -1,4 +1,4 @@
-import { Col } from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 
 export default
 function KVCol(props) {

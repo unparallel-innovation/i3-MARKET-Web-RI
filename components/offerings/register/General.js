@@ -1,4 +1,4 @@
-import { Form, Row, Col } from 'react-bootstrap';
+import {Col, Form, Row} from 'react-bootstrap';
 import useUser from '/lib/user.js';
 
 export default function General(props) {

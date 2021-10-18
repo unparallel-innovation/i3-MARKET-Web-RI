@@ -1,12 +1,11 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import {useRouter} from 'next/router';
+import {useState} from 'react';
 import colors from '/lib/colors.js';
-import { ts2date } from '/lib/utils.js';
 import Dataset from './Dataset.js';
 import PricingModel from './PricingModel.js';
 import KVCol2 from './KVCol2.js';
-import { Button, Row, Modal } from 'react-bootstrap' ;
-import { Lock, Globe, Pencil, Trash } from 'react-bootstrap-icons';
+import {Button, Modal, Row} from 'react-bootstrap';
+import {Globe, Lock, Pencil, Trash} from 'react-bootstrap-icons';
 import Layout from '/components/Layout.js';
 
 export default
@@ -14,15 +13,15 @@ function Offering(props) {
     const router = useRouter();
     const { offeringId } = router.query;
     const {
-        title, description, activeContracts,
-        pendingContracts, active, hasDataset,
+        dataOfferingTitle, dataOfferingDescription, activeContracts,
+        pendingContracts, isActivated, hasDataset,
         category, isProvidedBy, license,
         hasPricingModel
     } = props;
 
     const [ show, setShow ] = useState(false);
 
-    const visIconEl = active === 'yes'
+    const visIconEl = isActivated === 'yes'
         ? <Globe color={colors.primary} size={20} />
         : <Lock color={colors.primary} size={20} />;
 
@@ -39,13 +38,15 @@ function Offering(props) {
             method: 'DELETE',
         }).then(res => {
             router.push('/offerings');
+        }).catch(error => {
+            console.log('ERROR', error);
         });
     }
 
     return (<Layout>
         <div className="px-5 pb-3">
             <div className="d-flex">
-                <h3 className="flex-grow-1 m-0">{ title }</h3>
+                <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
                 <span className="p-2">{ visIconEl }</span>
                 <span className="p-2">
                     <Pencil color={colors.primary} size={20} />
@@ -69,7 +70,7 @@ function Offering(props) {
 
             <hr />
 
-            <p>{ description }</p>
+            <p>{ dataOfferingDescription }</p>
 
             <Row className="text-center mb-3">
                 <KVCol2 title="Category">

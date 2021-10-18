@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router';
-import { Form, Button } from 'react-bootstrap';
-import { ROLE_PROVIDER, ROLE_CONSUMER } from '/lib/user';
+import {useRouter} from 'next/router';
+import {Button, Form} from 'react-bootstrap';
+import {ROLE_CONSUMER, ROLE_PROVIDER} from '/lib/user';
 
 export default function Login() {
     const router = useRouter();
@@ -14,7 +14,7 @@ export default function Login() {
             name: 'John James Doe',
             company: 'Siemens',
             roles: ROLE_PROVIDER | ROLE_CONSUMER,
-            providerId: 'provider_webri',
+            providerId: 'provider-webri',
         }));
 
         router.push('/');

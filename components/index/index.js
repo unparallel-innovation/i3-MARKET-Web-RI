@@ -125,7 +125,7 @@ function HomePure(props) {
 
     function onLayoutChange(layout, layouts) {
         // setLayouts(layouts);
-        console.log('onChange', layouts, categories);
+        // console.log('onChange', layouts, categories);
         // if (categories.length)
         //   localStorage.setItem("homeLayouts", JSON.stringify(layouts));
     }

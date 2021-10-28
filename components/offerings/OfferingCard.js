@@ -1,14 +1,14 @@
-import {useRouter} from 'next/router';
-import {ExclamationCircle, Globe, Lock} from 'react-bootstrap-icons';
+import { useRouter } from 'next/router';
+import { ExclamationCircle, Globe, Lock } from 'react-bootstrap-icons';
 import colors from '../../lib/colors';
-import {Badge, Card, Col} from 'react-bootstrap';
+import { Badge, Card, Col } from 'react-bootstrap';
 
 export default function OfferingCard(props) {
     const router = useRouter();
     const {
         dataOfferingTitle, dataOfferingDescription, isActivated,
         hasContractWarning, dataOfferingId,
-        activeContracts
+        contractParameters
     } = props;
 
     const visIconEl = isActivated === 'yes'
@@ -31,9 +31,7 @@ export default function OfferingCard(props) {
 
     return (
         <Col xs="12" md="6" xl="4">
-            <Card className="overflow-hidden cursor-pointer mb-3"
-                onClick={onClick}
-            >
+            <Card className="overflow-hidden cursor-pointer mb-3" onClick={onClick}>
                 <Card.Body>
                     <Card.Title className="d-flex justify-content-between line-clamp-2 h3rem">
                         { dataOfferingTitle }
@@ -46,11 +44,12 @@ export default function OfferingCard(props) {
                 <div className="d-flex bg-light">
                     <span className="p-2 flex-grow-1">
                         <Badge pill variant="primary">
-                            { activeContracts || 0 } Contracts
+                            { contractParameters.length || 0 } Contracts
                         </Badge>
                     </span>
                     { warningIconEl }
                 </div>
             </Card>
-        </Col>);
+        </Col>
+    );
 }

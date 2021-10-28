@@ -1,4 +1,4 @@
-import {catchErrors, connector} from '/lib/server.js';
+import { catchErrors, connector } from '/lib/server.js';
 
 export default catchErrors(async (req, res) => {
     const { searchType, providerId, category, page, size } = req.query;
@@ -12,11 +12,12 @@ export default catchErrors(async (req, res) => {
         offerings = await connector.getCategoryOfferings(category, page, size);
     }
 
-    const result = {
-        categories: await connector.getCategories(),
-        providers: await connector.getProviders(),
+    const categories = await connector.getCategories();
+    const providers = await connector.getProviders();
+
+    return {
+        categories: categories,
+        providers: providers,
         offerings: offerings,
     };
-
-    return result;
 });

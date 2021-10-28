@@ -1,8 +1,8 @@
-import {catchErrors} from '/lib/server.js';
+import { catchErrors, connector } from '/lib/server.js';
 
 export default catchErrors(async (req, res) => {
+    const offerings = await connector.getProviders();
     return {
-        // providersN: (await connector.getProviders()).length,
-        providersN: 8,
+        providersN: offerings.length,
     };
 });

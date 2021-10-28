@@ -1,6 +1,6 @@
-import {useRouter} from 'next/router';
-import {Button, Form} from 'react-bootstrap';
-import {ROLE_CONSUMER, ROLE_PROVIDER} from '/lib/user';
+import { useRouter } from 'next/router';
+import { Button, Form } from 'react-bootstrap';
+import { ROLE_CONSUMER, ROLE_PROVIDER } from '/lib/user';
 
 export default function Login() {
     const router = useRouter();

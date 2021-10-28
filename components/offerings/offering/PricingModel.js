@@ -1,5 +1,5 @@
-import {Card, Col} from 'react-bootstrap';
-import {ts2date} from '/lib/utils.js';
+import { Card, Col } from 'react-bootstrap';
+import { ts2date } from '/lib/utils.js';
 
 function PaymentType(props) {
     const {
@@ -43,8 +43,6 @@ function PricingModel(props) {
         hasPaymentOnSubscription,
         hasPaymentOnUnit,
     } = props;
-
-    console.log('PricingModel', props);
 
     const freeEl = hasFreePrice.map((item, idx) => {
         return (

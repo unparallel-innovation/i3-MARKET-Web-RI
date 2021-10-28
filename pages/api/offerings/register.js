@@ -1,4 +1,4 @@
-import {catchErrors, connector} from '/lib/server.js';
+import { catchErrors, connector } from '/lib/server.js';
 
 export default catchErrors(async (req, res) => {
     const data = req.body;
@@ -8,10 +8,9 @@ export default catchErrors(async (req, res) => {
             return {
                 categories: await connector.getCategories(),
             };
-            break;
         case 'POST':
+            console.log(data);
             await connector.registerOffering(data);
-            // console.log(JSON.stringify(data));
             return null;
     }
 });

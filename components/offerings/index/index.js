@@ -1,8 +1,8 @@
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import Layout from '/components/Layout.js';
-import {Row} from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import OfferingCard from '../OfferingCard';
-import {AddNew} from '/components/buttons.js';
+import { AddNew } from '/components/buttons.js';
 
 export default
 function Offerings(props) {
@@ -17,15 +17,16 @@ function Offerings(props) {
         router.push('/offerings/register');
     }
 
-    return (<Layout>
-        <div className="px-5">
-            <div className="d-flex align-items-center mb-2">
-                <div className="flex-grow-1"></div>
-                <AddNew onClick={onClick} />
+    return (
+        <Layout>
+            <div className="px-5">
+                <div className="d-flex align-items-center mb-2">
+                    <div className="flex-grow-1"/>
+                    <AddNew onClick={onClick} />
+                </div>
+                <Row>
+                    { offeringsEl }
+                </Row>
             </div>
-            <Row>
-                { offeringsEl }
-            </Row>
-        </div>
-    </Layout>);
+        </Layout>);
 }

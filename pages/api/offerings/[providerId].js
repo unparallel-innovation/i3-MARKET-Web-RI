@@ -1,9 +1,6 @@
-import {catchErrors, connector} from '/lib/server.js';
-// import offerings from '/data/offeringsByCategory.json'
+import { catchErrors, connector } from '/lib/server.js';
 
 export default catchErrors(async (req, res) => {
-    const { providerId } = req.query; // api/offerings/ADV01
-    // throw new Error("Gateway Timeout");
-    const offerings = await connector.getProviderOfferings(providerId);
-    return offerings;
+    const { providerId } = req.query;
+    return await connector.getProviderOfferings(providerId, 0, 50);
 });

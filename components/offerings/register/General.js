@@ -47,15 +47,15 @@ export default function General(props) {
 
         <Row>
             <Col>
-                <Form.Group controlId="license">
-                    <Form.Label>License</Form.Label>
-                    <Form.Control type="text" placeholder="License" name="license" />
-                </Form.Group>
-            </Col>
-            <Col>
                 <Form.Group controlId="label">
                     <Form.Label>Label</Form.Label>
                     <Form.Control type="text" placeholder="Label" name="label" />
+                </Form.Group>
+            </Col>
+            <Col>
+                <Form.Group controlId="owner">
+                    <Form.Label>Owner</Form.Label>
+                    <Form.Control type="text" placeholder="Owner" name="owner" />
                 </Form.Group>
             </Col>
         </Row>

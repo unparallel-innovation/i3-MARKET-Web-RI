@@ -1,11 +1,11 @@
-import {useRouter} from 'next/router';
-import {useState} from 'react';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import colors from '/lib/colors.js';
 import Dataset from './Dataset.js';
 import PricingModel from './PricingModel.js';
 import KVCol2 from './KVCol2.js';
-import {Button, Modal, Row} from 'react-bootstrap';
-import {Globe, Lock, Pencil, Trash} from 'react-bootstrap-icons';
+import { Button, Modal, Row } from 'react-bootstrap';
+import { Globe, Lock, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/Layout.js';
 
 export default

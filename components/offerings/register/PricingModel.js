@@ -26,6 +26,10 @@ export default function PricingModel(props) {
                 </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
+                        <Form.Group controlId={eventKey + 'pricingModelName'}>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" placeholder="Name" name={eventKey + 'pricingModelName'} />
+                        </Form.Group>
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'basicPrice'}>

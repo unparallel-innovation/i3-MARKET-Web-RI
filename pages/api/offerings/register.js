@@ -10,7 +10,7 @@ export default catchErrors(async (req, res) => {
             };
         case 'POST':
             // console.log(data);
-            await connector.registerOffering(data);
+            // await connector.registerOffering(data);
             return null;
     }
 });

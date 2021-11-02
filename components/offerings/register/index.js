@@ -32,8 +32,7 @@ function Register(props) {
     ));
 
     const pricingModelEl = (Object.keys(pricingModelMap)).map((item, idx) => (
-        <PricingModel key={item} eventKey={item}
-            onDelete={pricingModelOnDelete} />
+        <PricingModel key={item} eventKey={item} onDelete={pricingModelOnDelete} />
     ));
 
     function onSubmit(e) {

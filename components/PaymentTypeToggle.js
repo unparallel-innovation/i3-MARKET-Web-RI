@@ -1,9 +1,9 @@
-import {useContext} from 'react';
-import {AccordionContext, Card, useAccordionToggle} from 'react-bootstrap';
-import {CaretDownFill, CaretUpFill, Ladder, PlusCircle, Trash} from 'react-bootstrap-icons';
+import { useContext } from 'react';
+import { AccordionContext, Card, useAccordionToggle } from 'react-bootstrap';
+import { CaretDownFill, CaretUpFill, PlusCircle, Trash } from 'react-bootstrap-icons';
 
 export default
-function DeleteToggle(props) {
+function PaymentTypeToggle(props) {
     const { className, children, eventKey, callback, onDelete, onAdd } = props;
     const currentEventKey = useContext(AccordionContext);
 
@@ -24,6 +24,8 @@ function DeleteToggle(props) {
             onClick={decoratedOnClick}
         >
             <span className="flex-grow-1">{ children }</span>
+
+            <PlusCircle onClick={(e) => { onAdd(e, eventKey); e.stopPropagation(); }} className="mr-3" />
 
             <Trash onClick={(e) => { onDelete(e, eventKey); e.stopPropagation(); }} className="mr-3" />
 

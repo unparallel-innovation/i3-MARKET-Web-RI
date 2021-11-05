@@ -4,10 +4,10 @@ import { useMap } from '/lib/hooks.js';
 import Layout from '/components/Layout.js';
 import General from './General.js';
 import Dataset from './Dataset';
-import PricingModel from './PricingModel';
+import PricingModel from './PricingModel.js';
 import { AddNew } from '/components/buttons.js';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
-import { fd2register } from '/lib/form.js';
+import { formRegister } from '/lib/forms/offering.js';
 
 export default
 function Register(props) {
@@ -39,17 +39,17 @@ function Register(props) {
         e.preventDefault();
         const form = e.target;
         const fd = new FormData(form);
-        const res = fd2register(fd);
+        const res = formRegister(fd);
 
         // console.log('SUBMIT', [ ...fd.entries() ], res);
-
-        fetch(form.action, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(res),
-        }).then(res => {
-            router.push('/offerings');
-        });
+        //
+        // fetch(form.action, {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(res),
+        // }).then(res => {
+        //     router.push('/offerings');
+        // });
     }
 
     function onCancel() {

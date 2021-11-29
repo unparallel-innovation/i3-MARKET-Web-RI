@@ -1,9 +1,9 @@
 import DatasetInformation from './DatasetInformation';
 import DatasetDistribution from './DatasetDistribution';
-import {Accordion, Card, Col, Form, Row} from 'react-bootstrap';
+import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import DeleteToggle from '../../DeleteToggle';
-import {AddNew} from '/components/buttons.js';
-import {useMap} from '/lib/hooks.js';
+import { AddNew } from '/components/buttons.js';
+import { useMap } from '/lib/hooks.js';
 
 export default function Dataset(props) {
     const { eventKey, onDelete } = props;
@@ -42,6 +42,14 @@ export default function Dataset(props) {
                             <Form.Control type="text"
                                 placeholder="Dataset Title"
                                 name={eventKey + 'title'}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId={eventKey + 'keyword'}>
+                            <Form.Label>Keyword</Form.Label>
+                            <Form.Control type="text"
+                                placeholder="Keyword"
+                                name={eventKey + 'keyword'}
                             />
                         </Form.Group>
 

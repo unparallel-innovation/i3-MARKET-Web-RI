@@ -43,6 +43,12 @@ export default function General(props) {
                     <input type="hidden" name="isProvidedBy" value={user.providerId} />
                 </Form.Group>
             </Col>
+            <Col>
+                <Form.Group controlId="owner">
+                    <Form.Label>Owner</Form.Label>
+                    <Form.Control type="text" placeholder="Owner" name="owner" />
+                </Form.Group>
+            </Col>
         </Row>
 
         <Row>
@@ -53,9 +59,9 @@ export default function General(props) {
                 </Form.Group>
             </Col>
             <Col>
-                <Form.Group controlId="owner">
-                    <Form.Label>Owner</Form.Label>
-                    <Form.Control type="text" placeholder="Owner" name="owner" />
+                <Form.Group controlId="expirationTime">
+                    <Form.Label>Expiration Time</Form.Label>
+                    <Form.Control type="text" placeholder="Expiration Time" name="expirationTime" />
                 </Form.Group>
             </Col>
         </Row>

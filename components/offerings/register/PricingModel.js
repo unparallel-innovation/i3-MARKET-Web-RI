@@ -22,16 +22,16 @@ export default function PricingModel(props) {
             onDelete={paymentSubscriptionOnDelete} onAdd={paymentSubscriptionOnAdd} />
     ));
 
-    // payment on plan
-    const [
-        paymentPlanMap, paymentPlanC,
-        paymentPlanOnDelete, paymentPlanOnAdd
-    ] = useMap(eventKey, 'paymentPlan');
-
-    const paymentPlanEl = (Object.keys(paymentPlanMap)).map((item, idx) => (
-        <PaymentOnPlan key={item} eventKey={item}
-            onDelete={paymentPlanOnDelete} onAdd={paymentPlanOnAdd} />
-    ));
+    // // payment on plan
+    // const [
+    //     paymentPlanMap, paymentPlanC,
+    //     paymentPlanOnDelete, paymentPlanOnAdd
+    // ] = useMap(eventKey, 'paymentPlan');
+    //
+    // const paymentPlanEl = (Object.keys(paymentPlanMap)).map((item, idx) => (
+    //     <PaymentOnPlan key={item} eventKey={item}
+    //         onDelete={paymentPlanOnDelete} onAdd={paymentPlanOnAdd} />
+    // ));
 
     // payment on API
     const [
@@ -115,14 +115,14 @@ export default function PricingModel(props) {
                         </div>
 
                         { paymentSubscriptionEl }
-                        { paymentPlanEl }
+                        {/*{ paymentPlanEl }*/}
                         { paymentApiEl }
                         { paymentUnitEl }
                         { paymentSizeEl }
                         { freePriceEl }
 
                         <input type="hidden" value={paymentSubscriptionC} name={eventKey + 'paymentSubscriptionC'} />
-                        <input type="hidden" value={paymentPlanC} name={eventKey + 'paymentPlanC'} />
+                        {/*<input type="hidden" value={paymentPlanC} name={eventKey + 'paymentPlanC'} />*/}
                         <input type="hidden" value={paymentApiC} name={eventKey + 'paymentApiC'} />
                         <input type="hidden" value={paymentUnitC} name={eventKey + 'paymentUnitC'} />
                         <input type="hidden" value={paymentSizeC} name={eventKey + 'paymentSizeC'} />

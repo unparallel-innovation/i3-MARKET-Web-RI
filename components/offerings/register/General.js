@@ -53,15 +53,15 @@ export default function General(props) {
 
         <Row>
             <Col>
-                <Form.Group controlId="label">
-                    <Form.Label>Label</Form.Label>
-                    <Form.Control type="text" placeholder="Label" name="label" />
+                <Form.Group controlId="marketID">
+                    <Form.Label>Marketplace</Form.Label>
+                    <Form.Control type="text" placeholder="Marketplace" name="marketID" />
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId="expirationTime">
                     <Form.Label>Expiration Time</Form.Label>
-                    <Form.Control type="text" placeholder="Expiration Time" name="expirationTime" />
+                    <Form.Control type="date" placeholder="Expiration Time" name="expirationTime" />
                 </Form.Group>
             </Col>
         </Row>

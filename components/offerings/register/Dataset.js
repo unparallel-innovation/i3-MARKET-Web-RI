@@ -63,11 +63,11 @@ export default function Dataset(props) {
 
                         <Row>
                             <Col>
-                                <Form.Group controlId={eventKey + 'creator'}>
-                                    <Form.Label>Creator</Form.Label>
-                                    <Form.Control type="text"
-                                        placeholder="Creator"
-                                        name={eventKey + 'creator'}
+                                <Form.Group controlId={eventKey + 'dataset'}>
+                                    <Form.Label>Dataset</Form.Label>
+                                    <Form.Control
+                                        placeholder="Dataset"
+                                        name={eventKey + 'dataset'}
                                     />
                                 </Form.Group>
                             </Col>

@@ -32,35 +32,20 @@ export default function PaymentOnSubscription(props) {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group controlId={eventKey + 'from'}>
-                                    <Form.Label>From</Form.Label>
-                                    <Form.Control type="date" placeholder="From" name={eventKey + 'from'} />
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group controlId={eventKey + 'to'}>
-                                    <Form.Label>To</Form.Label>
-                                    <Form.Control type="date" placeholder="To" name={eventKey + 'to'} />
-                                </Form.Group>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col>
                                 <Form.Group controlId={eventKey + 'paymentType'}>
                                     <Form.Label>Payment Type</Form.Label>
                                     <Form.Control type="text" placeholder="Payment Type" name={eventKey + 'paymentType'} />
                                 </Form.Group>
                             </Col>
+                        </Row>
+
+                        <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'repeat'}>
                                     <Form.Label>Repeat</Form.Label>
                                     <Form.Control type="text" placeholder="repeat" name={eventKey + 'repeat'} />
                                 </Form.Group>
                             </Col>
-                        </Row>
-
-                        <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'timeDuration'}>
                                     <Form.Label>Time Duration</Form.Label>

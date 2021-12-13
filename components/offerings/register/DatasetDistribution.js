@@ -1,8 +1,8 @@
-import {Accordion, Card, Col, Form, Row} from 'react-bootstrap';
+import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import DeleteToggle from '../../DeleteToggle';
-import {AddNew} from '/components/buttons.js';
+import { AddNew } from '/components/buttons.js';
 import AccessService from './AccessService';
-import {useMap} from '/lib/hooks.js';
+import { useMap } from '/lib/hooks.js';
 
 export default function DatasetDistribution(props) {
     const { eventKey, onDelete } = props;
@@ -40,6 +40,27 @@ export default function DatasetDistribution(props) {
                                 name={eventKey + 'description'}
                             />
                         </Form.Group>
+
+                        <Row>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'accessRights'}>
+                                    <Form.Label>Access Rights</Form.Label>
+                                    <Form.Control type="text"
+                                        placeholder="Access Rights"
+                                        name={eventKey + 'accessRights'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'downloadType'}>
+                                    <Form.Label>Download Type</Form.Label>
+                                    <Form.Control type="text"
+                                        placeholder="Download Type"
+                                        name={eventKey + 'downloadType'}
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
 
                         <Row>
                             <Col>

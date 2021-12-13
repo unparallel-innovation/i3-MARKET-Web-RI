@@ -41,6 +41,8 @@ function Register(props) {
         const fd = new FormData(form);
         const res = formRegister(fd);
 
+        console.log(JSON.stringify(res));
+
         // console.log('SUBMIT', [ ...fd.entries() ], res);
         //
         // fetch(form.action, {

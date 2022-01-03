@@ -40,7 +40,7 @@ export default function Dataset(props) {
                         <Form.Group controlId={eventKey + 'title'}>
                             <Form.Label>Title</Form.Label>
                             <Form.Control type="text"
-                                placeholder="Dataset Title"
+                                placeholder="Title"
                                 name={eventKey + 'title'}
                             />
                         </Form.Group>
@@ -141,6 +141,14 @@ export default function Dataset(props) {
                                 </Form.Group>
                             </Col>
                         </Row>
+
+                        <Form.Group controlId={eventKey + 'theme'}>
+                            <Form.Label>Theme</Form.Label>
+                            <Form.Control type="text"
+                                placeholder="Theme"
+                                name={eventKey + 'theme'}
+                            />
+                        </Form.Group>
 
                         <div className="d-flex align-items-center my-3">
                             <h5 className="flex-grow-1 mb-0">

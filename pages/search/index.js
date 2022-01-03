@@ -32,11 +32,9 @@ function Search(props) {
 
     const selectOneEl = <option key={0}>Select One</option>;
 
-    console.log(categories, providers)
-
     const providerEl = [selectOneEl].concat(providers.map((item, idx) => (
-        <option key={idx + 1} value={item.providerId.toLowerCase()}>
-            { item.providerId }
+        <option key={idx + 1} value={item.provider.toLowerCase()}>
+            { item.provider }
         </option>
     )));
 

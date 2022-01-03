@@ -1,8 +1,9 @@
-import {Accordion, Badge, Card, Row} from 'react-bootstrap';
+import { Accordion, Badge, Card, Row } from 'react-bootstrap';
 import CustomToggle from '/components/CustomToggle.js';
 import KVCol from './KVCol.js';
 import Distribution from './Distribution.js';
-import {ts2date} from '/lib/utils.js';
+import { ts2date } from '/lib/utils.js';
+import DatasetInformation from './DatasetInformation';
 
 export default
 function Dataset(props) {
@@ -11,7 +12,7 @@ function Dataset(props) {
         issued, modified,
         language, temporal, temporalResolution,
         accrualPeriodicity, spatial, distribution,
-        keywords, category, eventKey
+        keywords, category, datasetInformation, eventKey
     } = props;
 
     const keywordsEl = keywords ? keywords.map(item => (
@@ -23,8 +24,13 @@ function Dataset(props) {
     )) : null;
 
     const distributionEl = distribution.map((dist, idx) => (
-        <Distribution key={dist.title}
+        <Distribution key={dist.distributionId}
             eventKey={`${eventKey}-distribution${idx}`} { ...dist } />
+    ));
+
+    const datasetInformationEl = datasetInformation.map((inf, idx) => (
+        <DatasetInformation key={inf.datasetInformationId}
+            eventKey={`${eventKey}-datasetInformation${idx}`} { ...inf } />
     ));
 
     return (
@@ -76,6 +82,11 @@ function Dataset(props) {
                         </Row>
 
                         { distributionEl }
+
+                        <div className="mt-2" />
+
+                        { datasetInformationEl }
+
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>

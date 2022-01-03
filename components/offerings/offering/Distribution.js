@@ -1,4 +1,4 @@
-import {Accordion, Card, Row, Table} from 'react-bootstrap';
+import { Accordion, Card, Row, Table } from 'react-bootstrap';
 import CustomToggle from '/components/CustomToggle.js';
 import KVCol from './KVCol.js';
 
@@ -6,15 +6,17 @@ export default
 function Distribution(props) {
     const {
         title, description,
-        license, mediaType, packageFormat,
+        license, accessRights, downloadType,
+        conformsTo, mediaType, packageFormat,
         accessService, eventKey
     } = props;
 
     const accessServiceEl = accessService.map(({
-        endpointDescription, endpointURL,
+        conformsTo, endpointDescription, endpointURL,
         servesDataset, serviceSpecs
     }, idx) => (
         <tr key={idx}>
+            <td>{ conformsTo }</td>
             <td>{ endpointDescription }</td>
             <td>{ endpointURL }</td>
             <td>{ servesDataset }</td>
@@ -37,6 +39,18 @@ function Distribution(props) {
                             <KVCol title="License">
                                 { license }
                             </KVCol>
+                            <KVCol title="Access Rights">
+                                { accessRights }
+                            </KVCol>
+                            <KVCol title="Download Type">
+                                { downloadType }
+                            </KVCol>
+                        </Row>
+
+                        <Row className="text-center bg-lightgray">
+                            <KVCol title="Conforms To">
+                                { conformsTo }
+                            </KVCol>
                             <KVCol title="Media Type">
                                 { mediaType }
                             </KVCol>
@@ -52,6 +66,7 @@ function Distribution(props) {
                         <Table className="mt-3">
                             <thead>
                                 <tr>
+                                    <th>Conforms To</th>
                                     <th>Endpoint Description</th>
                                     <th>Endpoint URL</th>
                                     <th>Serves Dataset</th>

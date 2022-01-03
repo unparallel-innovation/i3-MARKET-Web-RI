@@ -10,11 +10,17 @@ export default function Login() {
 
         /* this info should come from api call */
 
+        // localStorage.setItem('user', JSON.stringify({
+        //     name: 'John James Doe',
+        //     company: 'Siemens',
+        //     roles: ROLE_PROVIDER | ROLE_CONSUMER,
+        //     providerId: 'provider-webri',
+        // }));
         localStorage.setItem('user', JSON.stringify({
             name: 'John James Doe',
             company: 'Siemens',
             roles: ROLE_PROVIDER | ROLE_CONSUMER,
-            providerId: 'provider-webri',
+            providerId: 'Siemens',
         }));
 
         router.push('/');

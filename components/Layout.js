@@ -35,35 +35,61 @@ function Layout(props) {
                         <Nav className="justify-content-end" style={{ width: '100%' }}
                             defaultActiveKey={router.pathname}
                         >
-                            { user ? (<>
-                                { user.isProvider() ? (
-                                    <Link href="/offerings" passHref>
-                                        <Nav.Link>Offerings</Nav.Link>
-                                    </Link>
-                                ) : null }
-                                <Link href="/contracts" passHref>
-                                    <Nav.Link>Contracts</Nav.Link>
-                                </Link>
-                                <Link href="/transactions" passHref>
-                                    <Nav.Link>Transactions</Nav.Link>
-                                </Link>
-                                <Link href="/search" passHref>
-                                    <Nav.Link>Search</Nav.Link>
-                                </Link>
-                                <Link href="/alerts" passHref>
-                                    <Nav.Link>Alerts</Nav.Link>
-                                </Link>
-                                <Link href="/account" passHref>
-                                    <Nav.Link className="px-2">
-                                        <PersonCircle size={24} />
-                                    </Nav.Link>
-                                </Link>
-                                <Link href="/notificationCenter" passHref>
-                                    <Nav.Link className="px-2">
-                                        <Bell size={24} />
-                                    </Nav.Link>
-                                </Link>
-                            </>) : null }
+                            {/*{ user ? (<>*/}
+                            {/*    { user.isProvider() ? (*/}
+                            {/*        <Link href="/offerings" passHref>*/}
+                            {/*            <Nav.Link>Offerings</Nav.Link>*/}
+                            {/*        </Link>*/}
+                            {/*    ) : null }*/}
+                            {/*    <Link href="/contracts" passHref>*/}
+                            {/*        <Nav.Link>Contracts</Nav.Link>*/}
+                            {/*    </Link>*/}
+                            {/*    <Link href="/transactions" passHref>*/}
+                            {/*        <Nav.Link>Transactions</Nav.Link>*/}
+                            {/*    </Link>*/}
+                            {/*    <Link href="/search" passHref>*/}
+                            {/*        <Nav.Link>Search</Nav.Link>*/}
+                            {/*    </Link>*/}
+                            {/*    <Link href="/alerts" passHref>*/}
+                            {/*        <Nav.Link>Alerts</Nav.Link>*/}
+                            {/*    </Link>*/}
+                            {/*    <Link href="/account" passHref>*/}
+                            {/*        <Nav.Link className="px-2">*/}
+                            {/*            <PersonCircle size={24} />*/}
+                            {/*        </Nav.Link>*/}
+                            {/*    </Link>*/}
+                            {/*    <Link href="/notificationCenter" passHref>*/}
+                            {/*        <Nav.Link className="px-2">*/}
+                            {/*            <Bell size={24} />*/}
+                            {/*        </Nav.Link>*/}
+                            {/*    </Link>*/}
+                            {/*</>) : null }*/}
+
+                            <Link href="/offerings" passHref>
+                                <Nav.Link>Offerings</Nav.Link>
+                            </Link>
+                            <Link href="/contracts" passHref>
+                                <Nav.Link>Contracts</Nav.Link>
+                            </Link>
+                            <Link href="/transactions" passHref>
+                                <Nav.Link>Transactions</Nav.Link>
+                            </Link>
+                            <Link href="/search" passHref>
+                                <Nav.Link>Search</Nav.Link>
+                            </Link>
+                            <Link href="/alerts" passHref>
+                                <Nav.Link>Alerts</Nav.Link>
+                            </Link>
+                            <Link href="/account" passHref>
+                                <Nav.Link className="px-2">
+                                    <PersonCircle size={24} />
+                                </Nav.Link>
+                            </Link>
+                            <Link href="/notificationCenter" passHref>
+                                <Nav.Link className="px-2">
+                                    <Bell size={24} />
+                                </Nav.Link>
+                            </Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

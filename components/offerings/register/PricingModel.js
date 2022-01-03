@@ -2,7 +2,7 @@ import { useMap } from '/lib/hooks.js';
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import DeleteToggle from '../../DeleteToggle';
 import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
-import PaymentOnPlan from './PaymentType/PaymentOnPlan';
+import PaymentOnPlan from './PaymentType/_old/PaymentOnPlan';
 import PaymentOnAPI from './PaymentType/PaymentOnAPI';
 import PaymentOnUnit from './PaymentType/PaymentOnUnit';
 import PaymentOnSize from './PaymentType/PaymentOnSize';

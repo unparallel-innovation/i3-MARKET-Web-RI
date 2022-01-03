@@ -1,5 +1,4 @@
-import {catchErrors, connector} from '/lib/server.js';
-// import offering from '/data/offeringById.json'
+import { catchErrors, connector } from '/lib/server.js';
 
 export default catchErrors(async (req, res) => {
     const { offeringId } = req.query; // api/offerings/ADV01

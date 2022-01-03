@@ -1,4 +1,4 @@
-import {useData} from '/lib/hooks.js';
+import { useData } from '/lib/hooks.js';
 import ErrorC from '/components/ErrorC.js';
 import HomePure from '/components/index';
 

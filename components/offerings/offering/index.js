@@ -7,6 +7,7 @@ import KVCol2 from './KVCol2.js';
 import { Button, Modal, Row } from 'react-bootstrap';
 import { Globe, Lock, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/Layout.js';
+import {ts2date} from "../../../lib/utils";
 
 export default
 function Offering(props) {
@@ -14,24 +15,25 @@ function Offering(props) {
     const { offeringId } = router.query;
     const {
         dataOfferingTitle, dataOfferingDescription, activeContracts,
-        pendingContracts, isActivated, hasDataset,
-        category, isProvidedBy, license,
+        pendingContracts, status, hasDataset,
+        category, provider, license,
+        marketID, owner, dataOfferingExpirationTime,
         hasPricingModel
     } = props;
 
-    const [ show, setShow ] = useState(false);
+    const [ show, setShowDelete ] = useState(false);
 
-    const visIconEl = isActivated === 'yes'
+    const visIconEl = status === 'Activated'
         ? <Globe color={colors.primary} size={20} />
-        : <Lock color={colors.primary} size={20} />;
+        : <Lock color={colors.primary} size={20} /> ;
 
-    const datasetEl = hasDataset.map((dataset, idx) => (
-        <Dataset key={dataset.title} eventKey={`dataset${idx}`} { ...dataset } />
-    ));
+    const datasetEl = hasDataset.find(el=>el.title) ? hasDataset.map((item, idx) => (
+        <Dataset key={item.title} eventKey={`dataset${idx}`} { ...item } />
+    )) : '';
 
-    const pricingModelEl = hasPricingModel.map((item, idx) => (
+    const pricingModelEl = hasPricingModel.find(el=>el.pricingModelName) ? hasPricingModel.map((item, idx) => (
         <PricingModel key={idx} { ...item } />
-    ));
+    )) : '';
 
     function onDelete(e) {
         fetch(`/api/offering/${offeringId}`, {
@@ -43,17 +45,27 @@ function Offering(props) {
         });
     }
 
+    // function onActivate(e) {
+    //     fetch(`/api/offering/${offeringId}`, {
+    //         method: 'PATCH',
+    //     }).then(res => {
+    //         router.push('/offering/${offeringId}');
+    //     }).catch(error => {
+    //         console.log('ERROR', error);
+    //     });
+    // }
+
     return (<Layout>
         <div className="px-5 pb-3">
             <div className="d-flex">
                 <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
-                <span className="p-2">{ visIconEl }</span>
+                <span className="p-2">{ visIconEl }  </span>
                 <span className="p-2">
                     <Pencil color={colors.primary} size={20} />
                 </span>
                 <span className="p-2">
                     <Trash color={colors.primary} size={20}
-                        onClick={() => setShow(true)}
+                        onClick={() => setShowDelete(true)}
                         className="cursor-pointer" />
                 </span>
             </div>
@@ -77,10 +89,22 @@ function Offering(props) {
                     { category }
                 </KVCol2>
                 <KVCol2 title="Provider">
-                    { isProvidedBy }
+                    { provider }
                 </KVCol2>
+                <KVCol2 title="Market">
+                    { marketID }
+                </KVCol2>
+            </Row>
+
+            <Row className="text-center mb-3">
                 <KVCol2 title="Licence">
                     { license }
+                </KVCol2>
+                <KVCol2 title="Owner">
+                    { owner }
+                </KVCol2>
+                <KVCol2 title="Expiration Time">
+                    { ts2date(dataOfferingExpirationTime) }
                 </KVCol2>
             </Row>
 
@@ -94,7 +118,7 @@ function Offering(props) {
             </Row>
         </div>
 
-        <Modal show={show} onHide={() => setShow(false)}>
+        <Modal show={show} onHide={() => setShowDelete(false)}>
             <Modal.Header closeButton>
                 Delete offering
             </Modal.Header>
@@ -102,7 +126,7 @@ function Offering(props) {
                 Are you sure you want to delete offering {offeringId}?
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => setShow(false)}>
+                <Button variant="secondary" onClick={() => setShowDelete(false)}>
                     Cancel
                 </Button>
                 <Button variant="primary" onClick={onDelete}>

@@ -41,15 +41,15 @@ function Register(props) {
         const fd = new FormData(form);
         const res = formRegister(fd);
 
-        console.log('SUBMIT', JSON.stringify(res));
+        // console.log('SUBMIT', JSON.stringify(res));
 
-        // fetch(form.action, {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(res),
-        // }).then(res => {
-        //     router.push('/offerings');
-        // });
+        fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(res),
+        }).then(res => {
+            router.push('/offerings');
+        });
     }
 
     function onCancel() {

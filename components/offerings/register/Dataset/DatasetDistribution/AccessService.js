@@ -1,5 +1,5 @@
-import {Accordion, Card, Col, Form, Row} from 'react-bootstrap';
-import DeleteToggle from '../../DeleteToggle';
+import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
+import DeleteToggle from '../../../../DeleteToggle';
 
 export default function AccessService(props) {
     const { eventKey, onDelete } = props;

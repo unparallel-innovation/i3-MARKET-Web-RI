@@ -1,7 +1,7 @@
 import { useMap } from '/lib/hooks.js';
 import PaymentType from './PaymentType';
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import DeleteToggle from '../../DeleteToggle';
+import DeleteToggle from '../../../DeleteToggle';
 import { AddNew } from '/components/buttons.js';
 import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
 import PaymentOnPlan from './PaymentType/_old/PaymentOnPlan';

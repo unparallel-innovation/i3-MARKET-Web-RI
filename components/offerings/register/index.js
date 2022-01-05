@@ -3,11 +3,12 @@ import { useRouter } from 'next/router';
 import { useMap } from '/lib/hooks.js';
 import Layout from '/components/Layout.js';
 import General from './General.js';
-import Dataset from './Dataset';
-import PricingModel from './PricingModel.js';
+import Dataset from './Dataset/Dataset';
+import PricingModel from './PricingModel/PricingModel.js';
 import { AddNew } from '/components/buttons.js';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { formRegister } from '/lib/forms/offering.js';
+import ContractParameter from './ContractParameter/ContractParameter';
 
 export default
 function Register(props) {
@@ -25,6 +26,11 @@ function Register(props) {
         pricingModelOnDelete, pricingModelAdd
     ] = useMap('', 'pricingModel');
 
+    const [
+        contractParameterMap, contractParameterC,
+        contractParameterOnDelete, contractParameterAdd
+    ] = useMap('', 'contractParameter');
+
     const router = useRouter();
 
     const datasetEl = (Object.keys(datasetMap)).map((item, idx) => (
@@ -35,13 +41,15 @@ function Register(props) {
         <PricingModel key={item} eventKey={item} onDelete={pricingModelOnDelete} />
     ));
 
+    const contractParameterEl = (Object.keys(contractParameterMap)).map((item, idx) => (
+        <ContractParameter key={item} eventKey={item} onDelete={contractParameterOnDelete} />
+    ));
+
     function onSubmit(e) {
         e.preventDefault();
         const form = e.target;
         const fd = new FormData(form);
         const res = formRegister(fd);
-
-        // console.log('SUBMIT', JSON.stringify(res));
 
         fetch(form.action, {
             method: 'POST',
@@ -89,10 +97,20 @@ function Register(props) {
 
                         { pricingModelEl }
                     </Tab>
+
+                    <Tab eventKey="tab3" title="Contract Parameters">
+                        <div className="d-flex align-items-center mb-3">
+                            <div className="flex-grow-1"/>
+                            <AddNew onClick={contractParameterAdd} />
+                        </div>
+
+                        { contractParameterEl }
+                    </Tab>
                 </Tabs>
 
                 <input type="hidden" value={datasetC} name="datasetC" />
                 <input type="hidden" value={pricingModelC} name="pricingModelC" />
+                <input type="hidden" value={contractParameterC} name="contractParameterC" />
 
                 <div className="flex-grow-1" />
 

@@ -7,7 +7,7 @@ import KVCol2 from './KVCol2.js';
 import { Button, Modal, Row } from 'react-bootstrap';
 import { Globe, Lock, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/Layout.js';
-import {ts2date} from "../../../lib/utils";
+import { ts2date } from '../../../lib/utils';
 
 export default
 function Offering(props) {
@@ -71,16 +71,15 @@ function Offering(props) {
             </div>
 
             <hr />
+            {/*<span>*/}
+            {/*    <Button disabled={!activeContracts && !pendingContracts}>*/}
+            {/*        View all Contracts*/}
+            {/*    </Button>*/}
+            {/*    <span className="p-2 ml-2">{ activeContracts || 0 } Active</span>|*/}
+            {/*    <span className="p-2">{ pendingContracts || 0 } Pending</span>*/}
+            {/*</span>*/}
 
-            <span>
-                <Button disabled={!activeContracts && !pendingContracts}>
-                    View all Contracts
-                </Button>
-                <span className="p-2 ml-2">{ activeContracts || 0 } Active</span>|
-                <span className="p-2">{ pendingContracts || 0 } Pending</span>
-            </span>
-
-            <hr />
+            {/*<hr />*/}
 
             <p>{ dataOfferingDescription }</p>
 

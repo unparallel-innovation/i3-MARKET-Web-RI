@@ -1,5 +1,5 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import PaymentTypeToggle from '../../../../PaymentTypeToggle';
+import PaymentTypeToggle from '../../PaymentTypeToggle';
 
 export default function PaymentOnAPI(props) {
     const { eventKey, onDelete, onAdd } = props;

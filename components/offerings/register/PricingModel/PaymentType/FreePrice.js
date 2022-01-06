@@ -1,5 +1,5 @@
 import { Accordion, Card, Form } from 'react-bootstrap';
-import PaymentTypeToggle from '../../../../PaymentTypeToggle';
+import PaymentTypeToggle from '../../PaymentTypeToggle';
 
 export default function FreePrice(props) {
     const { eventKey, onDelete, onAdd } = props;

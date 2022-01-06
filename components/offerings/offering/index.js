@@ -3,11 +3,12 @@ import { useState } from 'react';
 import colors from '/lib/colors.js';
 import Dataset from './Dataset.js';
 import PricingModel from './PricingModel.js';
-import KVCol2 from './KVCol2.js';
+import KVCol2 from '../../KVCol2.js';
 import { Button, Modal, Row } from 'react-bootstrap';
 import { Globe, Lock, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/Layout.js';
 import { ts2date } from '../../../lib/utils';
+import ContractParameter from './ContractParameter';
 
 export default
 function Offering(props) {
@@ -18,7 +19,7 @@ function Offering(props) {
         pendingContracts, status, hasDataset,
         category, provider, license,
         marketID, owner, dataOfferingExpirationTime,
-        hasPricingModel
+        hasPricingModel, contractParameters
     } = props;
 
     const [ show, setShowDelete ] = useState(false);
@@ -27,13 +28,17 @@ function Offering(props) {
         ? <Globe color={colors.primary} size={20} />
         : <Lock color={colors.primary} size={20} /> ;
 
-    const datasetEl = hasDataset.find(el=>el.title) ? hasDataset.map((item, idx) => (
+    const datasetEl = hasDataset.map((item, idx) => (
         <Dataset key={item.title} eventKey={`dataset${idx}`} { ...item } />
-    )) : '';
+    ));
 
-    const pricingModelEl = hasPricingModel.find(el=>el.pricingModelName) ? hasPricingModel.map((item, idx) => (
+    const contractParametersEl = contractParameters.map((item, idx) => (
+        <ContractParameter key={item.contractParametersId} eventKey={`contractParameter${idx}`} { ...item } />
+    ));
+
+    const pricingModelEl = hasPricingModel.map((item, idx) => (
         <PricingModel key={idx} { ...item } />
-    )) : '';
+    ));
 
     function onDelete(e) {
         fetch(`/api/offering/${offeringId}`, {
@@ -108,6 +113,11 @@ function Offering(props) {
             </Row>
 
             { datasetEl }
+
+            <div className="mt-2" />
+
+            { contractParametersEl }
+
         </div>
 
         <div className="bg-lightcyan p-5">

@@ -1,5 +1,5 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import PaymentTypeToggle from '../../../PaymentTypeToggle';
+import PaymentTypeToggle from '../PaymentTypeToggle';
 import { useState } from 'react';
 
 export default function HasLicenseGrant(props) {

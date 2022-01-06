@@ -1,5 +1,5 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import PaymentTypeToggle from '../../../../PaymentTypeToggle';
+import PaymentTypeToggle from '../../PaymentTypeToggle';
 
 export default function PaymentOnSize(props) {
     const { eventKey, onDelete, onAdd, title } = props;

@@ -1,6 +1,6 @@
 import { Card, Col, Row } from 'react-bootstrap';
 import { ts2date } from '/lib/utils.js';
-import KVCol2 from './KVCol2';
+import KVCol2 from '../../KVCol2';
 
 function PaymentType(props) {
     const {
@@ -36,7 +36,6 @@ function PaymentType(props) {
 
 export default
 function PricingModel(props) {
-
     const {
         pricingModelName,
         basicPrice,

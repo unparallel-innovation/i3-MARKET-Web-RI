@@ -1,6 +1,6 @@
 import { Accordion, Card, Row, Table } from 'react-bootstrap';
 import CustomToggle from '/components/CustomToggle.js';
-import KVCol from '../../KVCol.js';
+import KVCol from '../../KVCol';
 
 export default
 function Distribution(props) {

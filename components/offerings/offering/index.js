@@ -3,12 +3,12 @@ import { useState } from 'react';
 import colors from '/lib/colors.js';
 import Dataset from './Dataset.js';
 import PricingModel from './PricingModel.js';
-import KVCol2 from '../../KVCol2.js';
 import { Button, Modal, Row } from 'react-bootstrap';
 import { Globe, Lock, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/Layout.js';
 import { ts2date } from '../../../lib/utils';
 import ContractParameter from './ContractParameter';
+import KVCol2 from "../../KVCol2";
 
 export default
 function Offering(props) {

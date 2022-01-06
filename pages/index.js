@@ -1,6 +1,6 @@
 import { useData } from '/lib/hooks.js';
-import ErrorC from '/components/layout/ErrorC.js';
 import HomePure from '/components/home';
+import ErrorC from '../components/layout/ErrorC';
 
 export default function HomePage() {
     const { data, error } = useData('/api/');

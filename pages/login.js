@@ -17,10 +17,10 @@ export default function Login() {
         //     providerId: 'provider-webri',
         // }));
         localStorage.setItem('user', JSON.stringify({
-            name: 'John James Doe',
-            company: 'Siemens',
+            name: 'Provider WEB-RI',
+            company: 'WEB-RI',
             roles: ROLE_PROVIDER | ROLE_CONSUMER,
-            providerId: 'Siemens',
+            providerId: 'provider_webri',
         }));
 
         router.push('/');

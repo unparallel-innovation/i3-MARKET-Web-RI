@@ -1,8 +1,8 @@
 import {useData} from '/lib/hooks.js';
-import ErrorC from '/components/ErrorC.js';
-import {Loading} from '/components/Loading';
+import ErrorC from '/components/visualElements/ErrorC.js';
+import {Loading} from '/components/visualElements/Loading';
 import useUser from '/lib/user.js';
-import Offerings from '/components/offerings/index';
+import Offerings from '/components/offering';
 
 export default function OfferingsPage() {
     const user = useUser();

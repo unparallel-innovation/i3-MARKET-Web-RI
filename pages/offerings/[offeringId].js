@@ -1,9 +1,9 @@
-import {useData} from '/lib/hooks.js';
-import {Loading} from '/components/Loading.js';
-import ErrorC from '/components/ErrorC.js';
-import Offering from '/components/offerings/offering';
-import {useRouter} from 'next/router';
-import BigText from '../../components/BigText';
+import { useData } from '/lib/hooks.js';
+import { Loading } from '/components/visualElements/Loading.js';
+import ErrorC from '/components/visualElements/ErrorC.js';
+import { useRouter } from 'next/router';
+import BigText from '../../components/common/BigText';
+import Offering from '../../components/offering/details';
 
 export default function OfferingPage() {
     const router = useRouter();
@@ -17,7 +17,7 @@ export default function OfferingPage() {
         return <Loading />;
 
     if (!data)
-        return <BigText>404 - Offering not found</BigText>
+        return <BigText>404 - Offering not found</BigText>;
 
     return <Offering { ...data } />;
 }

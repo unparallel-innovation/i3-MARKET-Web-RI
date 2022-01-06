@@ -1,4 +1,4 @@
-import BigText from '/components/BigText';
+import BigText from '/components/common/BigText';
 
 export default function Custom404Page() {
     return <BigText noRedirect noBreadcrumbs>

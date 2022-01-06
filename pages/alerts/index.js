@@ -1,4 +1,4 @@
-import ComingSoon from '/components/ComingSoon.js';
+import ComingSoon from '/components/visualElements/ComingSoon.js';
 
 export default function AlertsPage() {
     return <ComingSoon />;

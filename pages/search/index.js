@@ -1,12 +1,12 @@
 import { useData } from '/lib/hooks.js';
 import { qs } from '/lib/utils.js';
 import { fd2qs } from '/lib/forms/offering.js';
-import Layout from '/components/Layout.js';
-import ErrorC from '/components/ErrorC.js';
+import Layout from '/components/visualElements/Layout.js';
+import ErrorC from '/components/visualElements/ErrorC.js';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Form, Row } from 'react-bootstrap';
-import OfferingCard from '../../components/offerings/OfferingCard';
+import OfferingCard from '../../components/offering/OfferingCard';
 
 function Search(props) {
     const router = useRouter();

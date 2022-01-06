@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import Layout from '/components/visualElements/Layout.js';
+import Layout from '/components/layout/Layout.js';
 import useUser from '/lib/user.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Card, Col, Row } from 'react-bootstrap';

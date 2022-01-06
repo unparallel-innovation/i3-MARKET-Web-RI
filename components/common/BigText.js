@@ -1,4 +1,4 @@
-import Layout from '/components/visualElements/Layout.js';
+import Layout from '/components/layout/Layout.js';
 
 export default function BigText(props) {
     const { children, ...rest } = props;

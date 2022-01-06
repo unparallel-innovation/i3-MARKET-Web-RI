@@ -1,5 +1,5 @@
 import { useData } from '/lib/hooks.js';
-import ErrorC from '/components/visualElements/ErrorC.js';
+import ErrorC from '/components/layout/ErrorC.js';
 import HomePure from '/components/home';
 
 export default function HomePage() {

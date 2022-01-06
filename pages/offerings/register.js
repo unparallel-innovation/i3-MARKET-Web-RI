@@ -1,6 +1,6 @@
 import { useData } from '/lib/hooks.js';
-import ErrorC from '/components/visualElements/ErrorC.js';
-import { Loading } from '/components/visualElements/Loading';
+import ErrorC from '/components/layout/ErrorC.js';
+import { Loading } from '/components/layout/Loading';
 import Register from '/components/offering/register';
 
 export default function RegisterPage() {

@@ -1,6 +1,6 @@
 import { useData } from '/lib/hooks.js';
-import { Loading } from '/components/visualElements/Loading.js';
-import ErrorC from '/components/visualElements/ErrorC.js';
+import { Loading } from '/components/layout/Loading.js';
+import ErrorC from '/components/layout/ErrorC.js';
 import { useRouter } from 'next/router';
 import BigText from '../../components/common/BigText';
 import Offering from '../../components/offering/details';

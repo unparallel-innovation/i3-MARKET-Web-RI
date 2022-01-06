@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import Layout from '/components/visualElements/Layout.js';
+import Layout from '/components/layout/Layout.js';
 import { Row } from 'react-bootstrap';
 import OfferingCard from './OfferingCard';
 import { AddNew } from '/components/common/buttons.js';

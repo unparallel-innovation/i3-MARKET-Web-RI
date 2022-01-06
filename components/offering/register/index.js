@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useMap } from '/lib/hooks.js';
-import Layout from '/components/visualElements/Layout.js';
+import Layout from '/components/layout/Layout.js';
 import General from './General.js';
 import Dataset from './Dataset/Dataset';
 import PricingModel from './PricingModel/PricingModel.js';

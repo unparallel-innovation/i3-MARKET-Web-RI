@@ -8,7 +8,6 @@ export default function OfferingCard(props) {
     const {
         dataOfferingTitle, dataOfferingDescription, isActivated,
         hasContractWarning, dataOfferingId,
-        contractParameters
     } = props;
 
     const visIconEl = isActivated === 'yes'
@@ -44,7 +43,7 @@ export default function OfferingCard(props) {
                 <div className="d-flex bg-light">
                     <span className="p-2 flex-grow-1">
                         <Badge pill variant="primary">
-                            { contractParameters.length || 0 } Contracts
+                            0 Contracts
                         </Badge>
                     </span>
                     { warningIconEl }

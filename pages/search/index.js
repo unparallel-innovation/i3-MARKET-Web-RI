@@ -1,12 +1,13 @@
 import { useData } from '/lib/hooks.js';
 import { qs } from '/lib/utils.js';
-import { fd2qs } from '/lib/forms/offering.js';
+import { fd2qs } from '/lib/forms/registerOffering.js';
 import Layout from '/components/layout/Layout.js';
 import ErrorC from '/components/layout/ErrorC.js';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Form, Row } from 'react-bootstrap';
+import { Button, Form, Row, Spinner } from 'react-bootstrap';
 import OfferingCard from '../../components/offering/OfferingCard';
+import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 
 function Search(props) {
     const router = useRouter();
@@ -62,9 +63,13 @@ function Search(props) {
         </Form.Control>);
     }
 
-    const searchPlaceholder = (<div className="d-flex w-100 flex-grow-1 justify-content-center align-items-center h3 text-lightgray">
-        { isLoading ? 'Loading results.. Please wait..' : 'Do a search and see the results here' }
-    </div>);
+    const loading = <LoadingSpinner />;
+
+    const searchPlaceholder = (
+        <div className="d-flex w-100 flex-grow-1 justify-content-center align-items-center h3 text-lightgray">
+            { isLoading ? loading : 'Do a search and see the results here' }
+        </div>
+    );
 
     const offeringsEl = offerings.length > 0 ? (<Row>{ offerings.map(offering => (
         <OfferingCard key={offering.dataOfferingId} {...offering} />

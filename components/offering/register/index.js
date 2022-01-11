@@ -7,7 +7,7 @@ import Dataset from './Dataset/Dataset';
 import PricingModel from './PricingModel/PricingModel.js';
 import { AddNew } from '/components/common/buttons.js';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
-import { formRegister } from '/lib/forms/offering.js';
+import { formRegister } from '/lib/forms/registerOffering.js';
 import ContractParameter from './ContractParameter/ContractParameter';
 
 export default

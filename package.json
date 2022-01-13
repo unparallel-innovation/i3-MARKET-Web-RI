@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@i3m/connector-ri": "^1.0.0",
     "bootstrap": "^4.6.0",
-    "connector-ri": "^1.1.6",
     "next": "^11.1.2",
     "nextjs-breadcrumbs": "^1.1.9",
     "react": "^17.0.2",

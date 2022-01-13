@@ -39,8 +39,7 @@ function Dataset(props) {
                 <CustomToggle eventKey={eventKey}
                     className="bg-primary text-white"
                 >
-                    <div className="text-tiny text-light">Dataset</div>
-                    { title }
+                    <div className="text-tiny text-light">Dataset: { title }</div>
                 </CustomToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body className="bg-light">

@@ -120,12 +120,14 @@ function Offering(props) {
 
         </div>
 
-        <div className="bg-lightcyan p-5">
-            <h3 className="mb-5 text-center">Pricing Model</h3>
-            <Row>
-                { pricingModelEl }
-            </Row>
-        </div>
+        { pricingModelEl.length > 0
+            ? <div className="bg-lightcyan p-5">
+                <h3 className="mb-5 text-center">Pricing Model</h3>
+                <Row>
+                    { pricingModelEl }
+                </Row>
+            </div>
+            : ''}
 
         <Modal show={show} onHide={() => setShowDelete(false)}>
             <Modal.Header closeButton>

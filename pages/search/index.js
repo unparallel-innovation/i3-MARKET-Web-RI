@@ -113,7 +113,7 @@ function Search(props) {
 
 export default function SearchPage() {
     const router = useRouter();
-    const { searchType = 'provider', providerId, category } = router.query;
+    const { searchType = 'provider', providerId, category, page, size } = router.query;
     const { data, error } = useData(`/api/search?${qs(router.query)}`);
 
     if (error)

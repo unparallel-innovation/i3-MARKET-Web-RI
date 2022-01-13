@@ -1,7 +1,7 @@
 import { catchErrors, connector } from '/lib/server.js';
 
 export default catchErrors(async (req, res) => {
-    const { searchType, providerId, category, page, size } = req.query;
+    const { searchType, providerId, category, page = 0, size = 50} = req.query;
     let offerings = [];
 
     if (searchType === 'provider' && providerId) {

@@ -94,7 +94,7 @@ function ContractParameter(props) {
         <Accordion>
             <Card>
                 <CustomToggle eventKey={eventKey}
-                    className="bg-primary text-white"
+                    className="bg-secondary text-white"
                 >
                     <div className="text-tiny text-light">Contract Parameter</div>
                 </CustomToggle>

@@ -1,5 +1,5 @@
 import { useData } from '/lib/hooks.js';
-import ErrorC from '/components/layout/ErrorC.js';
+import Error from '/components/layout/Error.js';
 import { useRouter } from 'next/router';
 import BigText from '../../components/common/BigText';
 import Offering from '../../components/offering/details';
@@ -11,7 +11,7 @@ export default function OfferingPage() {
     const { data, error, isValidating } = useData(`/api/offering/${offeringId}`);
 
     if (error)
-        return <ErrorC error={error} />;
+        return <Error error={error} />;
 
     if (isValidating)
         return <Loading />;

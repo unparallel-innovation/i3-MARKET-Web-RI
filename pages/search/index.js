@@ -2,7 +2,7 @@ import { useData } from '/lib/hooks.js';
 import { qs } from '/lib/utils.js';
 import { fd2qs } from '/lib/forms/registerOffering.js';
 import Layout from '/components/layout/Layout.js';
-import ErrorC from '/components/layout/ErrorC.js';
+import Error from '/components/layout/Error.js';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Form, Row, Spinner } from 'react-bootstrap';
@@ -117,7 +117,7 @@ export default function SearchPage() {
     const { data, error } = useData(`/api/search?${qs(router.query)}`);
 
     if (error)
-        return <ErrorC error={error} />;
+        return <Error error={error} />;
 
     if (!data)
         return <Search offerings={[]} providers={[]} categories={[]}

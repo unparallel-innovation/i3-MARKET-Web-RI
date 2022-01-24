@@ -1,5 +1,5 @@
 import {useData} from '/lib/hooks.js';
-import ErrorC from '/components/layout/ErrorC.js';
+import Error from '/components/layout/Error.js';
 import {Loading} from '/components/layout/Loading';
 import useUser from '/lib/user.js';
 import Offerings from '/components/offering';
@@ -12,7 +12,7 @@ export default function OfferingsPage() {
         return null;
 
     if (error)
-        return <ErrorC error={error} />;
+        return <Error error={error} />;
 
     if (!data)
         return <Loading />;

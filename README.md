@@ -1,13 +1,23 @@
+# WEB-RI
+This repository is for the WEB-RI project.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+This project is divided into different directories:
+- components: contains all visual elements that can be reused in all pages
+- lib: contains information such forms, colors, user and server configuration.
+- pages: each file represents a React component with associated route based on its file name.
+- public: contains files such images and logos.
+- styles: responsible to customize the design of the website. 
 
-First, run 
+
+## Installation
 ```bash
 npm install
 ```
 
-Then, run
+## Run
 ```bash
 npm run dev
 # or
@@ -22,7 +32,18 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages. Some of the API routes correspond to full pages, while some only return the contents of specific components.
 
-## Learn More
+### Configuring for different Pilots
+
+If you want to use run WEB-RI for different Pilot, edit `lib/server.js` and change the variable `endpoint` according with the Pilot endpoint. 
+Here is the relevant part of this file:
+
+```js
+const endpoint = 'http://95.211.3.249:8182'; // endpoint instance example
+```
+
+## Further Information
+
+### Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -31,71 +52,27 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+### Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## Components
 
-You can find reusable components at the `components` directory. The directories inside it express how pages are layed out. Some of the most used components are:
-
-- `components/Layout.js` - Basic Layout around each page
-- `components/ErrorC.js` - Error component to be displayed after an api call fails
-- `components/Loading.js` - Loading component to be displayed when api call result is loading
-- `components/buttons.js` - Contains various buttons
-
-Each page has a corresponding folder in the `components` directory. For example you can find the components used in the home page in `components/index`.
-
-## Lib
-
-The `lib` directory contains various files with things other than components or pages. Here are some of the most important ones:
-
-- `lib/server.js` - contains things that are useful on the backend side of the application (under `pages/api`).
-- `lib/hooks.js` - contains hooks that are useful throuought the application like useData and useMap.
-- `lib/colors.js` - contains the color definitions that we want to use in Javascript code.
-- `lib/form.js` - contains auxiliary functions for dealing with forms.
-- `lib/util.js` - contains auxiliary functions that deal with other things.
-- `lib/user.js` - contains hardcoded user data (for now).
-
-## Configuring different endpoints
-
-If you want to use a different endpoint, edit `lib/server.js` and change the variable `endpoint` to your preference. You may use SDK-RI instead of the semantic engine by providing a username and a password. Here is the relevant part of this file:
-
-```js
-import Connector from 'connector-ri';
-// import FetchError from '@UNPARALLEL/connector-ri/error';
-
-// let endpoint = "http://95.211.3.251:9181/SdkRefImpl/api/sdk-ri";
-let endpoint = "95.211.3.244:3000";
-// let endpoint = "95.211.3.251:3000";
-```
-
-## Features currently implemented
-
-- Home page with drag and drop grid, presenting various information.
-- Search page, with search by providerId and by category.
-- Offerings page, for the user to view his own offerings.
-- Offering details page for the user to view a specific offering.
-- Register offering page, for offering registration.
-- Delete offering feature
-
-## Lint with auto-fix
+### Lint with auto-fix
 Run the following command to auto-fix some eslint warnings:
-
 ```sh
 make lint
 ```
 
-## Tags
+### Tags
 For editors that support tags, you can run the following command to create the ./tags file.
 
 ```sh
 make tags
 ```
 
-## Editor settings
+### Editor settings
 The project uses 4 spaces for indentation, and although this is auto-fixable,
 we recommend that you set this preference in your editor settings, in case
 it uses different values by default.
@@ -108,3 +85,9 @@ autocmd VimEnter * if filereadable('.vimrc.local')
 			\ && 1 == confirm('.vimrc.local is present. Source?', "&Yes\n&No", 0)
 			\ | source .vimrc.local
 ```
+
+## Credits
+For more information please contact [UNPARALLEL Innovation](mailto:info@unparallel.pt).
+
+## License
+The code in ths repository is licensed under the [MIT License](https://opensource.org/licenses/MIT).

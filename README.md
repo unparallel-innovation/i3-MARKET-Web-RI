@@ -90,7 +90,7 @@ autocmd VimEnter * if filereadable('.vimrc.local')
 This repository has been created by:
 
 Márcio Mateus [marcio.mateus@unparallel.pt](mailto:marcio.mateus@unparallel.pt)
-<br/>
+
 Pedro Ferreira [pedro.ferreira@unparallel.pt](mailto:marcio.mateus@unparallel.pt)
 
 ## License

@@ -107,9 +107,8 @@ function Layout(props) {
                 </main>
 
                 <footer className="px-5 py-4">
-                    <div className="d-flex align-items-center">
-                        <Image height="36" width="54"
-                            src="/img/EU_flag.png" alt="EU flag" />
+                    <div className="d-flex h-100 align-items-center">
+                        <Image height="36" width="54" src="/img/EU_flag.png" alt="EU flag" />
 
                         <div className="ml-3 flex-grow-1">
                             <small className="d-inline-block" style={{ maxWidth: '460px' }} >
@@ -118,9 +117,7 @@ function Layout(props) {
                             </small>
                         </div>
 
-                        <small className="ml-3 mr-4 align-self-start">
-                        Privacy Policy
-                        </small>
+                        {/*<small className="ml-3 mr-4">Privacy Policy</small>*/}
                         <Image height="48" width="61"
                             src="/img/i3-MARKET-LOGO_2nd_Release.png"
                             alt="i3Market logo" />

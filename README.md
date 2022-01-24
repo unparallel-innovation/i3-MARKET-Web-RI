@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 This project is divided into different directories:
-- components: contains all visual elements that can be reused in all pages
+- components: contains all visual elements that can be reused in all pages.
 - lib: contains information such forms, colors, user and server configuration.
 - pages: each file represents a React component with associated route based on its file name.
 - public: contains files such images and logos.
@@ -87,7 +87,11 @@ autocmd VimEnter * if filereadable('.vimrc.local')
 ```
 
 ## Credits
-For more information please contact [UNPARALLEL Innovation](mailto:info@unparallel.pt).
+This repository has been created by:
+
+Márcio Mateus [marcio.mateus@unparallel.pt](mailto:marcio.mateus@unparallel.pt)
+<br/>
+Pedro Ferreira [pedro.ferreira@unparallel.pt](mailto:marcio.mateus@unparallel.pt)
 
 ## License
 The code in ths repository is licensed under the [MIT License](https://opensource.org/licenses/MIT).

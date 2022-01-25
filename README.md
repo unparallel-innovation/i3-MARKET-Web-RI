@@ -1,5 +1,7 @@
 # WEB-RI
-This repository is for the WEB-RI project.
+This repository is for the WEB-RI project. 
+
+The WEB-RI is a web interface that allows the users to interact with the functionalities provided by the SDK-RI. It can be reused and customized as part of each pilot specification and implementation needs.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

@@ -13,7 +13,6 @@ This project is divided into different directories:
 - public: contains files such images and logos.
 - styles: responsible to customize the design of the website. 
 
-
 ## Installation
 ```bash
 npm install
@@ -21,9 +20,11 @@ npm install
 
 ## Run
 ```bash
-npm run dev
-# or
-yarn dev
+[ENDPOINT] [USERNAME] [PASSWORD] npm run dev
+
+# ENDPOINT: pilot endpoint (http://12.345.6.789:1234 example)
+# USERNAME: i3-MARKET login username
+# PASSWORD: i3-MARKET login password
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -33,17 +34,6 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages. Some of the API routes correspond to full pages, while some only return the contents of specific components.
-
-### Configuring for different Pilots
-
-If you want to use run WEB-RI for different Pilot, edit `lib/server.js` and change the variable `endpoint` according with the Pilot endpoint. 
-Here is the relevant part of this file:
-
-```js
-const endpoint = 'http://95.211.3.249:8182'; // endpoint instance example
-```
-
-## Further Information
 
 ### Learn More
 

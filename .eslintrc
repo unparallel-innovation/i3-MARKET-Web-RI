@@ -12,6 +12,6 @@
     "space-before-blocks": ["warn", "always"],
     "keyword-spacing": "warn",
     "operator-linebreak": ["warn", "before"],
-    "indent": ["warn", 4, { "SwitchCase": 1 }],
+    "indent": ["warn", 4, { "SwitchCase": 1 }]
   }
 }

@@ -20,11 +20,11 @@ npm install
 
 ## Run
 ```bash
-[ENDPOINT] [USERNAME] [PASSWORD] npm run dev
+[SDK_RI_ENDPOINT] [I3MARKET_USERNAME] [I3MARKET_PASSWORD] npm run dev
 
-# ENDPOINT: pilot endpoint (http://12.345.6.789:1234 example)
-# USERNAME: i3-MARKET login username
-# PASSWORD: i3-MARKET login password
+# SDK_RI_ENDPOINT: sdk-ri endpoint (http://12.345.6.789:1234 example)
+# I3MARKET_USERNAME: i3-MARKET login username
+# I3MARKET_PASSWORD: i3-MARKET login password
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -34,6 +34,19 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages. Some of the API routes correspond to full pages, while some only return the contents of specific components.
+
+## Run in Production
+To run WEB-RI as docker, first you must define the following environment variables in docker-compose.yml file:
+````yaml
+environment: 
+  SDK_RI_ENDPOINT: sdk-ri endpoint
+  I3MARKET_USERNAME: i3-MARKET login username
+  I3MARKET_PASSWORD: i3-MARKET login password
+````
+Then,
+````bash
+docker-compose up
+````
 
 ### Learn More
 
@@ -62,20 +75,6 @@ For editors that support tags, you can run the following command to create the .
 
 ```sh
 make tags
-```
-
-### Editor settings
-The project uses 4 spaces for indentation, and although this is auto-fixable,
-we recommend that you set this preference in your editor settings, in case
-it uses different values by default.
-
-If you would like to use Vim, add the following to your .vimrc so that
-.vimrc.local in the project directory is automatically sourced.
-
-```
-autocmd VimEnter * if filereadable('.vimrc.local')
-			\ && 1 == confirm('.vimrc.local is present. Source?', "&Yes\n&No", 0)
-			\ | source .vimrc.local
 ```
 
 ## Credits

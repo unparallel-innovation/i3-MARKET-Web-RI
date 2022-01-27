@@ -4,9 +4,6 @@ services:
     ports:
       - '3000:3000'
     environment:
-      ENDPOINT:
-      USERNAME:
-      PASSWORD:
       PORT: 3000
     deploy:
       resources:

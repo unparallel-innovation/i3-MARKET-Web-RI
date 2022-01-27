@@ -120,8 +120,8 @@ function Register(props) {
                             setAtIdx(atIdx - 1);
                     }}>Previous</Button>
                     <div className="flex-grow-1" />
-                    <Button disabled={atIdx === 2} onClick={e => {
-                        if (atIdx < 2)
+                    <Button disabled={atIdx === 3} onClick={e => {
+                        if (atIdx < 3)
                             setAtIdx(atIdx + 1);
                     }}>Next</Button>
                 </div>

@@ -9,7 +9,7 @@ export default catchErrors(async (req, res) => {
                 categories: await connector.getCategories(),
             };
         case 'POST':
-            // await connector.registerOffering(data);
+            await connector.registerOffering(data);
             return null;
     }
 });

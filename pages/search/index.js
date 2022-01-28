@@ -33,17 +33,23 @@ function Search(props) {
 
     const selectOneEl = <option key={0}>Select One</option>;
 
-    const providerEl = [selectOneEl].concat(providers.map((item, idx) => (
-        <option key={idx + 1} value={item.provider.toLowerCase()}>
-            { item.provider }
-        </option>
-    )));
+    let providerEl;
+    if (providers.some(el=> el.providerId !== null)) {
+        providerEl = [selectOneEl].concat(providers.map((item, idx) => (
+            <option key={idx + 1} value={item.provider.toLowerCase()}>
+                { item.provider }
+            </option>
+        )));
+    }
 
-    const categoriesEl = [selectOneEl].concat(categories.map((item, idx) => (
-        <option key={idx + 1} value={item.name.toLowerCase()}>
-            { item.name }
-        </option>
-    )));
+    let categoriesEl;
+    if (categories.some(el => el.name !== null)) {
+        categoriesEl = [selectOneEl].concat(categories.map((item, idx) => (
+            <option key={idx + 1} value={item.name.toLowerCase()}>
+                {item.name}
+            </option>
+        )));
+    }
 
     let selectEl = null;
 

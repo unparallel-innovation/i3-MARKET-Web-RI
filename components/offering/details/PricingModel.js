@@ -40,7 +40,7 @@ function PricingModel(props) {
         basicPrice,
         currency,
         hasFreePrice,
-        hasPaymentOnAPI,
+        hasPaymentOnApi,
         hasPaymentOnSize,
         hasPaymentOnSubscription,
         hasPaymentOnUnit,
@@ -58,8 +58,8 @@ function PricingModel(props) {
         );
     }) : '';
 
-    const apiEl = hasPaymentOnAPI.find(el=>el.hasAPIPrice) ? hasPaymentOnAPI.map((item, idx) => {
-        const { hasAPIPrice, description, numberOfObject } = item;
+    const apiEl = hasPaymentOnApi.find(el=>el.hasApiPrice) ? hasPaymentOnApi.map((item, idx) => {
+        const { hasApiPrice, description, numberOfObject } = item;
 
         const paymentTypeEl = (
             <Card.Text>
@@ -72,7 +72,7 @@ function PricingModel(props) {
             <PaymentType
                 key={'api' + idx}
                 paymentTypeTitle="API"
-                price={hasAPIPrice}
+                price={hasApiPrice}
                 repeatPrice="mo"
                 paymentTypeEl={paymentTypeEl}
             />

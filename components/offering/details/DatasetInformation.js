@@ -5,8 +5,8 @@ import KVCol from '../../common/KVCol.js';
 export default
 function DatasetInformation(props) {
     const {
-        measurementType, measurementChannelType, sensorID,
-        deviceID, cppType, sensorType, eventKey
+        measurementType, measurementChannelType, sensorId,
+        deviceId, cppType, sensorType, eventKey
     } = props;
 
     return (
@@ -26,13 +26,13 @@ function DatasetInformation(props) {
                                 { measurementChannelType }
                             </KVCol>
                             <KVCol title="Device ID">
-                                { deviceID }
+                                { deviceId }
                             </KVCol>
                         </Row>
 
                         <Row className="text-center bg-lightgray">
                             <KVCol title="Sensor ID">
-                                { sensorID }
+                                { sensorId }
                             </KVCol>
                             <KVCol title="Sensor Type">
                                 { sensorType }

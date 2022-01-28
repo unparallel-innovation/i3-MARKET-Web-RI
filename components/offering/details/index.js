@@ -18,7 +18,7 @@ function Offering(props) {
         dataOfferingTitle, dataOfferingDescription, activeContracts,
         pendingContracts, status, hasDataset,
         category, provider, license,
-        marketID, owner, dataOfferingExpirationTime,
+        marketId, owner, dataOfferingExpirationTime,
         hasPricingModel, contractParameters
     } = props;
 
@@ -96,7 +96,7 @@ function Offering(props) {
                     { provider }
                 </KVCol2>
                 <KVCol2 title="Market">
-                    { marketID }
+                    { marketId }
                 </KVCol2>
             </Row>
 

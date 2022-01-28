@@ -25,11 +25,11 @@ export default function DatasetInformation(props) {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group controlId={eventKey + 'deviceID'}>
+                                <Form.Group controlId={eventKey + 'deviceId'}>
                                     <Form.Label>Device ID</Form.Label>
                                     <Form.Control type="text"
                                         placeholder="Device ID"
-                                        name={eventKey + 'deviceID'}
+                                        name={eventKey + 'deviceId'}
                                     />
                                 </Form.Group>
                             </Col>
@@ -58,11 +58,11 @@ export default function DatasetInformation(props) {
 
                         <Row>
                             <Col>
-                                <Form.Group controlId={eventKey + 'sensorID'}>
+                                <Form.Group controlId={eventKey + 'sensorId'}>
                                     <Form.Label>Sensor ID</Form.Label>
                                     <Form.Control type="text"
                                         placeholder="Sensor ID"
-                                        name={eventKey + 'sensorID'}
+                                        name={eventKey + 'sensorId'}
                                     />
                                 </Form.Group>
                             </Col>

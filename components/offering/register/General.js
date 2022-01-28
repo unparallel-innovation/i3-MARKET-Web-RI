@@ -53,9 +53,9 @@ export default function General(props) {
 
         <Row>
             <Col>
-                <Form.Group controlId="marketID">
+                <Form.Group controlId="marketId">
                     <Form.Label>Marketplace</Form.Label>
-                    <Form.Control type="text" placeholder="Marketplace" name="marketID" />
+                    <Form.Control type="text" placeholder="Marketplace" name="marketId" />
                 </Form.Group>
             </Col>
             <Col>

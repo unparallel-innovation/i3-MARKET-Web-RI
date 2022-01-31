@@ -50,6 +50,10 @@ function Offering(props) {
         });
     }
 
+    function onUpdate(e){
+        router.push('/offerings/update/' + offeringId);
+    }
+
     // function onActivate(e) {
     //     fetch(`/api/offering/${offeringId}`, {
     //         method: 'PATCH',
@@ -66,7 +70,8 @@ function Offering(props) {
                 <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
                 <span className="p-2">{ visIconEl }  </span>
                 <span className="p-2">
-                    <Pencil color={colors.primary} size={20} />
+                    <Pencil color={colors.primary} size={20} onClick={onUpdate} className="cursor-pointer"
+                    />
                 </span>
                 <span className="p-2">
                     <Trash color={colors.primary} size={20}

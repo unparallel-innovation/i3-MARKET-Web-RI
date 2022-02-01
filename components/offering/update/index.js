@@ -4,7 +4,7 @@ import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { useState } from 'react';
 import General from '../update/General';
 import Dataset from '../update/Dataset';
-import { AddNew } from '../../common/buttons';
+import PricingModel from '../update/PricingModel';
 
 export default function Offering(props) {
     const router = useRouter();
@@ -15,6 +15,10 @@ export default function Offering(props) {
 
     const datasetEl = offering.hasDataset.map((item, idx) => (
         <Dataset key={item.title} eventKey={`dataset${idx}`} { ...item } />
+    ));
+
+    const pricingModelEl = offering.hasPricingModel.map((item, idx) => (
+        <PricingModel key={item.title} eventKey={`pricingModel${idx}`} { ...item } />
     ));
 
     function onCancel() {
@@ -38,12 +42,11 @@ export default function Offering(props) {
                     <Tab eventKey="tab0" title="General">
                         <General offering={offering} categories={categories} />
                     </Tab>
-                    <Tab eventKey="tab1" title="Datasets">
-                        <div className="d-flex align-items-center mb-3">
-                            <div className="flex-grow-1"/>
-                        </div>
-
+                    <Tab eventKey="tab1" title="Dataset">
                         { datasetEl }
+                    </Tab>
+                    <Tab eventKey="tab2" title="Pricing Model">
+                        { pricingModelEl }
                     </Tab>
                 </Tabs>
 

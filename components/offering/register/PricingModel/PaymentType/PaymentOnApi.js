@@ -1,7 +1,7 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import PaymentTypeToggle from '../../PaymentTypeToggle';
 
-export default function PaymentOnAPI(props) {
+export default function PaymentOnApi(props) {
     const { eventKey, onDelete, onAdd } = props;
 
     return (
@@ -12,9 +12,9 @@ export default function PaymentOnAPI(props) {
                 </PaymentTypeToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
-                        <Form.Group controlId={eventKey + 'paymentOnAPIName'}>
+                        <Form.Group controlId={eventKey + 'paymentOnApiName'}>
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Name" name={eventKey + 'paymentOnAPIName'} />
+                            <Form.Control type="text" placeholder="Name" name={eventKey + 'paymentOnApiName'} />
                         </Form.Group>
 
                         <Form.Group controlId={eventKey + 'description'}>
@@ -29,9 +29,9 @@ export default function PaymentOnAPI(props) {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group controlId={eventKey + 'hasAPIPrice'}>
+                                <Form.Group controlId={eventKey + 'hasApiPrice'}>
                                     <Form.Label>API Price</Form.Label>
-                                    <Form.Control type="text" placeholder="API Price" name={eventKey + 'hasAPIPrice'} />
+                                    <Form.Control type="text" placeholder="API Price" name={eventKey + 'hasApiPrice'} />
                                 </Form.Group>
                             </Col>
                         </Row>

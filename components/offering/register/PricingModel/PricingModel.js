@@ -2,7 +2,7 @@ import { useMap } from '/lib/hooks.js';
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import DeleteToggle from '../../../common/DeleteToggle';
 import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
-import PaymentOnAPI from './PaymentType/PaymentOnAPI';
+import PaymentOnApi from './PaymentType/PaymentOnApi';
 import PaymentOnUnit from './PaymentType/PaymentOnUnit';
 import PaymentOnSize from './PaymentType/PaymentOnSize';
 import FreePrice from './PaymentType/FreePrice';
@@ -39,8 +39,8 @@ export default function PricingModel(props) {
     ] = useMap(eventKey, 'paymentApi');
 
     const paymentApiEl = (Object.keys(paymentApiMap)).map((item, idx) => (
-        <PaymentOnAPI key={item} eventKey={item}
-            onDelete={paymentApiOnDelete} onAdd={paymentApiOnAdd} />
+        <PaymentOnApi key={item} eventKey={item}
+                      onDelete={paymentApiOnDelete} onAdd={paymentApiOnAdd} />
     ));
 
     // payment on Unit

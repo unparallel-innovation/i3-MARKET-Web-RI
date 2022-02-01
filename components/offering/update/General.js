@@ -16,14 +16,14 @@ export default function General(props) {
     return (<>
         <Form.Group controlId="title">
             <Form.Label>Title</Form.Label>
-            <Form.Control type="text" placeholder="Offering Title" name="title" value={offering.dataOfferingTitle} />
+            <Form.Control type="text" placeholder="Offering Title" name="title" defaultValue={offering.dataOfferingTitle} />
         </Form.Group>
 
         <Form.Group controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control as="textarea" rows={3}
                 placeholder="Offering Description" name="description"
-                value={offering.dataOfferingDescription}/>
+                defaultValue={offering.dataOfferingDescription}/>
         </Form.Group>
 
         <Row>
@@ -41,14 +41,14 @@ export default function General(props) {
                 <Form.Group controlId="provider">
                     <Form.Label>Provider</Form.Label>
                     <Form.Control type="text" placeholder="Provider"
-                        name="provider" disabled value={user.providerId} />
+                        name="provider" disabled defaultValue={user.providerId} />
                     <input type="hidden" name="isProvidedBy" value={user.providerId} />
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId="owner">
                     <Form.Label>Owner</Form.Label>
-                    <Form.Control type="text" placeholder="Owner" name="owner" value={offering.owner}/>
+                    <Form.Control type="text" placeholder="Owner" name="owner" defaultValue={offering.owner}/>
                 </Form.Group>
             </Col>
         </Row>

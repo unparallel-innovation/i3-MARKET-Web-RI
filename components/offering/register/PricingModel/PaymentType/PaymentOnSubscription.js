@@ -43,7 +43,7 @@ export default function PaymentOnSubscription(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'repeat'}>
                                     <Form.Label>Repeat</Form.Label>
-                                    <Form.Control type="text" placeholder="repeat" name={eventKey + 'repeat'} />
+                                    <Form.Control type="text" placeholder="Repeat" name={eventKey + 'repeat'} />
                                 </Form.Group>
                             </Col>
                             <Col>

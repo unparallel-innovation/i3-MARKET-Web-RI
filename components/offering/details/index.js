@@ -50,7 +50,7 @@ function Offering(props) {
         });
     }
 
-    function onUpdate(e){
+    function onUpdate(e) {
         router.push('/offerings/update/' + offeringId);
     }
 

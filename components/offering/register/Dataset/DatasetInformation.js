@@ -13,7 +13,6 @@ export default function DatasetInformation(props) {
                 </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
-
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'cppType'}>
@@ -76,7 +75,6 @@ export default function DatasetInformation(props) {
                                 </Form.Group>
                             </Col>
                         </Row>
-
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>

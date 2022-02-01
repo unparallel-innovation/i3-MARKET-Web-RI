@@ -1,15 +1,23 @@
-import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import DeleteToggle from '../../common/DeleteToggle';
-import { ts2date } from '../../../lib/utils';
+import { Col, Form, Row } from 'react-bootstrap';
+import DatasetInformation from './DatasetInformation';
+import DatasetDistribution from './DatasetDistribution';
 
 export default function Dataset(props) {
     const {
-        title, description, creator,
-        issued, modified, dataset, theme,
-        language, temporal, temporalResolution,
-        accrualPeriodicity, spatial, distribution,
-        keywords, datasetInformation, eventKey
+        title, description, issued, modified,
+        dataset, theme, language, temporal,
+        temporalResolution, accrualPeriodicity,
+        spatial, distribution, keywords, datasetInformation,
+        eventKey
     } = props;
+
+    const datasetInformationEl = datasetInformation.map((item, idx) => (
+        <DatasetInformation key={item.datasetInformationId} eventKey={`datasetInformation${idx}`} { ...item } />
+    ));
+
+    const distributionEl = distribution.map((item, idx) => (
+        <DatasetDistribution key={item.distributionId} eventKey={`distribution${idx}`} { ...item } />
+    ));
 
     return (<>
         <Form.Group controlId={eventKey + 'title'}>
@@ -113,5 +121,17 @@ export default function Dataset(props) {
                 name={eventKey + 'theme'} defaultValue={theme}
             />
         </Form.Group>
+
+        <div className="d-flex align-items-center my-4">
+            <h5 className="flex-grow-1 mb-0">Dataset Information</h5>
+        </div>
+
+        { datasetInformationEl }
+
+        <div className="d-flex align-items-center my-4">
+            <h5 className="flex-grow-1 mb-0">Dataset Distribution</h5>
+        </div>
+
+        { distributionEl }
     </>);
 }

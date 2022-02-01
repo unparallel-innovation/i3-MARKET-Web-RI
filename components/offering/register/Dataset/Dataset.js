@@ -1,5 +1,5 @@
 import DatasetInformation from './DatasetInformation';
-import DatasetDistribution from './DatasetDistribution/DatasetDistribution';
+import DatasetDistribution from './DatasetDistribution';
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import DeleteToggle from '../../../common/DeleteToggle';
 import { AddNew } from '/components/common/buttons.js';

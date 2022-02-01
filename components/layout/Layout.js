@@ -23,7 +23,7 @@ function Layout(props) {
             </Head>
 
             <header>
-                <Navbar className="px-5 py-3" expand="md">
+                <Navbar className="px-5 py-3 shadow bg-light" expand="md">
                     <Link href="/" passHref>
                         <Navbar.Brand>
                             <Image height="32" width="122"

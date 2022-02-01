@@ -1,5 +1,5 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import DeleteToggle from '../../../../common/DeleteToggle';
+import DeleteToggle from '../../../common/DeleteToggle';
 import { AddNew } from '/components/common/buttons.js';
 import AccessService from './AccessService';
 import { useMap } from '/lib/hooks.js';

@@ -3,7 +3,7 @@ import Layout from '../../layout/Layout';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { useState } from 'react';
 import General from '../update/General';
-import Dataset from '../update/Dataset';
+import Dataset from './Dataset/Dataset';
 import PricingModel from '../update/PricingModel';
 
 export default function Offering(props) {

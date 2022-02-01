@@ -1,5 +1,5 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import DeleteToggle from '../../../../common/DeleteToggle';
+import DeleteToggle from '../../../common/DeleteToggle';
 
 export default function AccessService(props) {
     const { eventKey, onDelete } = props;
@@ -12,7 +12,6 @@ export default function AccessService(props) {
                 </DeleteToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
-
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'endpointDescription'}>
@@ -33,7 +32,6 @@ export default function AccessService(props) {
                                 </Form.Group>
                             </Col>
                         </Row>
-
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'conformsTo'}>

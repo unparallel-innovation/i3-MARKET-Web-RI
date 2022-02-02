@@ -2,7 +2,7 @@ import { Col, Form, Row } from 'react-bootstrap';
 
 export default function PaymentOnSize(props) {
     const {
-        paymentOnSizeName, description,
+        paymentId, paymentOnSizeName, description,
         dataSize, hasSizePrice, eventKey
     } = props;
 
@@ -38,6 +38,7 @@ export default function PaymentOnSize(props) {
                     </Form.Group>
                 </Col>
             </Row>
+            <input type="hidden" name={eventKey + 'paymentId'} defaultValue={paymentId} />
         </>
     );
 }

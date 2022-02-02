@@ -2,7 +2,7 @@ import { Form } from 'react-bootstrap';
 
 export default function FreePrice(props) {
     const {
-        hasPriceFree, eventKey
+        paymentId, hasPriceFree, eventKey
     } = props;
 
     return (
@@ -14,6 +14,7 @@ export default function FreePrice(props) {
                 <Form.Control type="text" placeholder="Free Price"
                     name={'hasPriceFree'} defaultValue={hasPriceFree}/>
             </Form.Group>
+            <input type="hidden" name={eventKey + 'paymentId'} defaultValue={paymentId} />
         </>
     );
 }

@@ -42,7 +42,7 @@ export default function General(props) {
                     <Form.Label>Provider</Form.Label>
                     <Form.Control type="text" placeholder="Provider"
                         name="provider" disabled defaultValue={user.providerId} />
-                    <input type="hidden" name="isProvidedBy" value={user.providerId} />
+                    <input type="hidden" name="provider" value={user.providerId} />
                 </Form.Group>
             </Col>
             <Col>
@@ -52,6 +52,23 @@ export default function General(props) {
                 </Form.Group>
             </Col>
         </Row>
-
+        <Row>
+            <Col>
+                <Form.Group controlId="marketId">
+                    <Form.Label>Marketplace</Form.Label>
+                    <Form.Control type="text" placeholder="Marketplace"
+                        name="marketId" defaultValue={offering.marketId} />
+                </Form.Group>
+            </Col>
+            <Col>
+                <Form.Group controlId="expirationTime">
+                    <Form.Label>Expiration Time</Form.Label>
+                    <Form.Control type="date" placeholder="Expiration Time"
+                        name="expirationTime" default={offering.dataOfferingExpirationTime}/>
+                </Form.Group>
+            </Col>
+        </Row>
+        <input type="hidden" name="dataOfferingId" defaultValue={offering.dataOfferingId} />
+        <input type="hidden" name="status" defaultValue={offering.status} />
     </>);
 }

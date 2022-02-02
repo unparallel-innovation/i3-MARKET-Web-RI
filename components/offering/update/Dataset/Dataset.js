@@ -12,11 +12,11 @@ export default function Dataset(props) {
     } = props;
 
     const datasetInformationEl = datasetInformation.map((item, idx) => (
-        <DatasetInformation key={item.datasetInformationId} eventKey={`datasetInformation${idx}`} { ...item } />
+        <DatasetInformation key={item.datasetInformationId} eventKey={`${eventKey}datasetInformation${idx}`} { ...item } />
     ));
 
     const distributionEl = distribution.map((item, idx) => (
-        <DatasetDistribution key={item.distributionId} eventKey={`distribution${idx}`} { ...item } />
+        <DatasetDistribution key={item.distributionId} eventKey={`${eventKey}distribution${idx}`} { ...item } />
     ));
 
     return (<>
@@ -45,8 +45,7 @@ export default function Dataset(props) {
             <Col>
                 <Form.Group controlId={eventKey + 'dataset'}>
                     <Form.Label>Dataset</Form.Label>
-                    <Form.Control
-                        type="text" placeholder="Dataset"
+                    <Form.Control type="text" placeholder="Dataset"
                         name={eventKey + 'dataset'} defaultValue={dataset}
                     />
                 </Form.Group>

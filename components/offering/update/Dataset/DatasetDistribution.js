@@ -9,7 +9,7 @@ export default function DatasetDistribution(props) {
     } = props;
 
     const accessServiceEl = accessService.map((item, idx) => (
-        <AccessService key={item.dataserviceId} eventKey={`accessService${idx}`} { ...item } />
+        <AccessService key={item.dataserviceId} eventKey={`${eventKey}accessService${idx}`} { ...item } />
     ));
 
     return (

@@ -10,11 +10,11 @@ export default function ContractParameter(props) {
     } = props;
 
     const hasIntendedUseEl = hasIntendedUse.map((item, idx) => (
-        <HasIntendedUse key={item.intendedUseId} eventKey={`hasIntendedUse${idx}`} { ...item } />
+        <HasIntendedUse key={item.intendedUseId} eventKey={`${eventKey}hasIntendedUse${idx}`} { ...item } />
     ));
 
     const hasLicenseGrantEl = hasLicenseGrant.map((item, idx) => (
-        <HasLicenseGrant key={item.licenseGrantId} eventKey={`hasLicenseGrant${idx}`} { ...item } />
+        <HasLicenseGrant key={item.licenseGrantId} eventKey={`${eventKey}hasLicenseGrant${idx}`} { ...item } />
     ));
 
     return (

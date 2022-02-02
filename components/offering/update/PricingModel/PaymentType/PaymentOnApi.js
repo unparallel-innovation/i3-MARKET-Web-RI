@@ -2,7 +2,7 @@ import { Col, Form, Row } from 'react-bootstrap';
 
 export default function PaymentOnApi(props) {
     const {
-        paymentOnApiName, description,
+        paymentId, paymentOnApiName, description,
         numberOfObject, hasApiPrice, eventKey
     } = props;
 
@@ -13,20 +13,20 @@ export default function PaymentOnApi(props) {
             <Form.Group controlId={eventKey + 'paymentOnApiName'}>
                 <Form.Label>Name</Form.Label>
                 <Form.Control type="text" placeholder="Name"
-                    name={'paymentOnApiName'} defaultValue={paymentOnApiName}/>
+                    name={eventKey + 'paymentOnApiName'} defaultValue={paymentOnApiName}/>
             </Form.Group>
 
             <Form.Group controlId={eventKey + 'description'}>
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" rows={3} placeholder="Description"
-                    name="description" defaultValue={description}/>
+                    name={eventKey + 'description'} defaultValue={description}/>
             </Form.Group>
             <Row>
                 <Col>
                     <Form.Group controlId={eventKey + 'numberOfObject'}>
                         <Form.Label>Number of Object</Form.Label>
                         <Form.Control type="text" placeholder="Number of Object"
-                            name={'numberOfObject'} defaultValue={numberOfObject}
+                            name={eventKey + 'numberOfObject'} defaultValue={numberOfObject}
                         />
                     </Form.Group>
                 </Col>
@@ -34,10 +34,11 @@ export default function PaymentOnApi(props) {
                     <Form.Group controlId={eventKey + 'hasApiPrice'}>
                         <Form.Label>API Price</Form.Label>
                         <Form.Control type="text" placeholder="API Price"
-                            name={'hasApiPrice'} defaultValue={hasApiPrice}/>
+                            name={eventKey + 'hasApiPrice'} defaultValue={hasApiPrice}/>
                     </Form.Group>
                 </Col>
             </Row>
+            <input type="hidden" name={eventKey + 'paymentId'} defaultValue={paymentId} />
         </>
     );
 }

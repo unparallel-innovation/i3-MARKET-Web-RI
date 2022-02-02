@@ -40,7 +40,7 @@ export default function General(props) {
                     <Form.Label>Provider</Form.Label>
                     <Form.Control type="text" placeholder="Provider"
                         name="provider" disabled value={user.providerId} />
-                    <input type="hidden" name="isProvidedBy" value={user.providerId} />
+                    <input type="hidden" name="provider" value={user.providerId} />
                 </Form.Group>
             </Col>
             <Col>

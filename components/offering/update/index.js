@@ -4,8 +4,9 @@ import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { useState } from 'react';
 import General from '../update/General';
 import Dataset from './Dataset/Dataset';
-import PricingModel from '../update/PricingModel';
+import PricingModel from './PricingModel/PricingModel';
 import ContractParameter from './ContractParameter/ContractParameter';
+import { formUpdate } from '../../../lib/forms/updateOffering';
 
 export default function Offering(props) {
     const router = useRouter();
@@ -26,13 +27,21 @@ export default function Offering(props) {
         <ContractParameter key={item.contractParametersId} eventKey={`contractParameter${idx}`} { ...item } />
     ));
 
+    function onSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const fd = new FormData(form);
+        const res = formUpdate(fd);
+
+    }
+
     function onCancel() {
         router.push('/offerings/' + offeringId);
     }
 
     return (
         <Layout>
-            <Form className="px-5 pb-3 d-flex flex-column flex-grow-1">
+            <Form className="px-5 pb-3 d-flex flex-column flex-grow-1" onSubmit={onSubmit} action="/api/offerings/update">
                 <div className="d-flex">
                     <h3 className="flex-grow-1 mb-0">Update Offering</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>

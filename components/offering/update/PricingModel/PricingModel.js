@@ -1,35 +1,35 @@
 import { Col, Form, Row } from 'react-bootstrap';
-import PaymentOnSubscription from './PricingModel/PaymentOnSubscription';
-import PaymentOnApi from './PricingModel/PaymentOnApi';
-import PaymentOnSize from './PricingModel/PaymentOnSize';
-import PaymentOnUnit from './PricingModel/PaymentOnUnit';
-import FreePrice from './PricingModel/FreePrice';
+import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
+import PaymentOnApi from './PaymentType/PaymentOnApi';
+import PaymentOnSize from './PaymentType/PaymentOnSize';
+import PaymentOnUnit from './PaymentType/PaymentOnUnit';
+import FreePrice from './PaymentType/FreePrice';
 
 export default function PricingModel(props) {
     const {
-        basicPrice, currency, pricingModelName,
+        pricingModelId, basicPrice, currency, pricingModelName,
         hasFreePrice, hasPaymentOnApi, hasPaymentOnSize,
         hasPaymentOnSubscription, hasPaymentOnUnit, eventKey
     } = props;
 
     const paymentSubscriptionEl = hasPaymentOnSubscription.map((item, idx) => (
-        <PaymentOnSubscription key={item.paymentId} eventKey={`hasPaymentOnSubscription${idx}`} { ...item } />
+        <PaymentOnSubscription key={item.paymentId} eventKey={`${eventKey}paymentSubscription${idx}`} { ...item } />
     ));
 
     const paymentApiEl = hasPaymentOnApi.map((item, idx) => (
-        <PaymentOnApi key={item.paymentId} eventKey={`hasPaymentOnApi${idx}`} { ...item } />
+        <PaymentOnApi key={item.paymentId} eventKey={`${eventKey}paymentApi${idx}`} { ...item } />
     ));
 
     const paymentSizeEl = hasPaymentOnSize.map((item, idx) => (
-        <PaymentOnSize key={item.paymentId} eventKey={`hasPaymentOnSize${idx}`} { ...item } />
+        <PaymentOnSize key={item.paymentId} eventKey={`${eventKey}paymentSize${idx}`} { ...item } />
     ));
 
     const paymentUnitEl = hasPaymentOnUnit.map((item, idx) => (
-        <PaymentOnUnit key={item.paymentId} eventKey={`hasPaymentOnUnit${idx}`} { ...item } />
+        <PaymentOnUnit key={item.paymentId} eventKey={`${eventKey}paymentUnit${idx}`} { ...item } />
     ));
 
     const hasFreePriceEl = hasFreePrice.map((item, idx) => (
-        <FreePrice key={item.paymentId} eventKey={`hasFreePrice${idx}`} { ...item } />
+        <FreePrice key={item.paymentId} eventKey={`${eventKey}freePrice${idx}`} { ...item } />
     ));
 
     return (
@@ -68,6 +68,7 @@ export default function PricingModel(props) {
             { paymentUnitEl }
             { hasFreePriceEl }
 
+            <input type="hidden" name="pricingModelId" defaultValue={pricingModelId} />
         </>
     );
 

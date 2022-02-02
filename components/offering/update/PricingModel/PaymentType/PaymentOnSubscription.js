@@ -2,7 +2,7 @@ import { Col, Form, Row } from 'react-bootstrap';
 
 export default function PaymentOnSubscription(props) {
     const {
-        paymentOnSubscriptionName, description, paymentType,
+        paymentId, paymentOnSubscriptionName, description, paymentType,
         hasSubscriptionPrice, repeat, timeDuration, eventKey
     } = props;
 
@@ -55,6 +55,7 @@ export default function PaymentOnSubscription(props) {
                     </Form.Group>
                 </Col>
             </Row>
+            <input type="hidden" name={eventKey + 'paymentId'} defaultValue={paymentId} />
         </>
     );
 }

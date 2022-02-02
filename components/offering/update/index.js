@@ -5,6 +5,7 @@ import { useState } from 'react';
 import General from '../update/General';
 import Dataset from './Dataset/Dataset';
 import PricingModel from '../update/PricingModel';
+import ContractParameter from './ContractParameter/ContractParameter';
 
 export default function Offering(props) {
     const router = useRouter();
@@ -14,11 +15,15 @@ export default function Offering(props) {
     const [ atIdx, setAtIdx ] = useState(0);
 
     const datasetEl = offering.hasDataset.map((item, idx) => (
-        <Dataset key={item.title} eventKey={`dataset${idx}`} { ...item } />
+        <Dataset key={item.datasetId} eventKey={`dataset${idx}`} { ...item } />
     ));
 
     const pricingModelEl = offering.hasPricingModel.map((item, idx) => (
-        <PricingModel key={item.title} eventKey={`pricingModel${idx}`} { ...item } />
+        <PricingModel key={item.pricingModelId} eventKey={`pricingModel${idx}`} { ...item } />
+    ));
+
+    const contractParameterEl = offering.contractParameters.map((item, idx) => (
+        <ContractParameter key={item.contractParametersId} eventKey={`contractParameter${idx}`} { ...item } />
     ));
 
     function onCancel() {
@@ -48,6 +53,9 @@ export default function Offering(props) {
                     <Tab eventKey="tab2" title="Pricing Model">
                         { pricingModelEl }
                     </Tab>
+                    <Tab eventKey="tab3" title="Contract Parameters">
+                        { contractParameterEl }
+                    </Tab>
                 </Tabs>
 
                 <div className="flex-grow-1" />
@@ -64,7 +72,6 @@ export default function Offering(props) {
                     }}>Next</Button>
                 </div>
             </Form>
-
         </Layout>
     );
 }

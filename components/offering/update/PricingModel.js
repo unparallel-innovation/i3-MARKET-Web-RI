@@ -1,5 +1,4 @@
 import { Col, Form, Row } from 'react-bootstrap';
-import { useMap } from '../../../lib/hooks';
 import PaymentOnSubscription from './PricingModel/PaymentOnSubscription';
 import PaymentOnApi from './PricingModel/PaymentOnApi';
 import PaymentOnSize from './PricingModel/PaymentOnSize';

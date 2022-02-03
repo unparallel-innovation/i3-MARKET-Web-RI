@@ -33,10 +33,17 @@ export default function Offering(props) {
         const fd = new FormData(form);
         const res = formUpdate(fd);
 
+        fetch(form.action, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: res,
+        }).then(res => {
+            router.push(`/offerings/${offeringId}`);
+        });
     }
 
     function onCancel() {
-        router.push('/offerings/' + offeringId);
+        router.push(`/offerings/${offeringId}`);
     }
 
     return (

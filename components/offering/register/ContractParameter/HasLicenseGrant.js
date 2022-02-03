@@ -25,8 +25,8 @@ export default function HasLicenseGrant(props) {
                                         onChange={e => { setCopyData(e.target.value); }}
                                     >
                                         <option value="">---</option>
-                                        <option value="YES">Yes</option>
-                                        <option value="NO">No</option>
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
@@ -37,8 +37,8 @@ export default function HasLicenseGrant(props) {
                                         onChange={e => { setTransferable(e.target.value); }}
                                     >
                                         <option value="">---</option>
-                                        <option value="YES">Yes</option>
-                                        <option value="NO">No</option>
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
@@ -51,8 +51,8 @@ export default function HasLicenseGrant(props) {
                                         onChange={e => { setExclusiveness(e.target.value); }}
                                     >
                                         <option value="">---</option>
-                                        <option value="YES">Yes</option>
-                                        <option value="NO">No</option>
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
@@ -63,8 +63,8 @@ export default function HasLicenseGrant(props) {
                                         onChange={e => { setRevocable(e.target.value); }}
                                     >
                                         <option value="">---</option>
-                                        <option value="YES">Yes</option>
-                                        <option value="NO">No</option>
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Col>

@@ -71,5 +71,4 @@ export default function PricingModel(props) {
             <input type="hidden" name="pricingModelId" defaultValue={pricingModelId} />
         </>
     );
-
 }

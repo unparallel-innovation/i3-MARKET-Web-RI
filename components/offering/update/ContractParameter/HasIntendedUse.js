@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 export default function HasIntendedUse(props) {
     const {
-        processData, shareDataWithThirdParty, editData, eventKey
+        intendedUseId, processData, shareDataWithThirdParty,
+        editData, eventKey
     } = props;
 
     const [processDataTemp, setProcessData] = useState(processData);
@@ -20,8 +21,8 @@ export default function HasIntendedUse(props) {
                             onChange={e => { setProcessData(e.target.value); }}
                         >
                             <option value="">---</option>
-                            <option value="YES">Yes</option>
-                            <option value="NO">No</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
                         </Form.Control>
                     </Form.Group>
                 </Col>
@@ -32,8 +33,8 @@ export default function HasIntendedUse(props) {
                             onChange={e => { setShareData(e.target.value); }}
                         >
                             <option value="">---</option>
-                            <option value="YES">Yes</option>
-                            <option value="NO">No</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
                         </Form.Control>
                     </Form.Group>
                 </Col>
@@ -44,12 +45,13 @@ export default function HasIntendedUse(props) {
                             onChange={e => { setEditData(e.target.value); }}
                         >
                             <option value="">---</option>
-                            <option value="YES">Yes</option>
-                            <option value="NO">No</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
                         </Form.Control>
                     </Form.Group>
                 </Col>
             </Row>
+            <input type="hidden" name={eventKey + 'intendedUseId'} defaultValue={intendedUseId} />
         </>
     );
 }

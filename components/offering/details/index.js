@@ -15,9 +15,8 @@ function Offering(props) {
     const router = useRouter();
     const { offeringId } = router.query;
     const {
-        dataOfferingTitle, dataOfferingDescription, activeContracts,
-        pendingContracts, status, hasDataset,
-        category, provider, license,
+        dataOfferingTitle, dataOfferingDescription,
+        status, hasDataset, category, provider, license,
         marketId, owner, dataOfferingExpirationTime,
         hasPricingModel, contractParameters
     } = props;
@@ -54,15 +53,15 @@ function Offering(props) {
         router.push('/offerings/update/' + offeringId);
     }
 
-    // function onActivate(e) {
-    //     fetch(`/api/offering/${offeringId}`, {
-    //         method: 'PATCH',
-    //     }).then(res => {
-    //         router.push('/offering/${offeringId}');
-    //     }).catch(error => {
-    //         console.log('ERROR', error);
-    //     });
-    // }
+    function onActivate(e) {
+        fetch(`/api/offering/${offeringId}`, {
+            method: 'PATCH',
+        }).then(res => {
+            router.push(`/offering/${offeringId}`);
+        }).catch(error => {
+            console.log('ERROR', error);
+        });
+    }
 
     return (<Layout>
         <div className="px-5 pb-3">

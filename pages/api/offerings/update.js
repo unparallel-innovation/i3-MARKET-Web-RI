@@ -5,8 +5,9 @@ export default catchErrors(async (req, res) => {
 
     switch (req.method) {
 
-        case 'POST':
+        case 'PATCH':
             // call connector
+            console.log('update', data)
             return null;
     }
 });

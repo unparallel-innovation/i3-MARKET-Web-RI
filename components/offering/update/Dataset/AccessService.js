@@ -2,8 +2,8 @@ import { Col, Form, Row } from 'react-bootstrap';
 
 export default function AccessService(props) {
     const {
-        conformsTo, endpointDescription, endpointURL,
-        servesDataset, serviceSpecs, eventKey
+        dataserviceId, conformsTo, endpointDescription,
+        endpointURL, servesDataset, serviceSpecs, eventKey
     } = props;
 
     return (
@@ -52,6 +52,7 @@ export default function AccessService(props) {
                     </Form.Group>
                 </Col>
             </Row>
+            <input type="hidden" name={eventKey + 'dataserviceId'} defaultValue={dataserviceId} />
         </>
     );
 }

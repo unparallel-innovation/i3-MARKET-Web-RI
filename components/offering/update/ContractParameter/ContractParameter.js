@@ -4,8 +4,8 @@ import HasLicenseGrant from './HasLicenseGrant';
 
 export default function ContractParameter(props) {
     const {
-        interestOfProvider, interestDescription, purpose,
-        purposeDescription, hasGoverningJurisdiction,
+        contractParametersId, interestOfProvider, interestDescription,
+        purpose, purposeDescription, hasGoverningJurisdiction,
         hasIntendedUse, hasLicenseGrant, eventKey
     } = props;
 
@@ -75,6 +75,8 @@ export default function ContractParameter(props) {
             </div>
 
             { hasLicenseGrantEl }
+
+            <input type="hidden" name={eventKey + 'contractParametersId'} defaultValue={contractParametersId} />
         </>
     );
 }

@@ -54,7 +54,7 @@ function Register(props) {
         fetch(form.action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(res),
+            body: res,
         }).then(res => {
             router.push('/offerings');
         });

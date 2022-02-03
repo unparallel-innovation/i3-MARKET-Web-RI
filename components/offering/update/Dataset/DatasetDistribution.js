@@ -3,7 +3,7 @@ import AccessService from './AccessService';
 
 export default function DatasetDistribution(props) {
     const {
-        title, description, accessRights,
+        distributionId, title, description, accessRights,
         downloadType, license, conformsTo,
         mediaType, packageFormat, accessService, eventKey
     } = props;
@@ -90,6 +90,8 @@ export default function DatasetDistribution(props) {
             </div>
 
             { accessServiceEl }
+
+            <input type="hidden" name={eventKey + 'distributionId'} defaultValue={distributionId} />
         </>
     );
 }

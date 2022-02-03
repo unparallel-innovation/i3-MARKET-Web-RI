@@ -2,7 +2,7 @@ import { Col, Form, Row } from 'react-bootstrap';
 
 export default function DatasetInformation(props) {
     const {
-        cppType, deviceId, measurementChannelType,
+        datasetInformationId, cppType, deviceId, measurementChannelType,
         measurementType, sensorId, sensorType, eventKey
     } = props;
 
@@ -64,6 +64,7 @@ export default function DatasetInformation(props) {
                     </Form.Group>
                 </Col>
             </Row>
+            <input type="hidden" name={eventKey + 'datasetInformationId'} defaultValue={datasetInformationId} />
         </>
     );
 }

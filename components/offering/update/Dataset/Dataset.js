@@ -4,7 +4,7 @@ import DatasetDistribution from './DatasetDistribution';
 
 export default function Dataset(props) {
     const {
-        title, description, issued, modified,
+        datasetId, title, description, issued, modified,
         dataset, theme, language, temporal,
         temporalResolution, accrualPeriodicity,
         spatial, distribution, keywords, datasetInformation,
@@ -132,5 +132,7 @@ export default function Dataset(props) {
         </div>
 
         { distributionEl }
+
+        <input type="hidden" name={eventKey + 'datasetId'} defaultValue={datasetId} />
     </>);
 }

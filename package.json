@@ -1,6 +1,6 @@
 {
   "name": "i3market-web-ri",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@i3m/connector-ri": "^1.0.3",
+    "@unparallel/connector-ri": "^1.0.0",
     "bootstrap": "^4.6.0",
     "js-logger": "^1.6.1",
     "next": "^11.1.2",

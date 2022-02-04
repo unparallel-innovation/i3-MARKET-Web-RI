@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import Layout from '/components/layout/Layout.js';
-import useUser, {ROLE_CONSUMER, ROLE_PROVIDER} from '/lib/user.js';
+import useUser, { ROLE_CONSUMER, ROLE_PROVIDER } from '/lib/user.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Card, Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
@@ -113,9 +113,6 @@ function HomePure(props) {
         return getInitialLayouts(categories);
     }, [categories]);;
 
-    // console.log("RENDER", layouts, _layouts);
-    // console.log("RENDER", layouts);
-
     // const [ _layouts, setLayouts ] = useState(getFromLS(layouts));
 
     // useEffect(() => {
@@ -149,8 +146,8 @@ function HomePure(props) {
                 onLayoutChange={onLayoutChange}
             >
                 <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
-                    <Image src="/img/Web-ri_sep.png" alt="Web-ri logo"
-                        layout="fill" objectFit="contain" className="p-3" />
+                    <Image src="/img/homepage_banner_logo.png" alt="WEB-RI logo"
+                        width={385} height={200} className="p-3" />
                 </Card>
 
                 <Card key="b">

@@ -86,3 +86,7 @@ Pedro Ferreira [pedro.ferreira@unparallel.pt](mailto:marcio.mateus@unparallel.pt
 
 ## License
 The code in ths repository is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+___
+###### This work was done in the context of i3-MARKET Research Project, which has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 871754
+

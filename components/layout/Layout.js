@@ -23,11 +23,10 @@ function Layout(props) {
             </Head>
 
             <header>
-                <Navbar className="px-5 py-3 shadow bg-light" expand="md">
+                <Navbar className="px-5 shadow bg-light" expand="md">
                     <Link href="/" passHref>
                         <Navbar.Brand>
-                            <Image height="32" width="122"
-                                src="/img/Web-ri_sep.png" alt="Web-ri logo" />
+                            <Image height={55} width={115} src="/img/WEB-RI_logo.png" alt="Web-ri logo" />
                         </Navbar.Brand>
                     </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -118,11 +117,8 @@ function Layout(props) {
                         </div>
 
                         {/*<small className="ml-3 mr-4">Privacy Policy</small>*/}
-                        <Image height="48" width="61"
-                            src="/img/i3-MARKET-LOGO_2nd_Release.png"
-                            alt="i3Market logo" />
+                        <Image height="48" width="61" src="/img/i3_market_logo.png" alt="i3Market logo" />
                     </div>
-
                 </footer>
             </div>
         </div>);

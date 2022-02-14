@@ -51,6 +51,8 @@ function Register(props) {
         const fd = new FormData(form);
         const res = formRegister(fd);
 
+        console.log(JSON.stringify(res))
+
         fetch(form.action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

@@ -1,45 +1,24 @@
-import { useRouter } from 'next/router';
 import { Button, Form } from 'react-bootstrap';
-import { ROLE_CONSUMER, ROLE_PROVIDER } from '/lib/user';
+import { useUser } from '../lib/hooks';
+import { useState } from 'react';
 
 export default function Login() {
-    const router = useRouter();
+    useUser({redirectTo: '/', redirectIfFound: true})
 
-    function onSubmit(e) {
-        e.preventDefault();
+    const [role, setRole] = useState('consumer');
 
-        /* this info should come from api call */
-
-        // localStorage.setItem('user', JSON.stringify({
-        //     name: 'John James Doe',
-        //     company: 'Siemens',
-        //     roles: ROLE_PROVIDER | ROLE_CONSUMER,
-        //     providerId: 'provider-webri',
-        // }));
-        localStorage.setItem('user', JSON.stringify({
-            name: 'Provider WEB-RI',
-            company: 'WEB-RI',
-            roles: ROLE_PROVIDER | ROLE_CONSUMER,
-            providerId: 'provider_webri',
-        }));
-
-        router.push('/');
-    }
-
-    return <div className="d-flex flex-column vw-100 vh-100 justify-content-center">
-        <Form className="p-5" onSubmit={onSubmit}>
-            <h1>Login</h1>
-
-            <Form.Group controlId="username">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Username" name="username" />
-            </Form.Group>
-
-            <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="text" placeholder="Password" name="password" />
-            </Form.Group>
-            <Button type="submit">Submit</Button>
-        </Form>
-    </div>;
+    return (
+        <div className="d-flex flex-column vw-100 vh-100 justify-content-center align-content-center align-items-center">
+            <Form className="p-5">
+                <h1>Login</h1>
+                <Form.Group controlId="role">
+                    <Form.Control as="select" value={role} onChange={e => { setRole(e.target.value); }} >
+                        <option value="consumer">Consumer</option>
+                        <option value="provider">Provider</option>
+                    </Form.Control>
+                </Form.Group>
+                <Button type="submit" href={`api/login/${role}`}>Submit</Button>
+            </Form>
+        </div>
+    );
 }

@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import Layout from '/components/layout/Layout.js';
-import useUser, { ROLE_CONSUMER, ROLE_PROVIDER } from '/lib/user.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Card, Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
 import OfferingsNumberCard from './OfferingsNumberCard';
 import ProvidersNumberCard from './ProvidersNumberCard';
 import CategoryCard from './CategoryCard';
+import { useUser } from '../../lib/hooks';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -107,7 +107,8 @@ function HomePure(props) {
         categories = []
     } = props;
 
-    const user = useUser();
+    // const user = useUser();
+    const user = useUser({ redirectTo: '/login', redirectIfFound: false });
 
     const layouts = useMemo(() => {
         return getInitialLayouts(categories);

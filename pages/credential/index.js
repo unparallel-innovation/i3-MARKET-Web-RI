@@ -1,24 +1,15 @@
-import { useData } from '../../lib/hooks';
+import { Button, Form } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 
 export default function Credential() {
-
-    const { data, error } = useData('/api/credential')
-
-
-
-    // fetch(`/api/credential/`, {
-    //     method: 'GET',
-    //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    // }).then(res => {
-    //     const result = res.json().then(result => {
-    //         console.log(result)
-    //     })
-    //
-    // }).catch(error => {
-    //     console.log('ERROR', error);
-    // });
+    const router = useRouter()
 
     return (
-        <div>credential page</div>
-    )
+        <div className="d-flex flex-column vw-100 vh-100 justify-content-center align-content-center align-items-center">
+            <Form className="p-5">
+                <h1>Credential</h1>
+                <Button type="submit" href={`api/credential?code=${router.query.code}`}>Submit</Button>
+            </Form>
+        </div>
+    );
 }

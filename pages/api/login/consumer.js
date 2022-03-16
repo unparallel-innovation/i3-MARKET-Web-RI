@@ -1,7 +1,12 @@
-import { catchErrors, connector } from '/lib/server.js';
-import passportPromise from '../../../lib/passport';
+import nextConnect from 'next-connect';
+import passport from '/lib/passport';
+import auth from '../../../middleware/auth';
 
-export default catchErrors(async (req, res) => {
-    const passport = await passportPromise()
-    return passport.authenticate('oidc', { scope: 'openid vc vce:consumer' })
-});
+const handler = nextConnect()
+
+handler
+    .use(auth)
+    .get(passport.authenticate("openidconnect", {
+        scope: 'open vc vc:consumer'}))
+
+export default handler

@@ -4,9 +4,13 @@ import auth from '../../../middleware/auth';
 
 const handler = nextConnect()
 
-handler
-    .use(auth)
-    .get(passport.authenticate("openidconnect", {
-        scope: 'open vc vc:consumer'}))
+handler.use(auth).get(
+    (req, res) => {
+        passport.authenticate(
+        'openidconnect',
+        { scope: 'open vc vc:consumer'}
+        )(req, res);
+    }
+)
 
 export default handler

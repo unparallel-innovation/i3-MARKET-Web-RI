@@ -1,17 +1,11 @@
-import nextConnect from 'next-connect';
-import passport from '../../../lib/passport';
-import auth from '../../../middleware/auth';
+import passport from '/lib/passport';
+import nc from '../../../middleware/auth';
 
-const handler = nextConnect()
-
-handler.use(auth).get(
-    (req, res) => {
+nc.get(
         passport.authenticate(
-            'openidconnect',
-            { failureRedirect: '/login', failureMessage: true }
-
-        )(req, res);
-    }
+            'oidc',
+            { session: false}
+        )
 )
 
-export default handler
+export default nc

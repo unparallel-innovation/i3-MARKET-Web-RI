@@ -1,8 +1,11 @@
-import nextConnect from 'next-connect';
 import passport from '/lib/passport';
-import auth from '../../../middleware/auth';
+import nc from '../../../middleware/auth';
 
-export default nextConnect()
-    .use(auth)
-    .get(passport.authenticate("openidconnect", {
-        scope: 'open vc vc:provider'}))
+nc.get(
+    passport.authenticate(
+        'oidc',
+        { scope: 'openid vc vc:provider' }
+    )
+)
+
+export default nc

@@ -1,11 +1,21 @@
-import passport from '/lib/passport';
-import nc from '../../../middleware/auth';
+import nextConnect from 'next-connect';
+import auth from '../../../middleware/auth';
+import passport from '../../../lib/passport';
 
-nc.get(
+const handler = nextConnect()
+
+handler.use(auth)
+    .get(
         passport.authenticate(
             'oidc',
-            { session: false}
-        )
-)
+            { session: false, failureRedirect: '/login', failureMessage: true}
+        ), async (req, res) => {
+            if (req.user) {
+                req.session.user = req.user
+                await req.session.commit()
+                res.redirect("/")
+            }
+        }
+    )
 
-export default nc
+export default handler

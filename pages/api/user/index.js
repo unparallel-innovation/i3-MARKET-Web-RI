@@ -1,3 +1,7 @@
-export default async function user(req, res) {
-    res.status(200).json({ name: 'John Doe' });
-}
+import { getSession } from '../../../lib/session';
+import { catchErrors } from '../../../lib/server';
+
+export default catchErrors(async (req, res) => {
+    const session = await getSession(req, res)
+    return {user: session.user}
+})

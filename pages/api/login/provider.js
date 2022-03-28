@@ -1,11 +1,15 @@
-import passport from '/lib/passport';
-import nc from '../../../middleware/auth';
+import nextConnect from 'next-connect';
+import auth from '../../../middleware/auth';
+import passport from '../../../lib/passport';
 
-nc.get(
-    passport.authenticate(
-        'oidc',
-        { scope: 'openid vc vc:provider' }
+const handler = nextConnect()
+
+handler.use(auth)
+    .get(
+        passport.authenticate(
+            'oidc',
+            { scope: 'openid vc vc:provider' }
+        )
     )
-)
 
-export default nc
+export default handler

@@ -11,8 +11,9 @@
   "dependencies": {
     "@unparallel/connector-ri": "^1.0.1",
     "bootstrap": "^4.6.1",
+    "connect-mongo": "^4.6.0",
     "js-logger": "^1.6.1",
-    "morgan": "^1.10.0",
+    "mongodb": "^4.4.1",
     "next": "^11.1.4",
     "next-connect": "^0.12.2",
     "next-session": "^4.0.4",

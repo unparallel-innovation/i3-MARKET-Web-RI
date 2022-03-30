@@ -24,12 +24,12 @@ function Dataset(props) {
     )) : null;
 
     const distributionEl = distribution.map((dist, idx) => (
-        <Distribution key={dist.distributionId}
+        <Distribution key={`distribution${idx}`}
             eventKey={`${eventKey}-distribution${idx}`} { ...dist } />
     ));
 
     const datasetInformationEl = datasetInformation.map((inf, idx) => (
-        <DatasetInformation key={inf.datasetInformationId}
+        <DatasetInformation key={`datasetInformation${idx}`}
             eventKey={`${eventKey}-datasetInformation${idx}`} { ...inf } />
     ));
 
@@ -56,10 +56,10 @@ function Dataset(props) {
                                 { creator }
                             </KVCol>
                             <KVCol title="Issued">
-                                { ts2date(issued) }
+                                {/*{ ts2date(issued) }*/}
                             </KVCol>
                             <KVCol title="Modified">
-                                { ts2date(modified) }
+                                {/*{ ts2date(modified) }*/}
                             </KVCol>
                         </Row>
                         <Row className="text-center mb-3 bg-lightgray">

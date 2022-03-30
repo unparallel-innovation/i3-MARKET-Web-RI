@@ -5,24 +5,9 @@ import KVCol from '../../common/KVCol';
 export default
 function Distribution(props) {
     const {
-        title, description,
-        license, accessRights, downloadType,
-        conformsTo, mediaType, packageFormat,
-        accessService, eventKey
+        title, description, license, accessRights, downloadType,
+        conformsTo, mediaType, packageFormat, accessService, eventKey
     } = props;
-
-    const accessServiceEl = accessService.map(({
-        conformsTo, endpointDescription, endpointURL,
-        servesDataset, serviceSpecs
-    }, idx) => (
-        <tr key={idx}>
-            <td>{ conformsTo }</td>
-            <td>{ endpointDescription }</td>
-            <td>{ endpointURL }</td>
-            <td>{ servesDataset }</td>
-            <td>{ serviceSpecs }</td>
-        </tr>
-    ));
 
     return (
         <Accordion>
@@ -65,19 +50,22 @@ function Distribution(props) {
 
                         <Table className="mt-3">
                             <thead>
-                                <tr>
-                                    <th>Conforms To</th>
-                                    <th>Endpoint Description</th>
-                                    <th>Endpoint URL</th>
-                                    <th>Serves Dataset</th>
-                                    <th>Service Specs</th>
-                                </tr>
+                            <tr>
+                                <th>Conforms To</th>
+                                <th>Endpoint Description</th>
+                                <th>Endpoint URL</th>
+                                <th>Serves Dataset</th>
+                                <th>Service Specs</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                { accessServiceEl }
+                                <td>{ accessService.conformsTo }</td>
+                                <td>{ accessService.endpointDescription }</td>
+                                <td>{ accessService.endpointURL }</td>
+                                <td>{ accessService.servesDataset }</td>
+                                <td>{ accessService.serviceSpecs }</td>
                             </tbody>
                         </Table>
-
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>

@@ -3,10 +3,7 @@ import CustomToggle from '../../common/CustomToggle';
 import KVCol from '../../common/KVCol';
 
 function HasIntendedUse(props) {
-    const {
-        processData, shareDataWithThirdParty,
-        editData, eventKey
-    } = props;
+    const { processData, shareDataWithThirdParty, editData, eventKey } = props;
 
     return (
         <Accordion>
@@ -36,10 +33,7 @@ function HasIntendedUse(props) {
 }
 
 function HasLicenseGrant(props) {
-    const {
-        copyData, transferable,
-        exclusiveness, revocable, eventKey
-    } = props;
+    const { copyData, transferable, exclusiveness, revocable, eventKey } = props;
 
     return (
         <Accordion>
@@ -74,29 +68,25 @@ function HasLicenseGrant(props) {
 export default
 function ContractParameter(props) {
     const {
-        interestOfProvider, interestDescription,
-        hasGoverningJurisdiction, purpose,
-        purposeDescription, hasIntendedUse,
-        hasLicenseGrant, eventKey
+        interestOfProvider, interestDescription, hasGoverningJurisdiction, purpose,
+        purposeDescription, hasIntendedUse, hasLicenseGrant, eventKey
     } = props;
 
-    const hasIntendedUseEl = hasIntendedUse.map((intendedUse, idx) => (
-        <HasIntendedUse key={intendedUse.intendedUseId}
-            eventKey={`${eventKey}-hasIntendedUse${idx}`} { ...intendedUse } />
-    ));
+    const hasIntendedUseEl =
+        <HasIntendedUse
+            key={'hasIntendedUseKey'} eventKey={`${eventKey}-hasIntendedUse`} { ...hasIntendedUse }
+        />
 
-    const hasLicenseGrantEl = hasLicenseGrant.map((licenseGrant, idx) => (
-        <HasLicenseGrant key={licenseGrant.licenseGrantId}
-            eventKey={`${eventKey}-hasLicenseGrant${idx}`} { ...licenseGrant } />
-    ));
+    const hasLicenseGrantEl =
+        <HasLicenseGrant
+            key={'hasLicenseGrantKey'} eventKey={`${eventKey}-hasLicenseGrant`} { ...hasLicenseGrant }
+        />
 
     return (
         <Accordion>
             <Card>
-                <CustomToggle eventKey={eventKey}
-                    className="bg-secondary text-white"
-                >
-                    <div className="text-tiny text-light">Contract Parameter</div>
+                <CustomToggle eventKey={eventKey} className="bg-secondary text-white">
+                    <div className="text-tiny text-light">Contract Parameters</div>
                 </CustomToggle>
 
                 <Accordion.Collapse eventKey={eventKey}>
@@ -134,6 +124,5 @@ function ContractParameter(props) {
                 </Accordion.Collapse>
             </Card>
         </Accordion>
-
     );
 }

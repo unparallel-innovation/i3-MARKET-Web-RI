@@ -1,10 +1,8 @@
 import DatasetInformation from './DatasetInformation';
 import DatasetDistribution from './DatasetDistribution/DatasetDistribution';
-import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import DeleteToggle from '../../../common/DeleteToggle';
+import { Col, Form, Row } from 'react-bootstrap';
 import { AddNew } from '/components/common/buttons.js';
 import { useMap } from '/lib/hooks.js';
-import CustomToggle from '../../../common/CustomToggle';
 
 export default function Dataset(props) {
     const { eventKey } = props;

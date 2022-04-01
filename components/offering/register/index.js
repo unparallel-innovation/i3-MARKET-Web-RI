@@ -5,10 +5,8 @@ import Layout from '/components/layout/Layout.js';
 import General from './General.js';
 import Dataset from './Dataset/Dataset';
 import PricingModel from './PricingModel/PricingModel.js';
-import { AddNew } from '/components/common/buttons.js';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { formRegister } from '/lib/forms/registerOffering.js';
-import ContractParameter from './ContractParameter/ContractParameter';
 
 export default
 function Register(props) {
@@ -33,10 +31,9 @@ function Register(props) {
     const router = useRouter();
 
     const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset'} />
-    //
-    // const pricingModelEl = (Object.keys(pricingModelMap)).map((item, idx) => (
-    //     <PricingModel key={item} eventKey={item} onDelete={pricingModelOnDelete} />
-    // ));
+
+    const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel'} />
+
     //
     // const contractParameterEl = (Object.keys(contractParameterMap)).map((item, idx) => (
     //     <ContractParameter key={item} eventKey={item} onDelete={contractParameterOnDelete} />
@@ -50,13 +47,13 @@ function Register(props) {
 
         console.log(JSON.stringify(res))
 
-        fetch(form.action, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(res),
-        }).then(res => {
-            router.push('/offerings');
-        });
+        // fetch(form.action, {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(res),
+        // }).then(res => {
+        //     router.push('/offerings');
+        // });
     }
 
     function onCancel() {
@@ -86,14 +83,12 @@ function Register(props) {
                         </div>
                         { datasetEl }
                     </Tab>
-                    {/*<Tab eventKey="tab2" title="Pricing Models">*/}
-                    {/*    <div className="d-flex align-items-center mb-3">*/}
-                    {/*        <div className="flex-grow-1"/>*/}
-                    {/*        <AddNew onClick={pricingModelAdd} />*/}
-                    {/*    </div>*/}
-
-                    {/*    { pricingModelEl }*/}
-                    {/*</Tab>*/}
+                    <Tab eventKey="tab2" title="Pricing Model">
+                        <div className="d-flex align-items-center mb-3">
+                            <div className="flex-grow-1"/>
+                        </div>
+                        { pricingModelEl }
+                    </Tab>
 
                     {/*<Tab eventKey="tab3" title="Contract Parameters">*/}
                     {/*    <div className="d-flex align-items-center mb-3">*/}

@@ -1,15 +1,15 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import PaymentTypeToggle from '../../PaymentTypeToggle';
+import CustomToggle from '../../../../common/CustomToggle';
 
 export default function PaymentOnSize(props) {
-    const { eventKey, onDelete, onAdd, title } = props;
+    const { eventKey } = props;
 
     return (
         <Accordion>
             <Card className="mb-3">
-                <PaymentTypeToggle eventKey={eventKey} className="bg-secondary text-white" onDelete={onDelete} onAdd={onAdd}>
-                    Payment on Size {title}
-                </PaymentTypeToggle>
+                <CustomToggle eventKey={eventKey} className="bg-secondary text-white">
+                    Payment on Size
+                </CustomToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'paymentOnSizeName'}>

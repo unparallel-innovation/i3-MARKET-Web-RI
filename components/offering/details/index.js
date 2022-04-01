@@ -109,7 +109,7 @@ function Offering(props) {
 
         </div>
 
-        <h3 className="mb-4 mt-4 text-center">Pricing Model</h3>*/}
+        <h3 className="mb-4 mt-4 text-center">Pricing Model</h3>
         <Row>
             { pricingModelEl }
         </Row>

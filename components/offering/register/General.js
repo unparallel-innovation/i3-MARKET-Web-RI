@@ -1,12 +1,9 @@
 import { Col, Form, Row } from 'react-bootstrap';
-import useUser from '/lib/user.js';
+import { useUser } from '../../../lib/hooks';
 
 export default function General(props) {
     const { categories } = props;
-    const user = useUser();
-
-    if (!user)
-        return null;
+    const user = useUser({ redirectTo: '/login', redirectIfFound: false });
 
     const categoryEl = categories.map(({ name }) => (
         <option key={name} value={name}>{ name }</option>
@@ -39,8 +36,8 @@ export default function General(props) {
                 <Form.Group controlId="provider">
                     <Form.Label>Provider</Form.Label>
                     <Form.Control type="text" placeholder="Provider"
-                        name="provider" disabled value={user.providerId} />
-                    <input type="hidden" name="isProvidedBy" value={user.providerId} />
+                        name="provider" disabled value={'provider_webri'} />
+                    <input type="hidden" name="isProvidedBy" value={'provider_webri'} />
                 </Form.Group>
             </Col>
             <Col>

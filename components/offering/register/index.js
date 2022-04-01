@@ -17,8 +17,7 @@ function Register(props) {
     const [ atIdx, setAtIdx ] = useState(0);
 
     const [
-        datasetMap, datasetC,
-        datasetOnDelete, datasetAdd
+        datasetMap, datasetC, datasetOnDelete
     ] = useMap('', 'dataset');
 
     const [
@@ -33,17 +32,15 @@ function Register(props) {
 
     const router = useRouter();
 
-    const datasetEl = (Object.keys(datasetMap)).map((item, idx) => (
-        <Dataset key={item} eventKey={item} onDelete={datasetOnDelete} />
-    ));
-
-    const pricingModelEl = (Object.keys(pricingModelMap)).map((item, idx) => (
-        <PricingModel key={item} eventKey={item} onDelete={pricingModelOnDelete} />
-    ));
-
-    const contractParameterEl = (Object.keys(contractParameterMap)).map((item, idx) => (
-        <ContractParameter key={item} eventKey={item} onDelete={contractParameterOnDelete} />
-    ));
+    const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset'} />
+    //
+    // const pricingModelEl = (Object.keys(pricingModelMap)).map((item, idx) => (
+    //     <PricingModel key={item} eventKey={item} onDelete={pricingModelOnDelete} />
+    // ));
+    //
+    // const contractParameterEl = (Object.keys(contractParameterMap)).map((item, idx) => (
+    //     <ContractParameter key={item} eventKey={item} onDelete={contractParameterOnDelete} />
+    // ));
 
     function onSubmit(e) {
         e.preventDefault();
@@ -83,31 +80,29 @@ function Register(props) {
                     <Tab eventKey="tab0" title="General">
                         <General categories={categories} />
                     </Tab>
-                    <Tab eventKey="tab1" title="Datasets">
-                        <div className="d-flex align-items-center mb-3">
+                    <Tab eventKey="tab1" title="Dataset">
+                        <div className="d-flex align-items-center">
                             <div className="flex-grow-1"/>
-                            <AddNew onClick={datasetAdd} />
                         </div>
-
                         { datasetEl }
                     </Tab>
-                    <Tab eventKey="tab2" title="Pricing Models">
-                        <div className="d-flex align-items-center mb-3">
-                            <div className="flex-grow-1"/>
-                            <AddNew onClick={pricingModelAdd} />
-                        </div>
+                    {/*<Tab eventKey="tab2" title="Pricing Models">*/}
+                    {/*    <div className="d-flex align-items-center mb-3">*/}
+                    {/*        <div className="flex-grow-1"/>*/}
+                    {/*        <AddNew onClick={pricingModelAdd} />*/}
+                    {/*    </div>*/}
 
-                        { pricingModelEl }
-                    </Tab>
+                    {/*    { pricingModelEl }*/}
+                    {/*</Tab>*/}
 
-                    <Tab eventKey="tab3" title="Contract Parameters">
-                        <div className="d-flex align-items-center mb-3">
-                            <div className="flex-grow-1"/>
-                            <AddNew onClick={contractParameterAdd} />
-                        </div>
+                    {/*<Tab eventKey="tab3" title="Contract Parameters">*/}
+                    {/*    <div className="d-flex align-items-center mb-3">*/}
+                    {/*        <div className="flex-grow-1"/>*/}
+                    {/*        <AddNew onClick={contractParameterAdd} />*/}
+                    {/*    </div>*/}
 
-                        { contractParameterEl }
-                    </Tab>
+                    {/*    { contractParameterEl }*/}
+                    {/*</Tab>*/}
                 </Tabs>
 
                 <input type="hidden" value={datasetC} name="datasetC" />

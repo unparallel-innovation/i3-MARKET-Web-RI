@@ -5,39 +5,25 @@ import Layout from '/components/layout/Layout.js';
 import General from './General.js';
 import Dataset from './Dataset/Dataset';
 import PricingModel from './PricingModel/PricingModel.js';
+import ContractParameter from './ContractParameter/ContractParameter';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { formRegister } from '/lib/forms/registerOffering.js';
 
 export default
 function Register(props) {
+    const router = useRouter();
     const { categories } = props;
 
     const [ atIdx, setAtIdx ] = useState(0);
 
-    const [
-        datasetMap, datasetC, datasetOnDelete
-    ] = useMap('', 'dataset');
-
-    const [
-        pricingModelMap, pricingModelC,
-        pricingModelOnDelete, pricingModelAdd
-    ] = useMap('', 'pricingModel');
-
-    const [
-        contractParameterMap, contractParameterC,
-        contractParameterOnDelete, contractParameterAdd
-    ] = useMap('', 'contractParameter');
-
-    const router = useRouter();
-
+    const [ datasetC ] = useMap('', 'dataset');
     const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset'} />
 
+    const [ pricingModelC ] = useMap('', 'pricingModel');
     const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel'} />
 
-    //
-    // const contractParameterEl = (Object.keys(contractParameterMap)).map((item, idx) => (
-    //     <ContractParameter key={item} eventKey={item} onDelete={contractParameterOnDelete} />
-    // ));
+    const [ contractParameterC ] = useMap('', 'contractParameter');
+    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter'} />
 
     function onSubmit(e) {
         e.preventDefault();
@@ -84,20 +70,18 @@ function Register(props) {
                         { datasetEl }
                     </Tab>
                     <Tab eventKey="tab2" title="Pricing Model">
-                        <div className="d-flex align-items-center mb-3">
+                        <div className="d-flex align-items-center">
                             <div className="flex-grow-1"/>
                         </div>
                         { pricingModelEl }
                     </Tab>
 
-                    {/*<Tab eventKey="tab3" title="Contract Parameters">*/}
-                    {/*    <div className="d-flex align-items-center mb-3">*/}
-                    {/*        <div className="flex-grow-1"/>*/}
-                    {/*        <AddNew onClick={contractParameterAdd} />*/}
-                    {/*    </div>*/}
-
-                    {/*    { contractParameterEl }*/}
-                    {/*</Tab>*/}
+                    <Tab eventKey="tab3" title="Contract Parameters">
+                        <div className="d-flex align-items-center">
+                            <div className="flex-grow-1"/>
+                        </div>
+                        { contractParameterEl }
+                    </Tab>
                 </Tabs>
 
                 <input type="hidden" value={datasetC} name="datasetC" />

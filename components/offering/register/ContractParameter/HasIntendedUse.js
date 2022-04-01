@@ -1,9 +1,10 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import PaymentTypeToggle from '../PaymentTypeToggle';
 import { useState } from 'react';
+import CustomToggle from '../../../common/CustomToggle';
 
 export default function HasIntendedUse(props) {
-    const { eventKey, onDelete, onAdd } = props;
+    const { eventKey } = props;
     const [processData, setProcessData] = useState('');
     const [shareData, setShareData] = useState('');
     const [editData, setEditData] = useState('');
@@ -11,9 +12,9 @@ export default function HasIntendedUse(props) {
     return (
         <Accordion>
             <Card className="mb-3">
-                <PaymentTypeToggle eventKey={eventKey} className="bg-secondary text-white" onDelete={onDelete} onAdd={onAdd}>
+                <CustomToggle eventKey={eventKey} className="bg-secondary text-white">
                     Has Intended Use
-                </PaymentTypeToggle>
+                </CustomToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Row>

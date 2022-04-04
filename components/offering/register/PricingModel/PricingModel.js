@@ -11,23 +11,23 @@ export default function PricingModel(props) {
 
     // payment on subscription
     const [ paymentSubscriptionC ] = useMap(eventKey, 'paymentSubscription');
-    const paymentSubscriptionEl = <PaymentOnSubscription key={'paymentSubscriptionKey'} eventKey={'paymentSubscription'} />;
+    const paymentSubscriptionEl = <PaymentOnSubscription key={'paymentSubscriptionKey'} eventKey={eventKey+'paymentSubscription0'} />;
 
     // payment on API
     const [ paymentApiC ] = useMap(eventKey, 'paymentApi');
-    const paymentApiEl = <PaymentOnAPI key={'paymentApiKey'} eventKey={'paymentApi'} />;
+    const paymentApiEl = <PaymentOnAPI key={'paymentApiKey'} eventKey={eventKey+'paymentApi0'} />;
 
     // payment on Unit
     const [ paymentUnitC ] = useMap(eventKey, 'paymentUnit');
-    const paymentUnitEl = <PaymentOnUnit key={'paymentUnitKey'} eventKey={'paymentUnit'} />
+    const paymentUnitEl = <PaymentOnUnit key={'paymentUnitKey'} eventKey={eventKey+'paymentUnit0'} />
 
     // payment on Size
     const [ paymentSizeC ] = useMap(eventKey, 'paymentSize');
-    const paymentSizeEl = <PaymentOnSize key={'paymentSizeKey'} eventKey={'paymentSize'} />
+    const paymentSizeEl = <PaymentOnSize key={'paymentSizeKey'} eventKey={eventKey+'paymentSize0'} />
 
     // Free Price
     const [ freePriceC ] = useMap(eventKey, 'freePrice');
-    const freePriceEl = <FreePrice key={'freePriceKey'} eventKey={'freePrice'} />
+    const freePriceEl = <FreePrice key={'freePriceKey'} eventKey={eventKey+'freePrice0'} />
 
     return (<>
         <Form.Group controlId={eventKey + 'pricingModelName'}>

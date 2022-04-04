@@ -1,5 +1,4 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import PaymentTypeToggle from '../PaymentTypeToggle';
 import { useState } from 'react';
 import CustomToggle from '../../../common/CustomToggle';
 

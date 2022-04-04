@@ -17,13 +17,13 @@ function Register(props) {
     const [ atIdx, setAtIdx ] = useState(0);
 
     const [ datasetC ] = useMap('', 'dataset');
-    const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset'} />
+    const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset0'} />
 
     const [ pricingModelC ] = useMap('', 'pricingModel');
-    const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel'} />
+    const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel0'} />
 
     const [ contractParameterC ] = useMap('', 'contractParameter');
-    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter'} />
+    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter0'} />
 
     function onSubmit(e) {
         e.preventDefault();

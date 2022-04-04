@@ -2,8 +2,8 @@ import { Accordion, Badge, Card, Row } from 'react-bootstrap';
 import CustomToggle from '/components/common/CustomToggle.js';
 import KVCol from '../../common/KVCol.js';
 import Distribution from './Distribution.js';
-import { ts2date } from '/lib/utils.js';
 import DatasetInformation from './DatasetInformation';
+import { ts2date } from '../../../lib/utils';
 
 export default
 function Dataset(props) {
@@ -56,10 +56,10 @@ function Dataset(props) {
                                 { creator }
                             </KVCol>
                             <KVCol title="Issued">
-                                {/*{ ts2date(issued) }*/}
+                                { ts2date(issued) }
                             </KVCol>
                             <KVCol title="Modified">
-                                {/*{ ts2date(modified) }*/}
+                                { ts2date(modified) }
                             </KVCol>
                         </Row>
                         <Row className="text-center mb-3 bg-lightgray">

@@ -31,15 +31,13 @@ function Register(props) {
         const fd = new FormData(form);
         const res = formRegister(fd);
 
-        console.log(JSON.stringify(res))
-
-        // fetch(form.action, {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(res),
-        // }).then(res => {
-        //     router.push('/offerings');
-        // });
+        fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(res),
+        }).then(res => {
+            router.push('/offerings');
+        });
     }
 
     function onCancel() {
@@ -48,7 +46,8 @@ function Register(props) {
 
     return (
         <Layout className="d-flex flex-column">
-            <Form className="px-5 pb-3 d-flex flex-column flex-grow-1" onSubmit={onSubmit} action="/api/offerings/register">
+            <Form className="px-5 pb-3 d-flex flex-column flex-grow-1"
+                  onSubmit={onSubmit} action="/api/offerings/register">
                 <div className="d-flex">
                     <h3 className="flex-grow-1 mb-0">Register New Offering</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
@@ -58,7 +57,7 @@ function Register(props) {
                 <hr className="mt-2 mb-4" />
 
                 <Tabs activeKey={'tab' + atIdx} onSelect={k => {
-                    setAtIdx(parseInt(k.substr(3)));
+                    setAtIdx(parseInt(k.substring(3)));
                 }} className="mb-3">
                     <Tab eventKey="tab0" title="General">
                         <General categories={categories} />

@@ -108,7 +108,6 @@ function HomePure(props) {
     } = props;
 
     const user = useUser({ redirectTo: '/login', redirectIfFound: false });
-    console.log('USER', user)
 
     const layouts = useMemo(() => {
         return getInitialLayouts(categories);

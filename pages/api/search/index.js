@@ -17,7 +17,7 @@ export default catchErrors(async (req, res) => {
         }
 
         categories = await connector.getCategories(user.access_token, user.id_token);
-        providers = await connector.getProviders(user.access_token, user.id_token);
+        providers = await connector.getProviders(user.access_token, user.id_token, 0, 50);
     }
 
     return {

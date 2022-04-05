@@ -117,7 +117,10 @@ function Layout(props) {
                         </div>
 
                         {/*<small className="ml-3 mr-4">Privacy Policy</small>*/}
-                        <Image height="48" width="61" src="/img/i3_market_logo.png" alt="i3Market logo" />
+                         <a target="_blank" href="https://www.i3-market.eu/">
+                            <Image height="48" width="61" src="/img/i3_market_logo.png" alt="i3Market logo" style={{cursor: "pointer"}} />
+                        </a>
+
                     </div>
                 </footer>
             </div>

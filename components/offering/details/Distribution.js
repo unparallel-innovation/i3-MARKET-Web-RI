@@ -59,11 +59,13 @@ function Distribution(props) {
                             </tr>
                             </thead>
                             <tbody>
-                                <td>{ accessService.conformsTo }</td>
-                                <td>{ accessService.endpointDescription }</td>
-                                <td>{ accessService.endpointURL }</td>
-                                <td>{ accessService.servesDataset }</td>
-                                <td>{ accessService.serviceSpecs }</td>
+                                <tr>
+                                    <td>{ accessService.conformsTo }</td>
+                                    <td>{ accessService.endpointDescription }</td>
+                                    <td>{ accessService.endpointURL }</td>
+                                    <td>{ accessService.servesDataset }</td>
+                                    <td>{ accessService.serviceSpecs }</td>
+                                </tr>
                             </tbody>
                         </Table>
                     </Card.Body>

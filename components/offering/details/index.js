@@ -26,17 +26,20 @@ function Offering(props) {
         ? <Globe color={colors.primary} size={20} />
         : <Lock color={colors.primary} size={20} /> ;
 
-    const datasetEl = <Dataset key={'datasetKey'} eventKey={`dataset`} { ...hasDataset } />;
+    const datasetEl = hasDataset.title ?
+        <Dataset
+            key={'datasetKey'} eventKey={`dataset`} { ...hasDataset }
+        /> : '';
 
-    const contractParametersEl =
+    const contractParametersEl = contractParameters.interestOfProvider ?
         <ContractParameter
             key={'contractParametersKey'} eventKey={`contractParameters`} { ...contractParameters }
-        />;
+        /> : '';
 
-    const pricingModelEl =
+    const pricingModelEl = hasPricingModel.pricingModelName ?
         <PricingModel
             key={'hasPricingModelKey'} eventKey={`hasPricingModel`} { ...hasPricingModel }
-        />;
+        /> : '';
 
     function onDelete(e) {
         fetch(`/api/offering/${offeringId}`, {
@@ -109,10 +112,7 @@ function Offering(props) {
 
         </div>
 
-        <h3 className="mb-4 mt-4 text-center">Pricing Model</h3>
-        <Row>
-            { pricingModelEl }
-        </Row>
+        { pricingModelEl }
 
         <Modal show={show} onHide={() => setShowDelete(false)}>
             <Modal.Header closeButton>

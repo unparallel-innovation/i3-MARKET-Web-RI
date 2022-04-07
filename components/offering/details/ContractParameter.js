@@ -16,13 +16,13 @@ function HasIntendedUse(props) {
 
                         <Row className="text-center mt-3 bg-lightgray">
                             <KVCol title="Process Data">
-                                { processData }
+                                { processData.toString() }
                             </KVCol>
                             <KVCol title="Share Data With Third Party">
-                                { shareDataWithThirdParty }
+                                { shareDataWithThirdParty.toString() }
                             </KVCol>
                             <KVCol title="Edit Data">
-                                { editData }
+                                { editData.toString() }
                             </KVCol>
                         </Row>
                     </Card.Body>
@@ -43,19 +43,18 @@ function HasLicenseGrant(props) {
                 </CustomToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body className="bg-light">
-
                         <Row className="text-center mt-3 bg-lightgray">
                             <KVCol title="Copy Data">
-                                { copyData }
+                                { copyData.toString() }
                             </KVCol>
                             <KVCol title="Transferable">
-                                { transferable }
+                                { transferable.toString() }
                             </KVCol>
                             <KVCol title="Exclusiveness">
-                                { exclusiveness }
+                                { exclusiveness.toString() }
                             </KVCol>
                             <KVCol title="Revocable">
-                                { revocable }
+                                { revocable.toString() }
                             </KVCol>
                         </Row>
                     </Card.Body>

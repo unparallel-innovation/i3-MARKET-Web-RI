@@ -1,5 +1,6 @@
 import { Card, Col, Row } from 'react-bootstrap';
 import KVCol2 from '../../common/KVCol2';
+import TextElem from '../../common/TextElem';
 
 function PaymentType(props) {
     const { paymentTypeTitle, price, repeatPrice, paymentTypeEl } = props;
@@ -31,7 +32,7 @@ function PaymentType(props) {
 }
 
 function freePrice(item){
-    return (
+    return item.hasPriceFree ? (
         <PaymentType
             key={'free'}
             paymentTypeTitle="Free"
@@ -39,20 +40,20 @@ function freePrice(item){
             repeatPrice="mo"
             paymentTypeEl={null}
         />
-    )
+    ) : '';
 }
 
 function paymentOnApi(item){
-    const { hasApiPrice, description, numberOfObject } = item;
+    const { paymentOnApiName, hasApiPrice, description, numberOfObject } = item;
 
     const paymentTypeEl = (
         <Card.Text>
-            Number Objects: { numberOfObject }<br />
-            Description: { description }<br />
+            <TextElem title={'Number Objects'} value={numberOfObject} />
+            <TextElem title={'Description'} value={description} />
         </Card.Text>
     );
 
-    return (
+    return paymentOnApiName  ? (
         <PaymentType
             key={'api'}
             paymentTypeTitle="API"
@@ -60,7 +61,7 @@ function paymentOnApi(item){
             repeatPrice="mo"
             paymentTypeEl={paymentTypeEl}
         />
-    );
+    ) : '';
 }
 
 function paymentOnSize(item){
@@ -68,13 +69,13 @@ function paymentOnSize(item){
 
     const paymentTypeEl = (
         <Card.Text>
-            Name: { paymentOnSizeName} <br />
-            Description : { description} <br />
-            Size: { dataSize }<br />
+            <TextElem title={'Name'} value={paymentOnSizeName} />
+            <TextElem title={'Description'} value={description} />
+            <TextElem title={'Size'} value={dataSize} />
         </Card.Text>
     );
 
-    return (
+    return paymentOnSizeName ? (
         <PaymentType
             key={'size'}
             paymentTypeTitle="Size"
@@ -82,11 +83,10 @@ function paymentOnSize(item){
             repeatPrice="GB"
             paymentTypeEl={paymentTypeEl}
         />
-    )
+    ) : '';
 }
 
 function paymentSubscription(item){
-
     const {
         paymentOnSubscriptionName, paymentType, description,
         timeDuration, repeat, hasSubscriptionPrice
@@ -94,11 +94,12 @@ function paymentSubscription(item){
 
     const paymentTypeEl = (
         <Card.Text>
-            Name: { paymentOnSubscriptionName } <br />
-            Description: { description } <br />
-            Payment Type: { paymentType } <br />
-            Duration: { timeDuration }<br />
-            Repeat Mode: { repeat }<br />
+            <TextElem title={'Name'} value={paymentOnSubscriptionName} />
+            <TextElem title={'Description'} value={description} />
+            <TextElem title={'Payment Type'} value={paymentType} />
+            <TextElem title={'Payment Type'} value={paymentType} />
+            <TextElem title={'Duration'} value={timeDuration} />
+            <TextElem title={'Repeat Mode'} value={repeat} />
         </Card.Text>
     );
 
@@ -117,7 +118,7 @@ function paymentSubscription(item){
             repeatPrice = 'day';
     }
 
-    return (
+    return paymentOnSubscriptionName ? (
         <PaymentType
             key={'subscription'}
             paymentTypeTitle="Subscription"
@@ -125,8 +126,7 @@ function paymentSubscription(item){
             repeatPrice={repeatPrice}
             paymentTypeEl={paymentTypeEl}
         />
-    );
-
+    ) : '';
 }
 
 function paymentUnit(item){
@@ -134,13 +134,13 @@ function paymentUnit(item){
 
     const paymentTypeEl = (
         <Card.Text>
-            Name: { paymentOnUnitName } <br />
-            Description: { description } <br />
-            Data unit: { dataUnit } <br />
+            <TextElem title={'Name'} value={paymentOnUnitName} />
+            <TextElem title={'Description'} value={description} />
+            <TextElem title={'Data unit'} value={dataUnit} />
         </Card.Text>
     );
 
-    return (
+    return paymentOnUnitName ? (
         <PaymentType
             key={'unit'}
             paymentTypeTitle="Unit"
@@ -148,7 +148,7 @@ function paymentUnit(item){
             repeatPrice="mo"
             paymentTypeEl={paymentTypeEl}
         />
-    );
+    ) : '';
 }
 
 export default
@@ -166,6 +166,7 @@ function PricingModel(props) {
     const unitEl = paymentUnit(hasPaymentOnUnit);
 
     return (<>
+        <h3 className="mb-4 mt-4 text-center">Pricing Model</h3>
         <Col>
             <Row className="text-center mb-3">
                 <KVCol2 title="Name">

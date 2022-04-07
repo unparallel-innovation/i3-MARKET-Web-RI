@@ -41,6 +41,10 @@ function Offering(props) {
             key={'hasPricingModelKey'} eventKey={`hasPricingModel`} { ...hasPricingModel }
         /> : '';
 
+    function onUpdate(e) {
+        router.push('/offerings/update/' + offeringId);
+    }
+
     function onDelete(e) {
         fetch(`/api/offering/${offeringId}`, {
             method: 'DELETE',
@@ -51,23 +55,13 @@ function Offering(props) {
         });
     }
 
-    // function onActivate(e) {
-    //     fetch(`/api/offering/${offeringId}`, {
-    //         method: 'PATCH',
-    //     }).then(res => {
-    //         router.push('/offering/${offeringId}');
-    //     }).catch(error => {
-    //         console.log('ERROR', error);
-    //     });
-    // }
-
     return (<Layout>
         <div className="px-5 pb-3">
             <div className="d-flex">
                 <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
                 <span className="p-2">{ visIconEl }  </span>
                 <span className="p-2">
-                    <Pencil color={colors.primary} size={20} />
+                    <Pencil color={colors.primary} size={20} onClick={onUpdate} className="cursor-pointer"/>
                 </span>
                 <span className="p-2">
                     <Trash color={colors.primary} size={20}

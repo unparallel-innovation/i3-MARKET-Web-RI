@@ -15,17 +15,17 @@ export default function Offering(props) {
 
     const [ atIdx, setAtIdx ] = useState(0);
 
-    const datasetEl = offering.hasDataset.map((item, idx) => (
-        <Dataset key={item.datasetId} eventKey={`dataset${idx}`} { ...item } />
-    ));
-
-    const pricingModelEl = offering.hasPricingModel.map((item, idx) => (
-        <PricingModel key={item.pricingModelId} eventKey={`pricingModel${idx}`} { ...item } />
-    ));
-
-    const contractParameterEl = offering.contractParameters.map((item, idx) => (
-        <ContractParameter key={item.contractParametersId} eventKey={`contractParameter${idx}`} { ...item } />
-    ));
+    // const datasetEl = offering.hasDataset.map((item, idx) => (
+    //     <Dataset key={item.datasetId} eventKey={`dataset${idx}`} { ...item } />
+    // ));
+    //
+    // const pricingModelEl = offering.hasPricingModel.map((item, idx) => (
+    //     <PricingModel key={item.pricingModelId} eventKey={`pricingModel${idx}`} { ...item } />
+    // ));
+    //
+    // const contractParameterEl = offering.contractParameters.map((item, idx) => (
+    //     <ContractParameter key={item.contractParametersId} eventKey={`contractParameter${idx}`} { ...item } />
+    // ));
 
     function onSubmit(e) {
         e.preventDefault();
@@ -63,15 +63,15 @@ export default function Offering(props) {
                     <Tab eventKey="tab0" title="General">
                         <General offering={offering} categories={categories} />
                     </Tab>
-                    <Tab eventKey="tab1" title="Dataset">
-                        { datasetEl }
-                    </Tab>
-                    <Tab eventKey="tab2" title="Pricing Model">
-                        { pricingModelEl }
-                    </Tab>
-                    <Tab eventKey="tab3" title="Contract Parameters">
-                        { contractParameterEl }
-                    </Tab>
+                    {/*<Tab eventKey="tab1" title="Dataset">*/}
+                    {/*    { datasetEl }*/}
+                    {/*</Tab>*/}
+                    {/*<Tab eventKey="tab2" title="Pricing Model">*/}
+                    {/*    { pricingModelEl }*/}
+                    {/*</Tab>*/}
+                    {/*<Tab eventKey="tab3" title="Contract Parameters">*/}
+                    {/*    { contractParameterEl }*/}
+                    {/*</Tab>*/}
                 </Tabs>
 
                 <div className="flex-grow-1" />

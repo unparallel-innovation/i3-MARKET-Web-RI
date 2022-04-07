@@ -1,6 +1,5 @@
 import useUser from '../../../lib/user';
 import { Col, Form, Row } from 'react-bootstrap';
-import { capitalize } from '../../../lib/utils';
 
 export default function General(props) {
     const { offering, categories } = props;
@@ -31,7 +30,7 @@ export default function General(props) {
                 <Form.Group controlId="category">
                     <Form.Label>Category</Form.Label>
                     <Form.Control as="select" className="mr-3" name="category"
-                        placeholder="Category" defaultValue={capitalize(offering.category)}
+                        placeholder="Category" defaultValue={offering.category}
                     >
                         { categoryEl }
                     </Form.Control>

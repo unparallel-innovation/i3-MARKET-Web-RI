@@ -1,9 +1,9 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import PaymentTypeToggle from '../PaymentTypeToggle';
 import { useState } from 'react';
+import CustomToggle from '../../../common/CustomToggle';
 
 export default function HasLicenseGrant(props) {
-    const { eventKey, onDelete, onAdd } = props;
+    const { eventKey } = props;
     const [copyData, setCopyData] = useState('');
     const [transferable, setTransferable] = useState('');
     const [exclusiveness, setExclusiveness] = useState('');
@@ -12,9 +12,9 @@ export default function HasLicenseGrant(props) {
     return (
         <Accordion>
             <Card className="mb-3">
-                <PaymentTypeToggle eventKey={eventKey} className="bg-secondary text-white" onDelete={onDelete} onAdd={onAdd}>
+                <CustomToggle eventKey={eventKey} className="bg-secondary text-white">
                     Has License Grant
-                </PaymentTypeToggle>
+                </CustomToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Row>

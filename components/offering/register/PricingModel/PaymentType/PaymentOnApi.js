@@ -1,20 +1,20 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import PaymentTypeToggle from '../../PaymentTypeToggle';
+import CustomToggle from '../../../../common/CustomToggle';
 
-export default function PaymentOnApi(props) {
-    const { eventKey, onDelete, onAdd } = props;
+export default function PaymentOnAPI(props) {
+    const { eventKey } = props;
 
     return (
         <Accordion>
             <Card className="mb-3">
-                <PaymentTypeToggle eventKey={eventKey} className="bg-secondary text-white" onDelete={onDelete} onAdd={onAdd}>
+                <CustomToggle eventKey={eventKey} className="bg-secondary text-white">
                     Payment on API
-                </PaymentTypeToggle>
+                </CustomToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
-                        <Form.Group controlId={eventKey + 'paymentOnApiName'}>
+                        <Form.Group controlId={eventKey + 'paymentOnAPIName'}>
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Name" name={eventKey + 'paymentOnApiName'} />
+                            <Form.Control type="text" placeholder="Name" name={eventKey + 'paymentOnAPIName'} />
                         </Form.Group>
 
                         <Form.Group controlId={eventKey + 'description'}>
@@ -29,9 +29,9 @@ export default function PaymentOnApi(props) {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group controlId={eventKey + 'hasApiPrice'}>
+                                <Form.Group controlId={eventKey + 'hasAPIPrice'}>
                                     <Form.Label>API Price</Form.Label>
-                                    <Form.Control type="text" placeholder="API Price" name={eventKey + 'hasApiPrice'} />
+                                    <Form.Control type="text" placeholder="API Price" name={eventKey + 'hasAPIPrice'} />
                                 </Form.Group>
                             </Col>
                         </Row>

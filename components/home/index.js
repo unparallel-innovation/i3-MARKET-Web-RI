@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import Layout from '/components/layout/Layout.js';
-import useUser, { ROLE_CONSUMER, ROLE_PROVIDER } from '/lib/user.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Card, Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
 import OfferingsNumberCard from './OfferingsNumberCard';
 import ProvidersNumberCard from './ProvidersNumberCard';
 import CategoryCard from './CategoryCard';
+import { useUser } from '../../lib/hooks';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -107,7 +107,7 @@ function HomePure(props) {
         categories = []
     } = props;
 
-    const user = useUser();
+    const user = useUser({ redirectTo: '/login', redirectIfFound: false });
 
     const layouts = useMemo(() => {
         return getInitialLayouts(categories);
@@ -139,15 +139,15 @@ function HomePure(props) {
     return (<Layout>
         <div className="px-5">
             <ResponsiveGridLayout className="layout"
-                breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-                cols={{ lg: 11, md: 10, sm: 6, xs: 4, xxs: 3 }}
-                layouts={layouts}
-                rowHeight={100}
-                onLayoutChange={onLayoutChange}
+                                  breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+                                  cols={{ lg: 11, md: 10, sm: 6, xs: 4, xxs: 3 }}
+                                  layouts={layouts}
+                                  rowHeight={100}
+                                  onLayoutChange={onLayoutChange}
             >
                 <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
                     <Image src="/img/homepage_banner_logo.png" alt="WEB-RI logo"
-                        width={385} height={200} className="p-3" />
+                           width={385} height={200} className="p-3" />
                 </Card>
 
                 <Card key="b">
@@ -158,7 +158,7 @@ function HomePure(props) {
                                     USER
                                 </small>
                                 <h4>
-                                    { user.name }
+                                    {/*{ user.name }*/}
                                 </h4>
                             </Col>
                             <Col>
@@ -166,7 +166,7 @@ function HomePure(props) {
                                     COMPANY
                                 </small>
                                 <h4>
-                                    { user.company }
+                                    {/*{ user.company }*/}
                                 </h4>
                             </Col>
                         </Row>
@@ -176,18 +176,18 @@ function HomePure(props) {
                                     ROLE
                                 </small>
                                 <h4>
-                                    { user.rolesStr() }
+                                    {/*{ user.rolesStr() }*/}
                                 </h4>
                             </Col>
                             <Col>
-                                { user.isProvider() ? <>
-                                    <small className="text-muted">
-                                        DATA PROVIDER ID
-                                    </small>
-                                    <h4>
-                                        { user.providerId }
-                                    </h4>
-                                </> : null }
+                                {/*{ user.isProvider() ? <>*/}
+                                <small className="text-muted">
+                                    DATA PROVIDER ID
+                                </small>
+                                <h4>
+                                    {/*{ user.providerId }*/}
+                                </h4>
+                                {/*</> : null }*/}
                             </Col>
                         </Row>
                     </Card.Body>

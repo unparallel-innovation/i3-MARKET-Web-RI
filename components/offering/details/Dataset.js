@@ -2,8 +2,8 @@ import { Accordion, Badge, Card, Row } from 'react-bootstrap';
 import CustomToggle from '/components/common/CustomToggle.js';
 import KVCol from '../../common/KVCol.js';
 import Distribution from './Distribution.js';
-import { ts2date } from '/lib/utils.js';
 import DatasetInformation from './DatasetInformation';
+import { ts2date } from '../../../lib/utils';
 
 export default
 function Dataset(props) {
@@ -24,12 +24,12 @@ function Dataset(props) {
     )) : null;
 
     const distributionEl = distribution.map((dist, idx) => (
-        <Distribution key={dist.distributionId}
+        <Distribution key={`distribution${idx}`}
             eventKey={`${eventKey}-distribution${idx}`} { ...dist } />
     ));
 
     const datasetInformationEl = datasetInformation.map((inf, idx) => (
-        <DatasetInformation key={inf.datasetInformationId}
+        <DatasetInformation key={`datasetInformation${idx}`}
             eventKey={`${eventKey}-datasetInformation${idx}`} { ...inf } />
     ));
 

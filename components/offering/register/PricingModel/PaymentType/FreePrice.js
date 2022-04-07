@@ -1,15 +1,15 @@
 import { Accordion, Card, Form } from 'react-bootstrap';
-import PaymentTypeToggle from '../../PaymentTypeToggle';
+import CustomToggle from '../../../../common/CustomToggle';
 
 export default function FreePrice(props) {
-    const { eventKey, onDelete, onAdd } = props;
+    const { eventKey} = props;
 
     return (
         <Accordion>
             <Card className="mb-3">
-                <PaymentTypeToggle eventKey={eventKey} className="bg-secondary text-white" onDelete={onDelete} onAdd={onAdd}>
+                <CustomToggle eventKey={eventKey} className="bg-secondary text-white">
                     Free Price
-                </PaymentTypeToggle>
+                </CustomToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'hasPriceFree'}>

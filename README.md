@@ -20,11 +20,9 @@ npm install
 
 ## Run
 ```bash
-[SDK_RI_ENDPOINT] [I3MARKET_USERNAME] [I3MARKET_PASSWORD] npm run dev
+[SDK_RI_ENDPOINT] npm run dev
 
 # SDK_RI_ENDPOINT: sdk-ri endpoint (http://12.345.6.789:1234 example)
-# I3MARKET_USERNAME: i3-MARKET login username
-# I3MARKET_PASSWORD: i3-MARKET login password
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -40,13 +38,11 @@ To run WEB-RI as docker, first you must define the following environment variabl
 ````yaml
 environment: 
   SDK_RI_ENDPOINT: sdk-ri endpoint
-  I3MARKET_USERNAME: i3-MARKET login username
-  I3MARKET_PASSWORD: i3-MARKET login password
 ````
 Then,
-````bash
+```bash
 docker-compose up
-````
+```
 
 ### Learn More
 
@@ -66,7 +62,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ### Lint with auto-fix
 Run the following command to auto-fix some eslint warnings:
-```sh
+```bash
 make lint
 ```
 

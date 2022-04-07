@@ -1,15 +1,15 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
-import PaymentTypeToggle from '../../PaymentTypeToggle';
+import CustomToggle from '../../../../common/CustomToggle';
 
 export default function PaymentOnSubscription(props) {
-    const { eventKey, onDelete, onAdd } = props;
+    const { eventKey } = props;
 
     return (
         <Accordion>
             <Card className="mb-3">
-                <PaymentTypeToggle eventKey={eventKey} className="bg-secondary text-white" onDelete={onDelete} onAdd={onAdd}>
+                <CustomToggle eventKey={eventKey} className="bg-secondary text-white">
                     Payment on Subscription
-                </PaymentTypeToggle>
+                </CustomToggle>
                 <Accordion.Collapse eventKey={eventKey}>
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'paymentOnSubscriptionName'}>
@@ -26,8 +26,7 @@ export default function PaymentOnSubscription(props) {
                                 <Form.Group controlId={eventKey + 'hasSubscriptionPrice'}>
                                     <Form.Label>Subscription Price</Form.Label>
                                     <Form.Control type="text"
-                                        placeholder="Subscription Price"
-                                        name={eventKey + 'hasSubscriptionPrice'}
+                                          placeholder="Subscription Price" name={eventKey + 'hasSubscriptionPrice'}
                                     />
                                 </Form.Group>
                             </Col>

@@ -15,9 +15,8 @@ function Offering(props) {
     const router = useRouter();
     const { offeringId } = router.query;
     const {
-        dataOfferingTitle, dataOfferingDescription,
-        status, hasDataset, category, provider, license,
-        marketId, owner, dataOfferingExpirationTime,
+        dataOfferingTitle, dataOfferingDescription, status, hasDataset,
+        category, provider, license, marketId, owner, dataOfferingExpirationTime,
         hasPricingModel, contractParameters
     } = props;
 
@@ -27,17 +26,20 @@ function Offering(props) {
         ? <Globe color={colors.primary} size={20} />
         : <Lock color={colors.primary} size={20} /> ;
 
-    const datasetEl = hasDataset.map((item, idx) => (
-        <Dataset key={item.title} eventKey={`dataset${idx}`} { ...item } />
-    ));
+    const datasetEl = hasDataset.title ?
+        <Dataset
+            key={'datasetKey'} eventKey={`dataset`} { ...hasDataset }
+        /> : '';
 
-    const contractParametersEl = contractParameters.map((item, idx) => (
-        <ContractParameter key={item.contractParametersId} eventKey={`contractParameter${idx}`} { ...item } />
-    ));
+    const contractParametersEl = contractParameters.interestOfProvider ?
+        <ContractParameter
+            key={'contractParametersKey'} eventKey={`contractParameters`} { ...contractParameters }
+        /> : '';
 
-    const pricingModelEl = hasPricingModel.map((item, idx) => (
-        <PricingModel key={idx} { ...item } />
-    ));
+    const pricingModelEl = hasPricingModel.pricingModelName ?
+        <PricingModel
+            key={'hasPricingModelKey'} eventKey={`hasPricingModel`} { ...hasPricingModel }
+        /> : '';
 
     function onDelete(e) {
         fetch(`/api/offering/${offeringId}`, {
@@ -49,19 +51,15 @@ function Offering(props) {
         });
     }
 
-    function onUpdate(e) {
-        router.push('/offerings/update/' + offeringId);
-    }
-
-    function onActivate(e) {
-        fetch(`/api/offering/${offeringId}`, {
-            method: 'PATCH',
-        }).then(res => {
-            router.push(`/offering/${offeringId}`);
-        }).catch(error => {
-            console.log('ERROR', error);
-        });
-    }
+    // function onActivate(e) {
+    //     fetch(`/api/offering/${offeringId}`, {
+    //         method: 'PATCH',
+    //     }).then(res => {
+    //         router.push('/offering/${offeringId}');
+    //     }).catch(error => {
+    //         console.log('ERROR', error);
+    //     });
+    // }
 
     return (<Layout>
         <div className="px-5 pb-3">
@@ -69,8 +67,7 @@ function Offering(props) {
                 <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
                 <span className="p-2">{ visIconEl }  </span>
                 <span className="p-2">
-                    <Pencil color={colors.primary} size={20} onClick={onUpdate} className="cursor-pointer"
-                    />
+                    <Pencil color={colors.primary} size={20} />
                 </span>
                 <span className="p-2">
                     <Trash color={colors.primary} size={20}
@@ -78,17 +75,6 @@ function Offering(props) {
                         className="cursor-pointer" />
                 </span>
             </div>
-
-            <hr />
-            {/*<span>*/}
-            {/*    <Button disabled={!activeContracts && !pendingContracts}>*/}
-            {/*        View all Contracts*/}
-            {/*    </Button>*/}
-            {/*    <span className="p-2 ml-2">{ activeContracts || 0 } Active</span>|*/}
-            {/*    <span className="p-2">{ pendingContracts || 0 } Pending</span>*/}
-            {/*</span>*/}
-
-            {/*<hr />*/}
 
             <p>{ dataOfferingDescription }</p>
 
@@ -116,22 +102,17 @@ function Offering(props) {
                 </KVCol2>
             </Row>
 
+            <div className="mt-3" />
+
             { datasetEl }
 
-            <div className="mt-2" />
+            <div className="mt-3" />
 
             { contractParametersEl }
 
         </div>
 
-        { pricingModelEl.length > 0
-            ? <div className="bg-lightcyan p-5">
-                <h3 className="mb-5 text-center">Pricing Model</h3>
-                <Row>
-                    { pricingModelEl }
-                </Row>
-            </div>
-            : ''}
+        { pricingModelEl }
 
         <Modal show={show} onHide={() => setShowDelete(false)}>
             <Modal.Header closeButton>

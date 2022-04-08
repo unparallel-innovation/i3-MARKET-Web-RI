@@ -14,15 +14,16 @@ This project is divided into different directories:
 - styles: responsible to customize the design of the website. 
 
 ## Installation
-```bash
+```javascript
 npm install
 ```
 
 ## Run
-```bash
-[SDK_RI_ENDPOINT] npm run dev
+```javascript
+[SDK_RI_ENDPOINT] [MONGO_URL] npm run dev
 
-# SDK_RI_ENDPOINT: sdk-ri endpoint (http://12.345.6.789:1234 example)
+// SDK_RI_ENDPOINT: sdk-ri endpoint (http://12.345.6.789:1234 example)
+// MONGO_URL: mongodb local instance (mongodb://localhost:port example)
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -38,9 +39,10 @@ To run WEB-RI as docker, first you must define the following environment variabl
 ````yaml
 environment: 
   SDK_RI_ENDPOINT: sdk-ri endpoint
+  MONGO_URL: mongodb url 
 ````
 Then,
-```bash
+```javascript
 docker-compose up
 ```
 

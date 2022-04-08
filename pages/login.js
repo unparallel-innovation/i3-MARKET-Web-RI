@@ -3,7 +3,7 @@ import { useUser } from '../lib/hooks';
 import { useState } from 'react';
 
 export default function Login() {
-    useUser({redirectTo: '/', redirectIfFound: true})
+    useUser({ redirectTo: '/', redirectIfFound: true });
 
     const [role, setRole] = useState('consumer');
 

@@ -1,4 +1,4 @@
-import {catchErrors} from '/lib/server.js';
+import { catchErrors } from '/lib/server.js';
 
 export default catchErrors(async (req, res) => {
     return {

@@ -31,7 +31,7 @@ function PaymentType(props) {
     );
 }
 
-function freePrice(item){
+function freePrice(item) {
     return item.hasPriceFree ? (
         <PaymentType
             key={'free'}
@@ -43,7 +43,7 @@ function freePrice(item){
     ) : '';
 }
 
-function paymentOnApi(item){
+function paymentOnApi(item) {
     const { paymentOnApiName, hasApiPrice, description, numberOfObject } = item;
 
     const paymentTypeEl = (
@@ -53,7 +53,7 @@ function paymentOnApi(item){
         </Card.Text>
     );
 
-    return paymentOnApiName  ? (
+    return paymentOnApiName ? (
         <PaymentType
             key={'api'}
             paymentTypeTitle="API"
@@ -64,7 +64,7 @@ function paymentOnApi(item){
     ) : '';
 }
 
-function paymentOnSize(item){
+function paymentOnSize(item) {
     const { hasSizePrice, dataSize, paymentOnSizeName, description } = item;
 
     const paymentTypeEl = (
@@ -86,7 +86,7 @@ function paymentOnSize(item){
     ) : '';
 }
 
-function paymentSubscription(item){
+function paymentSubscription(item) {
     const {
         paymentOnSubscriptionName, paymentType, description,
         timeDuration, repeat, hasSubscriptionPrice
@@ -96,7 +96,6 @@ function paymentSubscription(item){
         <Card.Text>
             <TextElem title={'Name'} value={paymentOnSubscriptionName} />
             <TextElem title={'Description'} value={description} />
-            <TextElem title={'Payment Type'} value={paymentType} />
             <TextElem title={'Payment Type'} value={paymentType} />
             <TextElem title={'Duration'} value={timeDuration} />
             <TextElem title={'Repeat Mode'} value={repeat} />
@@ -129,7 +128,7 @@ function paymentSubscription(item){
     ) : '';
 }
 
-function paymentUnit(item){
+function paymentUnit(item) {
     const { paymentOnUnitName, description, hasUnitPrice, dataUnit } = item;
 
     const paymentTypeEl = (

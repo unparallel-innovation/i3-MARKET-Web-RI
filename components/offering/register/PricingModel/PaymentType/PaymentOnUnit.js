@@ -2,7 +2,7 @@ import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import CustomToggle from '../../../../common/CustomToggle';
 
 export default function PaymentOnUnit(props) {
-    const { eventKey} = props;
+    const { eventKey } = props;
 
     return (
         <Accordion>

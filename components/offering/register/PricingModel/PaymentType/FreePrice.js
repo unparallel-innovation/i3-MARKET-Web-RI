@@ -2,7 +2,7 @@ import { Accordion, Card, Form } from 'react-bootstrap';
 import CustomToggle from '../../../../common/CustomToggle';
 
 export default function FreePrice(props) {
-    const { eventKey} = props;
+    const { eventKey } = props;
 
     return (
         <Accordion>

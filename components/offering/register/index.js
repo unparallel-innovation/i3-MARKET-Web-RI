@@ -17,13 +17,13 @@ function Register(props) {
     const [ atIdx, setAtIdx ] = useState(0);
 
     const [ datasetC ] = useMap('', 'dataset');
-    const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset0'} />
+    const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset0'} />;
 
     const [ pricingModelC ] = useMap('', 'pricingModel');
-    const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel0'} />
+    const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel0'} />;
 
     const [ contractParameterC ] = useMap('', 'contractParameter');
-    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter0'} />
+    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter0'} />;
 
     function onSubmit(e) {
         e.preventDefault();
@@ -47,7 +47,7 @@ function Register(props) {
     return (
         <Layout className="d-flex flex-column">
             <Form className="px-5 pb-3 d-flex flex-column flex-grow-1"
-                  onSubmit={onSubmit} action="/api/offerings/register">
+                onSubmit={onSubmit} action="/api/offerings/register">
                 <div className="d-flex">
                     <h3 className="flex-grow-1 mb-0">Register New Offering</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>

@@ -7,7 +7,7 @@ export default function DatasetDistribution(props) {
     const { eventKey, onDelete } = props;
     const [ accessServiceC ] = useMap(eventKey, 'accessService');
 
-    const accessServiceEl = <AccessService key={'accessServiceKey'} eventKey={eventKey+'accessService0'} />
+    const accessServiceEl = <AccessService key={'accessServiceKey'} eventKey={eventKey + 'accessService0'} />;
 
     return (
         <Accordion>

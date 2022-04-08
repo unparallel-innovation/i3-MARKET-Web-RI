@@ -26,19 +26,19 @@ function Offering(props) {
         ? <Globe color={colors.primary} size={20} />
         : <Lock color={colors.primary} size={20} /> ;
 
-    const datasetEl = hasDataset.title ?
-        <Dataset
-            key={'datasetKey'} eventKey={`dataset`} { ...hasDataset }
+    const datasetEl = hasDataset.title
+        ? <Dataset
+            key={'datasetKey'} eventKey={'dataset'} { ...hasDataset }
         /> : '';
 
-    const contractParametersEl = contractParameters.interestOfProvider ?
-        <ContractParameter
-            key={'contractParametersKey'} eventKey={`contractParameters`} { ...contractParameters }
+    const contractParametersEl = contractParameters.interestOfProvider
+        ? <ContractParameter
+            key={'contractParametersKey'} eventKey={'contractParameters'} { ...contractParameters }
         /> : '';
 
-    const pricingModelEl = hasPricingModel.pricingModelName ?
-        <PricingModel
-            key={'hasPricingModelKey'} eventKey={`hasPricingModel`} { ...hasPricingModel }
+    const pricingModelEl = hasPricingModel.pricingModelName
+        ? <PricingModel
+            key={'hasPricingModelKey'} eventKey={'hasPricingModel'} { ...hasPricingModel }
         /> : '';
 
     function onDelete(e) {

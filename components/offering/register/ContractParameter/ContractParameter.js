@@ -8,11 +8,11 @@ export default function ContractParameter(props) {
 
     // hasIntendedUse
     const [ hasIntendedUseC ] = useMap(eventKey, 'hasIntendedUse');
-    const hasIntendedUseEl = <HasIntendedUse key={'hasIntendedUse'} eventKey={eventKey+'hasIntendedUse0'} />;
+    const hasIntendedUseEl = <HasIntendedUse key={'hasIntendedUse'} eventKey={eventKey + 'hasIntendedUse0'} />;
 
     // hasLicenseGrant
     const [ hasLicenseGrantC ] = useMap(eventKey, 'hasLicenseGrant');
-    const hasLicenseGrantEl = <HasLicenseGrant key={'hasLicenseGrantKey'} eventKey={eventKey+'hasLicenseGrant0'} />
+    const hasLicenseGrantEl = <HasLicenseGrant key={'hasLicenseGrantKey'} eventKey={eventKey + 'hasLicenseGrant0'} />;
 
     return (<>
         <Form.Group controlId={eventKey + 'interestOfProvider'}>
@@ -26,7 +26,7 @@ export default function ContractParameter(props) {
         <Form.Group controlId={eventKey + 'interestDescription'}>
             <Form.Label>Interest Description</Form.Label>
             <Form.Control as="textarea" rows={3}
-                          placeholder="Interest Description" name={eventKey + 'interestDescription'}/>
+                placeholder="Interest Description" name={eventKey + 'interestDescription'}/>
         </Form.Group>
 
         <Form.Group controlId={eventKey + 'purpose'}>
@@ -37,7 +37,7 @@ export default function ContractParameter(props) {
         <Form.Group controlId={eventKey + 'purposeDescription'}>
             <Form.Label>Purpose Description</Form.Label>
             <Form.Control as="textarea" rows={3}
-                          placeholder="Purpose Description" name={eventKey + 'purposeDescription'}/>
+                placeholder="Purpose Description" name={eventKey + 'purposeDescription'}/>
         </Form.Group>
 
         <Form.Group controlId={eventKey + 'hasGoverningJurisdiction'}>

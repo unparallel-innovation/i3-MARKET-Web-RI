@@ -2,7 +2,7 @@ import nextConnect from 'next-connect';
 import auth from '../../../middleware/auth';
 import passport from '../../../lib/passport';
 
-const handler = nextConnect()
+const handler = nextConnect();
 
 handler.use(auth)
     .get(
@@ -10,6 +10,6 @@ handler.use(auth)
             'oidc',
             { scope: 'openid vc vc:provider' }
         )
-    )
+    );
 
-export default handler
+export default handler;

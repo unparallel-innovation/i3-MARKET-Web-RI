@@ -18,7 +18,7 @@ export default function General(props) {
         <Form.Group controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control as="textarea" rows={3}
-              placeholder="Offering Description" name="description" required/>
+                placeholder="Offering Description" name="description" required/>
         </Form.Group>
 
         <Row>

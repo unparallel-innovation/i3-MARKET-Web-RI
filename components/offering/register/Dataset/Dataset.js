@@ -37,7 +37,7 @@ export default function Dataset(props) {
         <Form.Group controlId={eventKey + 'description'}>
             <Form.Label>Description</Form.Label>
             <Form.Control as="textarea" rows={3}
-                  placeholder="Dataset Description" name={eventKey + 'description'}
+                placeholder="Dataset Description" name={eventKey + 'description'}
             />
         </Form.Group>
 
@@ -80,7 +80,7 @@ export default function Dataset(props) {
                 <Form.Group controlId={eventKey + 'temporalResolution'}>
                     <Form.Label>Temporal Resolution</Form.Label>
                     <Form.Control type="text"
-                          placeholder="Temporal Resolution" name={eventKey + 'temporalResolution'}
+                        placeholder="Temporal Resolution" name={eventKey + 'temporalResolution'}
                     />
                 </Form.Group>
             </Col>
@@ -97,7 +97,7 @@ export default function Dataset(props) {
                 <Form.Group controlId={eventKey + 'accrualPeriodicity'}>
                     <Form.Label>Accrual Periodicity</Form.Label>
                     <Form.Control type="text"
-                          placeholder="Accrual Periodicity" name={eventKey + 'accrualPeriodicity'}
+                        placeholder="Accrual Periodicity" name={eventKey + 'accrualPeriodicity'}
                     />
                 </Form.Group>
             </Col>

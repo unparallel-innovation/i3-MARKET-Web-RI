@@ -50,13 +50,13 @@ function Distribution(props) {
 
                         <Table className="mt-3">
                             <thead>
-                            <tr>
-                                <th>Conforms To</th>
-                                <th>Endpoint Description</th>
-                                <th>Endpoint URL</th>
-                                <th>Serves Dataset</th>
-                                <th>Service Specs</th>
-                            </tr>
+                                <tr>
+                                    <th>Conforms To</th>
+                                    <th>Endpoint Description</th>
+                                    <th>Endpoint URL</th>
+                                    <th>Serves Dataset</th>
+                                    <th>Service Specs</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>

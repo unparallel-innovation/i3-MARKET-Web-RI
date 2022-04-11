@@ -1,7 +1,7 @@
 # WEB-RI
-This repository is for the WEB-RI project. 
+This repository is for the Web-RI project. 
 
-The WEB-RI is a web interface that allows the users to interact with the functionalities provided by the SDK-RI. It can be reused and customized as part of each pilot specification and implementation needs.
+The Web-RI is a web interface that allows the users to interact with the functionalities provided by the SDK-RI. It can be reused and customized as part of each pilot specification and implementation needs.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -20,11 +20,13 @@ npm install
 
 ## Run
 ```javascript
-[SDK_RI_ENDPOINT] [MONGO_URL] npm run dev
+[SDK_RI_ENDPOINT] [MONGO_URL] npm run dev -- -p [PORT]
 
 // SDK_RI_ENDPOINT: sdk-ri endpoint (http://12.345.6.789:1234 example)
 // MONGO_URL: mongodb local instance (mongodb://localhost:port example)
+// PORT: default running port (default=3000)
 ```
+Note: Web-RI instance must run in same port as the i3-Market registered [client](https://i3-market.gitlab.io/code/backplane/backplane-api-gateway/backplane-api-specification/systems/trust-security-privacy/ssi-iam/user-centric-authentication.html).
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -34,12 +36,15 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages. Some of the API routes correspond to full pages, while some only return the contents of specific components.
 
-## Run in Production
+## Run in Docker
 To run WEB-RI as docker, first you must define the following environment variables in docker-compose.yml file:
 ````yaml
 environment: 
   SDK_RI_ENDPOINT: sdk-ri endpoint
   MONGO_URL: mongodb url 
+
+  MONGO_INITDB_ROOT_USERNAME: mongodb username
+  MONGO_INITDB_ROOT_PASSWORD: mongodb password
 ````
 Then,
 ```javascript

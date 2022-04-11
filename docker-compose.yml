@@ -2,7 +2,7 @@ services:
   web-ri:
     build: .
     ports:
-      - 3000:3000
+      - 5300:3000
     environment:
       SDK_RI_ENDPOINT:
       MONGO_URL:

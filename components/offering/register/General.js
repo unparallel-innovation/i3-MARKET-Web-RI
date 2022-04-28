@@ -3,7 +3,6 @@ import { useUser } from '../../../lib/hooks';
 
 export default function General(props) {
     const { categories } = props;
-    const user = useUser({ redirectTo: '/login', redirectIfFound: false });
 
     const categoryEl = categories.map(({ name }) => (
         <option key={name} value={name}>{ name }</option>

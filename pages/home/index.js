@@ -3,10 +3,12 @@ import Layout from '/components/layout/Layout.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Card, Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
-import OfferingsNumberCard from './OfferingsNumberCard';
-import ProvidersNumberCard from './ProvidersNumberCard';
-import CategoryCard from './CategoryCard';
-import { useUser } from '../../lib/hooks';
+import OfferingsNumberCard from '../../components/home/OfferingsNumberCard';
+import ProvidersNumberCard from '../../components/home/ProvidersNumberCard';
+import CategoryCard from '../../components/home/CategoryCard';
+import { useData } from '../../lib/hooks';
+import Oidc from '../oidc';
+import Login from '../login';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -102,12 +104,39 @@ function getInitialLayouts(categories) {
 }
 
 export default
-function HomePure(props) {
+function Home(props) {
     const {
         categories = []
     } = props;
 
-    const user = useUser({ redirectTo: '/login', redirectIfFound: false });
+    const oidcData = useData('/api/oidcClient');
+    const userData = useData('/api/user');
+
+    if (oidcData.data) {
+
+        if (oidcData.data.hasClient) {
+
+            if (userData.data) {
+
+                if (userData.data.user) {
+                    return <HomeContent categories={categories}/>;
+                }
+                else {
+                    return <Login />;
+                }
+            }
+        }
+        else {
+            return <Oidc/>;
+        }
+    }
+    return '';
+}
+
+function HomeContent(props) {
+    const {
+        categories = []
+    } = props;
 
     const layouts = useMemo(() => {
         return getInitialLayouts(categories);
@@ -126,9 +155,6 @@ function HomePure(props) {
         // if (categories.length)
         //   localStorage.setItem("homeLayouts", JSON.stringify(layouts));
     }
-
-    if (!user)
-        return null;
 
     const categoryEl = categories.map((category, idx) => (
         <div key={'category' + idx}>

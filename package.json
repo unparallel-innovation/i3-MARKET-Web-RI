@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@unparallel/connector-ri": "^1.0.4",
+    "@unparallel/connector-ri": "^1.0.10",
     "bootstrap": "^4.6.1",
     "connect-mongo": "^4.6.0",
     "express-session": "^1.17.2",
     "js-logger": "^1.6.1",
+    "jsonrepair": "^2.2.1",
     "minimist": "^1.2.6",
     "mongodb": "^4.4.1",
     "next": "^12.1.4",

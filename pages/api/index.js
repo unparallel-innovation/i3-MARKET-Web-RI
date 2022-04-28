@@ -1,6 +1,7 @@
 import { catchErrors } from '/lib/server.js';
 
 export default catchErrors(async (req, res) => {
+
     return {
         categories: [
             'Agriculture',
@@ -20,6 +21,6 @@ export default catchErrors(async (req, res) => {
             'Transport',
             'Wellbeing',
             'Society',
-        ],
+        ]
     };
 });

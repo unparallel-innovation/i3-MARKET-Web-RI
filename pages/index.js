@@ -1,5 +1,5 @@
 import { useData } from '/lib/hooks.js';
-import HomePure from '/components/home';
+import Home from '/pages/home';
 import Error from '../components/layout/Error';
 
 export default function HomePage() {
@@ -9,7 +9,7 @@ export default function HomePage() {
         return <Error error={error} />;
 
     if (!data)
-        return <HomePure />;
+        return <Home />;
 
-    return <HomePure { ...data } />;
+    return <Home { ...data } />;
 }

@@ -22,14 +22,6 @@ export default function General(props) {
 
         <Row>
             <Col>
-                <Form.Group controlId="category">
-                    <Form.Label>Category</Form.Label>
-                    <Form.Control as="select" className="mr-3" name="category" placeholder="Category" >
-                        { categoryEl }
-                    </Form.Control>
-                </Form.Group>
-            </Col>
-            <Col>
                 <Form.Group controlId="provider">
                     <Form.Label>Provider</Form.Label>
                     <Form.Control type="text" placeholder="Provider" name="provider" required />
@@ -37,9 +29,9 @@ export default function General(props) {
                 </Form.Group>
             </Col>
             <Col>
-                <Form.Group controlId="owner">
-                    <Form.Label>Owner</Form.Label>
-                    <Form.Control type="text" placeholder="Owner" name="owner" required />
+                <Form.Group controlId="providerDid">
+                    <Form.Label>Provider DID</Form.Label>
+                    <Form.Control type="text" placeholder="Provider DID" name="providerDid" required />
                 </Form.Group>
             </Col>
         </Row>
@@ -47,8 +39,40 @@ export default function General(props) {
         <Row>
             <Col>
                 <Form.Group controlId="marketId">
-                    <Form.Label>Marketplace</Form.Label>
+                    <Form.Label>Market</Form.Label>
                     <Form.Control type="text" placeholder="Marketplace" name="marketId" required />
+                </Form.Group>
+            </Col>
+            <Col>
+                <Form.Group controlId="marketDid">
+                    <Form.Label>Market DID</Form.Label>
+                    <Form.Control type="text" placeholder="Marketplace" name="marketDid" required />
+                </Form.Group>
+            </Col>
+        </Row>
+
+        <Row>
+            <Col>
+                <Form.Group controlId="owner">
+                    <Form.Label>Owner</Form.Label>
+                    <Form.Control type="text" placeholder="Owner" name="owner" required />
+                </Form.Group>
+            </Col>
+            <Col>
+                <Form.Group controlId="ownerDid">
+                    <Form.Label>Owner DID</Form.Label>
+                    <Form.Control type="text" placeholder="Owner DID" name="ownerDid" required />
+                </Form.Group>
+            </Col>
+        </Row>
+
+        <Row>
+            <Col>
+                <Form.Group controlId="category">
+                    <Form.Label>Category</Form.Label>
+                    <Form.Control as="select" className="mr-3" name="category" placeholder="Category" >
+                        { categoryEl }
+                    </Form.Control>
                 </Form.Group>
             </Col>
             <Col>

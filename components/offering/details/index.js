@@ -16,8 +16,8 @@ function Offering(props) {
     const { offeringId } = router.query;
     const {
         dataOfferingTitle, dataOfferingDescription, status, hasDataset,
-        category, provider, license, marketId, owner, dataOfferingExpirationTime,
-        hasPricingModel, contractParameters
+        category, provider, providerDid, marketId, marketDid, owner, ownerDid,
+        dataOfferingExpirationTime, hasPricingModel, contractParameters
     } = props;
 
     const [ show, setShowDelete ] = useState(false);
@@ -51,16 +51,6 @@ function Offering(props) {
         });
     }
 
-    // function onActivate(e) {
-    //     fetch(`/api/offering/${offeringId}`, {
-    //         method: 'PATCH',
-    //     }).then(res => {
-    //         router.push('/offering/${offeringId}');
-    //     }).catch(error => {
-    //         console.log('ERROR', error);
-    //     });
-    // }
-
     return (<Layout>
         <div className="px-5 pb-3">
             <div className="d-flex">
@@ -79,23 +69,29 @@ function Offering(props) {
             <p>{ dataOfferingDescription }</p>
 
             <Row className="text-center mb-3">
-                <KVCol2 title="Category">
-                    { category }
-                </KVCol2>
                 <KVCol2 title="Provider">
                     { provider }
+                </KVCol2>
+                <KVCol2 title="Provider DID">
+                    { providerDid }
                 </KVCol2>
                 <KVCol2 title="Market">
                     { marketId }
                 </KVCol2>
+                <KVCol2 title="Market DID">
+                    { marketDid }
+                </KVCol2>
             </Row>
 
             <Row className="text-center mb-3">
-                <KVCol2 title="Licence">
-                    { license }
-                </KVCol2>
                 <KVCol2 title="Owner">
                     { owner }
+                </KVCol2>
+                <KVCol2 title="Owner DID">
+                    { ownerDid }
+                </KVCol2>
+                <KVCol2 title="Category">
+                    { category }
                 </KVCol2>
                 <KVCol2 title="Expiration Time">
                     { ts2date(dataOfferingExpirationTime) }

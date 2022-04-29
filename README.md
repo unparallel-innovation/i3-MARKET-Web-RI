@@ -11,7 +11,7 @@ This project is divided into different directories:
 - lib: contains information such forms, colors, user and server configuration.
 - pages: each file represents a React component with associated route based on its file name.
 - public: contains files such images and logos.
-- styles: responsible to customize the design of the website. 
+- styles: responsible to customize the design of the website.
 
 ## Installation
 ```javascript
@@ -20,21 +20,29 @@ npm install
 
 ## Run
 ```javascript
-[SDK_RI_ENDPOINT] [MONGO_URL] npm run dev -- -p [PORT]
+[SDK_RI_ENDPOINT] [MONGO_URL] [OIDC_URL] npm run dev -- -p [PORT]
 
-// SDK_RI_ENDPOINT: sdk-ri endpoint (http://12.345.6.789:1234 example)
-// MONGO_URL: mongodb local instance (mongodb://localhost:port example)
+// SDK_RI_ENDPOINT: sdk-ri endpoint (e.g. http://12.345.6.789:1234)
+// MONGO_URL: mongodb local instance (e.g. mongodb://localhost:port)
+// OIDC_URL: oidc url deployed in i3-Market network (e.g. https://identity1.i3-market.eu)
 // PORT: default running port (default=3000)
 ```
-Note: Web-RI instance must run in same port as the i3-Market registered [client](https://i3-market.gitlab.io/code/backplane/backplane-api-gateway/backplane-api-specification/systems/trust-security-privacy/ssi-iam/user-centric-authentication.html).
+Note: Web-RI instance must run in same port as the registered OIDC client.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### OIDC Client registration
+When launching the Web-RI for the first time, it will request for an OIDC Client registered.
+In order to achieve that, you must follow the steps in the image below:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+(add screenshot)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages. Some of the API routes correspond to full pages, while some only return the contents of specific components.
+After successfully added the OIDC Client configuration, you will be redirected to the Login page.
+
+### i3M Wallet
+To perform the authentication, the i3M Wallet software must be installed and running on the user's computer. 
+You can access [here](https://i3-market.gitlab.io/code/backplane/backplane-api-gateway/backplane-api-specification/systems/trust-security-privacy/smart-wallet/wallet-desktop.html) to get instructions to how to use it.
+
 
 ## Run in Docker
 To run WEB-RI as docker, first you must define the following environment variables in docker-compose.yml file:
@@ -42,6 +50,7 @@ To run WEB-RI as docker, first you must define the following environment variabl
 environment: 
   SDK_RI_ENDPOINT: sdk-ri endpoint
   MONGO_URL: mongodb url 
+  OIDC_URL: oidc url
 
   MONGO_INITDB_ROOT_USERNAME: mongodb username
   MONGO_INITDB_ROOT_PASSWORD: mongodb password

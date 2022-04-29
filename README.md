@@ -33,14 +33,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### OIDC Client registration
 When launching the Web-RI for the first time, it will request for an OIDC Client registered.
-In order to achieve that, you must follow the steps in the image below:
-
-(add screenshot)
+In order to achieve that, you must follow the steps in http://localhost:3000/oidc.
 
 After successfully added the OIDC Client configuration, you will be redirected to the Login page.
 
 ### i3M Wallet
-To perform the authentication, the i3M Wallet software must be installed and running on the user's computer. 
+To perform the authentication, the i3M Wallet software must be installed and running on the user's computer.
 You can access [here](https://i3-market.gitlab.io/code/backplane/backplane-api-gateway/backplane-api-specification/systems/trust-security-privacy/smart-wallet/wallet-desktop.html) to get instructions to how to use it.
 
 

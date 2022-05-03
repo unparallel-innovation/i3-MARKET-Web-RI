@@ -16,7 +16,7 @@ export default function Oidc() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(oidc),
         }).then(res => {
-            router.push('/login');
+            router.reload()
         });
     }
 

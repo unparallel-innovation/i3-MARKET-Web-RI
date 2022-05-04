@@ -9,6 +9,7 @@ import CategoryCard from '../../components/home/CategoryCard';
 import { useData } from '../../lib/hooks';
 import Oidc from '../oidc';
 import Login from '../login';
+import Auth from '../auth';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -122,7 +123,7 @@ function Home(props) {
                     return <HomeContent categories={categories}/>;
                 }
                 else {
-                    return <Login />;
+                    return <Auth />;
                 }
             }
         }

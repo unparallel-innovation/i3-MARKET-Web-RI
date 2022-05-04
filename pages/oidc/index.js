@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 export default function Oidc() {
     const router = useRouter();
     const [oidc, setOidc] = useState('');
-    const { data, error } = useData('/api/oidc/');
+    const { data } = useData('/api/oidc/');
 
     function onSubmit(e) {
         e.preventDefault();

@@ -8,8 +8,10 @@ export default function Register() {
     async function onSubmit(e) {
         e.preventDefault();
 
+
+
         const info = {
-            role: role,
+            // consumer :true
             username: e.target.username.value
         }
         const res = await fetch('/api/register', {
@@ -25,39 +27,38 @@ export default function Register() {
     return (
         <div className="vh-100 d-flex flex-column">
             <div className="vh-100 d-flex flex-column justify-content-center align-items-center">
-                <Form className="d-flex flex-column rounded bg-light p-4" onSubmit={onSubmit}>
-                    <div className="d-flex justify-content-center">
+                <Form className="formContainer" onSubmit={onSubmit}>
+                    <div className="formLogo">
                         <Image height={100} width={200} src="/img/WEB-RI_logo.png" alt="Web-ri logo" />
                     </div>
 
-                    <Form.Group className="mt-4">
-                        <Row className="form-inline">
-                            <Col className="col-sm-4 col-form-label">
-                                <Form.Label>Role</Form.Label>
-                            </Col>
-                            <Col className="col-sm-8 col-form-label">
-                                <Form.Control as="select" value={role} onChange={e => { setRole(e.target.value); }} >
-                                    <option value="consumer">Consumer</option>
-                                    <option value="provider">Provider</option>
-                                </Form.Control>
-                            </Col>
+                    <div className="formUserInput">
+                        <div className="d-flex w-100 flex-column">
+                            <div className="d-flex">
+                                <Col className="col-sm-3 text-right">
+                                    <Form.Label className="col-form-label">Role</Form.Label>
+                                </Col>
+                                <Col className="col-sm-9" >
+                                    <Form.Control className="formInput" as="select" value={role} onChange={e => { setRole(e.target.value); }} >
+                                        <option value="consumer">Consumer</option>
+                                        <option value="provider">Provider</option>
+                                    </Form.Control>
+                                </Col>
+                            </div>
 
-                        </Row>
-                    </Form.Group>
+                            <div className="d-flex mt-3">
+                                <Col className="col-sm-3 text-right">
+                                    <Form.Label className="col-form-label">Username</Form.Label>
+                                </Col>
+                                <Col className="col-sm-9" >
+                                    <Form.Control className="formInput" type="text" placeholder="Username" name="username" required />
+                                </Col>
+                            </div>
+                        </div>
+                    </div>
 
-                    <Form.Group>
-                        <Row className="form-inline">
-                            <Col className="col-sm-4 col-form-label">
-                                <Form.Label>Username</Form.Label>
-                            </Col>
-                            <Col className="col-sm-8 col-form-label">
-                                <Form.Control type="text" placeholder="Username" name="username" required />
-                            </Col>
-                        </Row>
-                    </Form.Group>
-
-                    <div className="text-center mt-4">
-                        <Button type="submit">Register</Button>
+                    <div className="formBtnContainer">
+                        <Button className="formBtn bg-secondary" type="submit">Register</Button>
                     </div>
                 </Form>
             </div>

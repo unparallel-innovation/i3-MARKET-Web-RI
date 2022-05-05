@@ -116,3 +116,42 @@ footer small.flex-grow-1 {
 .dropdown-custom{
     width: 200px;
 }
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 375px;
+    height: 325px;
+    border-radius: 10px;
+    background: $light;
+}
+
+.formLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+}
+
+.formGroup {
+    margin-bottom: 0;
+    margin-right: 20px;
+}
+
+.formUserInput {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.formBtnContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
+}
+
+.formBtn {
+    width: 100px;
+}

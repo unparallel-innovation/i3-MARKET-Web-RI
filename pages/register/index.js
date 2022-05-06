@@ -1,4 +1,4 @@
-import { Button, Col, Form, Image, Row } from 'react-bootstrap';
+import { Button, Col, Form, Image } from 'react-bootstrap';
 import Footer from '../../components/common/Footer';
 import { useState } from 'react';
 
@@ -8,12 +8,16 @@ export default function Register() {
     async function onSubmit(e) {
         e.preventDefault();
 
-
-
         const info = {
-            // consumer :true
             username: e.target.username.value
         }
+        if (role === 'consumer'){
+            info.consumer = true;
+        }
+        else if(role === 'provider'){
+            info.provider = true;
+        }
+
         const res = await fetch('/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

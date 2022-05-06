@@ -1,8 +1,7 @@
 import { Col, Form, Row } from 'react-bootstrap';
-import { useUser } from '../../../lib/hooks';
 
 export default function General(props) {
-    const { categories } = props;
+    const { categories, user } = props;
 
     const categoryEl = categories.map(({ name }) => (
         <option key={name} value={name}>{ name }</option>
@@ -24,14 +23,15 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="provider">
                     <Form.Label>Provider</Form.Label>
-                    <Form.Control type="text" placeholder="Provider" name="provider" required />
-                    {/*<input type="hidden" name="isProvidedBy" value={'provider_webri'} />*/}
+                    <Form.Control type="text" name="provider" value={user.username} disabled/>
+                    <input type="hidden" name="provider" value={user.username} />
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId="providerDid">
                     <Form.Label>Provider DID</Form.Label>
-                    <Form.Control type="text" placeholder="Provider DID" name="providerDid" required />
+                    <Form.Control type="text" name="providerDid" value={user.usernameDID} disabled/>
+                    <input type="hidden" name="providerDid" value={user.usernameDID} />
                 </Form.Group>
             </Col>
         </Row>
@@ -46,7 +46,8 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="marketDid">
                     <Form.Label>Market DID</Form.Label>
-                    <Form.Control type="text" placeholder="Marketplace" name="marketDid" required />
+                    <Form.Control type="text" name="marketDid" value={user.marketDID} disabled/>
+                    <input type="hidden" name="marketDid" value={user.marketDID} />
                 </Form.Group>
             </Col>
         </Row>

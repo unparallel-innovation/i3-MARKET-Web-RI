@@ -197,18 +197,7 @@ function HomeContent(props) {
                                 </h4>
                             </Col>
                         </Row>
-                        <Row className="py-3">
-                            <Col>
-                                { user.provider ? <>
-                                    <small className="text-muted">
-                                        PROVIDER ID
-                                    </small>
-                                    <h4>
-                                        { user.usernameDID }
-                                    </h4>
-                                </> : null }
-                            </Col>
-                        </Row>
+
                     </Card.Body>
                 </Card>
 

@@ -1,4 +1,4 @@
-import { Button, Col, Form, Image, Row } from 'react-bootstrap';
+import { Button, Col, Form, Image } from 'react-bootstrap';
 import { useState } from 'react';
 import Footer from '../../components/common/Footer';
 

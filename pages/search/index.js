@@ -5,7 +5,7 @@ import Layout from '/components/layout/Layout.js';
 import Error from '/components/layout/Error.js';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Form, Row, Spinner } from 'react-bootstrap';
+import { Button, Form, Row } from 'react-bootstrap';
 import OfferingCard from '../../components/offering/OfferingCard';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 

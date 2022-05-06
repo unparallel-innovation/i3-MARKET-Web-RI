@@ -12,7 +12,7 @@ import { formRegister } from '/lib/forms/registerOffering.js';
 export default
 function Register(props) {
     const router = useRouter();
-    const { categories } = props;
+    const { categories, user } = props;
 
     const [ atIdx, setAtIdx ] = useState(0);
 
@@ -60,7 +60,7 @@ function Register(props) {
                     setAtIdx(parseInt(k.substring(3)));
                 }} className="mb-3">
                     <Tab eventKey="tab0" title="General">
-                        <General categories={categories} />
+                        <General categories={categories} user={user}/>
                     </Tab>
                     <Tab eventKey="tab1" title="Dataset">
                         <div className="d-flex align-items-center">

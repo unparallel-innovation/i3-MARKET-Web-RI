@@ -75,6 +75,10 @@ function Offering(props) {
                 <KVCol2 title="Provider DID">
                     { providerDid }
                 </KVCol2>
+
+            </Row>
+
+            <Row className="text-center mb-3">
                 <KVCol2 title="Market">
                     { marketId }
                 </KVCol2>
@@ -90,6 +94,9 @@ function Offering(props) {
                 <KVCol2 title="Owner DID">
                     { ownerDid }
                 </KVCol2>
+            </Row>
+
+            <Row className="text-center mb-3">
                 <KVCol2 title="Category">
                     { category }
                 </KVCol2>

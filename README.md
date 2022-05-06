@@ -13,6 +13,12 @@ This project is divided into different directories:
 - public: contains files such images and logos.
 - styles: responsible to customize the design of the website.
 
+## Pre-Requisites
+To perform the authentication, the i3M Wallet software must be installed and running on the user's computer. Also, must be created at least one wallet entry in the app, and for wallet entry must create at least one identity as well.
+
+You can access [here](https://i3-market.gitlab.io/code/backplane/backplane-api-gateway/backplane-api-specification/systems/trust-security-privacy/smart-wallet/wallet-desktop.html) to get instructions to how to use it.
+
+
 ## Installation
 ```javascript
 npm install
@@ -35,12 +41,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 When launching the Web-RI for the first time, it will request for an OIDC Client registered.
 In order to achieve that, you must follow the steps in http://localhost:3000/oidc.
 
-After successfully added the OIDC Client configuration, you will be redirected to the Login page.
+After successfully added the OIDC Client configuration, you will be redirected to the Authentication page.
 
-### i3M Wallet
-To perform the authentication, the i3M Wallet software must be installed and running on the user's computer.
-You can access [here](https://i3-market.gitlab.io/code/backplane/backplane-api-gateway/backplane-api-specification/systems/trust-security-privacy/smart-wallet/wallet-desktop.html) to get instructions to how to use it.
+### Register a verifiable credential in the Wallet
+When choosing the "Register" button in authentication page, you can register a new verifiable credential in the wallet. For that, you must choose the role and set the desired username. Then, Web-RI will call the Wallet to add the new verifiable credential.
 
+If the information was successfully, you will be redirected to the Login page.
+
+### Login with the Wallet
+When choosing the "Login" button in authentication page, you can log in using a verifiable credential from the wallet. For that, you must choose the role and then Web-RI will call the Wallet to sign with the desired role.
+
+With successful login, you will be redirected to the Web-RI homepage.
 
 ## Run in Docker
 To run WEB-RI as docker, first you must define the following environment variables in docker-compose.yml file:

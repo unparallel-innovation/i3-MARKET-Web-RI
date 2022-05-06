@@ -8,7 +8,6 @@ import ProvidersNumberCard from '../../components/home/ProvidersNumberCard';
 import CategoryCard from '../../components/home/CategoryCard';
 import { useData } from '../../lib/hooks';
 import Oidc from '../oidc';
-import Login from '../login';
 import Auth from '../auth';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -120,7 +119,7 @@ function Home(props) {
             if (userData.data) {
 
                 if (userData.data.user) {
-                    return <HomeContent categories={categories}/>;
+                    return <HomeContent categories={categories} user={userData.data.user}/>;
                 }
                 else {
                     return <Auth />;
@@ -136,7 +135,8 @@ function Home(props) {
 
 function HomeContent(props) {
     const {
-        categories = []
+        categories = [],
+        user = {}
     } = props;
 
     const layouts = useMemo(() => {
@@ -185,36 +185,28 @@ function HomeContent(props) {
                                     USER
                                 </small>
                                 <h4>
-                                    {/*{ user.name }*/}
+                                    { user.username }
                                 </h4>
                             </Col>
-                            <Col>
-                                <small className="text-muted">
-                                    COMPANY
-                                </small>
-                                <h4>
-                                    {/*{ user.company }*/}
-                                </h4>
-                            </Col>
-                        </Row>
-                        <Row className="py-3 bg-light">
                             <Col>
                                 <small className="text-muted">
                                     ROLE
                                 </small>
                                 <h4>
-                                    {/*{ user.rolesStr() }*/}
+                                    { user.role }
                                 </h4>
                             </Col>
+                        </Row>
+                        <Row className="py-3">
                             <Col>
-                                {/*{ user.isProvider() ? <>*/}
-                                <small className="text-muted">
-                                    DATA PROVIDER ID
-                                </small>
-                                <h4>
-                                    {/*{ user.providerId }*/}
-                                </h4>
-                                {/*</> : null }*/}
+                                { user.provider ? <>
+                                    <small className="text-muted">
+                                        PROVIDER ID
+                                    </small>
+                                    <h4>
+                                        { user.usernameDID }
+                                    </h4>
+                                </> : null }
                             </Col>
                         </Row>
                     </Card.Body>

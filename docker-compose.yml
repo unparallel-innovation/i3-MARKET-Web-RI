@@ -1,15 +1,17 @@
 services:
-  app:
+  web-ri:
     build: .
     ports:
-      - '3000:3000'
+      - 5300:3000
     environment:
-      PORT: 3000
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 256M
-        reservations:
-          cpus: '0.25'
-          memory: 128M
+      SDK_RI_ENDPOINT: 
+      MONGO_URL:
+      OIDC_URL:
+  mongo:
+    image: mongo:4.4
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: webri_mongo_user
+      MONGO_INITDB_ROOT_PASSWORD: webri_mongo_pass
+    ports:
+      - 27017:27017

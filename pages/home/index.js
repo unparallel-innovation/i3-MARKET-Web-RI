@@ -3,10 +3,12 @@ import Layout from '/components/layout/Layout.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Card, Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
-import OfferingsNumberCard from './OfferingsNumberCard';
-import ProvidersNumberCard from './ProvidersNumberCard';
-import CategoryCard from './CategoryCard';
-import { useUser } from '../../lib/hooks';
+import OfferingsNumberCard from '../../components/home/OfferingsNumberCard';
+import ProvidersNumberCard from '../../components/home/ProvidersNumberCard';
+import CategoryCard from '../../components/home/CategoryCard';
+import { useData } from '../../lib/hooks';
+import Oidc from '../oidc';
+import Auth from '../auth';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -102,16 +104,44 @@ function getInitialLayouts(categories) {
 }
 
 export default
-function HomePure(props) {
+function Home(props) {
     const {
         categories = []
     } = props;
 
-    const user = useUser({ redirectTo: '/login', redirectIfFound: false });
+    const oidcData = useData('/api/oidcClient');
+    const userData = useData('/api/user');
+
+    if (oidcData.data) {
+
+        if (oidcData.data.hasClient) {
+
+            if (userData.data) {
+
+                if (userData.data.user) {
+                    return <HomeContent categories={categories} user={userData.data.user}/>;
+                }
+                else {
+                    return <Auth />;
+                }
+            }
+        }
+        else {
+            return <Oidc/>;
+        }
+    }
+    return '';
+}
+
+function HomeContent(props) {
+    const {
+        categories = [],
+        user = {}
+    } = props;
 
     const layouts = useMemo(() => {
         return getInitialLayouts(categories);
-    }, [categories]);;
+    }, [categories]);
 
     // const [ _layouts, setLayouts ] = useState(getFromLS(layouts));
 
@@ -127,9 +157,6 @@ function HomePure(props) {
         //   localStorage.setItem("homeLayouts", JSON.stringify(layouts));
     }
 
-    if (!user)
-        return null;
-
     const categoryEl = categories.map((category, idx) => (
         <div key={'category' + idx}>
             <CategoryCard name={category} />
@@ -139,15 +166,15 @@ function HomePure(props) {
     return (<Layout>
         <div className="px-5">
             <ResponsiveGridLayout className="layout"
-                                  breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-                                  cols={{ lg: 11, md: 10, sm: 6, xs: 4, xxs: 3 }}
-                                  layouts={layouts}
-                                  rowHeight={100}
-                                  onLayoutChange={onLayoutChange}
+                breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+                cols={{ lg: 11, md: 10, sm: 6, xs: 4, xxs: 3 }}
+                layouts={layouts}
+                rowHeight={100}
+                onLayoutChange={onLayoutChange}
             >
                 <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
                     <Image src="/img/homepage_banner_logo.png" alt="WEB-RI logo"
-                           width={385} height={200} className="p-3" />
+                        width={385} height={200} className="p-3" />
                 </Card>
 
                 <Card key="b">
@@ -158,38 +185,19 @@ function HomePure(props) {
                                     USER
                                 </small>
                                 <h4>
-                                    {/*{ user.name }*/}
+                                    { user.username }
                                 </h4>
                             </Col>
-                            <Col>
-                                <small className="text-muted">
-                                    COMPANY
-                                </small>
-                                <h4>
-                                    {/*{ user.company }*/}
-                                </h4>
-                            </Col>
-                        </Row>
-                        <Row className="py-3 bg-light">
                             <Col>
                                 <small className="text-muted">
                                     ROLE
                                 </small>
                                 <h4>
-                                    {/*{ user.rolesStr() }*/}
+                                    { user.role }
                                 </h4>
-                            </Col>
-                            <Col>
-                                {/*{ user.isProvider() ? <>*/}
-                                <small className="text-muted">
-                                    DATA PROVIDER ID
-                                </small>
-                                <h4>
-                                    {/*{ user.providerId }*/}
-                                </h4>
-                                {/*</> : null }*/}
                             </Col>
                         </Row>
+
                     </Card.Body>
                 </Card>
 

@@ -3,10 +3,6 @@ import { Col, Form, Row } from 'react-bootstrap';
 
 export default function General(props) {
     const { offering, categories } = props;
-    const user = useUser();
-
-    if (!user)
-        return null;
 
     const categoryEl = categories.map(({ name }) => (
         <option key={name} value={name}>{ name }</option>
@@ -39,9 +35,9 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="provider">
                     <Form.Label>Provider</Form.Label>
-                    <Form.Control type="text" placeholder="Provider"
-                        name="provider" disabled defaultValue={user.providerId} />
-                    <input type="hidden" name="provider" value={user.providerId} />
+                    {/*<Form.Control type="text" placeholder="Provider"*/}
+                    {/*    name="provider" disabled defaultValue={user.providerId} />*/}
+                    {/*<input type="hidden" name="provider" value={user.providerId} />*/}
                 </Form.Group>
             </Col>
             <Col>

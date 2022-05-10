@@ -3,18 +3,18 @@ import { getSession } from '../../../lib/session';
 
 export default catchErrors(async (req, res) => {
     const data = req.body;
-    const session = await getSession(req, res)
-    const user = session.user
+    const session = await getSession(req, res);
+    const user = session.user;
 
     switch (req.method) {
         case 'GET':
-            let categoriesList = []
-            if(user){
+            let categoriesList = [];
+            if (user) {
                 categoriesList = await connector.getCategories(user.access_token, user.id_token);
             }
-            return { categories: categoriesList }
+            return { categories: categoriesList, user};
         case 'POST':
-            if(user) {
+            if (user) {
                 await connector.registerOffering(user.access_token, user.id_token, data);
             }
             return null;

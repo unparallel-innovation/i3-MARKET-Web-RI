@@ -12,26 +12,28 @@ export default function Offering(props) {
     const router = useRouter();
     const { offeringId } = router.query;
     const { offering, categories } = props;
-
     const [ atIdx, setAtIdx ] = useState(0);
 
-    // const datasetEl = offering.hasDataset.map((item, idx) => (
-    //     <Dataset key={item.datasetId} eventKey={`dataset${idx}`} { ...item } />
-    // ));
-    //
-    // const pricingModelEl = offering.hasPricingModel.map((item, idx) => (
-    //     <PricingModel key={item.pricingModelId} eventKey={`pricingModel${idx}`} { ...item } />
-    // ));
-    //
-    // const contractParameterEl = offering.contractParameters.map((item, idx) => (
-    //     <ContractParameter key={item.contractParametersId} eventKey={`contractParameter${idx}`} { ...item } />
-    // ));
+    const datasetEl = offering.hasDataset
+        ? <Dataset
+            key={'datasetKey'} eventKey={'dataset'} { ...offering.hasDataset }
+        /> : '';
+
+    const contractParametersEl = offering.contractParameters
+        ? <ContractParameter
+            key={'contractParametersKey'} eventKey={'contractParameters'} { ...offering.contractParameters }
+        /> : '';
+
+    const pricingModelEl = offering.hasPricingModel
+        ? <PricingModel
+            key={'hasPricingModelKey'} eventKey={'hasPricingModel'} { ...offering.hasPricingModel }
+        /> : '';
 
     function onSubmit(e) {
         e.preventDefault();
         const form = e.target;
         const fd = new FormData(form);
-        const res = formUpdate(fd);
+        const res = formUpdate(fd); // TODO use register with flag true
 
         fetch(form.action, {
             method: 'PATCH',
@@ -58,7 +60,7 @@ export default function Offering(props) {
                 <hr className="mt-2 mb-4" />
 
                 <Tabs activeKey={'tab' + atIdx} onSelect={k => {
-                    setAtIdx(parseInt(k.substr(3)));
+                    setAtIdx(parseInt(k.substring(3)));
                 }} className="mb-3">
                     <Tab eventKey="tab0" title="General">
                         <General offering={offering} categories={categories} />

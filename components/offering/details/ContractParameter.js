@@ -71,15 +71,15 @@ function ContractParameter(props) {
         purposeDescription, hasIntendedUse, hasLicenseGrant, eventKey
     } = props;
 
-    const hasIntendedUseEl =
-        <HasIntendedUse
+    const hasIntendedUseEl
+        = <HasIntendedUse
             key={'hasIntendedUseKey'} eventKey={`${eventKey}-hasIntendedUse`} { ...hasIntendedUse }
-        />
+        />;
 
-    const hasLicenseGrantEl =
-        <HasLicenseGrant
+    const hasLicenseGrantEl
+        = <HasLicenseGrant
             key={'hasLicenseGrantKey'} eventKey={`${eventKey}-hasLicenseGrant`} { ...hasLicenseGrant }
-        />
+        />;
 
     return (
         <Accordion>

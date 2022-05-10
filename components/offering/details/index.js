@@ -16,8 +16,8 @@ function Offering(props) {
     const { offeringId } = router.query;
     const {
         dataOfferingTitle, dataOfferingDescription, status, hasDataset,
-        category, provider, license, marketId, owner, dataOfferingExpirationTime,
-        hasPricingModel, contractParameters
+        category, provider, providerDid, marketId, marketDid, owner, ownerDid,
+        dataOfferingExpirationTime, hasPricingModel, contractParameters
     } = props;
 
     const [ show, setShowDelete ] = useState(false);
@@ -26,19 +26,19 @@ function Offering(props) {
         ? <Globe color={colors.primary} size={20} />
         : <Lock color={colors.primary} size={20} /> ;
 
-    const datasetEl = hasDataset.title ?
-        <Dataset
-            key={'datasetKey'} eventKey={`dataset`} { ...hasDataset }
+    const datasetEl = hasDataset
+        ? <Dataset
+            key={'datasetKey'} eventKey={'dataset'} { ...hasDataset }
         /> : '';
 
-    const contractParametersEl = contractParameters.interestOfProvider ?
-        <ContractParameter
-            key={'contractParametersKey'} eventKey={`contractParameters`} { ...contractParameters }
+    const contractParametersEl = contractParameters
+        ? <ContractParameter
+            key={'contractParametersKey'} eventKey={'contractParameters'} { ...contractParameters }
         /> : '';
 
-    const pricingModelEl = hasPricingModel.pricingModelName ?
-        <PricingModel
-            key={'hasPricingModelKey'} eventKey={`hasPricingModel`} { ...hasPricingModel }
+    const pricingModelEl = hasPricingModel
+        ? <PricingModel
+            key={'hasPricingModelKey'} eventKey={'hasPricingModel'} { ...hasPricingModel }
         /> : '';
 
     function onUpdate(e) {
@@ -73,23 +73,36 @@ function Offering(props) {
             <p>{ dataOfferingDescription }</p>
 
             <Row className="text-center mb-3">
-                <KVCol2 title="Category">
-                    { category }
-                </KVCol2>
                 <KVCol2 title="Provider">
                     { provider }
                 </KVCol2>
+                <KVCol2 title="Provider DID">
+                    { providerDid }
+                </KVCol2>
+
+            </Row>
+
+            <Row className="text-center mb-3">
                 <KVCol2 title="Market">
                     { marketId }
+                </KVCol2>
+                <KVCol2 title="Market DID">
+                    { marketDid }
                 </KVCol2>
             </Row>
 
             <Row className="text-center mb-3">
-                <KVCol2 title="Licence">
-                    { license }
-                </KVCol2>
                 <KVCol2 title="Owner">
                     { owner }
+                </KVCol2>
+                <KVCol2 title="Owner DID">
+                    { ownerDid }
+                </KVCol2>
+            </Row>
+
+            <Row className="text-center mb-3">
+                <KVCol2 title="Category">
+                    { category }
                 </KVCol2>
                 <KVCol2 title="Expiration Time">
                     { ts2date(dataOfferingExpirationTime) }

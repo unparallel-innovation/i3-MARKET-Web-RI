@@ -26,7 +26,7 @@ export default function PaymentOnSubscription(props) {
                                 <Form.Group controlId={eventKey + 'hasSubscriptionPrice'}>
                                     <Form.Label>Subscription Price</Form.Label>
                                     <Form.Control type="text"
-                                          placeholder="Subscription Price" name={eventKey + 'hasSubscriptionPrice'}
+                                        placeholder="Subscription Price" name={eventKey + 'hasSubscriptionPrice'}
                                     />
                                 </Form.Group>
                             </Col>

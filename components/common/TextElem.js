@@ -2,10 +2,10 @@ export default
 function TextElem(props) {
     const { title, value } = props;
 
-    if(!value)
+    if (!value)
         return '';
 
     return (
         <div> { title}: { value } <br /></div>
-    )
+    );
 }

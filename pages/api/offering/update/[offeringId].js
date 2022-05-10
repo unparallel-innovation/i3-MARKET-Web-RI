@@ -9,20 +9,15 @@ export default catchErrors(async (req, res) => {
     if(user){
         switch (req.method) {
             case 'GET':
+                const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
+                const categories = await connector.getCategories(user.access_token, user.id_token);
 
-                if (offeringId) { // TODO avoid this
-                    const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
-                    const categories = await connector.getCategories(user.access_token, user.id_token);
-
-                    return {
-                        offering,
-                        categories
-                    };
+                return {
+                    offering,
+                    categories,
+                    user
                 }
-                return {};
         }
     }
     return null
-
-
 });

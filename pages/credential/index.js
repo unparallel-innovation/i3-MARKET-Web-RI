@@ -2,7 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 
 export default function Credential() {
-    const router = useRouter()
+    const router = useRouter();
 
     return (
         <div className="d-flex flex-column vw-100 vh-100 justify-content-center align-content-center align-items-center">

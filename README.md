@@ -26,11 +26,12 @@ npm install
 
 ## Run
 ```javascript
-[SDK_RI_ENDPOINT] [MONGO_URL] [OIDC_URL] npm run dev -- -p [PORT]
+[SDK_RI_ENDPOINT] [MONGO_URL] [OIDC_URL] [VC_URL] npm run dev -- -p [PORT]
 
 // SDK_RI_ENDPOINT: sdk-ri endpoint (e.g. http://12.345.6.789:1234)
 // MONGO_URL: mongodb local instance (e.g. mongodb://localhost:port)
-// OIDC_URL: oidc url deployed in i3-Market network (e.g. https://identity1.i3-market.eu)
+// OIDC_URL: oidc provider (e.g. https://identity1.i3-market.eu/release2)
+// VC_URL: verifiable credential service (e.g. https://identity1.i3-market.eu/release2/vc)
 // PORT: default running port (default=3000)
 ```
 Note: Web-RI instance must run in same port as the registered OIDC client.
@@ -59,7 +60,8 @@ To run WEB-RI as docker, first you must define the following environment variabl
 environment: 
   SDK_RI_ENDPOINT: sdk-ri endpoint
   MONGO_URL: mongodb url 
-  OIDC_URL: oidc url
+  OIDC_URL: oidc provider
+  VC_URL: verifiable credential service
 
   MONGO_INITDB_ROOT_USERNAME: mongodb username
   MONGO_INITDB_ROOT_PASSWORD: mongodb password

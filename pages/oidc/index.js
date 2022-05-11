@@ -31,10 +31,10 @@ export default function Oidc() {
                     <br/>
                     <div>No OIDC Client registered? Please follow the following steps:</div>
                     <div className="ml-3">
-                        1. Use this <a href={`${data.oidc_url}/release2/api-spec/ui/#/Developers/get_release2_developers_login`} target="_blank" rel="noreferrer">endpoint</a> to get an initial token for registering a new client.
+                        1. Use this <a href={`${data.oidc_url}/api-spec/ui/#/Developers/get_release2_developers_login`} target="_blank" rel="noreferrer">endpoint</a> to get an initial token for registering a new client.
                     </div>
                     <div className="ml-3">
-                        2. Then <a href={`${data.oidc_url}/release2/api-spec/ui/#/Developers/post_release2_oidc_reg`} target="_blank" rel="noreferrer">here</a>, using the access token as bearerToken (press the lock symbol to open the form to input the token), you can register a new client.
+                        2. Then <a href={`${data.oidc_url}/api-spec/ui/#/Developers/post_release2_oidc_reg`} target="_blank" rel="noreferrer">here</a>, using the access token as bearerToken (press the lock symbol to open the form to input the token), you can register a new client.
                     </div>
                     <div className="ml-4">Please note, you must add: <code>{redirectUri}</code> in redirect_uris field. Otherwise, the authentication flow will not work.</div>
                     <div className="ml-3">After successfully client registration, you can paste its information in the text area below.</div>

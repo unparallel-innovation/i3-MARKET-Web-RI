@@ -3,11 +3,12 @@ import { useState } from 'react';
 import CustomToggle from '../../../common/CustomToggle';
 
 export default function HasLicenseGrant(props) {
-    const { eventKey } = props;
-    const [copyData, setCopyData] = useState('');
-    const [transferable, setTransferable] = useState('');
-    const [exclusiveness, setExclusiveness] = useState('');
-    const [revocable, setRevocable] = useState('');
+    const { copyData, transferable, exclusiveness, revocable, eventKey } = props;
+    console.log(props)
+    const [cd, setCopyData] = useState(Boolean(copyData));
+    const [tf, setTransferable] = useState(Boolean(transferable));
+    const [excl, setExclusiveness] = useState(Boolean(exclusiveness));
+    const [rev, setRevocable] = useState(Boolean(revocable));
 
     return (
         <Accordion>
@@ -21,10 +22,9 @@ export default function HasLicenseGrant(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'copyData'}>
                                     <Form.Label>Copy Data</Form.Label>
-                                    <Form.Control as="select" value={copyData} name={eventKey + 'copyData'}
+                                    <Form.Control as="select" value={cd} name={eventKey + 'copyData'}
                                         onChange={e => { setCopyData(e.target.value); }}
                                     >
-                                        <option value="">---</option>
                                         <option value="true">True</option>
                                         <option value="false">False</option>
                                     </Form.Control>
@@ -33,10 +33,9 @@ export default function HasLicenseGrant(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'transferable'}>
                                     <Form.Label>Transferable</Form.Label>
-                                    <Form.Control as="select" value={transferable} name={eventKey + 'transferable'}
+                                    <Form.Control as="select" value={tf} name={eventKey + 'transferable'}
                                         onChange={e => { setTransferable(e.target.value); }}
                                     >
-                                        <option value="">---</option>
                                         <option value="true">True</option>
                                         <option value="false">False</option>
                                     </Form.Control>
@@ -47,10 +46,9 @@ export default function HasLicenseGrant(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'exclusiveness'}>
                                     <Form.Label>Exclusiveness</Form.Label>
-                                    <Form.Control as="select" value={exclusiveness} name={eventKey + 'exclusiveness'}
+                                    <Form.Control as="select" value={excl} name={eventKey + 'exclusiveness'}
                                         onChange={e => { setExclusiveness(e.target.value); }}
                                     >
-                                        <option value="">---</option>
                                         <option value="true">True</option>
                                         <option value="false">False</option>
                                     </Form.Control>
@@ -59,10 +57,9 @@ export default function HasLicenseGrant(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'revocable'}>
                                     <Form.Label>Revocable</Form.Label>
-                                    <Form.Control as="select" value={revocable} name={eventKey + 'revocable'}
+                                    <Form.Control as="select" value={rev} name={eventKey + 'revocable'}
                                         onChange={e => { setRevocable(e.target.value); }}
                                     >
-                                        <option value="">---</option>
                                         <option value="true">True</option>
                                         <option value="false">False</option>
                                     </Form.Control>

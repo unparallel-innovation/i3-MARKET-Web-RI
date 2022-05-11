@@ -1,8 +1,10 @@
 import { Accordion, Card, Form } from 'react-bootstrap';
 import CustomToggle from '../../../../common/CustomToggle';
+import { useState } from 'react';
 
 export default function FreePrice(props) {
-    const { eventKey } = props;
+    const { hasPriceFree, eventKey } = props;
+    const [freePrice, setFreePrice] = useState(Boolean(hasPriceFree));
 
     return (
         <Accordion>
@@ -14,7 +16,11 @@ export default function FreePrice(props) {
                     <Card.Body>
                         <Form.Group controlId={eventKey + 'hasPriceFree'}>
                             <Form.Label>Free Price</Form.Label>
-                            <Form.Control type="text" placeholder="Free Price" name={eventKey + 'hasPriceFree'} />
+                            <Form.Control as="select" value={freePrice} name={eventKey + 'hasPriceFree'}
+                                          onChange={e => { setFreePrice(e.target.value) }} >
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </Form.Control>
                         </Form.Group>
                     </Card.Body>
                 </Accordion.Collapse>

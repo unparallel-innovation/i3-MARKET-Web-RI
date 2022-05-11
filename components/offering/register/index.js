@@ -8,7 +8,7 @@ import PricingModel from './PricingModel/PricingModel.js';
 import ContractParameter from './ContractParameter/ContractParameter';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { formRegister } from '/lib/forms/registerOffering.js';
-import update from '../../../pages/api/offerings/update';
+
 
 export default
 function Register(props) {
@@ -24,7 +24,7 @@ function Register(props) {
     const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel0'} {...offering.hasPricingModel}/>;
 
     const [ contractParameterC ] = useMap('', 'contractParameter');
-    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter0'} />;
+    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter0'} {...offering.contractParameters} />;
 
     function onSubmit(e) {
         e.preventDefault();
@@ -80,7 +80,7 @@ function Register(props) {
                         <div className="d-flex align-items-center">
                             <div className="flex-grow-1"/>
                         </div>
-                        {/*{ contractParameterEl }*/}
+                        { contractParameterEl }
                     </Tab>
                 </Tabs>
 

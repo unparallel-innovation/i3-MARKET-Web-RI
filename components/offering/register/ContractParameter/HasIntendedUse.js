@@ -3,10 +3,10 @@ import { useState } from 'react';
 import CustomToggle from '../../../common/CustomToggle';
 
 export default function HasIntendedUse(props) {
-    const { eventKey } = props;
-    const [processData, setProcessData] = useState('');
-    const [shareData, setShareData] = useState('');
-    const [editData, setEditData] = useState('');
+    const { processData, editData, shareDataWithThirdParty, eventKey } = props;
+    const [process, setProcessData] = useState(Boolean(processData));
+    const [share, setShareData] = useState(Boolean(shareDataWithThirdParty));
+    const [edit, setEditData] = useState(Boolean(editData));
 
     return (
         <Accordion>
@@ -20,10 +20,9 @@ export default function HasIntendedUse(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'processData'}>
                                     <Form.Label>Process Data</Form.Label>
-                                    <Form.Control as="select" value={processData} name={eventKey + 'processData'}
-                                        onChange={e => { setProcessData(e.target.value); }}
+                                    <Form.Control as="select" value={process} name={eventKey + 'processData'}
+                                        onChange={e => { setProcessData(e.target.value) }}
                                     >
-                                        <option value="">---</option>
                                         <option value="true">True</option>
                                         <option value="false">False</option>
                                     </Form.Control>
@@ -32,10 +31,9 @@ export default function HasIntendedUse(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'shareDataWithThirdParty'}>
                                     <Form.Label>Share Data With Third Party</Form.Label>
-                                    <Form.Control as="select" value={shareData} name={eventKey + 'shareDataWithThirdParty'}
-                                        onChange={e => { setShareData(e.target.value); }}
+                                    <Form.Control as="select" value={share} name={eventKey + 'shareDataWithThirdParty'}
+                                        onChange={e => { setShareData(e.target.value) }}
                                     >
-                                        <option value="">---</option>
                                         <option value="true">True</option>
                                         <option value="false">False</option>
                                     </Form.Control>
@@ -44,10 +42,9 @@ export default function HasIntendedUse(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'editData'}>
                                     <Form.Label>Edit Data</Form.Label>
-                                    <Form.Control as="select" value={editData} name={eventKey + 'editData'}
-                                        onChange={e => { setEditData(e.target.value); }}
+                                    <Form.Control as="select" value={edit} name={eventKey + 'editData'}
+                                        onChange={e => { setEditData(e.target.value) }}
                                     >
-                                        <option value="">---</option>
                                         <option value="true">True</option>
                                         <option value="false">False</option>
                                     </Form.Control>

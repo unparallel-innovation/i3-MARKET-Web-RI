@@ -4,9 +4,10 @@ services:
     ports:
       - 5300:3000
     environment:
-      SDK_RI_ENDPOINT: 
+      SDK_RI_ENDPOINT:
       MONGO_URL:
       OIDC_URL:
+      VC_URL:
   mongo:
     image: mongo:4.4
     restart: always

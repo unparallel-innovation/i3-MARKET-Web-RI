@@ -6,12 +6,11 @@ import DatasetDistribution from './DatasetDistribution';
 import moment from 'moment';
 
 export default function Dataset(props) {
-    const { hasDataset, eventKey } = props;
-
-    const { title, keyword, description, dataset,
-        issued, modified, language, temporal, temporalResolution,
-        spatial, accrualPeriodicity, theme, datasetInformation
-    } = hasDataset
+    console.log(props)
+    const { title, keyword, description, dataset, issued, modified,
+        language, temporal, temporalResolution, spatial, accrualPeriodicity,
+        theme, datasetInformation, distribution, eventKey
+    } = props
 
     const [
         informationMap, informationC,
@@ -26,14 +25,6 @@ export default function Dataset(props) {
     //     <DatasetInformation key={item} eventKey={item} onDelete={informationOnDelete} />
     // ));
 
-    // const datasetInformationEl = datasetInformation.map((item, idx) => (
-    //     <DatasetInformation key={`datasetInformation${idx}`} eventKey={`${eventKey}datasetInformation${idx}`} { ...item } onDelete={informationOnDelete}/>
-    // ));
-
-    // const datasetInformationEl = dataset.datasetInformation.map((item, idx) => (
-    //     <DatasetInformation key={`datasetInformation${idx}`} eventKey={`${eventKey}datasetInformation${idx}`} { ...item } />
-    // ));
-    //
     // const datasetDistributionEl = (Object.keys(distributionMap)).map((item, idx) => (
     //     <DatasetDistribution key={item} eventKey={item} onDelete={distributionOnDelete} />
     // ));
@@ -46,13 +37,13 @@ export default function Dataset(props) {
 
         <Form.Group controlId={eventKey + 'keyword'}>
             <Form.Label>Keyword</Form.Label>
-            <Form.Control type="text" placeholder="Keyword" name={eventKey + 'keyword'} value={keyword}/>
+            <Form.Control type="text" placeholder="Keyword" name={eventKey + 'keyword'} defaultValue={keyword}/>
         </Form.Group>
 
         <Form.Group controlId={eventKey + 'description'}>
             <Form.Label>Description</Form.Label>
             <Form.Control as="textarea" rows={3}
-                placeholder="Dataset Description" name={eventKey + 'description'} value={description}
+                placeholder="Dataset Description" name={eventKey + 'description'} defaultValue={description}
             />
         </Form.Group>
 
@@ -60,19 +51,19 @@ export default function Dataset(props) {
             <Col>
                 <Form.Group controlId={eventKey + 'dataset'}>
                     <Form.Label>Dataset</Form.Label>
-                    <Form.Control placeholder="Dataset" name={eventKey + 'dataset'} value={dataset}/>
+                    <Form.Control placeholder="Dataset" name={eventKey + 'dataset'} defaultValue={dataset}/>
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId={eventKey + 'issued'}>
                     <Form.Label>Issued</Form.Label>
-                    <Form.Control type="date" placeholder="Issued" name={eventKey + 'issued'} value={moment(issued).format('yyyy-MM-DD')}/>
+                    <Form.Control type="date" placeholder="Issued" name={eventKey + 'issued'} defaultValue={moment(issued).format('yyyy-MM-DD')}/>
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId={eventKey + 'modified'}>
                     <Form.Label>Modified</Form.Label>
-                    <Form.Control type="date" placeholder="Modified" name={eventKey + 'modified'} value={moment(modified).format('yyyy-MM-DD')} />
+                    <Form.Control type="date" placeholder="Modified" name={eventKey + 'modified'} defaultValue={moment(modified).format('yyyy-MM-DD')} />
                 </Form.Group>
             </Col>
         </Row>
@@ -81,20 +72,20 @@ export default function Dataset(props) {
             <Col>
                 <Form.Group controlId={eventKey + 'language'}>
                     <Form.Label>Language</Form.Label>
-                    <Form.Control type="text" placeholder="Language" name={eventKey + 'language'} value={language} />
+                    <Form.Control type="text" placeholder="Language" name={eventKey + 'language'} defaultValue={language} />
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId={eventKey + 'temporal'}>
                     <Form.Label>Temporal</Form.Label>
-                    <Form.Control type="text" placeholder="Temporal" name={eventKey + 'temporal'} value={temporal} />
+                    <Form.Control type="text" placeholder="Temporal" name={eventKey + 'temporal'} defaultValue={temporal} />
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId={eventKey + 'temporalResolution'}>
                     <Form.Label>Temporal Resolution</Form.Label>
                     <Form.Control type="text" placeholder="Temporal Resolution"
-                                  name={eventKey + 'temporalResolution'} value={temporalResolution} />
+                                  name={eventKey + 'temporalResolution'} defaultValue={temporalResolution} />
                 </Form.Group>
             </Col>
         </Row>
@@ -103,14 +94,14 @@ export default function Dataset(props) {
             <Col>
                 <Form.Group controlId={eventKey + 'spatial'}>
                     <Form.Label>Spatial</Form.Label>
-                    <Form.Control type="text" placeholder="Spatial" name={eventKey + 'spatial'} value={spatial}/>
+                    <Form.Control type="text" placeholder="Spatial" name={eventKey + 'spatial'} defaultValue={spatial}/>
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId={eventKey + 'accrualPeriodicity'}>
                     <Form.Label>Accrual Periodicity</Form.Label>
                     <Form.Control type="text" placeholder="Accrual Periodicity"
-                                  name={eventKey + 'accrualPeriodicity'} value={accrualPeriodicity}
+                                  name={eventKey + 'accrualPeriodicity'} defaultValue={accrualPeriodicity}
                     />
                 </Form.Group>
             </Col>
@@ -118,7 +109,7 @@ export default function Dataset(props) {
 
         <Form.Group controlId={eventKey + 'theme'}>
             <Form.Label>Theme</Form.Label>
-            <Form.Control type="text" placeholder="Theme" name={eventKey + 'theme'} value={theme}/>
+            <Form.Control type="text" placeholder="Theme" name={eventKey + 'theme'} defaultValue={theme}/>
         </Form.Group>
 
         {/*<div className="d-flex align-items-center my-3">*/}

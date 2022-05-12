@@ -67,7 +67,7 @@ function Register(props) {
                         <div className="d-flex align-items-center">
                             <div className="flex-grow-1"/>
                         </div>
-                        {/*{ datasetEl }*/}
+                        { datasetEl }
                     </Tab>
                     <Tab eventKey="tab2" title="Pricing Model">
                         <div className="d-flex align-items-center">

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import Layout from '/components/layout/Layout.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
 import OfferingsNumberCard from '../../components/home/OfferingsNumberCard';
 import ProvidersNumberCard from '../../components/home/ProvidersNumberCard';

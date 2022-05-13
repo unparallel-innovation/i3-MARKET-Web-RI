@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Bell, PersonCircle } from 'react-bootstrap-icons';
 import Breadcrumbs from 'nextjs-breadcrumbs';
 import Footer from '../common/Footer';
@@ -53,17 +53,24 @@ function Layout(props) {
                                 <Link href="/alerts" passHref>
                                     <Nav.Link>Alerts</Nav.Link>
                                 </Link>
-                                <Link href="/account" passHref>
-                                    <Nav.Link className="px-2">
-                                        <PersonCircle size={24} />
-                                    </Nav.Link>
+                                <Link href="/" passHref>
+                                    <NavDropdown  id="basic-nav-dropdown" title={<PersonCircle size={24}/>} alignRight>
+                                        <NavDropdown.Item disabled>
+                                            <Nav.Item>{user.username}</Nav.Item>
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item>
+                                            <Link href="/api/logout" passHref>
+                                                <Nav.Link>Log Out</Nav.Link>
+                                            </Link>
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
                                 </Link>
                                 <Link href="/notificationCenter" passHref>
                                     <Nav.Link className="px-2">
                                         <Bell size={24} />
                                     </Nav.Link>
                                 </Link>
-
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

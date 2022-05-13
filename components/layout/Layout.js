@@ -12,10 +12,10 @@ export default
 function Layout(props) {
     const { className, children, noRedirect, noBreadcrumbs } = props;
     const router = useRouter();
-    const { data }  = useData('/api/user');
+    const { data } = useData('/api/user');
 
-    if(data){
-        const user = data.user
+    if (data) {
+        const user = data.user;
         return (
             <div className="d-flex flex-column vw-100 vh-100">
                 <Head>
@@ -34,7 +34,7 @@ function Layout(props) {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="justify-content-end" style={{ width: '100%' }}
-                                 defaultActiveKey={router.pathname}
+                                defaultActiveKey={router.pathname}
                             >
                                 { user.provider ? (
                                     <Link href="/offerings" passHref>
@@ -54,7 +54,7 @@ function Layout(props) {
                                     <Nav.Link>Alerts</Nav.Link>
                                 </Link>
                                 <Link href="/" passHref>
-                                    <NavDropdown  id="basic-nav-dropdown" title={<PersonCircle size={24}/>} alignRight>
+                                    <NavDropdown id="basic-nav-dropdown" title={<PersonCircle size={24}/>} alignRight>
                                         <NavDropdown.Item disabled>
                                             <Nav.Item>{user.username}</Nav.Item>
                                         </NavDropdown.Item>
@@ -91,5 +91,5 @@ function Layout(props) {
                 </div>
             </div>);
     }
-    return ''
+    return '';
 }

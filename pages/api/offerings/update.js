@@ -7,7 +7,7 @@ export default catchErrors(async (req, res) => {
 
         case 'PATCH':
             // call connector
-            console.log('update', data)
+            console.log('update', data);
             return null;
     }
 });

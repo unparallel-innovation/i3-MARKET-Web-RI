@@ -21,7 +21,7 @@ export default function HasIntendedUse(props) {
                                 <Form.Group controlId={eventKey + 'processData'}>
                                     <Form.Label>Process Data</Form.Label>
                                     <Form.Control as="select" value={process} name={eventKey + 'processData'}
-                                        onChange={e => { setProcessData(e.target.value) }}
+                                        onChange={e => { setProcessData(e.target.value); }}
                                     >
                                         <option value="true">True</option>
                                         <option value="false">False</option>
@@ -32,7 +32,7 @@ export default function HasIntendedUse(props) {
                                 <Form.Group controlId={eventKey + 'shareDataWithThirdParty'}>
                                     <Form.Label>Share Data With Third Party</Form.Label>
                                     <Form.Control as="select" value={share} name={eventKey + 'shareDataWithThirdParty'}
-                                        onChange={e => { setShareData(e.target.value) }}
+                                        onChange={e => { setShareData(e.target.value); }}
                                     >
                                         <option value="true">True</option>
                                         <option value="false">False</option>
@@ -43,7 +43,7 @@ export default function HasIntendedUse(props) {
                                 <Form.Group controlId={eventKey + 'editData'}>
                                     <Form.Label>Edit Data</Form.Label>
                                     <Form.Control as="select" value={edit} name={eventKey + 'editData'}
-                                        onChange={e => { setEditData(e.target.value) }}
+                                        onChange={e => { setEditData(e.target.value); }}
                                     >
                                         <option value="true">True</option>
                                         <option value="false">False</option>

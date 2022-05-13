@@ -15,15 +15,15 @@ export default function Login() {
 
                     <div className="formUserInput">
                         <div className="d-flex w-100">
-                        <Col className="col-sm-3 text-right">
-                            <Form.Label className="col-form-label">Role</Form.Label>
-                        </Col>
-                        <Col className="col-sm-9" >
-                            <Form.Control className="formInput" as="select" value={role} onChange={e => { setRole(e.target.value); }} >
-                                <option value="consumer">Consumer</option>
-                                <option value="provider">Provider</option>
-                            </Form.Control>
-                        </Col>
+                            <Col className="col-sm-3 text-right">
+                                <Form.Label className="col-form-label">Role</Form.Label>
+                            </Col>
+                            <Col className="col-sm-9" >
+                                <Form.Control className="formInput" as="select" value={role} onChange={e => { setRole(e.target.value); }} >
+                                    <option value="consumer">Consumer</option>
+                                    <option value="provider">Provider</option>
+                                </Form.Control>
+                            </Col>
                         </div>
                     </div>
 
@@ -34,5 +34,5 @@ export default function Login() {
             </div>
             <Footer />
         </div>
-    )
+    );
 }

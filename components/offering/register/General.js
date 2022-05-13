@@ -1,5 +1,5 @@
 import { Col, Form, Row } from 'react-bootstrap';
-import moment from 'moment'
+import moment from 'moment';
 
 export default function General(props) {
     const {
@@ -21,7 +21,7 @@ export default function General(props) {
         <Form.Group controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control as="textarea" rows={3}
-                          placeholder="Offering Description" name="description" defaultValue={dataOfferingDescription} required/>
+                placeholder="Offering Description" name="description" defaultValue={dataOfferingDescription} required/>
         </Form.Group>
 
         <Row>
@@ -85,7 +85,7 @@ export default function General(props) {
                 <Form.Group controlId="expirationTime">
                     <Form.Label>Expiration Time</Form.Label>
                     <Form.Control type="date" placeholder="Expiration Time" name="expirationTime"
-                                  defaultValue={moment(dataOfferingExpirationTime).format('yyyy-MM-DD')} required />
+                        defaultValue={moment(dataOfferingExpirationTime).format('yyyy-MM-DD')} required />
                 </Form.Group>
             </Col>
         </Row>

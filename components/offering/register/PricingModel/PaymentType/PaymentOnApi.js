@@ -15,27 +15,27 @@ export default function PaymentOnAPI(props) {
                         <Form.Group controlId={eventKey + 'paymentOnAPIName'}>
                             <Form.Label>Name</Form.Label>
                             <Form.Control type="text" placeholder="Name"
-                                          name={eventKey + 'paymentOnAPIName'} defaultValue={paymentOnApiName}/>
+                                name={eventKey + 'paymentOnAPIName'} defaultValue={paymentOnApiName}/>
                         </Form.Group>
 
                         <Form.Group controlId={eventKey + 'description'}>
                             <Form.Label>Description</Form.Label>
                             <Form.Control as="textarea" rows={3} placeholder="Description"
-                                          name={eventKey + 'description'} defaultValue={description}/>
+                                name={eventKey + 'description'} defaultValue={description}/>
                         </Form.Group>
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'numberOfObject'}>
                                     <Form.Label>Number of Object</Form.Label>
                                     <Form.Control type="text" placeholder="Number of Object"
-                                                  name={eventKey + 'numberOfObject'} defaultValue={numberOfObject}/>
+                                        name={eventKey + 'numberOfObject'} defaultValue={numberOfObject}/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'hasAPIPrice'}>
                                     <Form.Label>API Price</Form.Label>
                                     <Form.Control type="text" placeholder="API Price"
-                                                  name={eventKey + 'hasAPIPrice'} defaultValue={hasApiPrice} />
+                                        name={eventKey + 'hasAPIPrice'} defaultValue={hasApiPrice} />
                                 </Form.Group>
                             </Col>
                         </Row>

@@ -36,21 +36,21 @@ export default function PricingModel(props) {
         <Form.Group controlId={eventKey + 'pricingModelName'}>
             <Form.Label>Name</Form.Label>
             <Form.Control type="text" placeholder="Name"
-                          name={eventKey + 'pricingModelName'} defaultValue={pricingModelName} />
+                name={eventKey + 'pricingModelName'} defaultValue={pricingModelName} />
         </Form.Group>
         <Row>
             <Col>
                 <Form.Group controlId={eventKey + 'basicPrice'}>
                     <Form.Label>Basic Price</Form.Label>
                     <Form.Control type="text" placeholder="Basic Price"
-                                  name={eventKey + 'basicPrice'} defaultValue={basicPrice}/>
+                        name={eventKey + 'basicPrice'} defaultValue={basicPrice}/>
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId={eventKey + 'currency'}>
                     <Form.Label>Currency</Form.Label>
                     <Form.Control type="text" placeholder="Currency"
-                                  name={eventKey + 'currency'} defaultValue={currency}/>
+                        name={eventKey + 'currency'} defaultValue={currency}/>
                 </Form.Group>
             </Col>
         </Row>

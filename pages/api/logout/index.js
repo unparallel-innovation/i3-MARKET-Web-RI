@@ -1,13 +1,14 @@
 import { getSession } from '../../../lib/session';
 import { catchErrors } from '../../../lib/server';
+import passport from '../../../lib/passport';
 
 export default catchErrors(async (req, res) => {
     const session = await getSession(req, res);
-    const user = session.user;
 
-    await session.destroy()
+    // delete user session
+    await session.destroy();
 
-    // TODO logout from OIDC
-
-    res.redirect('/auth')
+    // logout from oidc
+    res.redirect(passport.logout());
+    // TODO redirect to auth
 });

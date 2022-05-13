@@ -18,7 +18,7 @@ export default function PaymentOnSubscription(props) {
                         <Form.Group controlId={eventKey + 'paymentOnSubscriptionName'}>
                             <Form.Label>Name</Form.Label>
                             <Form.Control type="text" placeholder="Name"
-                                          name={eventKey + 'paymentOnSubscriptionName'} defaultValue={paymentOnSubscriptionName}/>
+                                name={eventKey + 'paymentOnSubscriptionName'} defaultValue={paymentOnSubscriptionName}/>
                         </Form.Group>
 
                         <Form.Group controlId="description">
@@ -30,7 +30,7 @@ export default function PaymentOnSubscription(props) {
                                 <Form.Group controlId={eventKey + 'hasSubscriptionPrice'}>
                                     <Form.Label>Subscription Price</Form.Label>
                                     <Form.Control type="text" placeholder="Subscription Price"
-                                                  name={eventKey + 'hasSubscriptionPrice'} defaultValue={hasSubscriptionPrice}
+                                        name={eventKey + 'hasSubscriptionPrice'} defaultValue={hasSubscriptionPrice}
                                     />
                                 </Form.Group>
                             </Col>
@@ -38,7 +38,7 @@ export default function PaymentOnSubscription(props) {
                                 <Form.Group controlId={eventKey + 'paymentType'}>
                                     <Form.Label>Payment Type</Form.Label>
                                     <Form.Control type="text" placeholder="Payment Type"
-                                                  name={eventKey + 'paymentType'} defaultValue={paymentType}/>
+                                        name={eventKey + 'paymentType'} defaultValue={paymentType}/>
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -48,14 +48,14 @@ export default function PaymentOnSubscription(props) {
                                 <Form.Group controlId={eventKey + 'repeat'}>
                                     <Form.Label>Repeat</Form.Label>
                                     <Form.Control type="text" placeholder="Repeat"
-                                                  name={eventKey + 'repeat'} defaultValue={repeat} />
+                                        name={eventKey + 'repeat'} defaultValue={repeat} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'timeDuration'}>
                                     <Form.Label>Time Duration</Form.Label>
                                     <Form.Control type="text" placeholder="Time Duration"
-                                                  name={eventKey + 'timeDuration'} defaultValue={timeDuration}/>
+                                        name={eventKey + 'timeDuration'} defaultValue={timeDuration}/>
                                 </Form.Group>
                             </Col>
                         </Row>

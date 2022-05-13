@@ -9,7 +9,6 @@ import ContractParameter from './ContractParameter/ContractParameter';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { formRegister } from '/lib/forms/registerOffering.js';
 
-
 export default
 function Register(props) {
     const router = useRouter();
@@ -48,9 +47,9 @@ function Register(props) {
     return (
         <Layout className="d-flex flex-column">
             <Form className="px-5 pb-3 d-flex flex-column flex-grow-1"
-                onSubmit={onSubmit} action={'/api/offerings/' + toUpdate ? 'update': 'register'}>
+                onSubmit={onSubmit} action={'/api/offerings/' + toUpdate ? 'update' : 'register'}>
                 <div className="d-flex">
-                    <h3 className="flex-grow-1 mb-0">{toUpdate ? 'Update Offering': 'Register New Offering'}</h3>
+                    <h3 className="flex-grow-1 mb-0">{toUpdate ? 'Update Offering' : 'Register New Offering'}</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
                     <Button type="submit">Submit</Button>
                 </div>

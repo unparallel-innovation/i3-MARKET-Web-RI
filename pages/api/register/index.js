@@ -5,6 +5,6 @@ export default catchErrors(async (req, res) => {
         case 'POST':
             const credential = req.body;
             const ic_url = connector.getIssueCredentialUrl(process.env.VC_URL, credential, `${req.headers.origin}/login`);
-            return {url: ic_url};
+            return { url: ic_url };
     }
 });

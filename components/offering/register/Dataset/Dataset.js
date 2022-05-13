@@ -4,30 +4,46 @@ import { AddNew } from '/components/common/buttons.js';
 import { useMap } from '/lib/hooks.js';
 import DatasetDistribution from './DatasetDistribution';
 import moment from 'moment';
+import { useState } from 'react';
 
 export default function Dataset(props) {
-    console.log(props)
     const { title, keyword, description, dataset, issued, modified,
         language, temporal, temporalResolution, spatial, accrualPeriodicity,
         theme, datasetInformation, distribution, eventKey
-    } = props
-
+    } = props;
+    const [localDatasetInformation,setLocalDatasetInformation] = useState(datasetInformation);
+    const [localDistribution,setLocalDistribution] = useState(distribution);
     const [
         informationMap, informationC,
         informationOnDelete, informationAdd
-    ] = useMap(eventKey, 'information');
+    ] = useMap(eventKey, 'information', datasetInformation.length);
+
     const [
         distributionMap, distributionC,
         distributionOnDelete, distributionAdd
-    ] = useMap(eventKey, 'distribution');
+    ] = useMap(eventKey, 'distribution', distribution.length);
 
-    // const datasetInformationEl = (Object.keys(informationMap)).map((item, idx) => (
-    //     <DatasetInformation key={item} eventKey={item} onDelete={informationOnDelete} />
-    // ));
+    function deleteLocalDatasetInformationEntry(index,a,b) {
+        const newLocalDatasetInformation = [...localDatasetInformation];
+        newLocalDatasetInformation.splice(index, 1);
+        informationOnDelete(a,b);
+        setLocalDatasetInformation(newLocalDatasetInformation);
+    }
 
-    // const datasetDistributionEl = (Object.keys(distributionMap)).map((item, idx) => (
-    //     <DatasetDistribution key={item} eventKey={item} onDelete={distributionOnDelete} />
-    // ));
+    const datasetInformationEl = (Object.keys(informationMap)).map((item, idx) => (
+        <DatasetInformation key={item} eventKey={item} onDelete={(a,b)=>{deleteLocalDatasetInformationEntry(idx,a,b);}} {...localDatasetInformation[idx]}/>
+    ));
+
+    function deleteLocalDistributionEntry(index,a,b) {
+        const newLocalDistribution = [...localDistribution];
+        newLocalDistribution.splice(index, 1);
+        distributionOnDelete(a,b);
+        setLocalDistribution(newLocalDistribution);
+    }
+
+    const datasetDistributionEl = (Object.keys(distributionMap)).map((item, idx) => (
+        <DatasetDistribution key={item} eventKey={item} onDelete={(a,b)=>{deleteLocalDistributionEntry(idx,a,b);}} {...localDistribution[idx]} />
+    ));
 
     return (<>
         <Form.Group controlId={eventKey + 'title'}>
@@ -85,7 +101,7 @@ export default function Dataset(props) {
                 <Form.Group controlId={eventKey + 'temporalResolution'}>
                     <Form.Label>Temporal Resolution</Form.Label>
                     <Form.Control type="text" placeholder="Temporal Resolution"
-                                  name={eventKey + 'temporalResolution'} defaultValue={temporalResolution} />
+                        name={eventKey + 'temporalResolution'} defaultValue={temporalResolution} />
                 </Form.Group>
             </Col>
         </Row>
@@ -101,7 +117,7 @@ export default function Dataset(props) {
                 <Form.Group controlId={eventKey + 'accrualPeriodicity'}>
                     <Form.Label>Accrual Periodicity</Form.Label>
                     <Form.Control type="text" placeholder="Accrual Periodicity"
-                                  name={eventKey + 'accrualPeriodicity'} defaultValue={accrualPeriodicity}
+                        name={eventKey + 'accrualPeriodicity'} defaultValue={accrualPeriodicity}
                     />
                 </Form.Group>
             </Col>
@@ -112,23 +128,23 @@ export default function Dataset(props) {
             <Form.Control type="text" placeholder="Theme" name={eventKey + 'theme'} defaultValue={theme}/>
         </Form.Group>
 
-        {/*<div className="d-flex align-items-center my-3">*/}
-        {/*    <h5 className="flex-grow-1 mb-0">*/}
-        {/*        Dataset Information Details*/}
-        {/*    </h5>*/}
-        {/*    <AddNew onClick={informationAdd} />*/}
-        {/*</div>*/}
+        <div className="d-flex align-items-center my-3">
+            <h5 className="flex-grow-1 mb-0">
+                Dataset Information Details
+            </h5>
+            <AddNew onClick={informationAdd} />
+        </div>
 
-        {/*{ datasetInformationEl }*/}
+        { datasetInformationEl }
 
-        {/*<div className="d-flex align-items-center my-3">*/}
-        {/*    <h5 className="flex-grow-1 mb-0">*/}
-        {/*        Distribution Details*/}
-        {/*    </h5>*/}
-        {/*    <AddNew onClick={distributionAdd} />*/}
-        {/*</div>*/}
+        <div className="d-flex align-items-center my-3">
+            <h5 className="flex-grow-1 mb-0">
+                Distribution Details
+            </h5>
+            <AddNew onClick={distributionAdd} />
+        </div>
 
-        {/*{ datasetDistributionEl }*/}
+        { datasetDistributionEl }
 
         <input type="hidden" value={informationC} name={eventKey + 'informationC'} />
         <input type="hidden" value={distributionC} name={eventKey + 'distributionC'} />

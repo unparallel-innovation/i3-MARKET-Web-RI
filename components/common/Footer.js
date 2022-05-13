@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function Footer(){
+export default function Footer() {
     return (
         <footer className="px-5 py-4">
             <div className="d-flex h-100 align-items-center">
@@ -20,5 +20,5 @@ export default function Footer(){
 
             </div>
         </footer>
-    )
+    );
 }

@@ -10,11 +10,11 @@ export default function Register() {
 
         const info = {
             username: e.target.username.value
-        }
-        if (role === 'consumer'){
+        };
+        if (role === 'consumer') {
             info.consumer = true;
         }
-        else if(role === 'provider'){
+        else if (role === 'provider') {
             info.provider = true;
         }
 
@@ -22,10 +22,10 @@ export default function Register() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(info),
-        })
-        const data = await res.json()
-        if(data.url)
-            window.open(data.url, "_self")
+        });
+        const data = await res.json();
+        if (data.url)
+            window.open(data.url, '_self');
     }
 
     return (
@@ -68,5 +68,5 @@ export default function Register() {
             </div>
             <Footer />
         </div>
-    )
+    );
 }

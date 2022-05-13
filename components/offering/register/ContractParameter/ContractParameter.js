@@ -25,19 +25,19 @@ export default function ContractParameter(props) {
         <Form.Group controlId={eventKey + 'interestDescription'}>
             <Form.Label>Interest Description</Form.Label>
             <Form.Control as="textarea" rows={3} placeholder="Interest Description"
-                          name={eventKey + 'interestDescription'} defaultValue={interestDescription} />
+                name={eventKey + 'interestDescription'} defaultValue={interestDescription} />
         </Form.Group>
 
         <Form.Group controlId={eventKey + 'purpose'}>
             <Form.Label>Purpose</Form.Label>
             <Form.Control type="text" placeholder="Purpose"
-                          name={eventKey + 'purpose'} defaultValue={purpose}/>
+                name={eventKey + 'purpose'} defaultValue={purpose}/>
         </Form.Group>
 
         <Form.Group controlId={eventKey + 'purposeDescription'}>
             <Form.Label>Purpose Description</Form.Label>
             <Form.Control as="textarea" rows={3} placeholder="Purpose Description"
-                          name={eventKey + 'purposeDescription'} defaultValue={purposeDescription} />
+                name={eventKey + 'purposeDescription'} defaultValue={purposeDescription} />
         </Form.Group>
 
         <Form.Group controlId={eventKey + 'hasGoverningJurisdiction'}>

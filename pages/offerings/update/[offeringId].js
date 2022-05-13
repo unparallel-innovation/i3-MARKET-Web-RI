@@ -5,7 +5,6 @@ import { Loading } from '../../../components/layout/Loading';
 import BigText from '../../../components/common/BigText';
 import Register from '../../../components/offering/register';
 
-
 export default function UpdatePage() {
     const router = useRouter();
     const { offeringId } = router.query;

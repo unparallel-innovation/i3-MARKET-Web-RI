@@ -4,7 +4,6 @@ import CustomToggle from '../../../common/CustomToggle';
 
 export default function HasLicenseGrant(props) {
     const { copyData, transferable, exclusiveness, revocable, eventKey } = props;
-    console.log(props)
     const [cd, setCopyData] = useState(Boolean(copyData));
     const [tf, setTransferable] = useState(Boolean(transferable));
     const [excl, setExclusiveness] = useState(Boolean(exclusiveness));

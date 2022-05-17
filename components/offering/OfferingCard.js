@@ -1,28 +1,27 @@
 import { useRouter } from 'next/router';
-import { ExclamationCircle, Globe, Lock } from 'react-bootstrap-icons';
-import colors from '../../lib/colors';
 import { Badge, Card, Col } from 'react-bootstrap';
+import { getOfferingStatusIcon } from '../../lib/utils';
 
 export default function OfferingCard(props) {
     const router = useRouter();
     const {
-        dataOfferingTitle, dataOfferingDescription, isActivated,
-        hasContractWarning, dataOfferingId,
+        dataOfferingId, dataOfferingTitle, dataOfferingDescription, status
     } = props;
 
-    const visIconEl = isActivated === 'yes'
-        ? <Globe color={colors.primary} size={24} />
-        : <Lock color={colors.primary} size={24} />;
+    // let warningIconEl = null;
+    // if (hasContractWarning) {
+    //     warningIconEl = (
+    //         <span className="p-2 px-3 bg-warning">
+    //             <ExclamationCircle size={24}/>
+    //         </span>
+    //     );
+    // }
 
-    let warningIconEl = null;
-
-    if (hasContractWarning) {
-        warningIconEl = (
-            <span className="p-2 px-3 bg-warning">
-                <ExclamationCircle size={24}/>
-            </span>
-        );
-    }
+    const iconStatusEl =  (
+        <span className="p-2 px-3 ">
+            {getOfferingStatusIcon(status)}
+        </span>
+    )
 
     function onClick() {
         router.push('/offerings/' + dataOfferingId);
@@ -34,7 +33,7 @@ export default function OfferingCard(props) {
                 <Card.Body>
                     <Card.Title className="d-flex justify-content-between line-clamp-2 h3rem">
                         { dataOfferingTitle }
-                        { visIconEl }
+
                     </Card.Title>
                     <Card.Text className="line-clamp-2 h3rem">
                         { dataOfferingDescription }
@@ -46,7 +45,7 @@ export default function OfferingCard(props) {
                             0 Contracts
                         </Badge>
                     </span>
-                    { warningIconEl }
+                    {iconStatusEl}
                 </div>
             </Card>
         </Col>

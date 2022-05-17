@@ -4,9 +4,9 @@ import colors from '/lib/colors.js';
 import Dataset from './Dataset.js';
 import PricingModel from './PricingModel.js';
 import { Button, Modal, Row } from 'react-bootstrap';
-import { Globe, Lock, Pencil, Trash } from 'react-bootstrap-icons';
+import { Eye, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/layout/Layout.js';
-import { ts2date } from '../../../lib/utils';
+import { getOfferingStatusIcon, ts2date } from '../../../lib/utils';
 import ContractParameter from './ContractParameter';
 import KVCol2 from '../../common/KVCol2';
 
@@ -20,11 +20,10 @@ function Offering(props) {
         dataOfferingExpirationTime, hasPricingModel, contractParameters
     } = props;
 
-    const [ show, setShowDelete ] = useState(false);
+    const [ showDelete, setShowDelete ] = useState(false);
+    const [ showActivate, setShowActivate ] = useState(false);
 
-    const visIconEl = status === 'Activated'
-        ? <Globe color={colors.primary} size={20} />
-        : <Lock color={colors.primary} size={20} /> ;
+    const statusIconEl = getOfferingStatusIcon(status)
 
     const datasetEl = hasDataset
         ? <Dataset
@@ -41,6 +40,16 @@ function Offering(props) {
             key={'hasPricingModelKey'} eventKey={'hasPricingModel'} { ...hasPricingModel }
         /> : '';
 
+    function onActivate(e){
+        fetch(`/api/offering/${offeringId}`, {
+            method: 'PATCH',
+        }).then(res => {
+            router.back()
+        }).catch(error => {
+            console.log('ERROR', error);
+        });
+    }
+
     function onUpdate(e) {
         router.push('/offerings/update/' + offeringId);
     }
@@ -49,93 +58,132 @@ function Offering(props) {
         fetch(`/api/offering/${offeringId}`, {
             method: 'DELETE',
         }).then(res => {
-            router.push('/offerings');
+            router.back()
         }).catch(error => {
             console.log('ERROR', error);
         });
     }
 
-    return (<Layout>
-        <div className="px-5 pb-3">
-            <div className="d-flex">
-                <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
-                <span className="p-2">{ visIconEl }  </span>
-                <span className="p-2">
-                    <Pencil color={colors.primary} size={20} onClick={onUpdate} className="cursor-pointer"/>
-                </span>
-                <span className="p-2">
-                    <Trash color={colors.primary} size={20}
-                        onClick={() => setShowDelete(true)}
-                        className="cursor-pointer" />
-                </span>
+    return (
+        <Layout>
+            <div className="px-5 pb-3">
+                <div className="d-flex">
+                    <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
+                    <div className="d-flex align-items-center">
+                        { statusIconEl } <div className="ml-2">{ status } </div>
+                        <div className="ml-4 d-flex"> |
+                            <div className="ml-4">
+                                <Eye color={colors.primary} size={24} onClick={() => setShowActivate(true)} cursor="pointer"
+                                     pointerEvents={(status !== 'Active') ? 'auto': "none"} />
+                            </div>
+                            <div className="ml-3">
+                                <Pencil color={colors.primary} size={20} onClick={onUpdate} cursor="pointer" />
+                            </div>
+                            <div className="ml-3">
+                                <Trash color={colors.primary} size={20} onClick={() => setShowDelete(true)} cursor="pointer"
+                                       pointerEvents={(status !== 'ToBeDeleted' || status !== 'Deleted') ? 'auto': "none"} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>{ dataOfferingDescription }</p>
+
+                <Row className="text-center mb-3">
+                    <KVCol2 title="Provider">
+                        { provider }
+                    </KVCol2>
+                    <KVCol2 title="Provider DID">
+                        { providerDid }
+                    </KVCol2>
+
+                </Row>
+
+                <Row className="text-center mb-3">
+                    <KVCol2 title="Market">
+                        { marketId }
+                    </KVCol2>
+                    <KVCol2 title="Market DID">
+                        { marketDid }
+                    </KVCol2>
+                </Row>
+
+                <Row className="text-center mb-3">
+                    <KVCol2 title="Owner">
+                        { owner }
+                    </KVCol2>
+                    <KVCol2 title="Owner DID">
+                        { ownerDid }
+                    </KVCol2>
+                </Row>
+
+                <Row className="text-center mb-3">
+                    <KVCol2 title="Category">
+                        { category }
+                    </KVCol2>
+                    <KVCol2 title="Expiration Time">
+                        { ts2date(dataOfferingExpirationTime) }
+                    </KVCol2>
+                </Row>
+
+                <div className="mt-3" />
+
+                { datasetEl }
+
+                <div className="mt-3" />
+
+                { contractParametersEl }
+
             </div>
 
-            <p>{ dataOfferingDescription }</p>
+            { pricingModelEl }
 
-            <Row className="text-center mb-3">
-                <KVCol2 title="Provider">
-                    { provider }
-                </KVCol2>
-                <KVCol2 title="Provider DID">
-                    { providerDid }
-                </KVCol2>
+            { showModal(showDelete, showActivate) }
 
-            </Row>
+        </Layout>
+    );
 
-            <Row className="text-center mb-3">
-                <KVCol2 title="Market">
-                    { marketId }
-                </KVCol2>
-                <KVCol2 title="Market DID">
-                    { marketDid }
-                </KVCol2>
-            </Row>
+    function showModal(showDelete, showActivate){
+        if(showDelete){
+            return (
+                <Modal show={showDelete} onHide={() => setShowDelete(false)}>
+                    <Modal.Header closeButton>
+                        Delete offering
+                    </Modal.Header>
+                    <Modal.Body>
+                        Are you sure you want to delete offering {offeringId}?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowDelete(false)}>
+                            Cancel
+                        </Button>
+                        <Button variant="primary" onClick={onDelete}>
+                            Delete
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            )
+        }
+        else if(showActivate){
+            return (
+                <Modal show={showActivate} onHide={() => setShowActivate(false)}>
+                    <Modal.Header closeButton>
+                        Activate offering
+                    </Modal.Header>
+                    <Modal.Body>
+                        Do you want to activate offering {offeringId}?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowActivate(false)}>
+                            Cancel
+                        </Button>
+                        <Button variant="primary" onClick={onActivate}>
+                            Activate
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            )
+        }
 
-            <Row className="text-center mb-3">
-                <KVCol2 title="Owner">
-                    { owner }
-                </KVCol2>
-                <KVCol2 title="Owner DID">
-                    { ownerDid }
-                </KVCol2>
-            </Row>
-
-            <Row className="text-center mb-3">
-                <KVCol2 title="Category">
-                    { category }
-                </KVCol2>
-                <KVCol2 title="Expiration Time">
-                    { ts2date(dataOfferingExpirationTime) }
-                </KVCol2>
-            </Row>
-
-            <div className="mt-3" />
-
-            { datasetEl }
-
-            <div className="mt-3" />
-
-            { contractParametersEl }
-
-        </div>
-
-        { pricingModelEl }
-
-        <Modal show={show} onHide={() => setShowDelete(false)}>
-            <Modal.Header closeButton>
-                Delete offering
-            </Modal.Header>
-            <Modal.Body>
-                Are you sure you want to delete offering {offeringId}?
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={() => setShowDelete(false)}>
-                    Cancel
-                </Button>
-                <Button variant="primary" onClick={onDelete}>
-                    Delete
-                </Button>
-            </Modal.Footer>
-        </Modal>
-    </Layout>);
+    }
 }

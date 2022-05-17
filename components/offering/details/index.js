@@ -23,7 +23,7 @@ function Offering(props) {
     const [ showDelete, setShowDelete ] = useState(false);
     const [ showActivate, setShowActivate ] = useState(false);
 
-    const statusIconEl = getOfferingStatusIcon(status)
+    const statusIconEl = getOfferingStatusIcon(status);
 
     const datasetEl = hasDataset
         ? <Dataset
@@ -40,11 +40,11 @@ function Offering(props) {
             key={'hasPricingModelKey'} eventKey={'hasPricingModel'} { ...hasPricingModel }
         /> : '';
 
-    function onActivate(e){
+    function onActivate(e) {
         fetch(`/api/offering/${offeringId}`, {
             method: 'PATCH',
         }).then(res => {
-            router.back()
+            router.back();
         }).catch(error => {
             console.log('ERROR', error);
         });
@@ -58,7 +58,7 @@ function Offering(props) {
         fetch(`/api/offering/${offeringId}`, {
             method: 'DELETE',
         }).then(res => {
-            router.back()
+            router.back();
         }).catch(error => {
             console.log('ERROR', error);
         });
@@ -74,14 +74,14 @@ function Offering(props) {
                         <div className="ml-4 d-flex"> |
                             <div className="ml-4">
                                 <Eye color={colors.primary} size={24} onClick={() => setShowActivate(true)} cursor="pointer"
-                                     pointerEvents={(status !== 'Active') ? 'auto': "none"} />
+                                    pointerEvents={(status !== 'Active') ? 'auto' : 'none'} />
                             </div>
                             <div className="ml-3">
                                 <Pencil color={colors.primary} size={20} onClick={onUpdate} cursor="pointer" />
                             </div>
                             <div className="ml-3">
                                 <Trash color={colors.primary} size={20} onClick={() => setShowDelete(true)} cursor="pointer"
-                                       pointerEvents={(status !== 'ToBeDeleted' || status !== 'Deleted') ? 'auto': "none"} />
+                                    pointerEvents={(status !== 'ToBeDeleted' || status !== 'Deleted') ? 'auto' : 'none'} />
                             </div>
                         </div>
                     </div>
@@ -143,8 +143,8 @@ function Offering(props) {
         </Layout>
     );
 
-    function showModal(showDelete, showActivate){
-        if(showDelete){
+    function showModal(showDelete, showActivate) {
+        if (showDelete) {
             return (
                 <Modal show={showDelete} onHide={() => setShowDelete(false)}>
                     <Modal.Header closeButton>
@@ -162,9 +162,9 @@ function Offering(props) {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-            )
+            );
         }
-        else if(showActivate){
+        else if (showActivate) {
             return (
                 <Modal show={showActivate} onHide={() => setShowActivate(false)}>
                     <Modal.Header closeButton>
@@ -182,7 +182,7 @@ function Offering(props) {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-            )
+            );
         }
 
     }

@@ -1,7 +1,7 @@
 import { useMap } from '/lib/hooks.js';
 import { Col, Form, Row } from 'react-bootstrap';
 import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
-import PaymentOnAPI from './PaymentType/PaymentOnAPI';
+import PaymentOnAPI from './PaymentType/PaymentOnApi';
 import PaymentOnUnit from './PaymentType/PaymentOnUnit';
 import PaymentOnSize from './PaymentType/PaymentOnSize';
 import FreePrice from './PaymentType/FreePrice';

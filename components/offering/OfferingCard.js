@@ -17,11 +17,11 @@ export default function OfferingCard(props) {
     //     );
     // }
 
-    const iconStatusEl =  (
+    const iconStatusEl = (
         <span className="p-2 px-3 ">
             {getOfferingStatusIcon(status)}
         </span>
-    )
+    );
 
     function onClick() {
         router.push('/offerings/' + dataOfferingId);

@@ -77,7 +77,7 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="category">
                     <Form.Label>Category</Form.Label>
-                    <Form.Control as="select" className="mr-3" name="category" defaultValue={category ? capitalize(category): ''} >
+                    <Form.Control as="select" className="mr-3" name="category" defaultValue={category ? capitalize(category) : ''} >
                         { categoryEl }
                     </Form.Control>
                 </Form.Group>

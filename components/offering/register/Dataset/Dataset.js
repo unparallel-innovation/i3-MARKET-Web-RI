@@ -16,12 +16,12 @@ export default function Dataset(props) {
     const [
         informationMap, informationC,
         informationOnDelete, informationAdd
-    ] = useMap(eventKey, 'information', datasetInformation.length);
+    ] = useMap(eventKey, 'information', datasetInformation ? datasetInformation.length : 1);
 
     const [
         distributionMap, distributionC,
         distributionOnDelete, distributionAdd
-    ] = useMap(eventKey, 'distribution', distribution.length);
+    ] = useMap(eventKey, 'distribution', distribution ? distribution.length : 1);
 
     function deleteLocalDatasetInformationEntry(index,a,b) {
         const newLocalDatasetInformation = [...localDatasetInformation];
@@ -31,7 +31,7 @@ export default function Dataset(props) {
     }
 
     const datasetInformationEl = (Object.keys(informationMap)).map((item, idx) => (
-        <DatasetInformation key={item} eventKey={item} onDelete={(a,b)=>{deleteLocalDatasetInformationEntry(idx,a,b);}} {...localDatasetInformation[idx]}/>
+        <DatasetInformation key={item} eventKey={item} onDelete={(a,b)=>{deleteLocalDatasetInformationEntry(idx,a,b);}} {... localDatasetInformation ? localDatasetInformation[idx] : undefined}/>
     ));
 
     function deleteLocalDistributionEntry(index,a,b) {
@@ -42,7 +42,7 @@ export default function Dataset(props) {
     }
 
     const datasetDistributionEl = (Object.keys(distributionMap)).map((item, idx) => (
-        <DatasetDistribution key={item} eventKey={item} onDelete={(a,b)=>{deleteLocalDistributionEntry(idx,a,b);}} {...localDistribution[idx]} />
+        <DatasetDistribution key={item} eventKey={item} onDelete={(a,b)=>{deleteLocalDistributionEntry(idx,a,b);}} {...localDistribution ? localDistribution[idx] : undefined} />
     ));
 
     return (<>
@@ -95,13 +95,6 @@ export default function Dataset(props) {
                 <Form.Group controlId={eventKey + 'temporal'}>
                     <Form.Label>Temporal</Form.Label>
                     <Form.Control type="text" placeholder="Temporal" name={eventKey + 'temporal'} defaultValue={temporal} />
-                </Form.Group>
-            </Col>
-            <Col>
-                <Form.Group controlId={eventKey + 'temporalResolution'}>
-                    <Form.Label>Temporal Resolution</Form.Label>
-                    <Form.Control type="text" placeholder="Temporal Resolution"
-                        name={eventKey + 'temporalResolution'} defaultValue={temporalResolution} />
                 </Form.Group>
             </Col>
         </Row>

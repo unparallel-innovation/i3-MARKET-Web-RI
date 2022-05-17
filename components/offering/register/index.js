@@ -13,28 +13,29 @@ export default
 function Register(props) {
     const router = useRouter();
     const { categories, user, toUpdate, offering } = props;
-
     const [ atIdx, setAtIdx ] = useState(0);
 
     const [ datasetC ] = useMap('', 'dataset');
-    const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset0'} {...offering.hasDataset} />;
+    const datasetEl
+        = <Dataset key={'datasetKey'} eventKey={'dataset0'} {...offering?.hasDataset} />
+    ;
 
     const [ pricingModelC ] = useMap('', 'pricingModel');
-    const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel0'} {...offering.hasPricingModel}/>;
+    const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel0'} {...offering?.hasPricingModel}/>;
 
     const [ contractParameterC ] = useMap('', 'contractParameter');
-    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter0'} {...offering.contractParameters} />;
+    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter0'} {...offering?.contractParameters} />;
 
     function onSubmit(e) {
         e.preventDefault();
         const form = e.target;
         const fd = new FormData(form);
-        const res = formRegister(fd);
+        const res = formRegister(fd, toUpdate);
 
         fetch(form.action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: res,
+            body: JSON.stringify(res),
         }).then(res => {
             router.push('/offerings');
         });
@@ -47,7 +48,7 @@ function Register(props) {
     return (
         <Layout className="d-flex flex-column">
             <Form className="px-5 pb-3 d-flex flex-column flex-grow-1"
-                onSubmit={onSubmit} action={'/api/offerings/' + toUpdate ? 'update' : 'register'}>
+                onSubmit={onSubmit} action={toUpdate ? '/api/offerings/update' : '/api/offerings/register'}>
                 <div className="d-flex">
                     <h3 className="flex-grow-1 mb-0">{toUpdate ? 'Update Offering' : 'Register New Offering'}</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
@@ -83,6 +84,11 @@ function Register(props) {
                     </Tab>
                 </Tabs>
 
+                <input type="hidden" value={offering?.dataOfferingId} name="dataOfferingId" />
+                <input type="hidden" value={offering?.status} name="status" />
+                <input type="hidden" value={offering?.createdAt} name="createdAt" />
+                <input type="hidden" value={JSON.stringify(offering?.context)} name="context" />
+                <input type="hidden" value={offering?.version} name="version" />
                 <input type="hidden" value={datasetC} name="datasetC" />
                 <input type="hidden" value={pricingModelC} name="pricingModelC" />
                 <input type="hidden" value={contractParameterC} name="contractParameterC" />

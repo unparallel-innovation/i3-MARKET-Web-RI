@@ -41,9 +41,11 @@ function Layout(props) {
                                         <Nav.Link>Offerings</Nav.Link>
                                     </Link>
                                 ) : null }
-                                <Link href="/contracts" passHref>
-                                    <Nav.Link>Contracts</Nav.Link>
-                                </Link>
+                                { user.consumer ? (
+                                    <Link href="/contracts" passHref>
+                                        <Nav.Link>Contracts</Nav.Link>
+                                    </Link>
+                                ) : null }
                                 <Link href="/transactions" passHref>
                                     <Nav.Link>Transactions</Nav.Link>
                                 </Link>

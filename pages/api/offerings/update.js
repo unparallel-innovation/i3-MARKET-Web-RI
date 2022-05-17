@@ -1,13 +1,13 @@
 import { catchErrors, connector } from '/lib/server.js';
+import { getSession } from '../../../lib/session';
 
 export default catchErrors(async (req, res) => {
     const data = req.body;
+    const session = await getSession(req, res);
+    const user = session.user;
 
-    switch (req.method) {
-
-        case 'PATCH':
-            // call connector
-            console.log('update', data);
-            return null;
+    if (user) {
+        await connector.updateOffering(user.access_token, user.id_token, data);
     }
+    return null;
 });

@@ -4,9 +4,9 @@ import CustomToggle from '../../../common/CustomToggle';
 
 export default function HasIntendedUse(props) {
     const { processData, editData, shareDataWithThirdParty, eventKey } = props;
-    const [process, setProcessData] = useState(Boolean(processData));
-    const [share, setShareData] = useState(Boolean(shareDataWithThirdParty));
-    const [edit, setEditData] = useState(Boolean(editData));
+    const [process, setProcessData] = useState(processData);
+    const [share, setShareData] = useState(shareDataWithThirdParty);
+    const [edit, setEditData] = useState(editData);
 
     return (
         <Accordion>
@@ -23,8 +23,8 @@ export default function HasIntendedUse(props) {
                                     <Form.Control as="select" value={process} name={eventKey + 'processData'}
                                         onChange={e => { setProcessData(e.target.value); }}
                                     >
-                                        <option value="true">True</option>
                                         <option value="false">False</option>
+                                        <option value="true">True</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
@@ -34,8 +34,8 @@ export default function HasIntendedUse(props) {
                                     <Form.Control as="select" value={share} name={eventKey + 'shareDataWithThirdParty'}
                                         onChange={e => { setShareData(e.target.value); }}
                                     >
-                                        <option value="true">True</option>
                                         <option value="false">False</option>
+                                        <option value="true">True</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
@@ -45,8 +45,8 @@ export default function HasIntendedUse(props) {
                                     <Form.Control as="select" value={edit} name={eventKey + 'editData'}
                                         onChange={e => { setEditData(e.target.value); }}
                                     >
-                                        <option value="true">True</option>
                                         <option value="false">False</option>
+                                        <option value="true">True</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Col>

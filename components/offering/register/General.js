@@ -1,5 +1,6 @@
 import { Col, Form, Row } from 'react-bootstrap';
 import moment from 'moment';
+import { capitalize } from '../../../lib/utils';
 
 export default function General(props) {
     const {
@@ -76,7 +77,7 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="category">
                     <Form.Label>Category</Form.Label>
-                    <Form.Control as="select" className="mr-3" name="category" defaultValue={category} >
+                    <Form.Control as="select" className="mr-3" name="category" defaultValue={capitalize(category)} >
                         { categoryEl }
                     </Form.Control>
                 </Form.Group>

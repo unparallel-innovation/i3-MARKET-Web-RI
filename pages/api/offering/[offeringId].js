@@ -9,7 +9,10 @@ export default catchErrors(async (req, res) => {
     if (user) {
         switch (req.method) {
             case 'GET':
-                return await connector.getOffering(user.access_token, user.id_token, offeringId);
+                return {
+                    offering: await connector.getOffering(user.access_token, user.id_token, offeringId),
+                    user
+                };
             case 'DELETE':
                 return await connector.deleteOffering(user.access_token, user.id_token, offeringId);
             case 'PATCH':

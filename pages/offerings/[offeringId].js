@@ -19,5 +19,5 @@ export default function OfferingPage() {
     if (error)
         return <Error error={error} />;
 
-    return <Offering { ...data } />;
+    return <Offering { ...data.offering } user={data.user} />;
 }

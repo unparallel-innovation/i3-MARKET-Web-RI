@@ -40,7 +40,7 @@ function Register(props) {
     }
 
     function onCancel() {
-        router.push('/offerings');
+        router.back()
     }
 
     return (

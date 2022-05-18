@@ -17,7 +17,7 @@ function Offering(props) {
     const {
         dataOfferingTitle, dataOfferingDescription, status, hasDataset,
         category, provider, providerDid, marketId, marketDid, owner, ownerDid,
-        dataOfferingExpirationTime, hasPricingModel, contractParameters
+        dataOfferingExpirationTime, hasPricingModel, contractParameters, user
     } = props;
 
     const [ showDelete, setShowDelete ] = useState(false);
@@ -70,20 +70,24 @@ function Offering(props) {
                 <div className="d-flex">
                     <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
                     <div className="d-flex align-items-center">
-                        { statusIconEl } <div className="ml-2">{ status } </div>
-                        <div className="ml-4 d-flex"> |
-                            <div className="ml-4">
-                                <Eye color={colors.primary} size={24} onClick={() => setShowActivate(true)} cursor="pointer"
-                                    pointerEvents={(status !== 'Active') ? 'auto' : 'none'} />
+                        { statusIconEl } <div className="ml-2">{ status }</div>
+
+                        { user.provider ? (
+                            <div className="ml-4 d-flex">
+                                |
+                                <div className="ml-4">
+                                    <Eye color={colors.primary} size={24} onClick={() => setShowActivate(true)} cursor="pointer"
+                                         pointerEvents={(status !== 'Active') ? 'auto' : 'none'} />
+                                </div>
+                                <div className="ml-3">
+                                    <Pencil color={colors.primary} size={20} onClick={onUpdate} cursor="pointer" />
+                                </div>
+                                <div className="ml-3">
+                                    <Trash color={colors.primary} size={20} onClick={() => setShowDelete(true)} cursor="pointer"
+                                           pointerEvents={(status !== 'ToBeDeleted' || status !== 'Deleted') ? 'auto' : 'none'} />
+                                </div>
                             </div>
-                            <div className="ml-3">
-                                <Pencil color={colors.primary} size={20} onClick={onUpdate} cursor="pointer" />
-                            </div>
-                            <div className="ml-3">
-                                <Trash color={colors.primary} size={20} onClick={() => setShowDelete(true)} cursor="pointer"
-                                    pointerEvents={(status !== 'ToBeDeleted' || status !== 'Deleted') ? 'auto' : 'none'} />
-                            </div>
-                        </div>
+                        ) : null }
                     </div>
                 </div>
 

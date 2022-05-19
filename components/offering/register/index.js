@@ -40,7 +40,7 @@ function Register(props) {
     }
 
     function onCancel() {
-        router.back()
+        router.back();
     }
 
     return (

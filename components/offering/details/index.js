@@ -155,7 +155,8 @@ function Offering(props) {
                         Delete offering
                     </Modal.Header>
                     <Modal.Body>
-                        Are you sure you want to delete offering {offeringId}?
+                        Are you sure you want to delete offering <br/>
+                        <strong>{offeringId}</strong> ?
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowDelete(false)}>
@@ -175,7 +176,8 @@ function Offering(props) {
                         Activate offering
                     </Modal.Header>
                     <Modal.Body>
-                        Do you want to activate offering {offeringId}?
+                        Do you want to activate offering <br/>
+                        <strong>{offeringId}</strong> ?
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowActivate(false)}>

@@ -4,10 +4,10 @@ import CustomToggle from '../../../common/CustomToggle';
 
 export default function HasLicenseGrant(props) {
     const { copyData, transferable, exclusiveness, revocable, eventKey } = props;
-    const [cd, setCopyData] = useState(Boolean(copyData));
-    const [tf, setTransferable] = useState(Boolean(transferable));
-    const [excl, setExclusiveness] = useState(Boolean(exclusiveness));
-    const [rev, setRevocable] = useState(Boolean(revocable));
+    const [cd, setCopyData] = useState(copyData);
+    const [tf, setTransferable] = useState(transferable);
+    const [excl, setExclusiveness] = useState(exclusiveness);
+    const [rev, setRevocable] = useState(revocable);
 
     return (
         <Accordion>

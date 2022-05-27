@@ -77,14 +77,14 @@ function Offering(props) {
                                 |
                                 <div className="ml-4">
                                     <Eye color={colors.primary} size={24} onClick={() => setShowActivate(true)} cursor="pointer"
-                                         pointerEvents={(status !== 'Active') ? 'auto' : 'none'} />
+                                        pointerEvents={(status !== 'Active') ? 'auto' : 'none'} />
                                 </div>
                                 <div className="ml-3">
                                     <Pencil color={colors.primary} size={20} onClick={onUpdate} cursor="pointer" />
                                 </div>
                                 <div className="ml-3">
                                     <Trash color={colors.primary} size={20} onClick={() => setShowDelete(true)} cursor="pointer"
-                                           pointerEvents={(status !== 'ToBeDeleted' || status !== 'Deleted') ? 'auto' : 'none'} />
+                                        pointerEvents={(status !== 'ToBeDeleted' || status !== 'Deleted') ? 'auto' : 'none'} />
                                 </div>
                             </div>
                         ) : null }
@@ -155,7 +155,8 @@ function Offering(props) {
                         Delete offering
                     </Modal.Header>
                     <Modal.Body>
-                        Are you sure you want to delete offering {offeringId}?
+                        Are you sure you want to delete offering <br/>
+                        <strong>{offeringId}</strong> ?
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowDelete(false)}>
@@ -175,7 +176,8 @@ function Offering(props) {
                         Activate offering
                     </Modal.Header>
                     <Modal.Body>
-                        Do you want to activate offering {offeringId}?
+                        Do you want to activate offering <br/>
+                        <strong>{offeringId}</strong> ?
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowActivate(false)}>

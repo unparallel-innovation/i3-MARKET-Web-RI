@@ -1,6 +1,6 @@
 {
   "name": "i3market-web-ri",
-  "version": "2.3.4",
+  "version": "2.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@unparallel/connector-ri": "^1.0.15",
+    "@unparallel/connector-ri": "^1.1.0",
     "bootstrap": "^4.6.1",
     "connect-mongo": "^4.6.0",
     "express-session": "^1.17.2",

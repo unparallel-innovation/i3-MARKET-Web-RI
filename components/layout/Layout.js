@@ -7,15 +7,42 @@ import { Bell, PersonCircle } from 'react-bootstrap-icons';
 import Breadcrumbs from 'nextjs-breadcrumbs';
 import Footer from '../common/Footer';
 import { useData } from '../../lib/hooks';
+import { useEffect, useState } from 'react';
 
 export default
 function Layout(props) {
-    const { className, children, noRedirect, noBreadcrumbs } = props;
     const router = useRouter();
+    const { className, children, noRedirect, noBreadcrumbs } = props;
+    const [notifications, setNotifications] = useState(0);
     const { data } = useData('/api/user');
+
+    useEffect(()=>{
+        let destroy = false;
+
+        function getData() {
+            fetch('/api/notifications', {
+                method: 'GET'
+            }).then(res=>{
+                res.json().then(json=>{
+                    setNotifications(json.unreadNotifications.length);
+                    setTimeout(()=>{
+                        if (destroy) {
+                            return;
+                        }
+                        getData();
+                    },1 * 60 * 1000);
+                });
+            });
+        }
+        getData();
+        return function cleanup() {
+            destroy = true;
+        };
+    },[]);
 
     if (data) {
         const user = data.user;
+
         return (
             <div className="d-flex flex-column vw-100 vh-100">
                 <Head>
@@ -68,9 +95,9 @@ function Layout(props) {
                                         </NavDropdown.Item>
                                     </NavDropdown>
                                 </Link>
-                                <Link href="/notificationCenter" passHref>
+                                <Link href="/notifications" passHref>
                                     <Nav.Link className="px-2">
-                                        <Bell size={24} />
+                                        <Bell size={24} /><span className="badge badge-primary ml-1">{notifications}</span>
                                     </Nav.Link>
                                 </Link>
                             </Nav>
@@ -85,7 +112,6 @@ function Layout(props) {
                                 <Breadcrumbs rootLabel="Home" />
                             </div>
                         ) }
-
                         { children }
                     </div>
 

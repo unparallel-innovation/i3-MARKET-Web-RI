@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import Layout from '../../layout/Layout';
 import { useRouter } from 'next/router';
-import moment from 'moment';
 import { getDateValue } from '../../../lib/utils';
-import { formRegister } from '../../../lib/forms/registerOffering';
 import { formDataPurchaseRequest } from '../../../lib/forms/dataPurchaseRequest';
 
 export default function ContractTemplate(props){

@@ -1,5 +1,5 @@
 import { getSession } from '../../../lib/session';
-import { catchErrors, connector } from '../../../lib/server';
+import { catchErrors } from '../../../lib/server';
 
 export default catchErrors(async (req, res) => {
     const session = await getSession(req, res);

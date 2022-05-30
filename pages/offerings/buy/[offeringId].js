@@ -10,13 +10,11 @@ export default function BuyPage (){
     const { offeringId } = router.query;
     const { data, error, isValidating } = useData(`/api/offering/buy/${offeringId}`);
 
-    console.log(data, isValidating, error)
-
     if (isValidating)
         return <Loading />;
-    //
-    // if (!data)
-    //     return <BigText>Offering {offeringId} not found</BigText>;
+
+    if (!data)
+        return <BigText>Contract template for offering {offeringId} not found</BigText>;
 
     if (error)
         return <Error error={error} />;

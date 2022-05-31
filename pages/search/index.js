@@ -1,6 +1,5 @@
 import { useData } from '/lib/hooks.js';
-import { qs } from '/lib/utils.js';
-import { fd2qs } from '/lib/forms/registerOffering.js';
+import { fd2qs, qs } from '/lib/utils.js';
 import Layout from '/components/layout/Layout.js';
 import Error from '/components/layout/Error.js';
 import { useEffect, useState } from 'react';

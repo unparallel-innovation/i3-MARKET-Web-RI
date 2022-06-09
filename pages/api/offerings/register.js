@@ -12,7 +12,11 @@ export default catchErrors(async (req, res) => {
             if (user) {
                 categoriesList = await connector.getCategories(user.access_token, user.id_token);
             }
-            return { categories: categoriesList, user };
+            return {
+                categories: categoriesList,
+                market_name: process.env.MARKET_NAME,
+                user
+            };
         case 'POST':
             if (user) {
                 await connector.registerOffering(user.access_token, user.id_token, data);

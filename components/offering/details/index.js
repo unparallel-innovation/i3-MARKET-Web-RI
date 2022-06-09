@@ -51,7 +51,7 @@ function Offering(props) {
     }
 
     function onBuyOffering(){
-        router.push('/offerings/buy/' + offeringId);
+        router.push('/offerings/purchaseRequest/' + offeringId);
     }
 
     function onUpdate(e) {

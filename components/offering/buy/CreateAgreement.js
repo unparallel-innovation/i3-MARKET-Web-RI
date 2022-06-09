@@ -1,29 +1,25 @@
-import { useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
 import Layout from '../../layout/Layout';
-import { useRouter } from 'next/router';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { getDateValue } from '../../../lib/utils';
-import { formDataPurchaseRequest } from '../../../lib/forms/dataPurchaseRequest';
+import { useRouter } from 'next/router';
+import Error from '../../layout/Error';
 
-export default function ContractTemplate(props){
+export default function CreateAgreement(props){
     const router = useRouter();
+    const template = props.data.template
+    const user = props.user
+
+    if(user.consumer){
+        const error = {message: `Sorry, you don't have permission to access this page!`}
+        return <Error error={error}/>
+    }
 
     const {
         DataOfferingDescription, DataExchangeAgreement, DataStream, Purpose,
-        hasDuration, hasIntendedUse, hasLicenseGrant, hasParties, user
-    } = props;
+        hasDuration, hasIntendedUse, hasLicenseGrant, hasParties
+    } = template;
 
-    const hasDutiesObligations = props["hasDuties/Obligations"];
-
-    const [dataAvailability, setDataAvailability] = useState(hasDutiesObligations['Duties/Obligations'].dataAvailability);
-    const [process, setProcessData] = useState(hasIntendedUse.IntendedUse.processData);
-    const [share, setShareData] = useState(hasIntendedUse.IntendedUse.shareDataWithThirdParty);
-    const [edit, setEditData] = useState(hasIntendedUse.IntendedUse.editData);
-    const [cd, setCopyData] = useState(hasLicenseGrant.LicenseGrant.copyData);
-    const [tf, setTransferable] = useState(hasLicenseGrant.LicenseGrant.transferable);
-    const [excl, setExclusiveness] = useState(hasLicenseGrant.LicenseGrant.exclusiveness);
-    const [rev, setRevocable] = useState(hasLicenseGrant.LicenseGrant.revocable);
-    const [ds, setDataStream] = useState(DataStream);
+    const hasDutiesObligations = template["hasDuties/Obligations"];
 
     function onCancel() {
         router.back();
@@ -32,27 +28,29 @@ export default function ContractTemplate(props){
     function onSubmit(e){
         e.preventDefault();
         const form = e.target;
-        const fd = new FormData(form);
-        const res = formDataPurchaseRequest(fd);
+        // console.log(JSON.stringify(template))
 
-        fetch(form.action, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(res),
-        }).then(res => {
-            router.back()
-        });
+        // fetch(form.action, {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(template),
+        // }).then(res => {
+        //     router.back()
+        // });
     }
 
     return (
-        <Layout className="d-flex flex-column">
-            <Form className="px-5 pb-3 d-flex flex-column flex-grow-1" onSubmit={onSubmit} action={'/api/offerings/purchaseRequest'}>
+        <Layout>
+            <Form className="px-5 pb-3 d-flex flex-column flex-grow-1" onSubmit={onSubmit} action={'/api/offerings/createAgreement'} >
                 <div className="d-flex">
-                    <h3 className="flex-grow-1 mb-0">{'Contract Template'}</h3>
+                    <h3 className="flex-grow-1 mb-0">{'Create Data Agreement'}</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
                     <Button type="submit">Submit</Button>
                 </div>
 
+
+                <hr className="mt-2" />
+                <h4 className="mt-4">Static Parameters</h4>
                 <hr className="mt-2 mb-4" />
 
                 <Row>
@@ -60,14 +58,12 @@ export default function ContractTemplate(props){
                         <Form.Group controlId="offeringId">
                             <Form.Label>Data Offering ID</Form.Label>
                             <Form.Control type="text" name="offeringId" defaultValue={DataOfferingDescription.dataOfferingId} disabled />
-                            <input type="hidden" name="offeringId" defaultValue={DataOfferingDescription.dataOfferingId} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="providerId">
                             <Form.Label>Provider</Form.Label>
                             <Form.Control type="text" name="provider" defaultValue={DataOfferingDescription.provider} disabled />
-                            <input type="hidden" name="provider" defaultValue={DataOfferingDescription.provider} />
                         </Form.Group>
                     </Col>
 
@@ -75,24 +71,28 @@ export default function ContractTemplate(props){
                         <Form.Group controlId="category">
                             <Form.Label>Category</Form.Label>
                             <Form.Control type="text" name="category" defaultValue={DataOfferingDescription.category} disabled />
-                            <input type="hidden" name="category" defaultValue={DataOfferingDescription.category} />
                         </Form.Group>
                     </Col>
                 </Row>
 
                 <Form.Group controlId="offeringTitle">
                     <Form.Label>Offering Title</Form.Label>
-                    <Form.Control type="text" name="title" defaultValue={DataOfferingDescription.title} />
+                    <Form.Control type="text" name="title" defaultValue={DataOfferingDescription.title} disabled />
                 </Form.Group>
 
                 <Form.Group controlId="offeringDescription">
                     <Form.Label>Offering Description</Form.Label>
-                    <Form.Control as="textarea" rows={3} name="offeringDescription" defaultValue={DataOfferingDescription.description} />
+                    <Form.Control as="textarea" rows={3} name="offeringDescription" defaultValue={DataOfferingDescription.description} disabled />
                 </Form.Group>
 
+                <h4 className="mt-4">Dynamic Parameters</h4>
+                <hr className="mt-2 mb-4" />
+
+                <h5 className="mt-4">Purpose</h5>
+                <hr className="mt-2 mb-4" />
+
                 <Form.Group controlId="purpose">
-                    <Form.Label>Purpose</Form.Label>
-                    <Form.Control type="text" name="purpose" defaultValue={Purpose} />
+                    <Form.Control type="text" name="purpose" defaultValue={Purpose} disabled />
                 </Form.Group>
 
                 <h5 className="mt-4">Parties</h5>
@@ -103,13 +103,13 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId="dataProvider">
                             <Form.Label>Data Provider</Form.Label>
-                            <Form.Control type="text" name="dataProvider" defaultValue={hasParties.Parties.dataProvider} />
+                            <Form.Control type="text" name="dataProvider" defaultValue={hasParties.Parties.dataProvider} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="dataConsumer">
                             <Form.Label>Data Consumer</Form.Label>
-                            <Form.Control type="text" name="dataConsumer" defaultValue={user.username} />
+                            <Form.Control type="text" name="dataConsumer" defaultValue={hasParties.Parties.dataConsumer} disabled />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -122,24 +122,21 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId="creationDate">
                             <Form.Label>Creation Date</Form.Label>
-                            <Form.Control type="date" name="creationDate"
-                                          defaultValue={getDateValue(hasDuration.Duration.creationDate) }/>
+                            <Form.Control type="date" name="creationDate" defaultValue={getDateValue(hasDuration.Duration.creationDate)} disabled />
                         </Form.Group>
                     </Col>
 
                     <Col>
                         <Form.Group controlId="startDate">
                             <Form.Label>Start Date</Form.Label>
-                            <Form.Control type="date" name="startDate"
-                                          defaultValue={getDateValue(hasDuration.Duration.startDate)}  />
+                            <Form.Control type="date" name="startDate" defaultValue={getDateValue(hasDuration.Duration.startDate)} disabled />
                         </Form.Group>
                     </Col>
 
                     <Col>
                         <Form.Group controlId="endDate">
                             <Form.Label>End Date</Form.Label>
-                            <Form.Control type="date" name="endDate"
-                                          defaultValue={getDateValue(hasDuration.Duration.endDate)} />
+                            <Form.Control type="date" name="endDate" defaultValue={getDateValue(hasDuration.Duration.endDate)} disabled />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -152,26 +149,19 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId="qualityOfData">
                             <Form.Label>Quality Of Data</Form.Label>
-                            <Form.Control type="text" name="qualityOfData" defaultValue={hasDutiesObligations['Duties/Obligations'].qualityofData} />
+                            <Form.Control type="text" name="qualityOfData" defaultValue={hasDutiesObligations['Duties/Obligations'].qualityofData} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="characteristics">
                             <Form.Label>Characteristics</Form.Label>
-                            <Form.Control type="text" name="characteristics" defaultValue={hasDutiesObligations['Duties/Obligations'].characteristics} />
+                            <Form.Control type="text" name="characteristics" defaultValue={hasDutiesObligations['Duties/Obligations'].characteristics} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="dataAvailability">
                             <Form.Label>Data Availability</Form.Label>
-                            <Form.Group controlId={'dataAvailability'}>
-                                <Form.Control as="select" value={dataAvailability} name={'dataAvailability'}
-                                              onChange={e => { setDataAvailability(e.target.value); }}
-                                >
-                                    <option value="false">False</option>
-                                    <option value="true">True</option>
-                                </Form.Control>
-                            </Form.Group>
+                            <Form.Control type="text" name="dataAvailability" defaultValue={hasDutiesObligations['Duties/Obligations'].dataAvailability} disabled />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -183,34 +173,19 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId={'processData'}>
                             <Form.Label>Process Data</Form.Label>
-                            <Form.Control as="select" value={process} name={'processData'}
-                                          onChange={e => { setProcessData(e.target.value); }}
-                            >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
+                            <Form.Control type="text" name="processData" defaultValue={hasIntendedUse.IntendedUse.processData} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId={'shareDataWithThirdParty'}>
                             <Form.Label>Share Data With Third Party</Form.Label>
-                            <Form.Control as="select" value={share} name={'shareDataWithThirdParty'}
-                                          onChange={e => { setShareData(e.target.value); }}
-                            >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
+                            <Form.Control type="text" name="shareDataWithThirdParty" defaultValue={hasIntendedUse.IntendedUse.shareDataWithThirdParty} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId={'editData'}>
                             <Form.Label>Edit Data</Form.Label>
-                            <Form.Control as="select" value={edit} name={'editData'}
-                                          onChange={e => { setEditData(e.target.value); }}
-                            >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
+                            <Form.Control type="text" name="editData" defaultValue={hasIntendedUse.IntendedUse.editData} disabled />
                         </Form.Group>
                     </Col>
 
@@ -223,23 +198,13 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId={'copyData'}>
                             <Form.Label>Copy Data</Form.Label>
-                            <Form.Control as="select" value={cd} name={'copyData'}
-                                          onChange={e => { setCopyData(e.target.value); }}
-                            >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
+                            <Form.Control type="text" name="copyData" defaultValue={hasLicenseGrant.LicenseGrant.copyData} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId={'transferable'}>
                             <Form.Label>Transferable</Form.Label>
-                            <Form.Control as="select" value={tf} name={'transferable'}
-                                          onChange={e => { setTransferable(e.target.value); }}
-                            >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
+                            <Form.Control type="text" name="transferable" defaultValue={hasLicenseGrant.LicenseGrant.transferable} disabled />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -247,23 +212,13 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId={'exclusiveness'}>
                             <Form.Label>Exclusiveness</Form.Label>
-                            <Form.Control as="select" value={excl} name={'exclusiveness'}
-                                          onChange={e => { setExclusiveness(e.target.value); }}
-                            >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
+                            <Form.Control type="text" name="exclusiveness" defaultValue={hasLicenseGrant.LicenseGrant.exclusiveness} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId={'revocable'}>
                             <Form.Label>Revocable</Form.Label>
-                            <Form.Control as="select" value={rev} name={'revocable'}
-                                          onChange={e => { setRevocable(e.target.value); }}
-                            >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
+                            <Form.Control type="text" name="revocable" defaultValue={hasLicenseGrant.LicenseGrant.revocable} disabled />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -273,14 +228,7 @@ export default function ContractTemplate(props){
 
                 <Row>
                     <Col className="col-md-6">
-                        <Form.Group controlId={'dataStream'}>
-                            <Form.Control as="select" value={ds} name={'dataStream'}
-                                          onChange={e => { setDataStream(e.target.value); }}
-                            >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
-                        </Form.Group>
+                        <Form.Control type="text" name="dataStream" defaultValue={DataStream} disabled />
                     </Col>
                 </Row>
 
@@ -291,13 +239,13 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId="orig">
                             <Form.Label>Origin Public Key</Form.Label>
-                            <Form.Control type="text" name="orig" defaultValue={DataExchangeAgreement.orig} />
+                            <Form.Control type="text" name="orig" defaultValue={DataExchangeAgreement.orig} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="dest">
                             <Form.Label>Destination Public Key</Form.Label>
-                            <Form.Control type="text" name="dest" defaultValue={DataExchangeAgreement.dest} />
+                            <Form.Control type="text" name="dest" defaultValue={DataExchangeAgreement.dest} disabled />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -306,19 +254,19 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId="encAlg">
                             <Form.Label>Encryption Algorithm</Form.Label>
-                            <Form.Control type="text" name="encAlg" defaultValue={DataExchangeAgreement.encAlg} />
+                            <Form.Control type="text" name="encAlg" defaultValue={DataExchangeAgreement.encAlg} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="signingAlg">
                             <Form.Label>Signing Algorithm</Form.Label>
-                            <Form.Control type="text" name="signingAlg" defaultValue={DataExchangeAgreement.signingAlg} />
+                            <Form.Control type="text" name="signingAlg" defaultValue={DataExchangeAgreement.signingAlg} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="hashAlg">
                             <Form.Label>Hash Algorithm</Form.Label>
-                            <Form.Control type="text" name="hashAlg" defaultValue={DataExchangeAgreement.hashAlg} />
+                            <Form.Control type="text" name="hashAlg" defaultValue={DataExchangeAgreement.hashAlg} disabled />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -327,13 +275,13 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId="ledgerContractAddress">
                             <Form.Label>Ledger Contract Address</Form.Label>
-                            <Form.Control type="text" name="ledgerContractAddress" defaultValue={DataExchangeAgreement.ledgerContractAddress} />
+                            <Form.Control type="text" name="ledgerContractAddress" defaultValue={DataExchangeAgreement.ledgerContractAddress} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="ledgerSignerAddress">
                             <Form.Label>Origin Address</Form.Label>
-                            <Form.Control type="text" name="ledgerSignerAddress" defaultValue={DataExchangeAgreement.ledgerSignerAddress} />
+                            <Form.Control type="text" name="ledgerSignerAddress" defaultValue={DataExchangeAgreement.ledgerSignerAddress} disabled />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -342,25 +290,22 @@ export default function ContractTemplate(props){
                     <Col>
                         <Form.Group controlId="pooToPorDelay">
                             <Form.Label>Maximum delay between PoO and PoR</Form.Label>
-                            <Form.Control type="text" name="pooToPorDelay" defaultValue={DataExchangeAgreement.pooToPorDelay} />
+                            <Form.Control type="text" name="pooToPorDelay" defaultValue={DataExchangeAgreement.pooToPorDelay} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="pooToPopDelay">
                             <Form.Label>Maximum delay between PoP and PoR</Form.Label>
-                            <Form.Control type="text" name="pooToPopDelay" defaultValue={DataExchangeAgreement.pooToPopDelay} />
+                            <Form.Control type="text" name="pooToPopDelay" defaultValue={DataExchangeAgreement.pooToPopDelay} disabled />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="pooToSecretDelay">
                             <Form.Label>Maximum delay between PoP and Secret</Form.Label>
-                            <Form.Control type="text" name="pooToSecretDelay" defaultValue={DataExchangeAgreement.pooToSecretDelay} />
+                            <Form.Control type="text" name="pooToSecretDelay" defaultValue={DataExchangeAgreement.pooToSecretDelay} disabled />
                         </Form.Group>
                     </Col>
                 </Row>
-
-                <input type="hidden" value={DataOfferingDescription.isActive} name="isActive" />
-
             </Form>
         </Layout>
     )

@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
 import { useData } from '../../../lib/hooks';
 import { Loading } from '../../../components/layout/Loading';
-import ContractTemplate from '../../../components/offering/buy/contractTemplate';
+import PurchaseRequest from '../../../components/offering/buy/PurchaseRequest';
 import Error from '../../../components/layout/Error';
 import BigText from '../../../components/common/BigText';
 
-export default function BuyPage (){
+export default function PurchaseRequestPage (){
     const router = useRouter();
     const { offeringId } = router.query;
-    const { data, error, isValidating } = useData(`/api/offering/buy/${offeringId}`);
+    const { data, error, isValidating } = useData(`/api/offering/purchaseRequest/${offeringId}`);
 
     if (isValidating)
         return <Loading />;
@@ -19,6 +19,6 @@ export default function BuyPage (){
     if (error)
         return <Error error={error} />;
 
-    return <ContractTemplate {...data}/>
+    return <PurchaseRequest {...data}/>
 
 }

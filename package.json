@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@unparallel/connector-ri": "^1.1.2",
+    "@unparallel/connector-ri": "^1.1.5",
     "bootstrap": "^4.6.1",
     "connect-mongo": "^4.6.0",
     "express-session": "^1.17.2",

@@ -6,7 +6,7 @@ export default function General(props) {
     const {
         dataOfferingTitle, dataOfferingDescription, marketId, marketDid,
         owner, ownerDid, provider, providerDid, category, dataOfferingExpirationTime,
-        categories, user, toUpdate
+        categories, user, market_name, toUpdate
     } = props;
 
     const categoryEl = categories.map(({ name }) => (
@@ -46,7 +46,8 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="marketId">
                     <Form.Label>Market</Form.Label>
-                    <Form.Control type="text" placeholder="Marketplace" name="marketId" defaultValue={marketId} required />
+                    <Form.Control type="text" placeholder="Marketplace" name="marketId" defaultValue={marketId ? marketId: market_name} />
+                    <input type="hidden" defaultValue={marketId ? marketId: market_name} name="market" />
                 </Form.Group>
             </Col>
             <Col>

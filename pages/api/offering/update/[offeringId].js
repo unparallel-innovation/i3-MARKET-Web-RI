@@ -15,7 +15,8 @@ export default catchErrors(async (req, res) => {
                 return {
                     offering,
                     categories,
-                    user
+                    user,
+                    market_name: process.env.MARKET_NAME
                 };
         }
     }

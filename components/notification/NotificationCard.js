@@ -24,6 +24,12 @@ export default function NotificationCard(props) {
         });
     }
 
+    function onClick(action){
+        if(action === 'agreement.pending'){
+            router.push('/offerings/createAgreement/' + id);
+        }
+    }
+
     function onDelete(e) {
         fetch('/api/notifications', {
             method: 'DELETE',
@@ -40,7 +46,7 @@ export default function NotificationCard(props) {
         <>
             <Col className="col-md-12">
                 <Card className="overflow-hidden cursor-pointer mb-3" >
-                    <Card.Body>
+                    <Card.Body onClick={() => onClick(action)}>
                         <div className="d-flex">
                             <Card.Text className="flex-grow-1">{action}</Card.Text>
                             Status: {status}

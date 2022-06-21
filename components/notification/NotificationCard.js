@@ -24,8 +24,8 @@ export default function NotificationCard(props) {
         });
     }
 
-    function onClick(action){
-        if(action === 'agreement.pending'){
+    function onClick(action) {
+        if (action === 'agreement.pending') {
             router.push('/offerings/createAgreement/' + id);
         }
     }

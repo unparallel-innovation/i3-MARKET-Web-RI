@@ -5,7 +5,7 @@ import BigText from '../../../components/common/BigText';
 import Error from '../../../components/layout/Error';
 import CreateAgreement from '../../../components/offering/buy/CreateAgreement';
 
-export default function CreateAgreementPage(){
+export default function CreateAgreementPage() {
     const router = useRouter();
     const { notificationId } = router.query;
     const { data, error, isValidating } = useData(`/api/notification/${notificationId}`);
@@ -19,6 +19,6 @@ export default function CreateAgreementPage(){
     if (error)
         return <Error error={error} />;
 
-    return <CreateAgreement {...data}/>
+    return <CreateAgreement {...data}/>;
 
 }

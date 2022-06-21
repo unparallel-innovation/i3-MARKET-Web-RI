@@ -5,7 +5,7 @@ import PurchaseRequest from '../../../components/offering/buy/PurchaseRequest';
 import Error from '../../../components/layout/Error';
 import BigText from '../../../components/common/BigText';
 
-export default function PurchaseRequestPage (){
+export default function PurchaseRequestPage () {
     const router = useRouter();
     const { offeringId } = router.query;
     const { data, error, isValidating } = useData(`/api/offering/purchaseRequest/${offeringId}`);
@@ -19,6 +19,6 @@ export default function PurchaseRequestPage (){
     if (error)
         return <Error error={error} />;
 
-    return <PurchaseRequest {...data}/>
+    return <PurchaseRequest {...data}/>;
 
 }

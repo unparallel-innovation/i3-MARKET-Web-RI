@@ -11,7 +11,7 @@ export default catchErrors(async (req, res) => {
             case 'GET':
                 const template = await connector.getContractTemplate(user.access_token, user.id_token, offeringId);
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
-                return { ...template, offering, user }
+                return { ...template, offering, user };
         }
     }
     return null;

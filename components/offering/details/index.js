@@ -50,7 +50,7 @@ function Offering(props) {
         });
     }
 
-    function onBuyOffering(){
+    function onBuyOffering() {
         router.push('/offerings/purchaseRequest/' + offeringId);
     }
 
@@ -76,8 +76,6 @@ function Offering(props) {
                     <div className="d-flex align-items-center">
 
                         {user.consumer ? ( <Button className="mr-4" onClick={onBuyOffering}> Buy Offering </Button>) : null}
-
-
 
                         { statusIconEl } <div className="ml-2">{ status }</div>
 

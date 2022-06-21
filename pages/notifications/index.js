@@ -42,16 +42,16 @@ export default function Notifications() {
         ));
 
         const notificationCards = data.allNotifications.filter(function (notification) {
-            if(type === 'all')
-                return notification
+            if (type === 'all')
+                return notification;
             return notification.action === type;
         }).map(function (notification) {
             return <NotificationCard key={notification.id} {... notification} />;
         });
 
-        const notificationsEl = notificationCards.length > 0 ?
-            <Row>{notificationCards}</Row> :
-            <div className="d-flex h-100 h3 text-lightgray justify-content-center align-items-center">No results!</div>
+        const notificationsEl = notificationCards.length > 0
+            ? <Row>{notificationCards}</Row>
+            : <div className="d-flex h-100 h3 text-lightgray justify-content-center align-items-center">No results!</div>;
 
         return (
             <Layout>

@@ -6,7 +6,7 @@ import { getDateValue } from '../../../lib/utils';
 import { formDataPurchaseRequest } from '../../../lib/forms/dataPurchaseRequest';
 import Error from '../../layout/Error';
 
-export default function PurchaseRequest(props){
+export default function PurchaseRequest(props) {
     const router = useRouter();
 
     const {
@@ -14,12 +14,7 @@ export default function PurchaseRequest(props){
         hasDuration, hasIntendedUse, hasLicenseGrant, hasParties, offering, user
     } = props;
 
-    if(user.provider){
-        const error = {message: `Sorry, you don't have permission to access this page!`}
-        return <Error error={error}/>
-    }
-
-    const hasDutiesObligations = props["hasDuties/Obligations"];
+    const hasDutiesObligations = props['hasDuties/Obligations'];
 
     const [dataAvailability, setDataAvailability] = useState(hasDutiesObligations['Duties/Obligations'].dataAvailability);
     const [process, setProcessData] = useState(hasIntendedUse.IntendedUse.processData);
@@ -31,24 +26,29 @@ export default function PurchaseRequest(props){
     const [rev, setRevocable] = useState(hasLicenseGrant.LicenseGrant.revocable);
     const [ds, setDataStream] = useState(DataStream);
 
+    if (user.provider) {
+        const error = { message: 'Sorry, you don\'t have permission to access this page!' };
+        return <Error error={error}/>;
+    }
+
     function onCancel() {
         router.back();
     }
 
-    function onSubmit(e){
+    function onSubmit(e) {
         e.preventDefault();
         const form = e.target;
         const fd = new FormData(form);
         const res = formDataPurchaseRequest(fd);
-
+        // console.log(JSON.stringify(res))
         fetch(form.action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(res),
         }).then(res => {
             fetch('/api/notificationWebhook').then(n => {
-                router.back()
-            })
+                router.back();
+            });
         });
     }
 
@@ -142,7 +142,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId="creationDate">
                             <Form.Label>Creation Date</Form.Label>
                             <Form.Control type="date" name="creationDate"
-                                          defaultValue={getDateValue(hasDuration.Duration.creationDate) }/>
+                                defaultValue={getDateValue(hasDuration.Duration.creationDate) }/>
                         </Form.Group>
                     </Col>
 
@@ -150,7 +150,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId="startDate">
                             <Form.Label>Start Date</Form.Label>
                             <Form.Control type="date" name="startDate"
-                                          defaultValue={getDateValue(hasDuration.Duration.startDate)}  />
+                                defaultValue={getDateValue(hasDuration.Duration.startDate)} />
                         </Form.Group>
                     </Col>
 
@@ -158,7 +158,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId="endDate">
                             <Form.Label>End Date</Form.Label>
                             <Form.Control type="date" name="endDate"
-                                          defaultValue={getDateValue(hasDuration.Duration.endDate)} />
+                                defaultValue={getDateValue(hasDuration.Duration.endDate)} />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -185,7 +185,7 @@ export default function PurchaseRequest(props){
                             <Form.Label>Data Availability</Form.Label>
                             <Form.Group controlId={'dataAvailability'}>
                                 <Form.Control as="select" value={dataAvailability} name={'dataAvailability'}
-                                              onChange={e => { setDataAvailability(e.target.value); }}
+                                    onChange={e => { setDataAvailability(e.target.value); }}
                                 >
                                     <option value="false">False</option>
                                     <option value="true">True</option>
@@ -203,7 +203,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId={'processData'}>
                             <Form.Label>Process Data</Form.Label>
                             <Form.Control as="select" value={process} name={'processData'}
-                                          onChange={e => { setProcessData(e.target.value); }}
+                                onChange={e => { setProcessData(e.target.value); }}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -214,7 +214,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId={'shareDataWithThirdParty'}>
                             <Form.Label>Share Data With Third Party</Form.Label>
                             <Form.Control as="select" value={share} name={'shareDataWithThirdParty'}
-                                          onChange={e => { setShareData(e.target.value); }}
+                                onChange={e => { setShareData(e.target.value); }}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -225,7 +225,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId={'editData'}>
                             <Form.Label>Edit Data</Form.Label>
                             <Form.Control as="select" value={edit} name={'editData'}
-                                          onChange={e => { setEditData(e.target.value); }}
+                                onChange={e => { setEditData(e.target.value); }}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -243,7 +243,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId={'copyData'}>
                             <Form.Label>Copy Data</Form.Label>
                             <Form.Control as="select" value={cd} name={'copyData'}
-                                          onChange={e => { setCopyData(e.target.value); }}
+                                onChange={e => { setCopyData(e.target.value); }}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -254,7 +254,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId={'transferable'}>
                             <Form.Label>Transferable</Form.Label>
                             <Form.Control as="select" value={tf} name={'transferable'}
-                                          onChange={e => { setTransferable(e.target.value); }}
+                                onChange={e => { setTransferable(e.target.value); }}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -267,7 +267,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId={'exclusiveness'}>
                             <Form.Label>Exclusiveness</Form.Label>
                             <Form.Control as="select" value={excl} name={'exclusiveness'}
-                                          onChange={e => { setExclusiveness(e.target.value); }}
+                                onChange={e => { setExclusiveness(e.target.value); }}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -278,7 +278,7 @@ export default function PurchaseRequest(props){
                         <Form.Group controlId={'revocable'}>
                             <Form.Label>Revocable</Form.Label>
                             <Form.Control as="select" value={rev} name={'revocable'}
-                                          onChange={e => { setRevocable(e.target.value); }}
+                                onChange={e => { setRevocable(e.target.value); }}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -294,7 +294,7 @@ export default function PurchaseRequest(props){
                     <Col className="col-md-6">
                         <Form.Group controlId={'dataStream'}>
                             <Form.Control as="select" value={ds} name={'dataStream'}
-                                          onChange={e => { setDataStream(e.target.value); }}
+                                onChange={e => { setDataStream(e.target.value); }}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -381,5 +381,5 @@ export default function PurchaseRequest(props){
                 <input type="hidden" value={DataOfferingDescription.isActive} name="isActive" />
             </Form>
         </Layout>
-    )
+    );
 }

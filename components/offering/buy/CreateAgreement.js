@@ -4,28 +4,28 @@ import { getDateValue } from '../../../lib/utils';
 import { useRouter } from 'next/router';
 import Error from '../../layout/Error';
 
-export default function CreateAgreement(props){
+export default function CreateAgreement(props) {
     const router = useRouter();
-    const template = props.data.template
-    const user = props.user
-
-    if(user.consumer){
-        const error = {message: `Sorry, you don't have permission to access this page!`}
-        return <Error error={error}/>
-    }
+    const template = props.data.template;
+    const user = props.user;
 
     const {
         DataOfferingDescription, DataExchangeAgreement, DataStream, Purpose,
         hasDuration, hasIntendedUse, hasLicenseGrant, hasParties
     } = template;
 
-    const hasDutiesObligations = template["hasDuties/Obligations"];
+    const hasDutiesObligations = template['hasDuties/Obligations'];
+
+    if (user.consumer) {
+        const error = { message: 'Sorry, you don\'t have permission to access this page!' };
+        return <Error error={error}/>;
+    }
 
     function onCancel() {
         router.back();
     }
 
-    function onSubmit(e){
+    function onSubmit(e) {
         e.preventDefault();
         const form = e.target;
         // console.log(JSON.stringify(template))
@@ -47,7 +47,6 @@ export default function CreateAgreement(props){
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
                     <Button type="submit">Submit</Button>
                 </div>
-
 
                 <hr className="mt-2" />
                 <h4 className="mt-4">Static Parameters</h4>
@@ -308,5 +307,5 @@ export default function CreateAgreement(props){
                 </Row>
             </Form>
         </Layout>
-    )
+    );
 }

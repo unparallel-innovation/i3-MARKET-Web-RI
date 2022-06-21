@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Bell, PersonCircle } from 'react-bootstrap-icons';
-import Breadcrumbs from 'nextjs-breadcrumbs';
 import Footer from '../common/Footer';
 import { useData } from '../../lib/hooks';
 import { useEffect, useState } from 'react';
@@ -109,7 +108,7 @@ function Layout(props) {
                     <div className={(className || '') + ' flex-grow-1'}>
                         { noBreadcrumbs ? null : (
                             <div className="px-5 breadcrumbs py-4 pb-5">
-                                <Breadcrumbs rootLabel="Home" />
+                                {/*<Breadcrumbs rootLabel="Home" />*/}
                             </div>
                         ) }
                         { children }

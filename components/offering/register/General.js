@@ -46,8 +46,8 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="marketId">
                     <Form.Label>Market</Form.Label>
-                    <Form.Control type="text" placeholder="Marketplace" name="marketId" defaultValue={marketId ? marketId: market_name} />
-                    <input type="hidden" defaultValue={marketId ? marketId: market_name} name="market" />
+                    <Form.Control type="text" placeholder="Marketplace" name="marketId" defaultValue={marketId ? marketId : market_name} />
+                    <input type="hidden" defaultValue={marketId ? marketId : market_name} name="market" />
                 </Form.Group>
             </Col>
             <Col>

@@ -7,7 +7,7 @@ export default catchErrors(async (req, res) => {
     const user = session.user;
 
     if (user) {
-       return await connector.createDataPurchase(user.access_token, user.id_token, 'web-ri', user.usernameDID, '', data)
+        return await connector.createDataPurchase(user.access_token, user.id_token, 'web-ri', user.usernameDID, '', data);
     }
     return null;
 });

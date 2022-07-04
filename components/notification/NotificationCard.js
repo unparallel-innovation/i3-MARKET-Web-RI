@@ -3,10 +3,11 @@ import { Button, Card, Col, Modal } from 'react-bootstrap';
 import colors from '../../lib/colors';
 import { CheckCircle, Trash, XCircle } from 'react-bootstrap-icons';
 import { useState } from 'react';
+import { ISOtoDate } from '../../lib/utils';
 
 export default function NotificationCard(props) {
     const router = useRouter();
-    const { id, data, status, receptor, action, unread, origin } = props;
+    const { id, data, status, receptor, action, unread, origin, dateCreated } = props;
     const [ showDelete, setShowDelete ] = useState(false);
     const [ showRead, setShowRead ] = useState(false);
     const [ showUnread, setShowUnread ] = useState(false);
@@ -49,7 +50,8 @@ export default function NotificationCard(props) {
                     <Card.Body onClick={() => onClick(action)}>
                         <div className="d-flex">
                             <Card.Text className="flex-grow-1">{action}</Card.Text>
-                            Status: {status}
+                            {/*Status: {status}*/}
+                            {ISOtoDate(dateCreated)}
                         </div>
                         <Card.Title className="mt-3">{data.msg}</Card.Title>
                     </Card.Body>

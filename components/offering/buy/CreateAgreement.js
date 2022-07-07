@@ -10,7 +10,7 @@ export default function CreateAgreement(props) {
     const user = props.user;
 
     const {
-        DataOfferingDescription, DataExchangeAgreement, DataStream, Purpose,
+        DataExchangeAgreement, DataOfferingDescription, DataStream, Purpose,
         hasDuration, hasIntendedUse, hasLicenseGrant, hasParties
     } = template;
 
@@ -28,15 +28,16 @@ export default function CreateAgreement(props) {
     function onSubmit(e) {
         e.preventDefault();
         const form = e.target;
-        // console.log(JSON.stringify(template))
-
-        // fetch(form.action, {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(template),
-        // }).then(res => {
-        //     router.back()
-        // });
+        fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(template),
+        }).then(res => {
+            res.json().then(rawTransaction => {
+                console.log('rawTransaction', rawTransaction)
+                router.back()
+            })
+        });
     }
 
     return (
@@ -148,7 +149,7 @@ export default function CreateAgreement(props) {
                     <Col>
                         <Form.Group controlId="qualityOfData">
                             <Form.Label>Quality Of Data</Form.Label>
-                            <Form.Control type="text" name="qualityOfData" defaultValue={hasDutiesObligations['Duties/Obligations'].qualityofData} disabled />
+                            <Form.Control type="text" name="qualityOfData" defaultValue={hasDutiesObligations['Duties/Obligations'].qualityOfData} disabled />
                         </Form.Group>
                     </Col>
                     <Col>

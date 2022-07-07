@@ -40,7 +40,7 @@ export default function PurchaseRequest(props) {
         const form = e.target;
         const fd = new FormData(form);
         const res = formDataPurchaseRequest(fd);
-        // console.log(JSON.stringify(res))
+
         fetch(form.action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -171,7 +171,7 @@ export default function PurchaseRequest(props) {
                     <Col>
                         <Form.Group controlId="qualityOfData">
                             <Form.Label>Quality Of Data</Form.Label>
-                            <Form.Control type="text" name="qualityOfData" defaultValue={hasDutiesObligations['Duties/Obligations'].qualityofData} />
+                            <Form.Control type="text" name="qualityOfData" defaultValue={hasDutiesObligations['Duties/Obligations'].qualityOfData} />
                         </Form.Group>
                     </Col>
                     <Col>

@@ -9,8 +9,8 @@ export default catchErrors(async (req, res) => {
     if (user) {
         switch (req.method) {
             case 'GET':
-                const allNotifications = await connector.getUserNotifications(user.access_token, user.id_token, user.usernameDID);
-                const unreadNotifications = await connector.getUserUnreadNotifications(user.access_token, user.id_token, user.usernameDID);
+                const allNotifications = await connector.getUserNotifications(user.access_token, user.id_token, user.DID);
+                const unreadNotifications = await connector.getUserUnreadNotifications(user.access_token, user.id_token, user.DID);
 
                 return { allNotifications, unreadNotifications };
             case 'PATCH':

@@ -1,5 +1,6 @@
 import { catchErrors, connector } from '/lib/server.js';
 import { getSession } from '../../../lib/session';
+import jsonrepair from 'jsonrepair';
 
 export default catchErrors(async (req, res) => {
     const data = req.body;
@@ -7,7 +8,7 @@ export default catchErrors(async (req, res) => {
     const user = session.user;
 
     if (user) {
-        return await connector.createDataPurchase(user.access_token, user.id_token, 'web-ri', user.DID, '', data);
+        return await connector.deploySignedTransaction(user.access_token, user.id_token, { signed_transaction: data.signature });
     }
     return null;
 });

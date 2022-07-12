@@ -3,6 +3,7 @@ import { Button, Col, Form, Row } from 'react-bootstrap';
 import { getDateValue } from '../../../lib/utils';
 import { useRouter } from 'next/router';
 import Error from '../../layout/Error';
+import { walletApi } from '../../../lib/walletApi';
 
 export default function CreateAgreement(props) {
     const router = useRouter();
@@ -27,22 +28,36 @@ export default function CreateAgreement(props) {
 
     function onSubmit(e) {
         e.preventDefault();
-        const form = e.target;
-        fetch(form.action, {
+
+        fetch('/api/offerings/createAgreement', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(template),
         }).then(res => {
-            res.json().then(rawTransaction => {
-                console.log('rawTransaction', rawTransaction)
-                router.back()
+            res.json().then(async rawTransaction => {
+                const body = {
+                    type: "Transaction",
+                    data: rawTransaction
+                }
+                const api = await walletApi();
+                const signRes = await api.identities.sign({did: user.DID}, body);
+
+                fetch('/api/offerings/deployTransaction', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(signRes),
+                }).then(res => {
+                    res.json().then(deployRes => {
+                        console.log('transaction deployed', deployRes)
+                    })
+                })
             })
         });
     }
 
     return (
         <Layout>
-            <Form className="px-5 pb-3 d-flex flex-column flex-grow-1" onSubmit={onSubmit} action={'/api/offerings/createAgreement'} >
+            <Form className="px-5 pb-3 d-flex flex-column flex-grow-1" onSubmit={onSubmit}>
                 <div className="d-flex">
                     <h3 className="flex-grow-1 mb-0">{'Create Data Agreement'}</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>

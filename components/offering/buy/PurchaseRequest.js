@@ -40,7 +40,6 @@ export default function PurchaseRequest(props) {
         const form = e.target;
         const fd = new FormData(form);
         const res = formDataPurchaseRequest(fd);
-
         fetch(form.action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

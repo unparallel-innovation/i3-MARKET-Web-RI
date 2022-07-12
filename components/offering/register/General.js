@@ -36,8 +36,8 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="providerDid">
                     <Form.Label>Provider DID</Form.Label>
-                    <Form.Control type="text" name="providerDid" defaultValue={toUpdate ? providerDid : user.usernameDID} disabled/>
-                    <input type="hidden" name="providerDid" defaultValue={toUpdate ? providerDid : user.usernameDID} />
+                    <Form.Control type="text" name="providerDid" defaultValue={toUpdate ? providerDid : user.DID} disabled/>
+                    <input type="hidden" name="providerDid" defaultValue={toUpdate ? providerDid : user.DID} />
                 </Form.Group>
             </Col>
         </Row>

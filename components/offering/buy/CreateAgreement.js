@@ -28,11 +28,16 @@ export default function CreateAgreement(props) {
 
     function onSubmit(e) {
         e.preventDefault();
+        const form = e.target;
+        const fd = new FormData(form);
 
         fetch('/api/offerings/createAgreement', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(template),
+            body: JSON.stringify({
+                template,
+                senderAddress: fd.get('senderAddress')
+            }),
         }).then(res => {
             res.json().then(async rawTransaction => {
                 const body = {
@@ -64,7 +69,14 @@ export default function CreateAgreement(props) {
                     <Button type="submit">Submit</Button>
                 </div>
 
+                {/* TODO remove after Fernando's fix */}
                 <hr className="mt-2" />
+                <h5 className="mt-4">Sender Address</h5>
+                <Form.Group controlId="senderAddress">
+                    <Form.Control type="text" name="senderAddress" placeholder="Ethereum Address from Wallet" required />
+                </Form.Group>
+
+                <hr className="mt-2 mb-4" />
                 <h4 className="mt-4">Static Parameters</h4>
                 <hr className="mt-2 mb-4" />
 

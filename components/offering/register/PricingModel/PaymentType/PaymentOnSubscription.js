@@ -1,11 +1,14 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import CustomToggle from '../../../../common/CustomToggle';
+import { useState } from 'react';
 
 export default function PaymentOnSubscription(props) {
     const {
         hasSubscriptionPrice, paymentOnSubscriptionName, paymentType,
         repeat, timeDuration, description, eventKey
     } = props;
+
+    const [repeatMode, setRepeatMode] = useState(repeat);
 
     return (
         <Accordion>
@@ -47,8 +50,11 @@ export default function PaymentOnSubscription(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'repeat'}>
                                     <Form.Label>Repeat</Form.Label>
-                                    <Form.Control type="text" placeholder="Repeat"
-                                        name={eventKey + 'repeat'} defaultValue={repeat} />
+                                    <Form.Control as="select" value={repeatMode} name={eventKey + 'repeat'}
+                                      onChange={e => { setRepeatMode(e.target.value); }} >
+                                        <option value="week">Week</option>
+                                        <option value="month">Month</option>
+                                    </Form.Control>
                                 </Form.Group>
                             </Col>
                             <Col>

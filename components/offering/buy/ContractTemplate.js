@@ -6,7 +6,7 @@ import { getDateValue } from '../../../lib/utils';
 import { formDataPurchaseRequest } from '../../../lib/forms/dataPurchaseRequest';
 import Error from '../../layout/Error';
 
-export default function PurchaseRequest(props) {
+export default function ContractTemplate(props) {
     const router = useRouter();
 
     const {
@@ -55,9 +55,9 @@ export default function PurchaseRequest(props) {
         <Layout className="d-flex flex-column">
             <Form className="px-5 pb-3 d-flex flex-column flex-grow-1" onSubmit={onSubmit} action={'/api/offerings/purchaseRequest'}>
                 <div className="d-flex">
-                    <h3 className="flex-grow-1 mb-0">{'Data Purchase Request'}</h3>
+                    <h3 className="flex-grow-1 mb-0">Contract Template</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">Data Purchase Request</Button>
                 </div>
 
                 <hr className="mt-2" />

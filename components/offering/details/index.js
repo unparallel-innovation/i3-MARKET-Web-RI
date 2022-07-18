@@ -37,7 +37,7 @@ function Offering(props) {
 
     const pricingModelEl = hasPricingModel
         ? <PricingModel
-            key={'hasPricingModelKey'} eventKey={'hasPricingModel'} { ...hasPricingModel }
+            key={'hasPricingModelKey'} eventKey={'hasPricingModel'} {...hasPricingModel} offeringId={offeringId}
         /> : '';
 
     function onActivate(e) {
@@ -48,10 +48,6 @@ function Offering(props) {
         }).catch(error => {
             console.log('ERROR', error);
         });
-    }
-
-    function onBuyOffering() {
-        router.push('/offerings/purchaseRequest/' + offeringId);
     }
 
     function onUpdate(e) {
@@ -75,7 +71,7 @@ function Offering(props) {
                     <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
                     <div className="d-flex align-items-center">
 
-                        {user.consumer ? ( <Button className="mr-4" onClick={onBuyOffering}> Buy Offering </Button>) : null}
+                        {/*{user.consumer ? ( <Button className="mr-4" onClick={onBuyOffering}> Buy Offering </Button>) : null}*/}
 
                         { statusIconEl } <div className="ml-2">{ status }</div>
 

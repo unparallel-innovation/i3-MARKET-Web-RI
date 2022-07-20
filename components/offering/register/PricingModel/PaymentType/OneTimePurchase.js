@@ -9,7 +9,7 @@ export default function OneTimePurchase(props) {
     } = props;
 
     const [ show, setShow ] = useState(false);
-    const [ price, setPrice ] = useState(basicPrice ? parseInt(basicPrice): 0);
+    const [ price, setPrice ] = useState(basicPrice);
 
     function onSubmit(price){
         setPrice(Math.round(price))

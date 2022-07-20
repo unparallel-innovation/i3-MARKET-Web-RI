@@ -34,7 +34,7 @@ export default function PaymentOnUnit(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'hasUnitPrice'}>
                                     <Form.Label>Unit Price</Form.Label>
-                                    <Form.Control type="text" placeholder="Unit Price"
+                                    <Form.Control type="number" placeholder="Unit Price" min={0}
                                         name={eventKey + 'hasUnitPrice'} defaultValue={hasUnitPrice}/>
                                 </Form.Group>
                             </Col>

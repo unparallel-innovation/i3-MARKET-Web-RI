@@ -34,7 +34,7 @@ export default function PaymentOnSize(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'hasSizePrice'}>
                                     <Form.Label>Size Price</Form.Label>
-                                    <Form.Control type="text" placeholder="Size Price"
+                                    <Form.Control type="number" placeholder="Size Price" min={0}
                                         name={eventKey + 'hasSizePrice'} defaultValue={hasSizePrice} />
                                 </Form.Group>
                             </Col>

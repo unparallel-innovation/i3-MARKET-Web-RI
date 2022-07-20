@@ -34,7 +34,7 @@ export default function PaymentOnAPI(props) {
                             <Col>
                                 <Form.Group controlId={eventKey + 'hasAPIPrice'}>
                                     <Form.Label>API Price</Form.Label>
-                                    <Form.Control type="text" placeholder="API Price"
+                                    <Form.Control type="number" placeholder="API Price" min={0}
                                         name={eventKey + 'hasAPIPrice'} defaultValue={hasApiPrice} />
                                 </Form.Group>
                             </Col>

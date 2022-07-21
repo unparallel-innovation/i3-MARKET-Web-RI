@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { useData } from '../../../lib/hooks';
 import { Loading } from '../../../components/layout/Loading';
-import BigText from '../../../components/common/BigText';
 import Error from '../../../components/layout/Error';
 import ContractTemplate from '../../../components/offering/buy/ContractTemplate';
 
@@ -18,9 +17,6 @@ export default function ContractTemplatePage(){
     const { data, error, isValidating } = useData(url);
     if (isValidating)
         return <Loading />;
-
-    if (!data)
-        return <BigText>Contract template for offering {offeringId} not found</BigText>;
 
     if (error)
         return <Error error={error} />;

@@ -37,7 +37,7 @@ function Offering(props) {
 
     const pricingModelEl = hasPricingModel
         ? <PricingModel
-            key={'hasPricingModelKey'} eventKey={'hasPricingModel'} {...hasPricingModel} offeringId={offeringId}
+            key={'hasPricingModelKey'} eventKey={'hasPricingModel'} {...hasPricingModel} offeringId={offeringId} user={user}
         /> : '';
 
     function onActivate(e) {

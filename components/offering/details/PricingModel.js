@@ -4,24 +4,27 @@ import { useRouter } from 'next/router';
 
 function PaymentType(props) {
     const router = useRouter();
-    const { offeringId, type, title, price, repeatPrice, paymentTypeEl } = props;
+    const { offeringId, type, title, price, repeatPrice, paymentTypeEl, user } = props;
 
     function onClick(e) {
-        const paymentType = {
-            type: type,
-            name: title,
-            price: price,
-            currency: '€'
+        if(user.consumer){
+            const paymentType = {
+                type: type,
+                name: title,
+                price: price,
+                currency: '€'
+            }
+            router.push({
+                pathname: '/offerings/contractTemplate/' + offeringId,
+                query: { paymentType: JSON.stringify(paymentType)}
+            }, '/offerings/contractTemplate/' + offeringId)
         }
-        router.push({
-            pathname: '/offerings/contractTemplate/' + offeringId,
-            query: { paymentType: JSON.stringify(paymentType)}
-        }, '/offerings/contractTemplate/' + offeringId)
     }
 
     return (
         <Col className="text-center">
-            <Card className="text-center mb-5 d-inline-block cursor-pointer" style={{ width: '350px' }} onClick={onClick}>
+            <Card className={`text-center mb-5 d-inline-block ${user.consumer ? 'cursor-pointer': ''}`} style={{ width: '350px' }}
+              onClick={onClick}>
                 <div className="p-2 bg-light" style={{borderTopLeftRadius: '8px', borderTopRightRadius: '8px'}}>
                     { title }
                 </div>
@@ -55,7 +58,7 @@ function freePrice(offeringId, item) {
     ) : '';
 }
 
-function oneTime(offeringId, item) {
+function oneTime(offeringId, item, user) {
     return item.basicPrice ? (
         <PaymentType
             key={'oneTime'}
@@ -64,11 +67,12 @@ function oneTime(offeringId, item) {
             price={item.basicPrice}
             paymentTypeEl={null}
             offeringId={offeringId}
+            user={user}
         />
     ) : '';
 }
 
-function paymentOnApi(offeringId, item) {
+function paymentOnApi(offeringId, item, user) {
     const { paymentOnApiName, hasApiPrice, description, numberOfObject } = item;
 
     const paymentTypeEl = (
@@ -87,11 +91,12 @@ function paymentOnApi(offeringId, item) {
             price={hasApiPrice}
             paymentTypeEl={paymentTypeEl}
             offeringId={offeringId}
+            user={user}
         />
     ) : '';
 }
 
-function paymentOnSize(offeringId, item) {
+function paymentOnSize(offeringId, item, user) {
     const { hasSizePrice, dataSize, paymentOnSizeName, description } = item;
 
     const paymentTypeEl = (
@@ -110,11 +115,12 @@ function paymentOnSize(offeringId, item) {
             price={hasSizePrice}
             paymentTypeEl={paymentTypeEl}
             offeringId={offeringId}
+            user={user}
         />
     ) : '';
 }
 
-function paymentSubscription(offeringId, item) {
+function paymentSubscription(offeringId, item, user) {
     const {
         paymentOnSubscriptionName, paymentType, description,
         timeDuration, repeat, hasSubscriptionPrice
@@ -139,11 +145,12 @@ function paymentSubscription(offeringId, item) {
             repeatPrice={repeat}
             paymentTypeEl={paymentTypeEl}
             offeringId={offeringId}
+            user={user}
         />
     ) : '';
 }
 
-function paymentUnit(offeringId, item) {
+function paymentUnit(offeringId, item, user) {
     const { paymentOnUnitName, description, hasUnitPrice, dataUnit } = item;
 
     const paymentTypeEl = (
@@ -163,6 +170,7 @@ function paymentUnit(offeringId, item) {
             repeatPrice="mo"
             paymentTypeEl={paymentTypeEl}
             offeringId={offeringId}
+            user={user}
         />
     ) : '';
 }
@@ -172,19 +180,19 @@ function PricingModel(props) {
     const {
         pricingModelName, basicPrice, currency,
         hasFreePrice, hasPaymentOnApi, hasPaymentOnSize,
-        hasPaymentOnSubscription, hasPaymentOnUnit, offeringId
+        hasPaymentOnSubscription, hasPaymentOnUnit, offeringId, user
     } = props;
 
     const oneTimePurchase = {
         basicPrice, currency, pricingModelName
     }
 
-    const oneTimeEl = oneTime(offeringId, oneTimePurchase);
-    const freeEl = freePrice(offeringId, hasFreePrice);
-    const apiEl = paymentOnApi(offeringId, hasPaymentOnApi);
-    const sizeEl = paymentOnSize(offeringId, hasPaymentOnSize);
-    const subscriptionEl = paymentSubscription(offeringId, hasPaymentOnSubscription);
-    const unitEl = paymentUnit(offeringId, hasPaymentOnUnit);
+    const oneTimeEl = oneTime(offeringId, oneTimePurchase, user);
+    const freeEl = freePrice(offeringId, hasFreePrice, user);
+    const apiEl = paymentOnApi(offeringId, hasPaymentOnApi, user);
+    const sizeEl = paymentOnSize(offeringId, hasPaymentOnSize, user);
+    const subscriptionEl = paymentSubscription(offeringId, hasPaymentOnSubscription, user);
+    const unitEl = paymentUnit(offeringId, hasPaymentOnUnit, user);
 
     return (<>
         <h3 className="mb-4 mt-4 text-center">Pricing Model</h3>

@@ -8,7 +8,6 @@ export default catchErrors(async (req, res) => {
 
     if (user) {
         const { senderAddress, template } = data
-        // TODO remove after Fernando's fix
         return await connector.createAgreementRawTransaction(user.access_token, user.id_token, senderAddress, template);
     }
     return null;

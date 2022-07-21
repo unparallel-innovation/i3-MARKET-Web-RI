@@ -26,17 +26,19 @@ export default function CreateAgreement(props) {
         router.back();
     }
 
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault();
-        const form = e.target;
-        const fd = new FormData(form);
+
+        const api = await walletApi();
+        const info = await api.identities.info({did: user.DID})
+        const ethereumAddress = info.addresses[0]
 
         fetch('/api/offerings/createAgreement', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 template,
-                senderAddress: fd.get('senderAddress')
+                senderAddress: ethereumAddress
             }),
         }).then(res => {
             res.json().then(async rawTransaction => {
@@ -44,8 +46,9 @@ export default function CreateAgreement(props) {
                     type: "Transaction",
                     data: rawTransaction
                 }
-                const api = await walletApi();
                 const signRes = await api.identities.sign({did: user.DID}, body);
+
+                //TODO add loading
 
                 fetch('/api/offerings/deployTransaction', {
                     method: 'POST',
@@ -54,6 +57,7 @@ export default function CreateAgreement(props) {
                 }).then(res => {
                     res.json().then(deployRes => {
                         console.log('transaction deployed', deployRes)
+                        router.back()
                     })
                 })
             })
@@ -68,13 +72,6 @@ export default function CreateAgreement(props) {
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
                     <Button type="submit">Submit</Button>
                 </div>
-
-                {/* TODO remove after Fernando's fix */}
-                <hr className="mt-2" />
-                <h5 className="mt-4">Sender Address</h5>
-                <Form.Group controlId="senderAddress">
-                    <Form.Control type="text" name="senderAddress" placeholder="Ethereum Address from Wallet" required />
-                </Form.Group>
 
                 <hr className="mt-2 mb-4" />
                 <h4 className="mt-4">Static Parameters</h4>

@@ -127,7 +127,8 @@ export default function ContractTemplate(props) {
                     <Col>
                         <Form.Group controlId="dataConsumer">
                             <Form.Label>Data Consumer</Form.Label>
-                            <Form.Control type="text" name="dataConsumer" defaultValue={hasParties.Parties.dataConsumer} />
+                            {/*<Form.Control type="text" name="dataConsumer" defaultValue={hasParties.Parties.dataConsumer} />*/}
+                            <Form.Control type="text" name="dataConsumer" defaultValue={user.DID} />
                         </Form.Group>
                     </Col>
                 </Row>

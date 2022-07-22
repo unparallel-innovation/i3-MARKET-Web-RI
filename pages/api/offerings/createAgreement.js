@@ -7,7 +7,7 @@ export default catchErrors(async (req, res) => {
     const user = session.user;
 
     if (user) {
-        const { senderAddress, template } = data
+        const { senderAddress, template } = data;
         return await connector.createAgreementRawTransaction(user.access_token, user.id_token, senderAddress, template);
     }
     return null;

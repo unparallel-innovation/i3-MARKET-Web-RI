@@ -51,7 +51,7 @@ export default function PaymentOnSubscription(props) {
                                 <Form.Group controlId={eventKey + 'repeat'}>
                                     <Form.Label>Repeat</Form.Label>
                                     <Form.Control as="select" value={repeatMode} name={eventKey + 'repeat'}
-                                      onChange={e => { setRepeatMode(e.target.value); }} >
+                                        onChange={e => { setRepeatMode(e.target.value); }} >
                                         <option value="week">Week</option>
                                         <option value="month">Month</option>
                                     </Form.Control>

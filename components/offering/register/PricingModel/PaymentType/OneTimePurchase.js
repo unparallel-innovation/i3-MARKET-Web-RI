@@ -11,13 +11,13 @@ export default function OneTimePurchase(props) {
     const [ show, setShow ] = useState(false);
     const [ price, setPrice ] = useState(basicPrice);
 
-    function onSubmit(price){
-        setPrice(Math.round(price))
-        onClose()
+    function onSubmit(price) {
+        setPrice(Math.round(price));
+        onClose();
     }
 
-    function onClose(){
-        setShow(false)
+    function onClose() {
+        setShow(false);
     }
 
     return (

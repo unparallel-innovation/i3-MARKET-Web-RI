@@ -13,7 +13,7 @@ export default catchErrors(async (req, res) => {
                 const fee = await connector.getFee(user.access_token, user.id_token, price);
                 const paymentType = {
                     type, name, price, fee: fee.toString(), currency
-                }
+                };
                 const template = await connector.getContractTemplate(user.access_token, user.id_token, offeringId); // TODO add paymentType object
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
                 return { ...template, offering, user };

@@ -4,15 +4,15 @@ import { Loading } from '../../../components/layout/Loading';
 import Error from '../../../components/layout/Error';
 import ContractTemplate from '../../../components/offering/buy/ContractTemplate';
 
-export default function ContractTemplatePage(){
+export default function ContractTemplatePage() {
     const router = useRouter();
-    const { offeringId, paymentType} = router.query;
+    const { offeringId, paymentType } = router.query;
 
-    let paymentTypeObj
-    if(paymentType)
+    let paymentTypeObj;
+    if (paymentType)
         paymentTypeObj = JSON.parse(router.query.paymentType);
 
-    const url = `/api/offering/contractTemplate/${offeringId}?type=${paymentTypeObj.type}&name=${paymentTypeObj.name}&price=${paymentTypeObj.price}&currency=${paymentTypeObj.currency}`
+    const url = `/api/offering/contractTemplate/${offeringId}?type=${paymentTypeObj.type}&name=${paymentTypeObj.name}&price=${paymentTypeObj.price}&currency=${paymentTypeObj.currency}`;
 
     const { data, error, isValidating } = useData(url);
     if (isValidating)
@@ -21,5 +21,5 @@ export default function ContractTemplatePage(){
     if (error)
         return <Error error={error} />;
 
-    return <ContractTemplate {...data} />
+    return <ContractTemplate {...data} />;
 }

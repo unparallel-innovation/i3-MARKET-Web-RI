@@ -29,14 +29,14 @@ export default function NotificationCard(props) {
     }
 
     function onClick(action) {
-        if(action === 'agreement.pending' && origin === 'scm'){ //TODO check by agreementId
+        if (action === 'agreement.pending' && origin === 'scm' && data.msg.includes('created')) { //TODO check by agreementId
             // workaround to retrieve agreement id from notification msg
-            const agreementTxt = data.msg
-            const agreementId = agreementTxt.match(/\d/g)[0]
-            setAgreement(agreementId)
-            setShowSign(true)
+            const agreementTxt = data.msg;
+            const agreementId = agreementTxt.match(/\d/g)[0];
+            setAgreement(agreementId);
+            setShowSign(true);
         }
-        else if (action === 'agreement.pending') {
+        else if (action === 'agreement.pending' && data.template) {
             router.push('/offerings/createAgreement/' + id);
         }
     }
@@ -50,26 +50,26 @@ export default function NotificationCard(props) {
         });
     }
 
-    async function onSign(){
+    async function onSign() {
         const api = await walletApi();
-        const info = await api.identities.info({did: receptor});
-        const ethereumAddress = info.addresses[0]
+        const info = await api.identities.info({ did: receptor });
+        const ethereumAddress = info.addresses[0];
 
         fetch('/api/offerings/signAgreement', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                "agreement_id": agreement,
-                "consumer_id": receptor,
-                "consumer_ethereum_address": ethereumAddress
+                'agreement_id': agreement,
+                'consumer_id': receptor,
+                'consumer_ethereum_address': ethereumAddress
             })
         }).then(res => {
             res.json().then(async rawTransaction => {
                 const body = {
-                    type: "Transaction",
+                    type: 'Transaction',
                     data: rawTransaction
-                }
-                const signRes = await api.identities.sign({did: receptor}, body);
+                };
+                const signRes = await api.identities.sign({ did: receptor }, body);
 
                 fetch('/api/offerings/deployTransaction', {
                     method: 'POST',
@@ -77,17 +77,14 @@ export default function NotificationCard(props) {
                     body: JSON.stringify(signRes),
                 }).then(res => {
                     res.json().then(deployRes => {
-                        console.log('transaction deployed', deployRes)
-
-                        setAgreement('')
-                        setShowSign(false)
-
-                        // TODO delete notification
-                        onDelete()
-                    })
-                })
-            })
-        })
+                        console.log('transaction deployed', deployRes);
+                        setAgreement('');
+                        setShowSign(false);
+                        onDelete();
+                    });
+                });
+            });
+        });
     }
 
     // TODO: set background color based on 'action'
@@ -128,8 +125,7 @@ export default function NotificationCard(props) {
                         Delete notification
                     </Modal.Header>
                     <Modal.Body>
-                        Are you sure you want to delete notification <br/>
-                        <strong>{id}</strong> ?
+                        Are you sure you want to delete notification ?
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowDelete(false)}>
@@ -149,8 +145,7 @@ export default function NotificationCard(props) {
                         Mark notification as read
                     </Modal.Header>
                     <Modal.Body>
-                        Are you sure you want to mark notification <br/>
-                        <strong>{id}</strong> as read?
+                        Are you sure you want to mark notification as read?
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowRead(false)}>
@@ -170,8 +165,7 @@ export default function NotificationCard(props) {
                         Mark notification as unread
                     </Modal.Header>
                     <Modal.Body>
-                        Are you sure you want to mark notification <br/>
-                        <strong>{id}</strong> as unread?
+                        Are you sure you want to mark notification as unread?
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowUnread(false)}>
@@ -183,7 +177,7 @@ export default function NotificationCard(props) {
                     </Modal.Footer>
                 </Modal>
             );
-        }else if(showSign){
+        } else if (showSign) {
             return (
                 <Modal show={showSign} onHide={() => setShowSign(false)}>
                     <Modal.Header closeButton>

@@ -14,7 +14,7 @@ export default function PricingModel(props) {
 
     const oneTimePurchase = {
         basicPrice, currency, pricingModelName, eventKey
-    }
+    };
 
     // one-time purchase
     const [ oneTimePurchaseC ] = useMap(eventKey, 'oneTimePurchase');

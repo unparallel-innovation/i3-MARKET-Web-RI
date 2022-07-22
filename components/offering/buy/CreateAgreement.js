@@ -26,10 +26,11 @@ export default function CreateAgreement(props) {
         router.back();
     }
 
-    async function onSubmit() {
+    async function onSubmit(e) {
+        e.preventDefault();
         const api = await walletApi();
-        const info = await api.identities.info({did: user.DID})
-        const ethereumAddress = info.addresses[0]
+        const info = await api.identities.info({ did: user.DID });
+        const ethereumAddress = info.addresses[0];
 
         fetch('/api/offerings/createAgreement', {
             method: 'POST',
@@ -41,12 +42,10 @@ export default function CreateAgreement(props) {
         }).then(res => {
             res.json().then(async rawTransaction => {
                 const body = {
-                    type: "Transaction",
+                    type: 'Transaction',
                     data: rawTransaction
-                }
-                const signRes = await api.identities.sign({did: user.DID}, body);
-
-                //TODO add loading
+                };
+                const signRes = await api.identities.sign({ did: user.DID }, body);
 
                 fetch('/api/offerings/deployTransaction', {
                     method: 'POST',
@@ -54,11 +53,11 @@ export default function CreateAgreement(props) {
                     body: JSON.stringify(signRes),
                 }).then(res => {
                     res.json().then(deployRes => {
-                        console.log('transaction deployed', deployRes)
-                        router.back()
-                    })
-                })
-            })
+                        console.log('transaction deployed', deployRes);
+                        router.back();
+                    });
+                });
+            });
         });
     }
 

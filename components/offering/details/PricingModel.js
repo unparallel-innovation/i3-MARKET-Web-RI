@@ -7,25 +7,26 @@ function PaymentType(props) {
     const { offeringId, type, title, price, repeatPrice, paymentTypeEl, user } = props;
 
     function onClick(e) {
-        if(user.consumer){
+        e.preventDefault();
+        if (user.consumer) {
             const paymentType = {
                 type: type,
                 name: title,
                 price: price,
                 currency: '€'
-            }
+            };
             router.push({
                 pathname: '/offerings/contractTemplate/' + offeringId,
-                query: { paymentType: JSON.stringify(paymentType)}
-            }, '/offerings/contractTemplate/' + offeringId)
+                query: { paymentType: JSON.stringify(paymentType) }
+            }, '/offerings/contractTemplate/' + offeringId);
         }
     }
 
     return (
         <Col className="text-center">
-            <Card className={`text-center mb-5 d-inline-block ${user.consumer ? 'cursor-pointer': ''}`} style={{ width: '350px' }}
-              onClick={onClick}>
-                <div className="p-2 bg-light" style={{borderTopLeftRadius: '8px', borderTopRightRadius: '8px'}}>
+            <Card className={`text-center mb-5 d-inline-block ${user.consumer ? 'cursor-pointer' : ''}`} style={{ width: '350px' }}
+                onClick={onClick}>
+                <div className="p-2 bg-light" style={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }}>
                     { title }
                 </div>
                 <Card.Body>
@@ -36,7 +37,7 @@ function PaymentType(props) {
                         { repeatPrice ? (
                             <span className="ml-2 h3 text-muted">
                             / { repeatPrice }
-                        </span>
+                            </span>
                         ) : null }
                     </div>
                     { paymentTypeEl }
@@ -62,7 +63,7 @@ function oneTime(offeringId, item, user) {
     return item.basicPrice ? (
         <PaymentType
             key={'oneTime'}
-            type='One-Time Purchase'
+            type="One-Time Purchase"
             title="Single Purchase"
             price={item.basicPrice}
             paymentTypeEl={null}
@@ -185,7 +186,7 @@ function PricingModel(props) {
 
     const oneTimePurchase = {
         basicPrice, currency, pricingModelName
-    }
+    };
 
     const oneTimeEl = oneTime(offeringId, oneTimePurchase, user);
     const freeEl = freePrice(offeringId, hasFreePrice, user);

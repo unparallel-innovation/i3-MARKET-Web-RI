@@ -105,12 +105,7 @@ function Layout(props) {
                 </header>
 
                 <div className="flex-grow-1 overflow-scroll d-flex flex-column">
-                    <div className={(className || '') + ' flex-grow-1'}>
-                        { noBreadcrumbs ? null : (
-                            <div className="px-5 breadcrumbs py-4 pb-5">
-                                {/*<Breadcrumbs rootLabel="Home" />*/}
-                            </div>
-                        ) }
+                    <div className={(className || '') + ' flex-grow-1 py-4'}>
                         { children }
                     </div>
 

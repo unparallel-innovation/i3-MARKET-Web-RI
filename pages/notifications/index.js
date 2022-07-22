@@ -2,7 +2,7 @@ import { useData } from '../../lib/hooks';
 import Error from '../../components/layout/Error';
 import { Loading } from '../../components/layout/Loading';
 import Layout from '../../components/layout/Layout';
-import { Button, Form, Row, Spinner } from 'react-bootstrap';
+import { Button, Form, Row } from 'react-bootstrap';
 import NotificationCard from '../../components/notification/NotificationCard';
 import { useState } from 'react';
 

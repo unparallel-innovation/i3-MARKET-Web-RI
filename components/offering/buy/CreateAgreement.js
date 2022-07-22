@@ -26,9 +26,7 @@ export default function CreateAgreement(props) {
         router.back();
     }
 
-    async function onSubmit(e) {
-        e.preventDefault();
-
+    async function onSubmit() {
         const api = await walletApi();
         const info = await api.identities.info({did: user.DID})
         const ethereumAddress = info.addresses[0]

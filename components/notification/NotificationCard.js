@@ -4,6 +4,7 @@ import colors from '../../lib/colors';
 import { CheckCircle, Trash, XCircle } from 'react-bootstrap-icons';
 import { useState } from 'react';
 import { ISOtoDate } from '../../lib/utils';
+import { walletApi } from '../../lib/walletApi';
 
 export default function NotificationCard(props) {
     const router = useRouter();
@@ -11,6 +12,8 @@ export default function NotificationCard(props) {
     const [ showDelete, setShowDelete ] = useState(false);
     const [ showRead, setShowRead ] = useState(false);
     const [ showUnread, setShowUnread ] = useState(false);
+    const [ showSign, setShowSign ] = useState(false);
+    const [ agreement, setAgreement ] = useState('');
 
     function markNotification(id, action) {
         const body = {
@@ -20,24 +23,71 @@ export default function NotificationCard(props) {
         fetch('/api/notifications', {
             method: 'PATCH',
             body: JSON.stringify(body)
-        }).then(res => {
+        }).then(() => {
             router.reload();
         });
     }
 
     function onClick(action) {
-        if (action === 'agreement.pending') {
+        if(action === 'agreement.pending' && origin === 'scm'){ //TODO check by agreementId
+            // workaround to retrieve agreement id from notification msg
+            const agreementTxt = data.msg
+            const agreementId = agreementTxt.match(/\d/g)[0]
+            setAgreement(agreementId)
+            setShowSign(true)
+        }
+        else if (action === 'agreement.pending') {
             router.push('/offerings/createAgreement/' + id);
         }
     }
 
-    function onDelete(e) {
+    function onDelete() {
         fetch('/api/notifications', {
             method: 'DELETE',
             body: JSON.stringify({ notificationId: id })
-        }).then(res => {
+        }).then(() => {
             router.reload();
         });
+    }
+
+    async function onSign(){
+        const api = await walletApi();
+        const info = await api.identities.info({did: receptor});
+        const ethereumAddress = info.addresses[0]
+
+        fetch('/api/offerings/signAgreement', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "agreement_id": agreement,
+                "consumer_id": receptor,
+                "consumer_ethereum_address": ethereumAddress
+            })
+        }).then(res => {
+            res.json().then(async rawTransaction => {
+                const body = {
+                    type: "Transaction",
+                    data: rawTransaction
+                }
+                const signRes = await api.identities.sign({did: receptor}, body);
+
+                fetch('/api/offerings/deployTransaction', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(signRes),
+                }).then(res => {
+                    res.json().then(deployRes => {
+                        console.log('transaction deployed', deployRes)
+
+                        setAgreement('')
+                        setShowSign(false)
+
+                        // TODO delete notification
+                        onDelete()
+                    })
+                })
+            })
+        })
     }
 
     // TODO: set background color based on 'action'
@@ -133,6 +183,26 @@ export default function NotificationCard(props) {
                     </Modal.Footer>
                 </Modal>
             );
+        }else if(showSign){
+            return (
+                <Modal show={showSign} onHide={() => setShowSign(false)}>
+                    <Modal.Header closeButton>
+                        Sign Agreement
+                    </Modal.Header>
+                    <Modal.Body>
+                        Do you want to sign the agreement {agreement} ?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowSign(false)}>
+                            Cancel
+                        </Button>
+                        <Button variant="primary" onClick={onSign}>
+                            Sign
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            );
         }
     }
+
 }

@@ -19,6 +19,6 @@ export default function CreateAgreementPage() {
     if (error)
         return <Error error={error} />;
 
-    return <CreateAgreement {...data}/>;
+    return <CreateAgreement {...data} />;
 
 }

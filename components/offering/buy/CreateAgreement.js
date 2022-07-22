@@ -7,8 +7,8 @@ import { walletApi } from '../../../lib/walletApi';
 
 export default function CreateAgreement(props) {
     const router = useRouter();
-    const template = props.data.template;
-    const user = props.user;
+    const {id, data, user} = props;
+    const template = data.template;
 
     const {
         DataExchangeAgreement, DataOfferingDescription, DataStream, Purpose,
@@ -54,7 +54,13 @@ export default function CreateAgreement(props) {
                 }).then(res => {
                     res.json().then(deployRes => {
                         console.log('transaction deployed', deployRes);
-                        router.back();
+
+                        fetch('/api/notifications', {
+                            method: 'DELETE',
+                            body: JSON.stringify({ notificationId: id })
+                        }).then(() => {
+                            router.back();
+                        });
                     });
                 });
             });

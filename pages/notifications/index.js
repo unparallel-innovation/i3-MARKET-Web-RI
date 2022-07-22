@@ -46,7 +46,7 @@ export default function Notifications() {
                 return notification;
             return notification.action === type;
         }).map(function (notification) {
-            return <NotificationCard key={notification.id} {... notification} />;
+            return <NotificationCard key={notification.id} {... notification} user={data.user} />;
         });
 
         const notificationsEl = notificationCards.length > 0

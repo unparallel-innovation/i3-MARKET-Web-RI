@@ -12,7 +12,7 @@ export default catchErrors(async (req, res) => {
                 const allNotifications = await connector.getUserNotifications(user.access_token, user.id_token, user.DID);
                 const unreadNotifications = await connector.getUserUnreadNotifications(user.access_token, user.id_token, user.DID);
 
-                return { allNotifications, unreadNotifications };
+                return { allNotifications, unreadNotifications, user };
             case 'PATCH':
                 info = JSON.parse(req.body);
                 notificationId = info.notificationId;

@@ -8,7 +8,7 @@ import { walletApi } from '../../lib/walletApi';
 
 export default function NotificationCard(props) {
     const router = useRouter();
-    const { id, data, status, receptor, action, unread, origin, dateCreated } = props;
+    const { id, data, status, receptor, action, unread, origin, dateCreated, user } = props;
     const [ showDelete, setShowDelete ] = useState(false);
     const [ showRead, setShowRead ] = useState(false);
     const [ showUnread, setShowUnread ] = useState(false);
@@ -29,14 +29,14 @@ export default function NotificationCard(props) {
     }
 
     function onClick(action) {
-        if (action === 'agreement.pending' && origin === 'scm' && data.msg.includes('created')) { //TODO check by agreementId
+        if (user.consumer && action === 'agreement.pending' && origin === 'scm') { //TODO check by agreementId
             // workaround to retrieve agreement id from notification msg
             const agreementTxt = data.msg;
             const agreementId = agreementTxt.match(/\d/g)[0];
             setAgreement(agreementId);
             setShowSign(true);
         }
-        else if (action === 'agreement.pending' && data.template) {
+        else if (user.provider && action === 'agreement.pending' && data.template) {
             router.push('/offerings/createAgreement/' + id);
         }
     }

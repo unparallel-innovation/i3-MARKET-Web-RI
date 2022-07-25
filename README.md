@@ -39,12 +39,6 @@ Note: Web-RI instance must run in same port as the registered OIDC client.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### OIDC Client registration
-When launching the Web-RI for the first time, it will request for an OIDC Client registered.
-In order to achieve that, you must follow the steps in http://localhost:3000/oidc.
-
-After successfully added the OIDC Client configuration, you will be redirected to the Authentication page.
-
 ### Register a verifiable credential in the Wallet
 When choosing the "Register" button in authentication page, you can register a new verifiable credential in the wallet. For that, you must choose the role and set the desired username. Then, Web-RI will call the Wallet to add the new verifiable credential.
 
@@ -88,18 +82,10 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
 ### Lint with auto-fix
 Run the following command to auto-fix some eslint warnings:
 ```bash
 make lint
-```
-
-### Tags
-For editors that support tags, you can run the following command to create the ./tags file.
-
-```sh
-make tags
 ```
 
 ## Credits

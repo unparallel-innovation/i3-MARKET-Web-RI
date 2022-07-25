@@ -7,7 +7,7 @@ import { walletApi } from '../../../lib/walletApi';
 
 export default function CreateAgreement(props) {
     const router = useRouter();
-    const {id, data, user} = props;
+    const { id, data, user } = props;
     const template = data.template;
 
     const {

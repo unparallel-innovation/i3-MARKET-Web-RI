@@ -8,11 +8,13 @@ export default function ContractTemplatePage() {
     const router = useRouter();
     const { offeringId, paymentType } = router.query;
 
-    let paymentTypeObj;
-    if (paymentType)
+    let url, paymentTypeObj;
+    if (paymentType){
         paymentTypeObj = JSON.parse(router.query.paymentType);
-
-    const url = `/api/offering/contractTemplate/${offeringId}?type=${paymentTypeObj.type}&name=${paymentTypeObj.name}&price=${paymentTypeObj.price}&currency=${paymentTypeObj.currency}`;
+        url = `/api/offering/contractTemplate/${offeringId}?type=${paymentTypeObj.type}&name=${paymentTypeObj.name}&price=${paymentTypeObj.price}&currency=${paymentTypeObj.currency}`;
+    }
+    else
+        url = `/api/offering/contractTemplate/${offeringId}`;
 
     const { data, error, isValidating } = useData(url);
     if (isValidating)

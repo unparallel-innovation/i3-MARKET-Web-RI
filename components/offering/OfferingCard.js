@@ -27,10 +27,14 @@ export default function OfferingCard(props) {
         router.push('/offerings/' + dataOfferingId);
     }
 
+    function onContractsClick(){
+        router.push('/offerings/contracts/' + dataOfferingId);
+    }
+
     return (
         <Col xs="12" md="6" xl="4">
-            <Card className="overflow-hidden cursor-pointer mb-3" onClick={onClick}>
-                <Card.Body>
+            <Card className="overflow-hidden cursor-pointer mb-3" >
+                <Card.Body onClick={onClick}>
                     <Card.Title className="d-flex justify-content-between line-clamp-2 h3rem">
                         { dataOfferingTitle }
 
@@ -41,7 +45,7 @@ export default function OfferingCard(props) {
                 </Card.Body>
                 <div className="d-flex bg-light">
                     <span className="p-2 flex-grow-1">
-                        <Badge pill variant="primary">
+                        <Badge pill variant="primary" onClick={onContractsClick}>
                             0 Contracts
                         </Badge>
                     </span>

@@ -2,7 +2,7 @@ import { Card, Col } from 'react-bootstrap';
 import { getAgreementState, tsToDate } from '../../lib/utils';
 
 export default function ContractCard(props){
-    const { agreementId, dataOffering, state, providerId, agreementDates, signed } = props;
+    const { agreementId, dataOffering, state, providerId, agreementDates, signed, user } = props;
 
     function onClick(){
         // TODO open contract page
@@ -10,14 +10,16 @@ export default function ContractCard(props){
 
     return (
         <>
-            <Col xs="12" md="6" xl="4">
+            <Col className="col-md-12">
                 <Card className="overflow-hidden cursor-pointer mb-3" >
                     <Card.Body onClick={onClick}>
                         <div className="d-flex">
                             <Card.Text className="flex-grow-1">Offering: {dataOffering.dataOfferingId}</Card.Text>
                             Status: {getAgreementState(state)}
                         </div>
-                        <Card.Text className="mt-3">Provider: {providerId}</Card.Text>
+                        { !user.provider ? (<Card.Text className="mt-3">Provider: {providerId}</Card.Text>) : null }
+
+
                     </Card.Body>
                     <div className="d-flex bg-light">
                         <Col>

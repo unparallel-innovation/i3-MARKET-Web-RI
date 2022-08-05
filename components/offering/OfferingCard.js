@@ -5,7 +5,7 @@ import { getOfferingStatusIcon } from '../../lib/utils';
 export default function OfferingCard(props) {
     const router = useRouter();
     const {
-        dataOfferingId, dataOfferingTitle, dataOfferingDescription, status
+        dataOfferingId, dataOfferingTitle, dataOfferingDescription, status, contracts
     } = props;
 
     // let warningIconEl = null;
@@ -37,16 +37,15 @@ export default function OfferingCard(props) {
                 <Card.Body onClick={onClick}>
                     <Card.Title className="d-flex justify-content-between line-clamp-2 h3rem">
                         { dataOfferingTitle }
-
                     </Card.Title>
                     <Card.Text className="line-clamp-2 h3rem">
                         { dataOfferingDescription }
                     </Card.Text>
                 </Card.Body>
-                <div className="d-flex bg-light">
-                    <span className="p-2 flex-grow-1">
+                <div className="d-flex bg-light px-3 py-1 align-items-center">
+                    <span className="flex-grow-1">
                         <Badge pill variant="primary" onClick={onContractsClick}>
-                            0 Contracts
+                            {contracts} Contracts
                         </Badge>
                     </span>
                     {iconStatusEl}

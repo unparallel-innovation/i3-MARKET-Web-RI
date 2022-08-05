@@ -7,9 +7,13 @@ export default catchErrors(async (req, res) => {
 
     if(user){
         const {id, searchType} = req.query;
+        let contracts
         if(searchType === 'consumer')
-            return await connector.getAgreementsByConsumer(user.access_token, user.id_token, 'consumer18', false); // TODO replace for user.DID
-        return await connector.getAgreementsByOffering(user.access_token, user.id_token, '627cebbbd348c942dab514e3'); // TODO replace for offeringId (id)
+            contracts = await connector.getAgreementsByConsumer(user.access_token, user.id_token, 'consumer18', false); // TODO replace for user.DID
+        else
+            contracts = await connector.getAgreementsByOffering(user.access_token, user.id_token, '627cebbbd348c942dab514e3'); // TODO replace for offeringId (id)
+
+        return {contracts, user}
     }
     return null;
 })

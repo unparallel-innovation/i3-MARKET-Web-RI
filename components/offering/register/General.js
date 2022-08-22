@@ -1,13 +1,19 @@
 import { Col, Form, Row } from 'react-bootstrap';
 import moment from 'moment';
 import { capitalize } from '../../../lib/utils';
+import { useState } from 'react';
 
 export default function General(props) {
     const {
         dataOfferingTitle, dataOfferingDescription, marketId, marketDid,
         owner, ownerDid, provider, providerDid, category, dataOfferingExpirationTime,
+        active, ownerConsentForm, inSharedNetwork, personalData,
         categories, user, market_name, toUpdate
     } = props;
+
+    const [personal, setPersonal] = useState(personalData);
+    const [shared, setShared] = useState(inSharedNetwork);
+    const [act, setActive] = useState(active);
 
     const categoryEl = categories.map(({ name }) => (
         <option key={name} value={name}>{ name }</option>
@@ -76,9 +82,48 @@ export default function General(props) {
 
         <Row>
             <Col>
+                <Form.Group controlId="ownerConsentForm">
+                    <Form.Label>Owner Consent Form</Form.Label>
+                    <Form.Control type="text" placeholder="Owner Consent Form" name="ownerConsentForm" defaultValue={ownerConsentForm} required />
+                </Form.Group>
+            </Col>
+            <Col>
+                <Form.Group controlId="personalData">
+                    <Form.Label>Personal Data</Form.Label>
+                    <Form.Control as="select" value={personal} name={'personalData'} onChange={e => { setPersonal(e.target.value); }} required >
+                        <option value="false">False</option>
+                        <option value="true">True</option>
+                    </Form.Control>
+                </Form.Group>
+            </Col>
+        </Row>
+
+        <Row>
+            <Col>
+                <Form.Group controlId="inSharedNetwork">
+                    <Form.Label>In Shared Network</Form.Label>
+                    <Form.Control as="select" value={shared} name={'inSharedNetwork'} onChange={e => { setShared(e.target.value); }} required >
+                        <option value="false">False</option>
+                        <option value="true">True</option>
+                    </Form.Control>
+                </Form.Group>
+            </Col>
+            <Col>
+                <Form.Group controlId="active">
+                    <Form.Label>Active</Form.Label>
+                    <Form.Control as="select" value={act} name={'active'} onChange={e => { setActive(e.target.value); }} required >
+                        <option value="false">False</option>
+                        <option value="true">True</option>
+                    </Form.Control>
+                </Form.Group>
+            </Col>
+        </Row>
+
+        <Row>
+            <Col>
                 <Form.Group controlId="category">
                     <Form.Label>Category</Form.Label>
-                    <Form.Control as="select" className="mr-3" name="category" defaultValue={category ? capitalize(category) : ''} >
+                    <Form.Control as="select" className="mr-3" name="category" defaultValue={category ? capitalize(category) : ''} required >
                         { categoryEl }
                     </Form.Control>
                 </Form.Group>

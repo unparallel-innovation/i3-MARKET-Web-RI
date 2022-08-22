@@ -15,9 +15,9 @@ function Offering(props) {
     const router = useRouter();
     const { offeringId } = router.query;
     const {
-        dataOfferingTitle, dataOfferingDescription, status, hasDataset,
-        category, provider, providerDid, marketId, marketDid, owner, ownerDid,
-        dataOfferingExpirationTime, hasPricingModel, contractParameters, user
+        dataOfferingTitle, dataOfferingDescription, status, ownerConsentForm, active,
+        personalData, inSharedNetwork, category, provider, providerDid, marketId, marketDid,
+        owner, ownerDid, dataOfferingExpirationTime, hasDataset, hasPricingModel, contractParameters, user
     } = props;
 
     const [ showDelete, setShowDelete ] = useState(false);
@@ -130,6 +130,24 @@ function Offering(props) {
                     </KVCol2>
                     <KVCol2 title="Expiration Time">
                         { ts2date(dataOfferingExpirationTime) }
+                    </KVCol2>
+                </Row>
+
+                <Row className="text-center mb-3">
+                    <KVCol2 title="Owner Consent From">
+                        { ownerConsentForm }
+                    </KVCol2>
+                    <KVCol2 title="Active">
+                        { active }
+                    </KVCol2>
+                </Row>
+
+                <Row className="text-center mb-3">
+                    <KVCol2 title="Personal Data">
+                        { personalData }
+                    </KVCol2>
+                    <KVCol2 title="In Shared Network">
+                        { inSharedNetwork }
                     </KVCol2>
                 </Row>
 

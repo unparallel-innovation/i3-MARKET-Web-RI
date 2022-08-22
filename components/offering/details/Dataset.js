@@ -8,20 +8,11 @@ import { ts2date } from '../../../lib/utils';
 export default
 function Dataset(props) {
     const {
-        title, description, creator,
-        issued, modified,
+        title, description, dataset, issued, modified,
         language, temporal, temporalResolution,
         accrualPeriodicity, spatial, distribution,
-        keywords, category, datasetInformation, eventKey
+        keyword, datasetInformation, eventKey
     } = props;
-
-    const keywordsEl = keywords ? keywords.map(item => (
-        <Badge key={0} pill variant="primary">{ item }</Badge>
-    )) : null;
-
-    const categoryEl = category ? category.map(item => (
-        <Badge key={0} pill variant="primary">{ item }</Badge>
-    )) : null;
 
     const distributionEl = distribution.map((dist, idx) => (
         <Distribution key={`distribution${idx}`}
@@ -47,13 +38,10 @@ function Dataset(props) {
 
                         <Row className="text-center mt-3 bg-lightgray">
                             <KVCol title="Keywords">
-                                { keywordsEl }
+                                { keyword }
                             </KVCol>
-                            <KVCol title="Category">
-                                { categoryEl }
-                            </KVCol>
-                            <KVCol title="Creator">
-                                { creator }
+                            <KVCol title="Dataset">
+                                { dataset }
                             </KVCol>
                             <KVCol title="Issued">
                                 { ts2date(issued) }
@@ -61,12 +49,13 @@ function Dataset(props) {
                             <KVCol title="Modified">
                                 { ts2date(modified) }
                             </KVCol>
-                        </Row>
-                        <Row className="text-center mb-3 bg-lightgray">
                             <KVCol title="Language">
                                 { language }
                             </KVCol>
-                            <KVCol title="Temporal Coverage">
+                        </Row>
+                        <Row className="text-center mb-3 bg-lightgray">
+
+                            <KVCol title="Temporal">
                                 { temporal }
                             </KVCol>
                             <KVCol title="Temporal Resolution">

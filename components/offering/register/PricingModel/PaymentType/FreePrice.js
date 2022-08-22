@@ -18,8 +18,8 @@ export default function FreePrice(props) {
                             <Form.Label>Free Price</Form.Label>
                             <Form.Control as="select" value={freePrice} name={eventKey + 'hasPriceFree'}
                                 onChange={e => { setFreePrice(e.target.value); }} >
-                                <option value="true">True</option>
                                 <option value="false">False</option>
+                                <option value="true">True</option>
                             </Form.Control>
                         </Form.Group>
                     </Card.Body>

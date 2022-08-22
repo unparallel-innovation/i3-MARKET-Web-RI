@@ -47,7 +47,7 @@ function PaymentType(props) {
     );
 }
 
-function freePrice(offeringId, item) {
+function freePrice(offeringId, item, user) {
     return item.hasPriceFree ? (
         <PaymentType
             key={'free'}
@@ -55,6 +55,7 @@ function freePrice(offeringId, item) {
             title="Free"
             price={0}
             offeringId={offeringId}
+            user={user}
         />
     ) : '';
 }
@@ -196,8 +197,7 @@ function PricingModel(props) {
     const unitEl = paymentUnit(offeringId, hasPaymentOnUnit, user);
 
     return (<>
-        <h3 className="mb-4 mt-4 text-center">Pricing Model</h3>
-        <Col>
+        <Col className="mb-4 mt-4">
             <Row>
                 { oneTimeEl }
                 { freeEl }

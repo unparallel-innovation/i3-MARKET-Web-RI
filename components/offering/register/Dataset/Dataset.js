@@ -92,7 +92,8 @@ export default function Dataset(props) {
             <Col>
                 <Form.Group controlId={eventKey + 'temporalResolution'}>
                     <Form.Label>Temporal Resolution</Form.Label>
-                    <Form.Control type="text" placeholder="Temporal Resolution" name={eventKey + 'temporalResolution'} defaultValue={temporalResolution} required />
+                    <Form.Control type="text" placeholder="Temporal Resolution" name={eventKey + 'temporalResolution'} defaultValue={temporalResolution}  />
+                    {/*TODO error when update*/}
                 </Form.Group>
             </Col>
         </Row>

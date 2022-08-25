@@ -13,6 +13,8 @@ export default function ContractsPage(props) {
 
 
     // TODO add filters
+    // consumer: state and provider (filter) end date (sort)
+    // provider: state (filter) end date (sort)
 
     const contractsEl = c.map(contract => (
         <ContractCard key={contract.agreementId} {...contract} user={user}/>

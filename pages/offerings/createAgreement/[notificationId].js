@@ -3,7 +3,7 @@ import { useData } from '../../../lib/hooks';
 import { Loading } from '../../../components/layout/Loading';
 import BigText from '../../../components/common/BigText';
 import Error from '../../../components/layout/Error';
-import CreateAgreement from '../../../components/offering/buy/CreateAgreement';
+import CreateAgreement from '../../../components/contract/CreateAgreement';
 
 export default function CreateAgreementPage() {
     const router = useRouter();

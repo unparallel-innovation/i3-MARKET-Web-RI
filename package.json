@@ -12,7 +12,7 @@
     "@i3m/wallet-protocol": "^1.1.7",
     "@i3m/wallet-protocol-api": "^1.1.7",
     "@i3m/wallet-protocol-utils": "^1.1.7",
-    "@unparallel/connector-ri": "^1.1.15",
+    "@unparallel/connector-ri": "^1.2.0",
     "bootstrap": "^4.6.1",
     "connect-mongo": "^4.6.0",
     "express-session": "^1.17.2",

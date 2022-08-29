@@ -1,11 +1,15 @@
 import { Card, Col } from 'react-bootstrap';
 import { getAgreementState, tsToDate } from '../../lib/utils';
+import { useRouter } from 'next/router';
 
 export default function ContractCard(props){
+    const router = useRouter();
     const { agreementId, dataOffering, state, providerId, agreementDates, signed, user } = props;
 
     function onClick(){
         // TODO open contract page
+        router.push('/contracts/' + agreementId);
+
     }
 
     return (
@@ -18,7 +22,6 @@ export default function ContractCard(props){
                             Status: {getAgreementState(state)}
                         </div>
                         { !user.provider ? (<Card.Text className="mt-3">Provider: {providerId}</Card.Text>) : null }
-
 
                     </Card.Body>
                     <div className="d-flex bg-light">

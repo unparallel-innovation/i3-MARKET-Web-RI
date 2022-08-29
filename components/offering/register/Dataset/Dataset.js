@@ -11,8 +11,9 @@ export default function Dataset(props) {
         language, temporal, temporalResolution, spatial, accrualPeriodicity,
         theme, datasetInformation, distribution, eventKey
     } = props;
-    const [localDatasetInformation,setLocalDatasetInformation] = useState(datasetInformation);
-    const [localDistribution,setLocalDistribution] = useState(distribution);
+
+    const [localDatasetInformation,setLocalDatasetInformation] = useState(datasetInformation || []);
+    const [localDistribution,setLocalDistribution] = useState(distribution || []);
     const [
         informationMap, informationC,
         informationOnDelete, informationAdd

@@ -10,6 +10,8 @@ export default catchErrors(async (req, res) => {
         switch (req.method) {
             case 'GET':
                 if (req.query.price) {
+                    return {  }
+
                     const fee = await connector.getFee(user.access_token, user.id_token, req.query.price);
 
                     const paymentType = {

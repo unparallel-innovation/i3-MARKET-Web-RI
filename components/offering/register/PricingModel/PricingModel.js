@@ -1,58 +1,173 @@
-import { useMap } from '/lib/hooks.js';
-import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
-import PaymentOnAPI from './PaymentType/PaymentOnApi';
-import PaymentOnUnit from './PaymentType/PaymentOnUnit';
-import PaymentOnSize from './PaymentType/PaymentOnSize';
-import FreePrice from './PaymentType/FreePrice';
-import OneTimePurchase from './PaymentType/OneTimePurchase';
+import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
+import { useState } from 'react';
+import PricingManagerModal from '../../PricingManagerModal';
 
 export default function PricingModel(props) {
-    const { basicPrice, currency, pricingModelName,
-        hasFreePrice, hasPaymentOnApi, hasPaymentOnSize,
-        hasPaymentOnSubscription, hasPaymentOnUnit, eventKey
-    } = props;
+    const [type, setType] = useState('oneTime');
 
-    const oneTimePurchase = {
-        basicPrice, currency, pricingModelName, eventKey
-    };
+    let paymentTypeEl = ''
 
-    // one-time purchase
-    const [ oneTimePurchaseC ] = useMap(eventKey, 'oneTimePurchase');
-    const oneTimePurchaseEl = <OneTimePurchase key={'oneTimePurchaseKey'} eventKey={eventKey + 'oneTimePurchase0'} {...oneTimePurchase}/>;
+    switch (type) {
+        case 'oneTime':
+            paymentTypeEl = <OneTimeEl {...props}/>
+            break
+        case 'subscription':
+            paymentTypeEl = <SubscriptionEl {...props} />
+            break
+        case 'free':
+            paymentTypeEl = <FreePriceEl {...props}/>
+            break
+        default:
+            paymentTypeEl = <></>
+            break
+    }
 
-    // payment on subscription
-    const [ paymentSubscriptionC ] = useMap(eventKey, 'paymentSubscription');
-    const paymentSubscriptionEl = <PaymentOnSubscription key={'paymentSubscriptionKey'} eventKey={eventKey + 'paymentSubscription0'} {...hasPaymentOnSubscription}/>;
+    return (
+        <>
+            <Row className="mb-4">
+                <Col>
+                    <Form.Group controlId={'paymentType'}>
+                        <Form.Control as="select" value={type} onChange={e => { setType(e.target.value); }}>
+                            <option value="oneTime">One Time Purchase</option>
+                            <option value="subscription">Subscription</option>
+                            <option value="free">Free Price</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col />
+            </Row>
+            {paymentTypeEl}
+        </>
+    )
+}
 
-    // payment on API
-    const [ paymentApiC ] = useMap(eventKey, 'paymentApi');
-    const paymentApiEl = <PaymentOnAPI key={'paymentApiKey'} eventKey={eventKey + 'paymentApi0'} {...hasPaymentOnApi} />;
+function OneTimeEl(props){
+    const { eventKey } = props;
+    const [ show, setShow ] = useState(false);
+    const [ price, setPrice ] = useState('');
 
-    // payment on Unit
-    const [ paymentUnitC ] = useMap(eventKey, 'paymentUnit');
-    const paymentUnitEl = <PaymentOnUnit key={'paymentUnitKey'} eventKey={eventKey + 'paymentUnit0'} {...hasPaymentOnUnit} />;
+    function onSubmit(price) {
+        setPrice(Math.round(price));
+        onClose();
+    }
 
-    // payment on Size
-    const [ paymentSizeC ] = useMap(eventKey, 'paymentSize');
-    const paymentSizeEl = <PaymentOnSize key={'paymentSizeKey'} eventKey={eventKey + 'paymentSize0'} {...hasPaymentOnSize} />;
+    function onClose() {
+        setShow(false);
+    }
 
-    // free price
-    const [ freePriceC ] = useMap(eventKey, 'freePrice');
-    const freePriceEl = <FreePrice key={'freePriceKey'} eventKey={eventKey + 'freePrice0'} {...hasFreePrice} />;
+    function showModal(show) {
+        return (
+            <Modal show={show} onHide={() => setShow(false)}>
+                <Modal.Header closeButton>
+                    Recommend Price based on Dataset characteristics
+                </Modal.Header>
+                <Modal.Body>
+                    <PricingManagerModal eventKey={eventKey} onClose={onClose} onSubmit={onSubmit}/>
+                </Modal.Body>
+            </Modal>
+        );
+    }
 
-    return (<>
-        { oneTimePurchaseEl }
-        { paymentSubscriptionEl }
-        { paymentApiEl }
-        { paymentUnitEl }
-        { paymentSizeEl }
-        { freePriceEl }
+    return (
+        <>
+            <Form.Group controlId={eventKey + 'pricingModelName'}>
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" placeholder="Name" name={eventKey + 'pricingModelName'} />
+            </Form.Group>
+            <Row>
+                <Col>
+                    <Form.Group controlId={eventKey + 'basicPrice'}>
+                        <Form.Label>Basic Price</Form.Label>
+                        <Button size="sm" className="ml-2" onClick={() => setShow(true)}> Get Recommended Price </Button>
+                        <Form.Control type="number" name={eventKey + 'basicPrice'} min={0}
+                                      value={price} onChange={(e) => setPrice(Number(e.target.value))} />
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={eventKey + 'currency'}>
+                        <Form.Label>Currency</Form.Label>
+                        <Form.Control type="text" placeholder="Currency" name={eventKey + 'currency'} />
+                    </Form.Group>
+                </Col>
+            </Row>
+            { showModal(show) }
+        </>
+    )
+}
 
-        <input type="hidden" value={oneTimePurchaseC} name={eventKey + 'oneTimePurchaseC'} />
-        <input type="hidden" value={paymentSubscriptionC} name={eventKey + 'paymentSubscriptionC'} />
-        <input type="hidden" value={paymentApiC} name={eventKey + 'paymentApiC'} />
-        <input type="hidden" value={paymentUnitC} name={eventKey + 'paymentUnitC'} />
-        <input type="hidden" value={paymentSizeC} name={eventKey + 'paymentSizeC'} />
-        <input type="hidden" value={freePriceC} name={eventKey + 'freePriceC'} />
-    </>);
+function SubscriptionEl(props){
+    const { eventKey } = props;
+    const [repeatMode, setRepeatMode] = useState('week');
+
+    return (
+        <>
+            <Form.Group controlId={eventKey + 'paymentOnSubscriptionName'}>
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" placeholder="Name" name={eventKey + 'paymentOnSubscriptionName'} />
+            </Form.Group>
+
+            <Form.Group controlId="description">
+                <Form.Label>Description</Form.Label>
+                <Form.Control as="textarea" rows={3} placeholder="Description" name="description" />
+            </Form.Group>
+            <Row>
+                <Col>
+                    <Form.Group controlId={eventKey + 'hasSubscriptionPrice'}>
+                        <Form.Label>Subscription Price</Form.Label>
+                        <Form.Control type="number" placeholder="Subscription Price" min={0}
+                                      name={eventKey + 'hasSubscriptionPrice'}
+                        />
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={eventKey + 'paymentType'}>
+                        <Form.Label>Payment Type</Form.Label>
+                        <Form.Control type="text" placeholder="Payment Type" name={eventKey + 'paymentType'} />
+                    </Form.Group>
+                </Col>
+            </Row>
+
+            <Row>
+                <Col>
+                    <Form.Group controlId={eventKey + 'repeat'}>
+                        <Form.Label>Repeat</Form.Label>
+                        <Form.Control as="select" value={repeatMode} name={eventKey + 'repeat'}
+                                      onChange={e => { setRepeatMode(e.target.value); }} >
+                            <option value="week">Week</option>
+                            <option value="month">Month</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={eventKey + 'timeDuration'}>
+                        <Form.Label>Time Duration</Form.Label>
+                        <Form.Control type="text" placeholder="Time Duration" name={eventKey + 'timeDuration'} />
+                    </Form.Group>
+                </Col>
+            </Row>
+        </>
+    )
+}
+
+
+function FreePriceEl(props) {
+    const { eventKey } = props;
+    const [freePrice, setFreePrice] = useState('');
+
+    return (
+        <>
+            <Row>
+                <Col>
+                    <Form.Group controlId={eventKey + 'hasPriceFree'}>
+                        <Form.Control as="select" value={freePrice} name={eventKey + 'hasPriceFree'}
+                                      onChange={e => { setFreePrice(e.target.value); }} >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col />
+            </Row>
+        </>
+    )
 }

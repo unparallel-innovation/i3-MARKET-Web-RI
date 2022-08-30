@@ -1,30 +1,24 @@
-import { Accordion, Card, Form } from 'react-bootstrap';
-import CustomToggle from '../../../../common/CustomToggle';
 import { useState } from 'react';
+import { Col, Form, Row } from 'react-bootstrap';
 
 export default function FreePrice(props) {
-    const { hasPriceFree, eventKey } = props;
-    const [freePrice, setFreePrice] = useState(hasPriceFree);
+    const { eventKey } = props;
+    const [freePrice, setFreePrice] = useState('');
 
     return (
-        <Accordion>
-            <Card className="mb-3">
-                <CustomToggle eventKey={eventKey} className="bg-secondary text-white">
-                    Free Price
-                </CustomToggle>
-                <Accordion.Collapse eventKey={eventKey}>
-                    <Card.Body>
-                        <Form.Group controlId={eventKey + 'hasPriceFree'}>
-                            <Form.Label>Free Price</Form.Label>
-                            <Form.Control as="select" value={freePrice} name={eventKey + 'hasPriceFree'}
-                                onChange={e => { setFreePrice(e.target.value); }} >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
-                        </Form.Group>
-                    </Card.Body>
-                </Accordion.Collapse>
-            </Card>
-        </Accordion>
-    );
+        <>
+            <Row>
+                <Col>
+                    <Form.Group controlId={eventKey + 'hasPriceFree'}>
+                        <Form.Control as="select" value={freePrice} name={eventKey + 'hasPriceFree'}
+                                      onChange={e => { setFreePrice(e.target.value); }} >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col />
+            </Row>
+        </>
+    )
 }

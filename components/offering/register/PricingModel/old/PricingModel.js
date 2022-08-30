@@ -1,10 +1,10 @@
 import { useMap } from '/lib/hooks.js';
-import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
-import PaymentOnAPI from './PaymentType/PaymentOnApi';
-import PaymentOnUnit from './PaymentType/PaymentOnUnit';
-import PaymentOnSize from './PaymentType/PaymentOnSize';
-import FreePrice from './PaymentType/FreePrice';
-import OneTimePurchase from './PaymentType/OneTimePurchase';
+import PaymentOnSubscription from './PaymentOnSubscription';
+import PaymentOnAPI from './PaymentOnApi';
+import PaymentOnUnit from './PaymentOnUnit';
+import PaymentOnSize from './PaymentOnSize';
+import FreePrice from './FreePrice';
+import OneTimePurchase from './OneTimePurchase';
 
 export default function PricingModel(props) {
     const { basicPrice, currency, pricingModelName,

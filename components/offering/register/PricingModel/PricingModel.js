@@ -5,19 +5,20 @@ import OneTimePayment from './PaymentType/OneTimePayment';
 import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
 
 export default function PricingModel(props) {
+    const { eventKey } = props;
     const [type, setType] = useState('oneTime');
 
     let paymentTypeEl = ''
 
     switch (type) {
         case 'oneTime':
-            paymentTypeEl = <OneTimePayment {...props}/>
+            paymentTypeEl = <OneTimePayment eventKey={eventKey}/>
             break
         case 'subscription':
-            paymentTypeEl = <PaymentOnSubscription {...props} />
+            paymentTypeEl = <PaymentOnSubscription eventKey={eventKey + 'paymentSubscription0'} />
             break
         case 'free':
-            paymentTypeEl = <FreePrice {...props}/>
+            paymentTypeEl = <FreePrice eventKey={eventKey + 'freePrice0'}/>
             break
     }
 

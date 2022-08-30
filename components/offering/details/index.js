@@ -137,12 +137,6 @@ function Offering(props) {
                     <KVCol2 title="Owner Consent From">
                         { ownerConsentForm }
                     </KVCol2>
-                    <KVCol2 title="Active">
-                        { active }
-                    </KVCol2>
-                </Row>
-
-                <Row className="text-center mb-3">
                     <KVCol2 title="Personal Data">
                         { personalData }
                     </KVCol2>

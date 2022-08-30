@@ -96,22 +96,10 @@ export default function General(props) {
                     </Form.Control>
                 </Form.Group>
             </Col>
-        </Row>
-
-        <Row>
             <Col>
                 <Form.Group controlId="inSharedNetwork">
                     <Form.Label>In Shared Network</Form.Label>
                     <Form.Control as="select" value={shared} name={'inSharedNetwork'} onChange={e => { setShared(e.target.value); }} required >
-                        <option value="false">False</option>
-                        <option value="true">True</option>
-                    </Form.Control>
-                </Form.Group>
-            </Col>
-            <Col>
-                <Form.Group controlId="active">
-                    <Form.Label>Active</Form.Label>
-                    <Form.Control as="select" value={act} name={'active'} onChange={e => { setActive(e.target.value); }} required >
                         <option value="false">False</option>
                         <option value="true">True</option>
                     </Form.Control>

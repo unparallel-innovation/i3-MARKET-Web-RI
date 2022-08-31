@@ -4,10 +4,10 @@ import { useMap } from '/lib/hooks.js';
 import Layout from '/components/layout/Layout.js';
 import General from './General.js';
 import Dataset from './Dataset/Dataset';
-import PricingModel from './PricingModel/PricingModel.js';
 import ContractParameter from './ContractParameter/ContractParameter';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { formRegister } from '/lib/forms/registerOffering.js';
+import PricingModel from './PricingModel/PricingModel';
 
 export default
 function Register(props) {

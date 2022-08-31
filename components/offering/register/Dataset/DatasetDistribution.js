@@ -2,9 +2,11 @@ import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import AccessService from './AccessService';
 import { useMap } from '/lib/hooks.js';
 import DeleteToggle from '../../../common/DeleteToggle';
+import { useState } from 'react';
 
 export default function DatasetDistribution(props) {
     const { eventKey, onDelete } = props;
+    const [dtStream, setDtStream] = useState(false);
     const [ accessServiceC ] = useMap(eventKey, 'accessService');
 
     const accessServiceEl = <AccessService key={'accessServiceKey'} eventKey={eventKey + 'accessService0'} />;
@@ -95,6 +97,21 @@ export default function DatasetDistribution(props) {
                                     />
                                 </Form.Group>
                             </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Group controlId={eventKey + 'dataStream'}>
+                                    <Form.Label>Data Stream</Form.Label>
+                                    <Form.Control as="select" value={dtStream} name={eventKey + 'dataStream'}
+                                      onChange={e => { setDtStream(e.target.value); }}
+                                    >
+                                        <option value="false">False</option>
+                                        <option value="true">True</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                            <Col/>
                         </Row>
 
                         <div className="d-flex align-items-center my-3">

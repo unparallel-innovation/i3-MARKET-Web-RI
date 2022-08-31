@@ -6,7 +6,7 @@ export default
 function Distribution(props) {
     const {
         title, description, license, accessRights, downloadType,
-        conformsTo, mediaType, packageFormat, accessService, eventKey
+        conformsTo, mediaType, packageFormat, dataStream, accessService, eventKey
     } = props;
 
     return (
@@ -41,6 +41,12 @@ function Distribution(props) {
                             </KVCol>
                             <KVCol title="Package Format">
                                 { packageFormat }
+                            </KVCol>
+                        </Row>
+
+                        <Row className="text-center bg-lightgray">
+                            <KVCol title="Data Stream">
+                                { dataStream }
                             </KVCol>
                         </Row>
 

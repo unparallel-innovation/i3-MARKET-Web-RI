@@ -2,33 +2,36 @@ import { useState } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 
 export default function PaymentOnSubscription(props){
-    const { eventKey } = props;
-    const [repeatMode, setRepeatMode] = useState('week');
+    const {
+        paymentOnSubscriptionName, paymentType, description,
+        timeDuration, repeat, hasSubscriptionPrice, eventKey
+    } = props;
+    const [repeatMode, setRepeatMode] = useState(repeat);
 
     return (
         <>
             <Form.Group controlId={eventKey + 'paymentOnSubscriptionName'}>
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Name" name={eventKey + 'paymentOnSubscriptionName'} />
+                <Form.Control type="text" placeholder="Name" name={eventKey + 'paymentOnSubscriptionName'} defaultValue={paymentOnSubscriptionName}/>
             </Form.Group>
 
             <Form.Group controlId="description">
                 <Form.Label>Description</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Description" name="description" />
+                <Form.Control as="textarea" rows={3} placeholder="Description" name="description" defaultValue={description} />
             </Form.Group>
             <Row>
                 <Col>
                     <Form.Group controlId={eventKey + 'hasSubscriptionPrice'}>
                         <Form.Label>Subscription Price</Form.Label>
                         <Form.Control type="number" placeholder="Subscription Price" min={0}
-                                      name={eventKey + 'hasSubscriptionPrice'}
+                                      name={eventKey + 'hasSubscriptionPrice'} defaultValue={hasSubscriptionPrice}
                         />
                     </Form.Group>
                 </Col>
                 <Col>
                     <Form.Group controlId={eventKey + 'paymentType'}>
                         <Form.Label>Payment Type</Form.Label>
-                        <Form.Control type="text" placeholder="Payment Type" name={eventKey + 'paymentType'} />
+                        <Form.Control type="text" placeholder="Payment Type" name={eventKey + 'paymentType'} defaultValue={paymentType} />
                     </Form.Group>
                 </Col>
             </Row>
@@ -47,7 +50,7 @@ export default function PaymentOnSubscription(props){
                 <Col>
                     <Form.Group controlId={eventKey + 'timeDuration'}>
                         <Form.Label>Time Duration</Form.Label>
-                        <Form.Control type="text" placeholder="Time Duration" name={eventKey + 'timeDuration'} />
+                        <Form.Control type="text" placeholder="Time Duration" name={eventKey + 'timeDuration'} defaultValue={timeDuration} />
                     </Form.Group>
                 </Col>
             </Row>

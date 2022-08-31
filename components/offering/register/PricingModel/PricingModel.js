@@ -4,15 +4,32 @@ import FreePrice from './PaymentType/FreePrice';
 import OneTimePayment from './PaymentType/OneTimePayment';
 import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
 
+function getPaymentType(props){
+    const {basicPrice, hasPaymentOnSubscription, hasFreePrice, toUpdate, eventKey } = props;
+
+    if(basicPrice > 0)
+        return 'oneTime'
+    else if(hasPaymentOnSubscription.hasSubscriptionPrice > 0)
+        return 'subscription'
+    else if(hasFreePrice.hasPriceFree)
+        return 'free'
+}
+
 export default function PricingModel(props) {
-    const { eventKey } = props;
-    const [type, setType] = useState('oneTime');
+    const { toUpdate, eventKey } = props;
+
+    let previousType = 'oneTime'
+
+    if(toUpdate)
+        previousType = getPaymentType(props)
+
+    const [type, setType] = useState(previousType);
 
     let paymentTypeEl = ''
 
     switch (type) {
         case 'oneTime':
-            paymentTypeEl = <OneTimePayment eventKey={eventKey}/>
+            paymentTypeEl = <OneTimePayment {...props}/>
             break
         case 'subscription':
             paymentTypeEl = <PaymentOnSubscription eventKey={eventKey + 'paymentSubscription0'} />
@@ -27,7 +44,7 @@ export default function PricingModel(props) {
             <Row className="mb-4">
                 <Col>
                     <Form.Group controlId={'paymentType'}>
-                        <Form.Control as="select" value={type} onChange={e => { setType(e.target.value); }}>
+                        <Form.Control as="select" value={type} onChange={e => { setType(e.target.value); }} disabled={toUpdate}>
                             <option value="oneTime">One-Time Payment</option>
                             <option value="subscription">Payment On Subscription</option>
                             <option value="free">Free Price</option>

@@ -2,13 +2,13 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import colors from '/lib/colors.js';
 import Dataset from './Dataset.js';
-import PricingModel from './PricingModel.js';
 import { Button, Modal, Row } from 'react-bootstrap';
 import { Eye, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/layout/Layout.js';
 import { getOfferingStatusIcon, ts2date } from '../../../lib/utils';
 import ContractParameter from './ContractParameter';
 import KVCol2 from '../../common/KVCol2';
+import PricingModel from './PricingModel';
 
 export default
 function Offering(props) {
@@ -153,9 +153,13 @@ function Offering(props) {
 
                 { contractParametersEl }
 
+                <div className="mt-3" />
+
+                { pricingModelEl }
+
             </div>
 
-            { pricingModelEl }
+
 
             { showModal(showDelete, showActivate) }
 

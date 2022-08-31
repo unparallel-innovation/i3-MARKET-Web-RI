@@ -13,7 +13,6 @@ export default function General(props) {
 
     const [personal, setPersonal] = useState(personalData);
     const [shared, setShared] = useState(inSharedNetwork);
-    const [act, setActive] = useState(active);
 
     const categoryEl = categories.map(({ name }) => (
         <option key={name} value={name}>{ name }</option>

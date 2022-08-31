@@ -89,8 +89,8 @@ function ContractParameter(props) {
                 </CustomToggle>
 
                 <Accordion.Collapse eventKey={eventKey}>
-                    <Card.Body>
-                        <Row className="text-center mb-3">
+                    <Card.Body className="bg-light">
+                        <Row className="text-center bg-lightgray">
                             <KVCol title="Interest Of Provider">
                                 { interestOfProvider }
                             </KVCol>
@@ -99,7 +99,7 @@ function ContractParameter(props) {
                             </KVCol>
                         </Row>
 
-                        <Row className="text-center mb-3">
+                        <Row className="text-center bg-lightgray">
                             <KVCol title="Purpose">
                                 { purpose }
                             </KVCol>
@@ -108,7 +108,7 @@ function ContractParameter(props) {
                             </KVCol>
                         </Row>
 
-                        <Row className="text-center mb-3">
+                        <Row className="text-center mb-3 bg-lightgray">
                             <KVCol title="Has Governing Jurisdiction">
                                 { hasGoverningJurisdiction }
                             </KVCol>

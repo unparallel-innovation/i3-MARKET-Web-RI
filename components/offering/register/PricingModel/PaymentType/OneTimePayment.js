@@ -3,9 +3,9 @@ import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import PricingManagerModal from '../../../PricingManagerModal';
 
 export default function OneTimePayment(props){
-    const { eventKey } = props;
+    const { basicPrice, pricingModelName, eventKey } = props;
     const [ show, setShow ] = useState(false);
-    const [ price, setPrice ] = useState('');
+    const [ price, setPrice ] = useState(basicPrice);
 
     function onSubmit(price) {
         setPrice(Math.round(price));
@@ -33,21 +33,21 @@ export default function OneTimePayment(props){
         <>
             <Form.Group controlId={eventKey + 'pricingModelName'}>
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Name" name={eventKey + 'pricingModelName'} />
+                <Form.Control type="text" placeholder="Name" name={eventKey + 'pricingModelName'} defaultValue={pricingModelName} />
             </Form.Group>
             <Row>
                 <Col>
                     <Form.Group controlId={eventKey + 'basicPrice'}>
                         <Form.Label>Basic Price</Form.Label>
                         <Button size="sm" className="ml-2" onClick={() => setShow(true)}> Get Recommended Price </Button>
-                        <Form.Control type="number" name={eventKey + 'basicPrice'} min={0}
-                                      value={price} onChange={(e) => setPrice(Number(e.target.value))} />
+                        <Form.Control type="number" name={eventKey + 'basicPrice'} min={0} defaultValue={price} onChange={(e) => setPrice(Number(e.target.value))} />
                     </Form.Group>
                 </Col>
                 <Col>
                     <Form.Group controlId={eventKey + 'currency'}>
                         <Form.Label>Currency</Form.Label>
-                        <Form.Control type="text" placeholder="Currency" name={eventKey + 'currency'} />
+                        <Form.Control type="text" placeholder="Currency" name={eventKey + 'currency'} defaultValue={'EUR'} disabled />
+                        <input type="hidden" name={eventKey + 'currency'} defaultValue={'EUR'} />
                     </Form.Group>
                 </Col>
             </Row>

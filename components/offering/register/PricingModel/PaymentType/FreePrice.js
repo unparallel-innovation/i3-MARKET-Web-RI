@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 
 export default function FreePrice(props) {
-    const { eventKey } = props;
-    const [freePrice, setFreePrice] = useState('');
+    const { hasPriceFree, eventKey } = props;
+    const [freePrice, setFreePrice] = useState(hasPriceFree);
 
     return (
         <>

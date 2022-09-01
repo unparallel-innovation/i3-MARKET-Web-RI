@@ -1,10 +1,8 @@
 import { Col, Form, Row } from 'react-bootstrap';
 import { getDateValue } from '../../lib/utils';
 import { useState } from 'react';
-import Error from '../layout/Error';
 
 export default function ContractParameters(props){
-
 
     let json = {
         "dataOfferingDescription": {
@@ -81,12 +79,10 @@ export default function ContractParameters(props){
         dataOfferingDescription, dids, purpose, parties,
         duration, obligations, intendedUse, licenseGrant, dataStream,
         personalData, pricingModel, dataExchangeAgreement,
-        offering, user, disableInput
+        dataOffering, user, disableInput
     } = json
 
-
-
-    const [dataAvailability, setDataAvailability] = useState(obligations.dataAvailability);
+    const [dataAvailability, setDataAvailability] = useState(obligations ? obligations.dataAvailability : '');
     const [process, setProcessData] = useState(intendedUse.processData);
     const [share, setShareData] = useState(intendedUse.shareDataWithThirdParty);
     const [edit, setEditData] = useState(intendedUse.editData);

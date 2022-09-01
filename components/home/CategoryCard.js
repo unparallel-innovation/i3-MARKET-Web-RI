@@ -16,16 +16,16 @@ function CategoryInfoCard(props) {
 
 export default
 function CategoryCard(props) {
-    const { name } = props;
-    const { data, error } = useData(`/api/getCategoryOfferingsN?category=${name}`);
+    const { category } = props;
+    const { data, error } = useData(`/api/getCategoryOfferingsN?category=${category.name}`);
 
     // if (error)
     //   return <ErrorCard error={error} />;
 
     if (error || !data)
-        return <CategoryInfoCard name={name} />;
+        return <CategoryInfoCard name={category.name} />;
 
     const { offeringsN } = data;
 
-    return <CategoryInfoCard name={name} number={offeringsN} />;
+    return <CategoryInfoCard name={category.name} number={offeringsN} />;
 }

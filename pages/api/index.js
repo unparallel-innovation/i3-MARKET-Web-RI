@@ -25,7 +25,7 @@ export default catchErrors(async (req, res) => {
         // }
 
         return {
-            categories: await connector.getCategories(user.access_token, user.id_token);
+            categories: await connector.getCategories(user.access_token, user.id_token)
         }
     }
     return null;

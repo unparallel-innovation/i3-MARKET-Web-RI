@@ -23,6 +23,6 @@ export default catchErrors(async (req, res) => {
     return {
         categories: categories,
         providers: providers,
-        offerings: offerings,
+        offerings: offerings
     };
 });

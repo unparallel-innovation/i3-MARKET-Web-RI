@@ -9,7 +9,6 @@ export default function ContractCard(props){
     function onClick(){
         // TODO open contract page
         router.push('/contracts/' + agreementId);
-
     }
 
     return (
@@ -26,7 +25,7 @@ export default function ContractCard(props){
                             <div className="flex-grow-1">
                                 { !user.provider ? (<Card.Text>Provider: {providerId}</Card.Text>) : null }
                             </div>
-                            <Button size='sm' style={{borderRadius: 10}}> Rating </Button>
+                            {/*<Button size='sm' style={{borderRadius: 10}}> Rating </Button>*/}
                         </div>
 
                     </Card.Body>

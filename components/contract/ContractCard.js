@@ -1,11 +1,14 @@
-import { Card, Col } from 'react-bootstrap';
+import { Button, Card, Col } from 'react-bootstrap';
 import { getAgreementState, tsToDate } from '../../lib/utils';
+import { useRouter } from 'next/router';
 
 export default function ContractCard(props){
+    const router = useRouter();
     const { agreementId, dataOffering, state, providerId, agreementDates, signed, user } = props;
 
     function onClick(){
         // TODO open contract page
+        router.push('/contracts/' + agreementId);
     }
 
     return (
@@ -17,8 +20,13 @@ export default function ContractCard(props){
                             <Card.Text className="flex-grow-1">Offering: {dataOffering.dataOfferingId}</Card.Text>
                             Status: {getAgreementState(state)}
                         </div>
-                        { !user.provider ? (<Card.Text className="mt-3">Provider: {providerId}</Card.Text>) : null }
 
+                        <div className="d-flex mt-3">
+                            <div className="flex-grow-1">
+                                { !user.provider ? (<Card.Text>Provider: {providerId}</Card.Text>) : null }
+                            </div>
+                            {/*<Button size='sm' style={{borderRadius: 10}}> Rating </Button>*/}
+                        </div>
 
                     </Card.Body>
                     <div className="d-flex bg-light">

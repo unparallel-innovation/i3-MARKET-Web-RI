@@ -3,9 +3,11 @@ import { Badge, Card, Col } from 'react-bootstrap';
 import { getOfferingStatusIcon } from '../../lib/utils';
 
 export default function OfferingCard(props) {
+    console.log(props)
     const router = useRouter();
     const {
-        dataOfferingId, dataOfferingTitle, dataOfferingDescription, status, contracts
+        dataOfferingId, dataOfferingTitle, dataOfferingDescription, status,
+        contracts = '-', hideContracts
     } = props;
 
     // let warningIconEl = null;
@@ -44,9 +46,11 @@ export default function OfferingCard(props) {
                 </Card.Body>
                 <div className="d-flex bg-light px-3 py-1 align-items-center">
                     <span className="flex-grow-1">
+                        {!hideContracts ? (
                         <Badge pill variant="primary" onClick={onContractsClick}>
                             {contracts} Contracts
-                        </Badge>
+                        </Badge>) : null
+                        }
                     </span>
                     {iconStatusEl}
                 </div>

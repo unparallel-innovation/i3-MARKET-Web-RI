@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useData } from '../../../lib/hooks';
 import { Loading } from '../../../components/layout/Loading';
 import Error from '../../../components/layout/Error';
-import ContractTemplate from '../../../components/offering/buy/ContractTemplate';
+import ContractTemplate from '../../../components/contract/ContractTemplate';
 
 export default function ContractTemplatePage() {
     const router = useRouter();

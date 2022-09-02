@@ -1,9 +1,10 @@
-import Layout from '../../layout/Layout';
+import Layout from '../layout/Layout';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { getDateValue } from '../../../lib/utils';
+import { getDateValue } from '../../lib/utils';
 import { useRouter } from 'next/router';
-import Error from '../../layout/Error';
-import { walletApi } from '../../../lib/walletApi';
+import Error from '../layout/Error';
+import { walletApi } from '../../lib/walletApi';
+import ContractParameters from './ContractParameters';
 
 export default function CreateAgreement(props) {
     const router = useRouter();
@@ -75,6 +76,8 @@ export default function CreateAgreement(props) {
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
                     <Button type="submit">Submit</Button>
                 </div>
+
+                <ContractParameters data={template} />
 
                 <hr className="mt-2 mb-4" />
                 <h4 className="mt-4">Static Parameters</h4>

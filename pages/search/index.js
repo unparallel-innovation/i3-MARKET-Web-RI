@@ -12,7 +12,7 @@ function Search(props) {
     const router = useRouter();
     const {
         offerings, providers, categories, searchType,
-        category, providerId, isLoading
+        category, providerId, isLoading, user
     } = props;
     const [ _searchType, setSearchType ] = useState(searchType);
     const [ _providerId, setProviderId ] = useState(providerId);
@@ -77,7 +77,7 @@ function Search(props) {
     );
 
     const offeringsEl = offerings.length > 0 ? (<Row>{ offerings.map(offering => (
-        <OfferingCard key={offering.dataOfferingId} {...offering} />
+        <OfferingCard key={offering.dataOfferingId} {...offering} hideContracts/>
     )) }</Row>) : searchPlaceholder;
 
     return (<Layout className="d-flex flex-column">

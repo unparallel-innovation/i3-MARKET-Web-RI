@@ -5,7 +5,6 @@ import Layout from '../layout/Layout';
 
 export default function ContractsPage(props) {
     const { contracts, user } = props;
-
     const [c, setC] = useState(contracts);
 
     if(c.length === 0)

@@ -5,6 +5,7 @@ import { useMap } from '/lib/hooks.js';
 import DatasetDistribution from './DatasetDistribution';
 import moment from 'moment';
 import { useState } from 'react';
+import CustomLabel from '../../../common/CustomLabel';
 
 export default function Dataset(props) {
     const { title, keyword, description, dataset, issued, modified,
@@ -48,37 +49,31 @@ export default function Dataset(props) {
 
     return (<>
         <Form.Group controlId={eventKey + 'title'}>
-            <Form.Label>Title</Form.Label>
-            <Form.Control type="text" placeholder="Title" name={eventKey + 'title'} defaultValue={title} required />
+            <CustomLabel value="Title" tooltip="A name given to the dataset" required />
+            <Form.Control type="text" name={eventKey + 'title'} defaultValue={title} required />
         </Form.Group>
 
         <Form.Group controlId={eventKey + 'keyword'}>
-            <Form.Label>Keyword</Form.Label>
-            <Form.Control type="text" placeholder="Keyword" name={eventKey + 'keyword'} defaultValue={keyword} required/>
+            <CustomLabel value="Keyword" tooltip="A keyword or tag describing the resource" required />
+            <Form.Control type="text" name={eventKey + 'keyword'} defaultValue={keyword} required />
         </Form.Group>
 
         <Form.Group controlId={eventKey + 'description'}>
-            <Form.Label>Description</Form.Label>
-            <Form.Control as="textarea" rows={3} placeholder="Dataset Description" name={eventKey + 'description'} defaultValue={description} required />
+            <CustomLabel value="Description" tooltip="A free-text account of the dataset" required />
+            <Form.Control as="textarea" rows={3} name={eventKey + 'description'} defaultValue={description} required />
         </Form.Group>
 
         <Row>
             <Col>
-                <Form.Group controlId={eventKey + 'dataset'}>
-                    <Form.Label>Dataset</Form.Label>
-                    <Form.Control placeholder="Dataset" name={eventKey + 'dataset'} defaultValue={dataset} required/>
-                </Form.Group>
-            </Col>
-            <Col>
                 <Form.Group controlId={eventKey + 'issued'}>
-                    <Form.Label>Issued</Form.Label>
-                    <Form.Control type="date" placeholder="Issued" name={eventKey + 'issued'} defaultValue={moment(issued).format('yyyy-MM-DD')} required />
+                    <CustomLabel value="Issued" tooltip="Date of formal issuance [e.g., publication] of the distribution." required />
+                    <Form.Control type="date" name={eventKey + 'issued'} defaultValue={moment(issued).format('yyyy-MM-DD')} required />
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId={eventKey + 'modified'}>
-                    <Form.Label>Modified</Form.Label>
-                    <Form.Control type="date" placeholder="Modified" name={eventKey + 'modified'} defaultValue={moment(modified).format('yyyy-MM-DD')} required />
+                    <CustomLabel value="Modified" tooltip="Most recent date on which the item was changed, updated or modified" required />
+                    <Form.Control type="date" name={eventKey + 'modified'} defaultValue={moment(modified).format('yyyy-MM-DD')} required />
                 </Form.Group>
             </Col>
         </Row>
@@ -86,14 +81,14 @@ export default function Dataset(props) {
         <Row>
             <Col>
                 <Form.Group controlId={eventKey + 'temporal'}>
-                    <Form.Label>Temporal</Form.Label>
-                    <Form.Control type="text" placeholder="Temporal" name={eventKey + 'temporal'} defaultValue={temporal} required />
+                    <CustomLabel value="Temporal" tooltip="The temporal period that the dataset covers" required />
+                    <Form.Control type="text" name={eventKey + 'temporal'} defaultValue={temporal} required />
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId={eventKey + 'temporalResolution'}>
-                    <Form.Label>Temporal Resolution</Form.Label>
-                    <Form.Control type="text" placeholder="Temporal Resolution" name={eventKey + 'temporalResolution'} defaultValue={temporalResolution}  />
+                    <CustomLabel value="Temporal Resolution" tooltip="Minimum time period resolvable in the dataset" required />
+                    <Form.Control type="text" name={eventKey + 'temporalResolution'} defaultValue={temporalResolution}  />
                     {/*TODO error when update*/}
                 </Form.Group>
             </Col>
@@ -102,16 +97,14 @@ export default function Dataset(props) {
         <Row>
             <Col>
                 <Form.Group controlId={eventKey + 'spatial'}>
-                    <Form.Label>Spatial</Form.Label>
-                    <Form.Control type="text" placeholder="Spatial" name={eventKey + 'spatial'} defaultValue={spatial} required />
+                    <CustomLabel value="Spatial" tooltip="The geographical area covered by the dataset" required />
+                    <Form.Control type="text" name={eventKey + 'spatial'} defaultValue={spatial} required />
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId={eventKey + 'accrualPeriodicity'}>
-                    <Form.Label>Accrual Periodicity</Form.Label>
-                    <Form.Control type="text" placeholder="Accrual Periodicity"
-                        name={eventKey + 'accrualPeriodicity'} defaultValue={accrualPeriodicity}
-                    />
+                    <CustomLabel value="Accrual Periodicity" tooltip="The frequency at which dataset is published" required />
+                    <Form.Control type="text" name={eventKey + 'accrualPeriodicity'} defaultValue={accrualPeriodicity} />
                 </Form.Group>
             </Col>
         </Row>
@@ -120,13 +113,13 @@ export default function Dataset(props) {
             <Row>
                 <Col>
                     <Form.Group controlId={eventKey + 'language'}>
-                        <Form.Label>Language</Form.Label>
-                        <Form.Control type="text" placeholder="Language" name={eventKey + 'language'} defaultValue={language} required />
+                        <CustomLabel value="Language" tooltip="A language of the item. This refers to the natural language used for textual metadata [i.e. titles, descriptions, etc] of a cataloged resource [i.e. dataset or service] or the textual values of a dataset distribution" required />
+                        <Form.Control type="text" name={eventKey + 'language'} defaultValue={language} required />
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Form.Label>Theme</Form.Label>
-                    <Form.Control type="text" placeholder="Theme" name={eventKey + 'theme'} defaultValue={theme} required />
+                    <CustomLabel value="Theme" tooltip="A [sub-]category of the resource. A resource can have multiple themes" required />
+                    <Form.Control type="text" name={eventKey + 'theme'} defaultValue={theme} required />
                 </Col>
             </Row>
 

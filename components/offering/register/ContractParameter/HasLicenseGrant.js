@@ -1,6 +1,7 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import { useState } from 'react';
 import CustomToggle from '../../../common/CustomToggle';
+import CustomLabel from '../../../common/CustomLabel';
 
 export default function HasLicenseGrant(props) {
     const { copyData, transferable, exclusiveness, revocable, eventKey } = props;
@@ -20,7 +21,7 @@ export default function HasLicenseGrant(props) {
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'copyData'}>
-                                    <Form.Label>Copy Data</Form.Label>
+                                    <CustomLabel value="Copy Data" tooltip="If licence grant to copy data" />
                                     <Form.Control as="select" value={cd} name={eventKey + 'copyData'}
                                         onChange={e => { setCopyData(e.target.value); }}
                                     >
@@ -31,7 +32,7 @@ export default function HasLicenseGrant(props) {
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'transferable'}>
-                                    <Form.Label>Transferable</Form.Label>
+                                    <CustomLabel value="Transferable" tooltip="If licence is transferable" />
                                     <Form.Control as="select" value={tf} name={eventKey + 'transferable'}
                                         onChange={e => { setTransferable(e.target.value); }}
                                     >
@@ -44,7 +45,7 @@ export default function HasLicenseGrant(props) {
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'exclusiveness'}>
-                                    <Form.Label>Exclusiveness</Form.Label>
+                                    <CustomLabel value="Exclusiveness" tooltip="If licence grant exclusiveness" />
                                     <Form.Control as="select" value={excl} name={eventKey + 'exclusiveness'}
                                         onChange={e => { setExclusiveness(e.target.value); }}
                                     >
@@ -55,7 +56,7 @@ export default function HasLicenseGrant(props) {
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'revocable'}>
-                                    <Form.Label>Revocable</Form.Label>
+                                    <CustomLabel value="Revocable" tooltip="If licence is revocable" />
                                     <Form.Control as="select" value={rev} name={eventKey + 'revocable'}
                                         onChange={e => { setRevocable(e.target.value); }}
                                     >

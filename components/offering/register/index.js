@@ -4,7 +4,7 @@ import { useMap } from '/lib/hooks.js';
 import Layout from '/components/layout/Layout.js';
 import General from './General.js';
 import Dataset from './Dataset/Dataset';
-import ContractParameter from './ContractParameter/ContractParameter';
+import ContractParameters from './ContractParameter/ContractParameters';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { formRegister } from '/lib/forms/registerOffering.js';
 import PricingModel from './PricingModel/PricingModel';
@@ -22,7 +22,7 @@ function Register(props) {
     const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel0'} {...offering?.hasPricingModel} />;
 
     const [ contractParameterC ] = useMap('', 'contractParameter');
-    const contractParameterEl = <ContractParameter key={'contractParameterKey'} eventKey={'contractParameter0'} {...offering?.contractParameters} />;
+    const contractParameterEl = <ContractParameters key={'contractParameterKey'} eventKey={'contractParameter0'} {...offering?.contractParameters} />;
 
     function onSubmit(e) {
         e.preventDefault();

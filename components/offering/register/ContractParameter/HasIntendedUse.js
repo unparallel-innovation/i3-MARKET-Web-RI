@@ -1,6 +1,7 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import { useState } from 'react';
 import CustomToggle from '../../../common/CustomToggle';
+import CustomLabel from '../../../common/CustomLabel';
 
 export default function HasIntendedUse(props) {
     const { processData, editData, shareDataWithThirdParty, eventKey } = props;
@@ -19,7 +20,7 @@ export default function HasIntendedUse(props) {
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'processData'}>
-                                    <Form.Label>Process Data</Form.Label>
+                                    <CustomLabel value="Process Data" tooltip="If consumer allowed to process data" />
                                     <Form.Control as="select" value={process} name={eventKey + 'processData'}
                                         onChange={e => { setProcessData(e.target.value); }}
                                     >
@@ -30,7 +31,7 @@ export default function HasIntendedUse(props) {
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'shareDataWithThirdParty'}>
-                                    <Form.Label>Share Data With Third Party</Form.Label>
+                                    <CustomLabel value="Share Data With Third Party" tooltip="If consumer allowed to share data with third parties" />
                                     <Form.Control as="select" value={share} name={eventKey + 'shareDataWithThirdParty'}
                                         onChange={e => { setShareData(e.target.value); }}
                                     >
@@ -41,7 +42,7 @@ export default function HasIntendedUse(props) {
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'editData'}>
-                                    <Form.Label>Edit Data</Form.Label>
+                                    <CustomLabel value="Edit Data" tooltip="If consumer allowed to edit the Data" />
                                     <Form.Control as="select" value={edit} name={eventKey + 'editData'}
                                         onChange={e => { setEditData(e.target.value); }}
                                     >

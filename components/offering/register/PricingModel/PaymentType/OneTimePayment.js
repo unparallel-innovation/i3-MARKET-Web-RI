@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import PricingManagerModal from '../../../PricingManagerModal';
+import CustomLabel from '../../../../common/CustomLabel';
 
 export default function OneTimePayment(props){
     const { basicPrice, pricingModelName, eventKey } = props;
@@ -32,21 +33,23 @@ export default function OneTimePayment(props){
     return (
         <>
             <Form.Group controlId={eventKey + 'pricingModelName'}>
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Name" name={eventKey + 'pricingModelName'} defaultValue={pricingModelName} />
+                <CustomLabel value="Name" tooltip="The name to define the legacy , by Marketplace, pricing model related to the data offering" />
+                <Form.Control type="text" name={eventKey + 'pricingModelName'} defaultValue={pricingModelName} />
             </Form.Group>
             <Row>
                 <Col>
                     <Form.Group controlId={eventKey + 'basicPrice'}>
-                        <Form.Label>Basic Price</Form.Label>
-                        <Button size="sm" className="ml-2" onClick={() => setShow(true)}> Get Recommended Price </Button>
+                        <div className="d-flex align-items-lg-start">
+                            <CustomLabel value="Basic Price" tooltip="The generic basic price for the traded data for basic cost of trade" />
+                            <Button size="sm" className="ml-2" style={{marginTop: -4}} onClick={() => setShow(true)}> Get Recommended Price </Button>
+                        </div>
                         <Form.Control type="number" name={eventKey + 'basicPrice'} min={0} defaultValue={price} onChange={(e) => setPrice(Number(e.target.value))} />
                     </Form.Group>
                 </Col>
                 <Col>
                     <Form.Group controlId={eventKey + 'currency'}>
-                        <Form.Label>Currency</Form.Label>
-                        <Form.Control type="text" placeholder="Currency" name={eventKey + 'currency'} defaultValue={'EUR'} disabled />
+                        <CustomLabel value="Currency" tooltip="The file format of the distribution" />
+                        <Form.Control type="text" name={eventKey + 'currency'} defaultValue={'EUR'} disabled />
                         <input type="hidden" name={eventKey + 'currency'} defaultValue={'EUR'} />
                     </Form.Group>
                 </Col>

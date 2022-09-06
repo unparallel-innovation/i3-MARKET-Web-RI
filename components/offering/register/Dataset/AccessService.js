@@ -1,5 +1,6 @@
 import { Accordion, Card, Col, Form, Row } from 'react-bootstrap';
 import CustomToggle from '../../../common/CustomToggle';
+import CustomLabel from '../../../common/CustomLabel';
 
 export default function AccessService(props) {
     const { eventKey } = props;
@@ -15,20 +16,14 @@ export default function AccessService(props) {
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'endpointDescription'}>
-                                    <Form.Label>Endpoint Description</Form.Label>
-                                    <Form.Control type="text"
-                                        placeholder="Endpoint Description"
-                                        name={eventKey + 'endpointDescription'}
-                                    />
+                                    <CustomLabel value="Endpoint Description" tooltip="A description of the services available via the end-points, including their operations, parameters etc" />
+                                    <Form.Control type="text" name={eventKey + 'endpointDescription'} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'endpointUrl'}>
-                                    <Form.Label>Endpoint URL</Form.Label>
-                                    <Form.Control type="text"
-                                        placeholder="Endpoint URL"
-                                        name={eventKey + 'endpointUrl'}
-                                    />
+                                    <CustomLabel value="Endpoint URL" tooltip="The root location or primary endpoint of the service [a Web-resolvable IRI]" />
+                                    <Form.Control type="text" name={eventKey + 'endpointUrl'} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -36,29 +31,20 @@ export default function AccessService(props) {
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'conformsTo'}>
-                                    <Form.Label>Conforms To</Form.Label>
-                                    <Form.Control type="text"
-                                        placeholder="Conforms To"
-                                        name={eventKey + 'conformsTo'}
-                                    />
+                                    <CustomLabel value="Conforms To" tooltip="An established standard to which the distribution conforms" />
+                                    <Form.Control type="text" name={eventKey + 'conformsTo'} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'servesDataset'}>
-                                    <Form.Label>Serves Dataset</Form.Label>
-                                    <Form.Control type="text"
-                                        placeholder="Serves Dataset"
-                                        name={eventKey + 'servesDataset'}
-                                    />
+                                    <CustomLabel value="Serves Dataset" tooltip="A collection of data that this data service can distribute.The Dataset ID or Title" />
+                                    <Form.Control type="text" name={eventKey + 'servesDataset'} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'serviceSpecs'}>
-                                    <Form.Label>Service Specs</Form.Label>
-                                    <Form.Control type="text"
-                                        placeholder="Service Specs"
-                                        name={eventKey + 'serviceSpecs'}
-                                    />
+                                    <CustomLabel value="Service Specs" tooltip="Description of service specification for more detail on the data service implementations" />
+                                    <Form.Control type="text" name={eventKey + 'serviceSpecs'} />
                                 </Form.Group>
                             </Col>
                         </Row>

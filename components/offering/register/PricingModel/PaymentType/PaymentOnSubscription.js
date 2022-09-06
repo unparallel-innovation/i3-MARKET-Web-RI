@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
+import CustomLabel from '../../../../common/CustomLabel';
 
 export default function PaymentOnSubscription(props){
     const {
@@ -12,34 +13,23 @@ export default function PaymentOnSubscription(props){
         <>
             <Form.Group controlId={eventKey + 'paymentOnSubscriptionName'}>
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Name" name={eventKey + 'paymentOnSubscriptionName'} defaultValue={paymentOnSubscriptionName}/>
+                <Form.Control type="text" name={eventKey + 'paymentOnSubscriptionName'} defaultValue={paymentOnSubscriptionName}/>
             </Form.Group>
 
             <Form.Group controlId="description">
-                <Form.Label>Description</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Description" name="description" defaultValue={description} />
+                <CustomLabel value="Description" tooltip="The description of payment on subscription" />
+                <Form.Control as="textarea" rows={3} name="description" defaultValue={description} />
             </Form.Group>
             <Row>
                 <Col>
                     <Form.Group controlId={eventKey + 'hasSubscriptionPrice'}>
-                        <Form.Label>Subscription Price</Form.Label>
-                        <Form.Control type="number" placeholder="Subscription Price" min={0}
-                                      name={eventKey + 'hasSubscriptionPrice'} defaultValue={hasSubscriptionPrice}
-                        />
+                        <CustomLabel value="Subscription Price" tooltip="Price allocated to subscription payment type" />
+                        <Form.Control type="number" min={0} name={eventKey + 'hasSubscriptionPrice'} defaultValue={hasSubscriptionPrice} />
                     </Form.Group>
                 </Col>
-                <Col>
-                    <Form.Group controlId={eventKey + 'paymentType'}>
-                        <Form.Label>Payment Type</Form.Label>
-                        <Form.Control type="text" placeholder="Payment Type" name={eventKey + 'paymentType'} defaultValue={paymentType} />
-                    </Form.Group>
-                </Col>
-            </Row>
-
-            <Row>
                 <Col>
                     <Form.Group controlId={eventKey + 'repeat'}>
-                        <Form.Label>Repeat</Form.Label>
+                        <CustomLabel value="Repeat" tooltip="If subscription can be repeated define the frequency" />
                         <Form.Control as="select" value={repeatMode} name={eventKey + 'repeat'}
                                       onChange={e => { setRepeatMode(e.target.value); }} >
                             <option value="week">Week</option>
@@ -49,8 +39,8 @@ export default function PaymentOnSubscription(props){
                 </Col>
                 <Col>
                     <Form.Group controlId={eventKey + 'timeDuration'}>
-                        <Form.Label>Time Duration</Form.Label>
-                        <Form.Control type="text" placeholder="Time Duration" name={eventKey + 'timeDuration'} defaultValue={timeDuration} />
+                        <CustomLabel value="Time Duration" tooltip="Time duration of subscription. Price is per timeDuration" />
+                        <Form.Control type="text" name={eventKey + 'timeDuration'} defaultValue={timeDuration} />
                     </Form.Group>
                 </Col>
             </Row>

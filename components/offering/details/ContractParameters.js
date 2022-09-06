@@ -65,7 +65,7 @@ function HasLicenseGrant(props) {
 }
 
 export default
-function ContractParameter(props) {
+function ContractParameters(props) {
     const {
         interestOfProvider, interestDescription, hasGoverningJurisdiction, purpose,
         purposeDescription, hasIntendedUse, hasLicenseGrant, eventKey

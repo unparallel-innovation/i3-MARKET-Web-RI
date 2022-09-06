@@ -3,7 +3,6 @@ import { Badge, Card, Col } from 'react-bootstrap';
 import { getOfferingStatusIcon } from '../../lib/utils';
 
 export default function OfferingCard(props) {
-    console.log(props)
     const router = useRouter();
     const {
         dataOfferingId, dataOfferingTitle, dataOfferingDescription, status,

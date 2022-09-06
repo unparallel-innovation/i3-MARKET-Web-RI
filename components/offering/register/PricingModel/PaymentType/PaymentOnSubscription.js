@@ -18,7 +18,7 @@ export default function PaymentOnSubscription(props){
 
             <Form.Group controlId="description">
                 <CustomLabel value="Description" tooltip="The description of payment on subscription" />
-                <Form.Control as="textarea" rows={3} name="description" defaultValue={description} />
+                <Form.Control as="textarea" rows={3} name={eventKey + "description"} defaultValue={description} />
             </Form.Group>
             <Row>
                 <Col>

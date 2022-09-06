@@ -6,7 +6,7 @@ import { Button, Modal, Row } from 'react-bootstrap';
 import { Eye, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/layout/Layout.js';
 import { getOfferingStatusIcon, ts2date } from '../../../lib/utils';
-import ContractParameter from './ContractParameter';
+import ContractParameters from './ContractParameters';
 import KVCol2 from '../../common/KVCol2';
 import PricingModel from './PricingModel';
 
@@ -31,7 +31,7 @@ function Offering(props) {
         /> : '';
 
     const contractParametersEl = contractParameters
-        ? <ContractParameter
+        ? <ContractParameters
             key={'contractParametersKey'} eventKey={'contractParameters'} { ...contractParameters }
         /> : '';
 

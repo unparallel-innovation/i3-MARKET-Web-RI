@@ -23,6 +23,7 @@ function OneTimePayment(props){
             </>
         )
     }
+    return ''
 }
 
 function PaymentOnSubscription(props){
@@ -61,6 +62,7 @@ function PaymentOnSubscription(props){
             </>
         )
     }
+    return ''
 }
 
 function FreePrice(props){
@@ -78,6 +80,7 @@ function FreePrice(props){
             </>
         )
     }
+    return ''
 }
 
 export default function PricingModel(props) {
@@ -105,7 +108,7 @@ export default function PricingModel(props) {
                 </CustomToggle>
 
                 <Accordion.Collapse eventKey={eventKey}>
-                    <Card.Body>
+                    <Card.Body className="bg-light">
                         {paymentTypeEl}
                     </Card.Body>
                 </Accordion.Collapse>

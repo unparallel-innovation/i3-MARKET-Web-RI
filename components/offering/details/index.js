@@ -64,6 +64,10 @@ function Offering(props) {
         });
     }
 
+    function onBuyOffering(e) {
+        router.push('/offerings/contractTemplate/' + offeringId);
+    }
+
     return (
         <Layout>
             <div className="px-5 pb-3">
@@ -71,7 +75,7 @@ function Offering(props) {
                     <h3 className="flex-grow-1 m-0">{ dataOfferingTitle }</h3>
                     <div className="d-flex align-items-center">
 
-                        {/*{user.consumer ? ( <Button className="mr-4" onClick={onBuyOffering}> Buy Offering </Button>) : null}*/}
+                        {user.consumer ? ( <Button className="mr-4" onClick={onBuyOffering}> Buy Offering </Button>) : null}
 
                         { statusIconEl } <div className="ml-2">{ status }</div>
 

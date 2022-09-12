@@ -3,6 +3,7 @@ import { useState } from 'react';
 import FreePrice from './PaymentType/FreePrice';
 import OneTimePayment from './PaymentType/OneTimePayment';
 import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
+import CustomLabel from '../../../common/CustomLabel';
 
 function getPaymentType(props){
     const {basicPrice, hasPaymentOnSubscription, hasFreePrice, toUpdate, eventKey } = props;
@@ -43,6 +44,7 @@ export default function PricingModel(props) {
         <>
             <Row className="mb-4">
                 <Col>
+                    <CustomLabel value="Payment Type" required />
                     <Form.Group controlId={'paymentType'}>
                         <Form.Control as="select" value={type} onChange={e => { setType(e.target.value); }} disabled={toUpdate}>
                             <option value="oneTime">One-Time Payment</option>

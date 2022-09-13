@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 import CustomLabel from '../../../../common/CustomLabel';
 
-export default function PaymentOnSubscription(props){
+export default function PaymentOnSubscription(props) {
     const {
         paymentOnSubscriptionName, paymentType, description,
         timeDuration, repeat, hasSubscriptionPrice, eventKey
@@ -18,7 +18,7 @@ export default function PaymentOnSubscription(props){
 
             <Form.Group controlId="description">
                 <CustomLabel value="Description" tooltip="The description of payment on subscription" />
-                <Form.Control as="textarea" rows={3} name={eventKey + "description"} defaultValue={description} />
+                <Form.Control as="textarea" rows={3} name={eventKey + 'description'} defaultValue={description} />
             </Form.Group>
             <Row>
                 <Col>
@@ -31,7 +31,7 @@ export default function PaymentOnSubscription(props){
                     <Form.Group controlId={eventKey + 'repeat'}>
                         <CustomLabel value="Repeat" tooltip="If subscription can be repeated define the frequency" />
                         <Form.Control as="select" value={repeatMode} name={eventKey + 'repeat'}
-                                      onChange={e => { setRepeatMode(e.target.value); }} >
+                            onChange={e => { setRepeatMode(e.target.value); }} >
                             <option value="week">Week</option>
                             <option value="month">Month</option>
                         </Form.Control>
@@ -45,5 +45,5 @@ export default function PaymentOnSubscription(props){
                 </Col>
             </Row>
         </>
-    )
+    );
 }

@@ -2,10 +2,10 @@ import { Accordion, Card, Row } from 'react-bootstrap';
 import CustomToggle from '../../common/CustomToggle';
 import KVCol from '../../common/KVCol';
 
-function OneTimePayment(props){
-    const { pricingModelName, basicPrice, currency} = props;
+function OneTimePayment(props) {
+    const { pricingModelName, basicPrice, currency } = props;
 
-    if(basicPrice > 0){
+    if (basicPrice > 0) {
         return (
             <>
                 <h6 className="text-center">One-Time Payment</h6>
@@ -21,18 +21,18 @@ function OneTimePayment(props){
                     </KVCol>
                 </Row>
             </>
-        )
+        );
     }
-    return ''
+    return '';
 }
 
-function PaymentOnSubscription(props){
+function PaymentOnSubscription(props) {
     const {
         paymentOnSubscriptionName, paymentType, description,
         timeDuration, repeat, hasSubscriptionPrice, eventKey
     } = props;
 
-    if(hasSubscriptionPrice > 0){
+    if (hasSubscriptionPrice > 0) {
         return (
             <>
                 <h6 className="text-center">Payment On Subscription</h6>
@@ -60,15 +60,15 @@ function PaymentOnSubscription(props){
                     </KVCol>
                 </Row>
             </>
-        )
+        );
     }
-    return ''
+    return '';
 }
 
-function FreePrice(props){
+function FreePrice(props) {
     const { hasPriceFree } = props;
 
-    if(hasPriceFree){
+    if (hasPriceFree) {
         return (
             <>
                 <h6 className="text-center">Free Price</h6>
@@ -78,9 +78,9 @@ function FreePrice(props){
                     </KVCol>
                 </Row>
             </>
-        )
+        );
     }
-    return ''
+    return '';
 }
 
 export default function PricingModel(props) {
@@ -88,16 +88,16 @@ export default function PricingModel(props) {
         basicPrice, hasPaymentOnSubscription, hasFreePrice, eventKey
     } = props;
 
-    let paymentTypeEl = ''
+    let paymentTypeEl = '';
 
-    if(basicPrice){
-        paymentTypeEl = <OneTimePayment {...props} />
+    if (basicPrice) {
+        paymentTypeEl = <OneTimePayment {...props} />;
     }
-    else if(hasPaymentOnSubscription){
-        paymentTypeEl = <PaymentOnSubscription {...hasPaymentOnSubscription} />
+    else if (hasPaymentOnSubscription) {
+        paymentTypeEl = <PaymentOnSubscription {...hasPaymentOnSubscription} />;
     }
-    else{
-        paymentTypeEl = <FreePrice {...hasFreePrice} />
+    else {
+        paymentTypeEl = <FreePrice {...hasFreePrice} />;
     }
 
     return (

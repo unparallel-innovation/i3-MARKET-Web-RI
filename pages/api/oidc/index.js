@@ -2,10 +2,10 @@ import { catchErrors, connector } from '../../../lib/server';
 import jsonrepair from 'jsonrepair';
 
 export default catchErrors(async (req, res) => {
-    let oidcClient
+    let oidcClient;
     const prevOidcClient = process.env.OIDC_CLIENT;
 
-    if(!prevOidcClient){
+    if (!prevOidcClient) {
         // create a new oidc client
         const redirectUri = `http://${req.headers.host}/api/credential`;
         const logoutRedirectUri = `http://${req.headers.host}/auth`;
@@ -14,8 +14,8 @@ export default catchErrors(async (req, res) => {
         process.env.OIDC_CLIENT = json;
         oidcClient = json;
     }
-    else{
+    else {
         oidcClient = prevOidcClient;
     }
-    return { hasClient: oidcClient !== undefined }
+    return { hasClient: oidcClient !== undefined };
 });

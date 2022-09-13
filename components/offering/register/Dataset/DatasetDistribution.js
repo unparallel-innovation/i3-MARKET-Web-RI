@@ -84,7 +84,7 @@ export default function DatasetDistribution(props) {
                                 <Form.Group controlId={eventKey + 'dataStream'}>
                                     <CustomLabel value="Data Stream" tooltip="Boolean attribute to check if the dataset is offered as stream or not" />
                                     <Form.Control as="select" value={dtStream} name={eventKey + 'dataStream'}
-                                      onChange={e => { setDtStream(e.target.value); }}
+                                        onChange={e => { setDtStream(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>

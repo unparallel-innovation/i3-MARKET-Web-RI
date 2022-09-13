@@ -15,5 +15,5 @@ export default function Contracts() {
     if (error)
         return <Error error={error} />;
 
-    return <ContractsPage contracts={data} />
+    return <ContractsPage contracts={data} />;
 }

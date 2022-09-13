@@ -91,7 +91,7 @@ function Register(props) {
                 <input type="hidden" value={pricingModelC} name="pricingModelC" />
                 <input type="hidden" value={contractParameterC} name="contractParameterC" />
 
-                <span style={{color: 'red'}}>(*) required field</span>
+                <span style={{ color: 'red' }}>(*) required field</span>
 
                 <div className="flex-grow-1" />
 

@@ -5,7 +5,7 @@ import BigText from '../../../components/common/BigText';
 import Error from '../../../components/layout/Error';
 import ContractTemplate from '../../../components/contract/ContractTemplate';
 
-export default function ContractTemplatePage(){
+export default function ContractTemplatePage() {
     const router = useRouter();
     const { offeringId } = router.query;
     const { data, error, isValidating } = useData(`/api/offering/contractTemplate/${offeringId}`);
@@ -19,5 +19,5 @@ export default function ContractTemplatePage(){
     if (error)
         return <Error error={error} />;
 
-    return <ContractTemplate {...data} />
+    return <ContractTemplate {...data} />;
 }

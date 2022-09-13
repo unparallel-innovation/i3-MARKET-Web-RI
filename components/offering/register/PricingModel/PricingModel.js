@@ -5,39 +5,39 @@ import OneTimePayment from './PaymentType/OneTimePayment';
 import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
 import CustomLabel from '../../../common/CustomLabel';
 
-function getPaymentType(props){
-    const {basicPrice, hasPaymentOnSubscription, hasFreePrice, toUpdate, eventKey } = props;
+function getPaymentType(props) {
+    const { basicPrice, hasPaymentOnSubscription, hasFreePrice, toUpdate, eventKey } = props;
 
-    if(basicPrice > 0)
-        return 'oneTime'
-    else if(hasPaymentOnSubscription.hasSubscriptionPrice > 0)
-        return 'subscription'
-    else if(hasFreePrice.hasPriceFree)
-        return 'free'
+    if (basicPrice > 0)
+        return 'oneTime';
+    else if (hasPaymentOnSubscription.hasSubscriptionPrice > 0)
+        return 'subscription';
+    else if (hasFreePrice.hasPriceFree)
+        return 'free';
 }
 
 export default function PricingModel(props) {
     const { toUpdate, eventKey } = props;
 
-    let previousType = 'oneTime'
+    let previousType = 'oneTime';
 
-    if(toUpdate)
-        previousType = getPaymentType(props)
+    if (toUpdate)
+        previousType = getPaymentType(props);
 
     const [type, setType] = useState(previousType);
 
-    let paymentTypeEl = ''
+    let paymentTypeEl = '';
 
     switch (type) {
         case 'oneTime':
-            paymentTypeEl = <OneTimePayment {...props}/>
-            break
+            paymentTypeEl = <OneTimePayment {...props}/>;
+            break;
         case 'subscription':
-            paymentTypeEl = <PaymentOnSubscription eventKey={eventKey + 'paymentSubscription0'} />
-            break
+            paymentTypeEl = <PaymentOnSubscription eventKey={eventKey + 'paymentSubscription0'} />;
+            break;
         case 'free':
-            paymentTypeEl = <FreePrice eventKey={eventKey + 'freePrice0'}/>
-            break
+            paymentTypeEl = <FreePrice eventKey={eventKey + 'freePrice0'}/>;
+            break;
     }
 
     return (
@@ -57,5 +57,5 @@ export default function PricingModel(props) {
             </Row>
             {paymentTypeEl}
         </>
-    )
+    );
 }

@@ -6,7 +6,7 @@ import { Button, Form } from 'react-bootstrap';
 import Layout from '../../components/layout/Layout';
 import { Loading } from '../../components/layout/Loading';
 
-export default function ContractPage(){
+export default function ContractPage() {
     const router = useRouter();
     const { agreementId } = router.query;
     const { data, error, isValidating } = useData(`/api/contracts/${agreementId}`);
@@ -17,8 +17,8 @@ export default function ContractPage(){
     if (error)
         return <Error error={error} />;
 
-    function onCancel(){
-        router.back()
+    function onCancel() {
+        router.back();
     }
 
     return (
@@ -31,5 +31,5 @@ export default function ContractPage(){
                 <ContractParameters {...data} disableInput isAgreement/>
             </Form>
         </Layout>
-    )
+    );
 }

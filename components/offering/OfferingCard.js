@@ -28,7 +28,7 @@ export default function OfferingCard(props) {
         router.push('/offerings/' + dataOfferingId);
     }
 
-    function onContractsClick(){
+    function onContractsClick() {
         router.push('/offerings/contracts/' + dataOfferingId);
     }
 
@@ -46,9 +46,9 @@ export default function OfferingCard(props) {
                 <div className="d-flex bg-light px-3 py-1 align-items-center">
                     <span className="flex-grow-1">
                         {!hideContracts ? (
-                        <Badge pill variant="primary" onClick={onContractsClick}>
-                            {contracts} Contracts
-                        </Badge>) : null
+                            <Badge pill variant="primary" onClick={onContractsClick}>
+                                {contracts} Contracts
+                            </Badge>) : null
                         }
                     </span>
                     {iconStatusEl}

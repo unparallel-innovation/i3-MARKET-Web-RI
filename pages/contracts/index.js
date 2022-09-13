@@ -4,7 +4,7 @@ import { Loading } from '../../components/layout/Loading';
 import ContractsPage from '../../components/contract/ContractsPage';
 
 export default function Contracts(props) {
-    const { data, error, isValidating } = useData(`/api/contracts?searchType=consumer`);
+    const { data, error, isValidating } = useData('/api/contracts?searchType=consumer');
 
     if (isValidating)
         return <Loading />;
@@ -12,5 +12,5 @@ export default function Contracts(props) {
     if (error)
         return <Error error={error} />;
 
-    return <ContractsPage contracts={data.contracts} user={data.user}/>
+    return <ContractsPage contracts={data.contracts} user={data.user}/>;
 }

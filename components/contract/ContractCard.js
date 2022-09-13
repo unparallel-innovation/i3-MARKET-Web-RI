@@ -2,11 +2,11 @@ import { Button, Card, Col } from 'react-bootstrap';
 import { getAgreementState, tsToDate } from '../../lib/utils';
 import { useRouter } from 'next/router';
 
-export default function ContractCard(props){
+export default function ContractCard(props) {
     const router = useRouter();
     const { agreementId, dataOffering, state, providerId, agreementDates, signed, user } = props;
 
-    function onClick(){
+    function onClick() {
         // TODO open contract page
         router.push('/contracts/' + agreementId);
     }
@@ -52,5 +52,5 @@ export default function ContractCard(props){
                 </Card>
             </Col>
         </>
-    )
+    );
 }

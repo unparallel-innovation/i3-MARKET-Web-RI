@@ -11,7 +11,7 @@ export default function FreePrice(props) {
                 <Col>
                     <Form.Group controlId={eventKey + 'hasPriceFree'}>
                         <Form.Control as="select" value={freePrice} name={eventKey + 'hasPriceFree'}
-                                      onChange={e => { setFreePrice(e.target.value); }} >
+                            onChange={e => { setFreePrice(e.target.value); }} >
                             <option value="false">False</option>
                             <option value="true">True</option>
                         </Form.Control>
@@ -20,5 +20,5 @@ export default function FreePrice(props) {
                 <Col />
             </Row>
         </>
-    )
+    );
 }

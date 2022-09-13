@@ -7,9 +7,8 @@ export default function ContractsPage(props) {
     const { contracts, user } = props;
     const [c, setC] = useState(contracts);
 
-    if(c.length === 0)
+    if (c.length === 0)
         return <BigText>No contracts found!</BigText>;
-
 
     // TODO add filters
     // consumer: state and provider (filter) end date (sort)
@@ -17,7 +16,7 @@ export default function ContractsPage(props) {
 
     const contractsEl = c.map(contract => (
         <ContractCard key={contract.agreementId} {...contract} user={user}/>
-    ))
+    ));
 
     return (
         <Layout>

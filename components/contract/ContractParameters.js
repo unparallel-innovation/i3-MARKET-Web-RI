@@ -2,85 +2,85 @@ import { Col, Form, Row } from 'react-bootstrap';
 import { getDateValue } from '../../lib/utils';
 import { useState } from 'react';
 
-export default function ContractParameters(props){
+export default function ContractParameters(props) {
 
     let json = {
-        "dataOfferingDescription": {
-            "dataOfferingId": "62ecd16897d095001f105493",
-            "version": 0,
-            "category": "string",
-            "active": true
+        'dataOfferingDescription': {
+            'dataOfferingId': '62ecd16897d095001f105493',
+            'version': 0,
+            'category': 'string',
+            'active': true
         },
-        "dids": {
-            "providerDid": "did:ethr:i3m:0x02b6b4e416dae94b00729fe82bdce4a8480e457be2f177a82b5eb6128ece05b35c",
-            "consumerDid": "string"
+        'dids': {
+            'providerDid': 'did:ethr:i3m:0x02b6b4e416dae94b00729fe82bdce4a8480e457be2f177a82b5eb6128ece05b35c',
+            'consumerDid': 'string'
         },
-        "purpose": "string",
-        "parties": {
-            "dataProvider": "provider-test",
-            "dataConsumer": "string"
+        'purpose': 'string',
+        'parties': {
+            'dataProvider': 'provider-test',
+            'dataConsumer': 'string'
         },
-        "duration": {
-            "creationDate": 0,
-            "startDate": 0,
-            "endDate": 0
+        'duration': {
+            'creationDate': 0,
+            'startDate': 0,
+            'endDate': 0
         },
-        "obligations": {
-            "qualityOfData": 0,
-            "characteristics": "string",
-            "dataAvailability": false
+        'obligations': {
+            'qualityOfData': 0,
+            'characteristics': 'string',
+            'dataAvailability': false
         },
-        "intendedUse": {
-            "processData": true,
-            "shareDataWithThirdParty": true,
-            "editData": true
+        'intendedUse': {
+            'processData': true,
+            'shareDataWithThirdParty': true,
+            'editData': true
         },
-        "licenseGrant": {
-            "copyData": true,
-            "transferable": false,
-            "exclusiveness": true,
-            "revocable": true
+        'licenseGrant': {
+            'copyData': true,
+            'transferable': false,
+            'exclusiveness': true,
+            'revocable': true
         },
-        "dataStream": true,
-        "personalData": true,
-        "pricingModel": {
-            "paymentType": "payment on subscription",
-            "pricingModelName": "Test pricing",
-            "basicPrice": 60,
-            "currency": "$",
-            "fee": 24,
-            "hasPaymentOnSubscription": {
-                "paymentOnSubscriptionName": "paymentOnSubscriptionName",
-                "paymentType": "paymentType",
-                "timeDuration": "timeDuration",
-                "description": "description",
-                "repeat": "repeat",
-                "hasSubscriptionPrice": 0
+        'dataStream': true,
+        'personalData': true,
+        'pricingModel': {
+            'paymentType': 'payment on subscription',
+            'pricingModelName': 'Test pricing',
+            'basicPrice': 60,
+            'currency': '$',
+            'fee': 24,
+            'hasPaymentOnSubscription': {
+                'paymentOnSubscriptionName': 'paymentOnSubscriptionName',
+                'paymentType': 'paymentType',
+                'timeDuration': 'timeDuration',
+                'description': 'description',
+                'repeat': 'repeat',
+                'hasSubscriptionPrice': 0
             },
-            "hasFreePrice": {
-                "hasPriceFree": true
+            'hasFreePrice': {
+                'hasPriceFree': true
             }
         },
-        "dataExchangeAgreement": {
-            "orig": "string",
-            "dest": "string",
-            "encAlg": "string",
-            "signingAlg": "string",
-            "hashAlg": "string",
-            "ledgerContractAddress": "string",
-            "ledgerSignerAddress": "string",
-            "pooToPorDelay": 0,
-            "pooToPopDelay": 0,
-            "pooToSecretDelay": 0
+        'dataExchangeAgreement': {
+            'orig': 'string',
+            'dest': 'string',
+            'encAlg': 'string',
+            'signingAlg': 'string',
+            'hashAlg': 'string',
+            'ledgerContractAddress': 'string',
+            'ledgerSignerAddress': 'string',
+            'pooToPorDelay': 0,
+            'pooToPopDelay': 0,
+            'pooToSecretDelay': 0
         }
-    }
+    };
 
     const {
         dataOfferingDescription, dids, purpose, parties,
         duration, obligations, intendedUse, licenseGrant, dataStream,
         personalData, pricingModel, dataExchangeAgreement,
         dataOffering, user, disableInput
-    } = json
+    } = json;
 
     const [dataAvailability, setDataAvailability] = useState(obligations ? obligations.dataAvailability : '');
     const [process, setProcessData] = useState(intendedUse.processData);
@@ -96,7 +96,6 @@ export default function ContractParameters(props){
     //     const error = { message: 'Sorry, you don\'t have permission to access this page!' };
     //     return <Error error={error}/>;
     // }
-
 
     return (
         <>
@@ -254,7 +253,7 @@ export default function ContractParameters(props){
                         <Form.Label>Data Availability</Form.Label>
                         <Form.Group controlId={'dataAvailability'}>
                             <Form.Control as="select" value={dataAvailability} name={'dataAvailability'}
-                                          onChange={e => { setDataAvailability(e.target.value); }} disabled={disableInput}
+                                onChange={e => { setDataAvailability(e.target.value); }} disabled={disableInput}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -272,7 +271,7 @@ export default function ContractParameters(props){
                     <Form.Group controlId={'processData'}>
                         <Form.Label>Process Data</Form.Label>
                         <Form.Control as="select" value={process} name={'processData'}
-                                      onChange={e => { setProcessData(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setProcessData(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -283,7 +282,7 @@ export default function ContractParameters(props){
                     <Form.Group controlId={'shareDataWithThirdParty'}>
                         <Form.Label>Share Data With Third Party</Form.Label>
                         <Form.Control as="select" value={share} name={'shareDataWithThirdParty'}
-                                      onChange={e => { setShareData(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setShareData(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -294,7 +293,7 @@ export default function ContractParameters(props){
                     <Form.Group controlId={'editData'}>
                         <Form.Label>Edit Data</Form.Label>
                         <Form.Control as="select" value={edit} name={'editData'}
-                                      onChange={e => { setEditData(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setEditData(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -312,7 +311,7 @@ export default function ContractParameters(props){
                     <Form.Group controlId={'copyData'}>
                         <Form.Label>Copy Data</Form.Label>
                         <Form.Control as="select" value={cd} name={'copyData'}
-                                      onChange={e => { setCopyData(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setCopyData(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -323,7 +322,7 @@ export default function ContractParameters(props){
                     <Form.Group controlId={'transferable'}>
                         <Form.Label>Transferable</Form.Label>
                         <Form.Control as="select" value={tf} name={'transferable'}
-                                      onChange={e => { setTransferable(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setTransferable(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -336,7 +335,7 @@ export default function ContractParameters(props){
                     <Form.Group controlId={'exclusiveness'}>
                         <Form.Label>Exclusiveness</Form.Label>
                         <Form.Control as="select" value={excl} name={'exclusiveness'}
-                                      onChange={e => { setExclusiveness(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setExclusiveness(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -347,7 +346,7 @@ export default function ContractParameters(props){
                     <Form.Group controlId={'revocable'}>
                         <Form.Label>Revocable</Form.Label>
                         <Form.Control as="select" value={rev} name={'revocable'}
-                                      onChange={e => { setRevocable(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setRevocable(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -363,7 +362,7 @@ export default function ContractParameters(props){
                 <Col className="col-md-6">
                     <Form.Group controlId={'dataStream'}>
                         <Form.Control as="select" value={ds} name={'dataStream'}
-                                      onChange={e => { setDataStream(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setDataStream(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -447,10 +446,10 @@ export default function ContractParameters(props){
                 </Col>
             </Row>
         </>
-    )
+    );
 }
 
-function getPricingModel(data){
+function getPricingModel(data) {
     return (
         <>
             <h5 className="mt-4">Pricing</h5>
@@ -462,13 +461,13 @@ function getPricingModel(data){
 
             {getFreePrice(data)}
         </>
-    )
+    );
 }
 
-function getBasicPrice(data){
-    const {pricingModelName, basicPrice, fee, currency} = data
+function getBasicPrice(data) {
+    const { pricingModelName, basicPrice, fee, currency } = data;
 
-    if(basicPrice){
+    if (basicPrice) {
         return (
             <>
                 <Form.Group controlId="pricingModelName">
@@ -501,18 +500,18 @@ function getBasicPrice(data){
 
                 <hr className="mt-2" />
             </>
-        )
+        );
     }
-    return ''
+    return '';
 }
 
-function getPaymentOnSubscription(data){
-    const { hasPaymentOnSubscription, currency } = data
-    if(hasPaymentOnSubscription){
+function getPaymentOnSubscription(data) {
+    const { hasPaymentOnSubscription, currency } = data;
+    if (hasPaymentOnSubscription) {
         const {
             paymentOnSubscriptionName, paymentType, timeDuration,
             description, repeat, hasSubscriptionPrice
-        } = data.hasPaymentOnSubscription
+        } = data.hasPaymentOnSubscription;
 
         return (
             <>
@@ -565,14 +564,14 @@ function getPaymentOnSubscription(data){
 
                 <hr className="mt-2" />
             </>
-        )
+        );
     }
-    return ''
+    return '';
 }
 
-function getFreePrice(data){
-    if(data.hasFreePrice){
-        const { hasPriceFree} = data.hasFreePrice
+function getFreePrice(data) {
+    if (data.hasFreePrice) {
+        const { hasPriceFree } = data.hasFreePrice;
         return (
             <>
                 <Form.Group controlId="hasFreePrice">
@@ -582,7 +581,7 @@ function getFreePrice(data){
 
                 <hr className="mt-2" />
             </>
-        )
+        );
     }
-    return ''
+    return '';
 }

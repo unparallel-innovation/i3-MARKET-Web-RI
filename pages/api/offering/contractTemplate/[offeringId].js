@@ -10,7 +10,7 @@ export default catchErrors(async (req, res) => {
         switch (req.method) {
             case 'GET':
                 if (req.query.price) {
-                    return {  }
+                    return { };
 
                     const fee = await connector.getFee(user.access_token, user.id_token, req.query.price);
 
@@ -20,7 +20,7 @@ export default catchErrors(async (req, res) => {
                         price: req.query?.price,
                         currency: req.query?.currency,
                         fee: fee.toString()
-                    }
+                    };
                     const template = await connector.getContractTemplate(user.access_token, user.id_token, offeringId); // TODO add paymentType object
                     const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
                     return { ...template, offering, user };

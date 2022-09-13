@@ -104,7 +104,7 @@ function getInitialLayouts(categories) {
 
 export default
 function Home() {
-    const categoriesData = useData('/api/')
+    const categoriesData = useData('/api/');
     const oidcData = useData('/api/oidc');
     const userData = useData('/api/user');
 
@@ -112,11 +112,11 @@ function Home() {
         if (oidcData.data.hasClient) {
             if (userData.data) {
                 if (userData.data.user) {
-                    if(categoriesData.data){
-                        if(categoriesData.data.categories){
+                    if (categoriesData.data) {
+                        if (categoriesData.data.categories) {
                             return <HomeContent categories={categoriesData.data.categories} user={userData.data.user}/>;
                         }
-                        return ''
+                        return '';
                     }
                 }
                 else {
@@ -162,15 +162,15 @@ function HomeContent(props) {
     return (<Layout>
         <div className="px-5">
             <ResponsiveGridLayout className="layout"
-                                  breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-                                  cols={{ lg: 11, md: 10, sm: 6, xs: 4, xxs: 3 }}
-                                  layouts={layouts}
-                                  rowHeight={100}
-                                  onLayoutChange={onLayoutChange}
+                breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+                cols={{ lg: 11, md: 10, sm: 6, xs: 4, xxs: 3 }}
+                layouts={layouts}
+                rowHeight={100}
+                onLayoutChange={onLayoutChange}
             >
                 <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
                     <Image src="/img/homepage_banner_logo.png" alt="WEB-RI logo"
-                           width={385} height={200} className="p-3" />
+                        width={385} height={200} className="p-3" />
                 </Card>
 
                 <Card key="b">

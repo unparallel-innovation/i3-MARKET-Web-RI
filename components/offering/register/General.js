@@ -83,7 +83,7 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="ownerConsentForm"><
                     CustomLabel value="Owner Consent Form" tooltip="Hashtag string to report the information about the explicit user consent form documentations" required />
-                    <Form.Control type="text" name="ownerConsentForm" defaultValue={ownerConsentForm} required />
+                <Form.Control type="text" name="ownerConsentForm" defaultValue={ownerConsentForm} required />
                 </Form.Group>
             </Col>
             <Col>

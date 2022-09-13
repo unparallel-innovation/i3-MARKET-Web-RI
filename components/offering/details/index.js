@@ -163,8 +163,6 @@ function Offering(props) {
 
             </div>
 
-
-
             { showModal(showDelete, showActivate) }
 
         </Layout>

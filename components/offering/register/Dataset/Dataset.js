@@ -88,7 +88,7 @@ export default function Dataset(props) {
             <Col>
                 <Form.Group controlId={eventKey + 'temporalResolution'}>
                     <CustomLabel value="Temporal Resolution" tooltip="Minimum time period resolvable in the dataset" required />
-                    <Form.Control type="text" name={eventKey + 'temporalResolution'} defaultValue={temporalResolution}  />
+                    <Form.Control type="text" name={eventKey + 'temporalResolution'} defaultValue={temporalResolution} />
                     {/*TODO error when update*/}
                 </Form.Group>
             </Col>

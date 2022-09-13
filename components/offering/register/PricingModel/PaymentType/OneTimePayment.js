@@ -3,7 +3,7 @@ import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import PricingManagerModal from '../../../PricingManagerModal';
 import CustomLabel from '../../../../common/CustomLabel';
 
-export default function OneTimePayment(props){
+export default function OneTimePayment(props) {
     const { basicPrice, pricingModelName, eventKey } = props;
     const [ show, setShow ] = useState(false);
     const [ price, setPrice ] = useState(basicPrice);
@@ -41,7 +41,7 @@ export default function OneTimePayment(props){
                     <Form.Group controlId={eventKey + 'basicPrice'}>
                         <div className="d-flex align-items-lg-start">
                             <CustomLabel value="Basic Price" tooltip="The generic basic price for the traded data for basic cost of trade" />
-                            <Button size="sm" className="ml-2" style={{marginTop: -4}} onClick={() => setShow(true)}> Get Recommended Price </Button>
+                            <Button size="sm" className="ml-2" style={{ marginTop: -4 }} onClick={() => setShow(true)}> Get Recommended Price </Button>
                         </div>
                         <Form.Control type="number" name={eventKey + 'basicPrice'} min={0} defaultValue={price} onChange={(e) => setPrice(Number(e.target.value))} />
                     </Form.Group>
@@ -56,5 +56,5 @@ export default function OneTimePayment(props){
             </Row>
             { showModal(show) }
         </>
-    )
+    );
 }

@@ -5,7 +5,7 @@ export default
 function KVCol2(props) {
     const { title, children } = props;
 
-    const value = isBoolean(children) ? children.toString(): children
+    const value = isBoolean(children) ? children.toString() : children;
 
     return (
         <Col className="p-2">

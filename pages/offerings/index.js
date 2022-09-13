@@ -5,7 +5,7 @@ import Offerings from '/components/offering';
 
 export default function OfferingsPage() {
     const { data, error } = useData('/api/offerings/provider');
-    
+
     if (error)
         return <Error error={error} />;
 

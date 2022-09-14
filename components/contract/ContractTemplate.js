@@ -42,7 +42,7 @@ export default function ContractTemplate(props) {
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
                     <Button type="submit">Data Purchase Request</Button>
                 </div>
-                <ContractParameters data={props}/>
+                {/*<ContractParameters data={props}/>*/}
             </Form>
         </Layout>
     );

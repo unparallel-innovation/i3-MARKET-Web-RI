@@ -4,7 +4,7 @@ import { useMap } from '/lib/hooks.js';
 import Layout from '/components/layout/Layout.js';
 import General from './General.js';
 import Dataset from './Dataset/Dataset';
-import ContractParameters from './ContractParameter/ContractParameters';
+import ContractParameters from './ContractParameters/ContractParameters';
 import { Button, Form, Tab, Tabs } from 'react-bootstrap';
 import { formRegister } from '/lib/forms/registerOffering.js';
 import PricingModel from './PricingModel/PricingModel';
@@ -16,7 +16,7 @@ function Register(props) {
     const [ atIdx, setAtIdx ] = useState(0);
 
     const [ datasetC ] = useMap('', 'dataset');
-    const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset0'} {...offering?.hasDataset} />;
+    const datasetEl = <Dataset key={'datasetKey'} eventKey={'dataset0'} {...offering?.hasDataset} user={user}/>;
 
     const [ pricingModelC ] = useMap('', 'pricingModel');
     const pricingModelEl = <PricingModel key={'pricingModelKey'} eventKey={'pricingModel0'} {...offering?.hasPricingModel} />;

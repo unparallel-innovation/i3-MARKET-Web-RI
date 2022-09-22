@@ -4,16 +4,19 @@ import { useMap } from '/lib/hooks.js';
 import DeleteToggle from '../../../common/DeleteToggle';
 import { useState } from 'react';
 import CustomLabel from '../../../common/CustomLabel';
+import DataExchangeSpec from './DataExchangeSpec';
 
 export default function DatasetDistribution(props) {
     const {
-        title, description, accessRights, downloadType, license, conformsTo,
-        mediaType, packageFormat, dataStream, accessService, eventKey, onDelete
+        title, description, accessRights, downloadType, license, conformsTo, mediaType,
+        packageFormat, dataStream, accessService, dataExchangeSpec, user, eventKey, onDelete
     } = props;
     const [dtStream, setDtStream] = useState(dataStream);
     const [ accessServiceC ] = useMap(eventKey, 'accessService');
+    const [ dataExchangeSpecC ] = useMap(eventKey, 'dataExchangeSpec');
 
     const accessServiceEl = <AccessService key={'accessServiceKey'} eventKey={eventKey + 'accessService0'} {...accessService} />;
+    const dataExchangeSpecEl = <DataExchangeSpec key={'dataExchangeSpecKey'} eventKey={eventKey + 'dataExchangeSpec0'} {...dataExchangeSpec} user={user} />;
 
     return (
         <Accordion>
@@ -94,16 +97,12 @@ export default function DatasetDistribution(props) {
                             <Col/>
                         </Row>
 
-                        <div className="d-flex align-items-center my-3">
-                            <h5 className="flex-grow-1 mb-0">
-                                Access Service
-                            </h5>
-                        </div>
-
                         { accessServiceEl }
 
-                        <input type="hidden" value={accessServiceC}
-                            name={eventKey + 'accessServiceC'} />
+                        { dataExchangeSpecEl }
+
+                        <input type="hidden" value={accessServiceC} name={eventKey + 'accessServiceC'} />
+                        <input type="hidden" value={dataExchangeSpecC} name={eventKey + 'dataExchangeSpecC'} />
 
                     </Card.Body>
                 </Accordion.Collapse>

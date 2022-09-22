@@ -10,7 +10,7 @@ import CustomLabel from '../../../common/CustomLabel';
 export default function Dataset(props) {
     const { title, keyword, description, dataset, issued, modified,
         language, temporal, temporalResolution, spatial, accrualPeriodicity,
-        theme, datasetInformation, distribution, eventKey
+        theme, datasetInformation, distribution, user, eventKey
     } = props;
 
     const [localDatasetInformation,setLocalDatasetInformation] = useState(datasetInformation || []);
@@ -44,7 +44,7 @@ export default function Dataset(props) {
     }
 
     const datasetDistributionEl = (Object.keys(distributionMap)).map((item, idx) => (
-        <DatasetDistribution key={item} eventKey={item} onDelete={(a,b)=>{deleteLocalDistributionEntry(idx,a,b);}} {...localDistribution ? localDistribution[idx] : undefined} />
+        <DatasetDistribution key={item} eventKey={item} onDelete={(a,b)=>{deleteLocalDistributionEntry(idx,a,b);}} {...localDistribution ? localDistribution[idx] : undefined} user={user} />
     ));
 
     return (<>

@@ -5,7 +5,7 @@ export default catchErrors(async (req, res) => {
         case 'POST':
             const { action, status, data } = req.body;
             const message = {
-                msg: `Agreement pending for offering ${data.contractualParameters.DataOfferingDescription.dataOfferingId}`,
+                msg: `Agreement pending for offering ${data.contractualParameters.dataOfferingDescription.dataOfferingId}`,
                 template: data.contractualParameters
             };
             const type = `${action.toLowerCase()}.${status.toLowerCase()}`;

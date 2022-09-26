@@ -1,5 +1,6 @@
 import { catchErrors, connector } from '/lib/server.js';
 import { getSession } from '../../../../lib/session';
+import * as nonRepudiationLibrary from '@i3m/non-repudiation-library';
 
 export default catchErrors(async (req, res) => {
     const { offeringId } = req.query;
@@ -9,23 +10,21 @@ export default catchErrors(async (req, res) => {
     if (user) {
         switch (req.method) {
             case 'GET':
-                if (req.query.price) {
-                    return { };
+                const template = await connector.getContractTemplate(user.access_token, user.id_token, offeringId);
+                const signingAlg = template.dataExchangeAgreement.signingAlg;
 
-                    const fee = await connector.getFee(user.access_token, user.id_token, req.query.price);
+                const providerJwks = await nonRepudiationLibrary.generateKeys(signingAlg);
+                const publicKey = providerJwks.publicJwk;
 
-                    const paymentType = {
-                        type: req.query?.type,
-                        name: req.query?.name,
-                        price: req.query?.price,
-                        currency: req.query?.currency,
-                        fee: fee.toString()
-                    };
-                    const template = await connector.getContractTemplate(user.access_token, user.id_token, offeringId); // TODO add paymentType object
-                    const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
-                    return { ...template, offering, user };
+                const contractTemplate = {
+                    ...template,
+                    dataExchangeAgreement: {
+                        ...template.dataExchangeAgreement,
+                        dest: `${JSON.stringify(publicKey)}`
+                    }
                 }
-                return null;
+                const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
+                return { ...contractTemplate, offering, user };
         }
     }
     return null;

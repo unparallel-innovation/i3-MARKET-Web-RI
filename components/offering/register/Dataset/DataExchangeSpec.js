@@ -5,8 +5,10 @@ import { useState } from 'react';
 
 export default function DataExchangeSpec(props) {
     const {
-        encAlg, signingAlg, hashAlg, ledgerContractAddress, ledgerSignerAddress,
-        pooToPorDelay, pooToPopDelay, pooToSecretDelay, user, eventKey
+        encAlg, signingAlg, hashAlg,
+        ledgerContractAddress = '0x8d407a1722633bdd1dcf221474be7a44c05d7c2f',
+        pooToPorDelay = 100000, pooToPopDelay = 30000, pooToSecretDelay = 180000,
+        user, eventKey
     } = props;
 
     const [encryption, setEncryption] = useState(encAlg);
@@ -53,45 +55,51 @@ export default function DataExchangeSpec(props) {
                             </Col>
                         </Row>
 
-                        <Row>
-                            <Col>
-                                <Form.Group controlId={eventKey + 'ledgerContractAddress'}>
-                                    <CustomLabel value="Ledger Contract Address" tooltip="The ledger smart contract address (hexadecimal) on the DLT" />
-                                    <Form.Control type="text" name={eventKey + 'ledgerContractAddress'} defaultValue={ledgerContractAddress} />
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group controlId={eventKey + 'ledgerSignerAddress'}>
-                                    <CustomLabel value="Ledger Signer Address" tooltip="The orig (data provider) address in the DLT (hexadecimal)" />
-                                    <Form.Control type="text" name={eventKey + 'ledgerSignerAddress'} defaultValue={user.ledgerAddress} disabled />
-                                    <input type="hidden" name={eventKey + 'ledgerSignerAddress'} defaultValue={user.ledgerAddress} />
-                                </Form.Group>
-                            </Col>
-                        </Row>
+                        {/*<Row>*/}
+                        {/*    <Col>*/}
+                        {/*        <Form.Group controlId={eventKey + 'ledgerContractAddress'}>*/}
+                        {/*            <CustomLabel value="Ledger Contract Address" tooltip="The ledger smart contract address (hexadecimal) on the DLT" />*/}
+                        {/*            <Form.Control type="text" name={eventKey + 'ledgerContractAddress'} defaultValue={ledgerContractAddress} disabled />*/}
+                        {/*            <input type="hidden" name={eventKey + 'ledgerContractAddress'} defaultValue={ledgerContractAddress} />*/}
+                        {/*        </Form.Group>*/}
+                        {/*    </Col>*/}
+                        {/*    <Col>*/}
+                        {/*        <Form.Group controlId={eventKey + 'ledgerSignerAddress'}>*/}
+                        {/*            <CustomLabel value="Ledger Signer Address" tooltip="The orig (data provider) address in the DLT (hexadecimal)" />*/}
+                        {/*            <Form.Control type="text" name={eventKey + 'ledgerSignerAddress'} defaultValue={user.ledgerAddress} disabled />*/}
+                        {/*            <input type="hidden" name={eventKey + 'ledgerSignerAddress'} defaultValue={user.ledgerAddress} />*/}
+                        {/*        </Form.Group>*/}
+                        {/*    </Col>*/}
+                        {/*</Row>*/}
 
                         <Row>
                             <Col>
                                 <Form.Group controlId={eventKey + 'pooToPorDelay'}>
                                     <CustomLabel value="PoO to PoR delay" tooltip="Maximum acceptable delay between the issuance of the proof of origin (PoO) by the orig and the reception of the proof of reception (PoR) by the orig" />
-                                    <Form.Control type="number" min={0} name={eventKey + 'pooToPorDelay'} defaultValue={pooToPorDelay} />
+                                    <Form.Control type="number" min={10000} name={eventKey + 'pooToPorDelay'} defaultValue={pooToPorDelay} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'pooToPopDelay'}>
                                     <CustomLabel value="PoP to PoR delay" tooltip="Maximum acceptable delay between the issuance of the proof of origin (PoP) by the orig and the reception of the proof of publication (PoR) by the dest" />
-                                    <Form.Control type="number" min={0} name={eventKey + 'pooToPopDelay'} defaultValue={pooToPopDelay} />
+                                    <Form.Control type="number" min={30000} name={eventKey + 'pooToPopDelay'} defaultValue={pooToPopDelay} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'pooToSecretDelay'}>
                                     <CustomLabel value="PoO to Secret delay" tooltip="If the dest (data consumer) does not receive the PoP, it could still get the decryption secret from the DLT. This defines the maximum acceptable delay between the issuance of the proof of origin (PoP) by the orig and the publication (block time) of the secret on the blockchain" />
-                                    <Form.Control type="number" min={0} name={eventKey + 'pooToSecretDelay'} defaultValue={pooToSecretDelay} />
+                                    <Form.Control type="number" min={120000} name={eventKey + 'pooToSecretDelay'} defaultValue={pooToSecretDelay} />
                                 </Form.Group>
                             </Col>
                         </Row>
                     </Card.Body>
                 </Accordion.Collapse>
+
+                <input type="hidden" name={eventKey + 'ledgerContractAddress'} defaultValue={ledgerContractAddress} />
+                <input type="hidden" name={eventKey + 'ledgerSignerAddress'} defaultValue={user.ledgerAddress} />
+
             </Card>
         </Accordion>
+
     );
 }

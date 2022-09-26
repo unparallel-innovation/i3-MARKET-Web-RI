@@ -4,14 +4,15 @@ import { useRouter } from 'next/router';
 import { formDataPurchaseRequest } from '../../lib/forms/dataPurchaseRequest';
 
 import ContractParameters from './ContractParameters';
+import Error from '../layout/Error';
 
 export default function ContractTemplate(props) {
     const router = useRouter();
 
-    // if (props.user.provider) {
-    //     const error = { message: 'Sorry, you don\'t have permission to access this page!' };
-    //     return <Error error={error}/>;
-    // }
+    if (props.user.provider) {
+        const error = { message: 'Sorry, you don\'t have permission to access this page!' };
+        return <Error error={error}/>;
+    }
 
     function onCancel() {
         router.back();
@@ -22,6 +23,8 @@ export default function ContractTemplate(props) {
         const form = e.target;
         const fd = new FormData(form);
         const res = formDataPurchaseRequest(fd);
+
+        console.log('purchase request', JSON.stringify(res))
 
         fetch(form.action, {
             method: 'POST',
@@ -42,7 +45,7 @@ export default function ContractTemplate(props) {
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
                     <Button type="submit">Data Purchase Request</Button>
                 </div>
-                {/*<ContractParameters data={props}/>*/}
+                <ContractParameters {...props}/>
             </Form>
         </Layout>
     );

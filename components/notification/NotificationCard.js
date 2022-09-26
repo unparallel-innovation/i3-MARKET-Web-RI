@@ -39,6 +39,10 @@ export default function NotificationCard(props) {
         else if (user.provider && action === 'agreement.pending' && data.template) {
             router.push('/offerings/createAgreement/' + id);
         }
+        else if(action === 'agreement.rejected'){
+            // TODO show rejection notes
+            alert(data.notes)
+        }
     }
 
     function onDelete() {

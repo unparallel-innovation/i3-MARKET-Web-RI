@@ -4,13 +4,13 @@ import { useRouter } from 'next/router';
 import Error from '../layout/Error';
 import { walletApi } from '../../lib/walletApi';
 import { useState } from 'react';
+import ContractParameters from './ContractParameters';
 
 export default function CreateAgreement(props) {
     const router = useRouter();
-    const { id, origin, receptor, data, user } = props;
-    const template = data.template;
-    const [showReject, setShowReject] = useState(false)
-    const [rejectNotes, setRejectNotes] = useState('')
+    const {id, origin, data, offering, user} = props;
+    const [showReject, setShowReject] = useState(false);
+    const [rejectNotes, setRejectNotes] = useState('');
 
     if (user.consumer) {
         const error = { message: 'Sorry, you don\'t have permission to access this page!' };
@@ -28,13 +28,13 @@ export default function CreateAgreement(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 notificationId: id,
-                offeringId: 'offeringId', //TODO retrieve from template
-                consumerDid: origin,
+                offeringId: data.template.dataOfferingDescription.dataOfferingId,
+                consumerDid: data.template.parties.consumerDid,
                 notes: rejectNotes
             })
         }).then(() => {
-            setShowReject(false)
-            router.push('/notifications')
+            setShowReject(false);
+            router.push('/notifications');
         });
     }
 
@@ -48,7 +48,7 @@ export default function CreateAgreement(props) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                template,
+                template: data.template,
                 senderAddress: ethereumAddress
             })
         }).then(res => {
@@ -88,8 +88,7 @@ export default function CreateAgreement(props) {
                     <Button variant="danger" className="mr-3" onClick={() => setShowReject(true)}>Reject</Button>
                     <Button type="submit">Create</Button>
                 </div>
-                {/* TODO update after SDK-RI fix  */}
-                {/*<ContractParameters data={template} />*/}
+                <ContractParameters {...data.template} offering={offering} user={user} disableInput/>
             </Form>
             {showModal()}
         </Layout>

@@ -1,7 +1,6 @@
 import { Col, Form, Row } from 'react-bootstrap';
 import { getDateValue } from '../../lib/utils';
 import { useState } from 'react';
-import Error from '../layout/Error';
 import CustomLabel from '../common/CustomLabel';
 
 export default function ContractParameters(props) {
@@ -302,21 +301,6 @@ export default function ContractParameters(props) {
 
             <Row>
                 <Col>
-                    <Form.Group controlId="orig">
-                        <Form.Label>Origin Public Key</Form.Label>
-                        <Form.Control type="text" name="orig" defaultValue={dataExchangeAgreement.orig} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="dest">
-                        <Form.Label>Destination Public Key</Form.Label>
-                        <Form.Control type="text" name="dest" defaultValue={dataExchangeAgreement.dest} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col>
                     <Form.Group controlId="encAlg">
                         <Form.Label>Encryption Algorithm</Form.Label>
                         <Form.Control type="text" name="encAlg" defaultValue={dataExchangeAgreement.encAlg} disabled={disableInput} />
@@ -371,6 +355,9 @@ export default function ContractParameters(props) {
                     </Form.Group>
                 </Col>
             </Row>
+
+            <input type="hidden" name="orig" defaultValue={dataExchangeAgreement.orig} />
+            <input type="hidden" name="dest" defaultValue={dataExchangeAgreement.dest} />
         </>
     );
 }

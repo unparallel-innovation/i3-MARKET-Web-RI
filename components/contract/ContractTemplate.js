@@ -24,8 +24,6 @@ export default function ContractTemplate(props) {
         const fd = new FormData(form);
         const res = formDataPurchaseRequest(fd);
 
-        console.log('purchase request', JSON.stringify(res))
-
         fetch(form.action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

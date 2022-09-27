@@ -11,20 +11,8 @@ export default catchErrors(async (req, res) => {
         switch (req.method) {
             case 'GET':
                 const template = await connector.getContractTemplate(user.access_token, user.id_token, offeringId);
-                const signingAlg = template.dataExchangeAgreement.signingAlg;
-
-                const providerJwks = await nonRepudiationLibrary.generateKeys(signingAlg);
-                const publicKey = providerJwks.publicJwk;
-
-                const contractTemplate = {
-                    ...template,
-                    dataExchangeAgreement: {
-                        ...template.dataExchangeAgreement,
-                        dest: `${JSON.stringify(publicKey)}`
-                    }
-                }
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
-                return { ...contractTemplate, offering, user };
+                return { ...template, offering, user };
         }
     }
     return null;

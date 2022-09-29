@@ -20,7 +20,7 @@ export default catchErrors(async (req, res) => {
                 ...template.dataExchangeAgreement,
                 dest: `${JSON.stringify(consumerPublicKey)}`
             }
-        }
+        };
         return await connector.createDataPurchase(user.access_token, user.id_token, 'web-ri', user.DID, '', contractTemplate);
     }
     return null;

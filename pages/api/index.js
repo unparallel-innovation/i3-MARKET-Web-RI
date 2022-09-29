@@ -6,7 +6,7 @@ export default catchErrors(async (req, res) => {
     const user = session.user;
 
     if (user) {
-        console.log("[BACKEND] Initialize Notification Service")
+        console.log('[BACKEND] Initialize Notification Service');
 
         const marketId = process.env.MARKET_NAME;
         const name = `service-${marketId}`;

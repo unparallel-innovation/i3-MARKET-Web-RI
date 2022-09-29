@@ -8,7 +8,7 @@ import ContractParameters from './ContractParameters';
 
 export default function CreateAgreement(props) {
     const router = useRouter();
-    const {id, data, offering, user} = props;
+    const { id, data, offering, user } = props;
     const [showReject, setShowReject] = useState(false);
     const [rejectNotes, setRejectNotes] = useState('');
 
@@ -21,7 +21,7 @@ export default function CreateAgreement(props) {
         router.back();
     }
 
-    function onReject(e){
+    function onReject(e) {
         e.preventDefault();
 
         fetch('/api/offerings/rejectPurchaseRequest', {
@@ -95,7 +95,7 @@ export default function CreateAgreement(props) {
         </Layout>
     );
 
-    function showModal(){
+    function showModal() {
         if (showReject) {
             return (
                 <Modal show={showReject} onHide={() => setShowReject(false)}>
@@ -104,7 +104,7 @@ export default function CreateAgreement(props) {
                     </Modal.Header>
                     <Modal.Body>
                         <Form.Control as="textarea" rows={5} placeholder="Please add some notes"
-                          onChange={(e) => setRejectNotes(e.target.value)}
+                            onChange={(e) => setRejectNotes(e.target.value)}
                         />
                     </Modal.Body>
                     <Modal.Footer>

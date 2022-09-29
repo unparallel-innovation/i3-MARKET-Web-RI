@@ -20,7 +20,7 @@ export default catchErrors(async (req, res) => {
                 ...template.dataExchangeAgreement,
                 orig: `${JSON.stringify(providerPublicKey)}`
             }
-        }
+        };
         return await connector.createAgreementRawTransaction(user.access_token, user.id_token, senderAddress, contractTemplate);
     }
     return null;

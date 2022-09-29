@@ -11,7 +11,7 @@ export default catchErrors(async (req, res) => {
             case 'GET':
                 const notification = await connector.getNotification(user.access_token, user.id_token, id);
 
-                if(notification.data.template){
+                if (notification.data.template) {
                     const offeringId = notification.data.template.dataOfferingDescription.dataOfferingId;
                     const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
 

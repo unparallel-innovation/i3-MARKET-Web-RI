@@ -57,22 +57,22 @@ function Distribution(props) {
 
                         <Table className="mt-3">
                             <thead>
-                            <tr>
-                                <th>Conforms To</th>
-                                <th>Endpoint Description</th>
-                                <th>Endpoint URL</th>
-                                <th>Serves Dataset</th>
-                                <th>Service Specs</th>
-                            </tr>
+                                <tr>
+                                    <th>Conforms To</th>
+                                    <th>Endpoint Description</th>
+                                    <th>Endpoint URL</th>
+                                    <th>Serves Dataset</th>
+                                    <th>Service Specs</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>{ accessService.conformsTo }</td>
-                                <td>{ accessService.endpointDescription }</td>
-                                <td>{ accessService.endpointURL }</td>
-                                <td>{ accessService.servesDataset }</td>
-                                <td>{ accessService.serviceSpecs }</td>
-                            </tr>
+                                <tr>
+                                    <td>{ accessService.conformsTo }</td>
+                                    <td>{ accessService.endpointDescription }</td>
+                                    <td>{ accessService.endpointURL }</td>
+                                    <td>{ accessService.servesDataset }</td>
+                                    <td>{ accessService.serviceSpecs }</td>
+                                </tr>
                             </tbody>
                         </Table>
 
@@ -82,24 +82,24 @@ function Distribution(props) {
 
                         <Table className="mt-3">
                             <thead>
-                            <tr>
-                                <th>Encryption Algorithm</th>
-                                <th>Signing Algorithm</th>
-                                <th>Hash Algorithm</th>
-                                <th>PoO to PoR delay</th>
-                                <th>PoO to PoP delay</th>
-                                <th>PoO to Secret delay</th>
-                            </tr>
+                                <tr>
+                                    <th>Encryption Algorithm</th>
+                                    <th>Signing Algorithm</th>
+                                    <th>Hash Algorithm</th>
+                                    <th>PoO to PoR delay</th>
+                                    <th>PoO to PoP delay</th>
+                                    <th>PoO to Secret delay</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>{ dataExchangeSpec.encAlg }</td>
-                                <td>{ dataExchangeSpec.signingAlg }</td>
-                                <td>{ dataExchangeSpec.hashAlg }</td>
-                                <td>{ dataExchangeSpec.pooToPorDelay }</td>
-                                <td>{ dataExchangeSpec.pooToPorDelay }</td>
-                                <td>{ dataExchangeSpec.pooToSecretDelay }</td>
-                            </tr>
+                                <tr>
+                                    <td>{ dataExchangeSpec.encAlg }</td>
+                                    <td>{ dataExchangeSpec.signingAlg }</td>
+                                    <td>{ dataExchangeSpec.hashAlg }</td>
+                                    <td>{ dataExchangeSpec.pooToPorDelay }</td>
+                                    <td>{ dataExchangeSpec.pooToPorDelay }</td>
+                                    <td>{ dataExchangeSpec.pooToSecretDelay }</td>
+                                </tr>
                             </tbody>
 
                         </Table>

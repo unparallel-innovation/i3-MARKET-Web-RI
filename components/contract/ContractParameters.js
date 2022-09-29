@@ -178,7 +178,7 @@ export default function ContractParameters(props) {
                         <Form.Label>Data Availability</Form.Label>
                         <Form.Group controlId={'dataAvailability'}>
                             <Form.Control as="select" value={dataAvailability} name={'dataAvailability'}
-                                          onChange={e => { setDataAvailability(e.target.value); }} disabled={disableInput}
+                                onChange={e => { setDataAvailability(e.target.value); }} disabled={disableInput}
                             >
                                 <option value="false">False</option>
                                 <option value="true">True</option>
@@ -196,7 +196,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'processData'}>
                         <Form.Label>Process Data</Form.Label>
                         <Form.Control as="select" value={process} name={'processData'}
-                                      onChange={e => { setProcessData(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setProcessData(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -207,7 +207,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'shareDataWithThirdParty'}>
                         <Form.Label>Share Data With Third Party</Form.Label>
                         <Form.Control as="select" value={share} name={'shareDataWithThirdParty'}
-                                      onChange={e => { setShareData(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setShareData(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -218,7 +218,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'editData'}>
                         <Form.Label>Edit Data</Form.Label>
                         <Form.Control as="select" value={edit} name={'editData'}
-                                      onChange={e => { setEditData(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setEditData(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -236,7 +236,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'copyData'}>
                         <Form.Label>Copy Data</Form.Label>
                         <Form.Control as="select" value={cd} name={'copyData'}
-                                      onChange={e => { setCopyData(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setCopyData(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -247,7 +247,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'transferable'}>
                         <Form.Label>Transferable</Form.Label>
                         <Form.Control as="select" value={tf} name={'transferable'}
-                                      onChange={e => { setTransferable(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setTransferable(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -260,7 +260,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'exclusiveness'}>
                         <Form.Label>Exclusiveness</Form.Label>
                         <Form.Control as="select" value={excl} name={'exclusiveness'}
-                                      onChange={e => { setExclusiveness(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setExclusiveness(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -271,7 +271,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'revocable'}>
                         <Form.Label>Revocable</Form.Label>
                         <Form.Control as="select" value={rev} name={'revocable'}
-                                      onChange={e => { setRevocable(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setRevocable(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -287,7 +287,7 @@ export default function ContractParameters(props) {
                 <Col className="col-md-6">
                     <Form.Group controlId={'dataStream'}>
                         <Form.Control as="select" value={ds} name={'dataStream'}
-                                      onChange={e => { setDataStream(e.target.value); }} disabled={disableInput}
+                            onChange={e => { setDataStream(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -430,7 +430,7 @@ function getPaymentOnSubscription(data) {
         description, repeat, hasSubscriptionPrice
     } = hasPaymentOnSubscription;
 
-    if(hasSubscriptionPrice > 0) {
+    if (hasSubscriptionPrice > 0) {
 
         return (
             <>
@@ -492,12 +492,12 @@ function getPaymentOnSubscription(data) {
             </>
         );
     }
-    return ''
+    return '';
 }
 
 function getFreePrice(data) {
     const { hasPriceFree } = data.hasFreePrice;
-    if(hasPriceFree){
+    if (hasPriceFree) {
         return (
             <>
                 <Form.Group controlId="hasFreePrice">

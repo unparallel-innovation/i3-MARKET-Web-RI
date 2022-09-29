@@ -127,15 +127,6 @@ export default function Dataset(props) {
 
         <div className="d-flex align-items-center my-3">
             <h5 className="flex-grow-1 mb-0">
-                Dataset Information Details
-            </h5>
-            <AddNew onClick={informationAdd} />
-        </div>
-
-        { datasetInformationEl }
-
-        <div className="d-flex align-items-center my-3">
-            <h5 className="flex-grow-1 mb-0">
                 Distribution Details
             </h5>
             <AddNew onClick={distributionAdd} />
@@ -143,8 +134,17 @@ export default function Dataset(props) {
 
         { datasetDistributionEl }
 
+        <div className="d-flex align-items-center my-3">
+            <h5 className="flex-grow-1 mb-0">
+                Dataset Information Details
+            </h5>
+            <AddNew onClick={informationAdd} />
+
+        </div>
+
+        { datasetInformationEl }
+
         <input type="hidden" value={informationC} name={eventKey + 'informationC'} />
         <input type="hidden" value={distributionC} name={eventKey + 'distributionC'} />
-
     </>);
 }

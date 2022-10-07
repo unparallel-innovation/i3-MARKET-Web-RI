@@ -37,17 +37,32 @@ npm install
 ```
 Note: Web-RI instance must run in same port as the registered OIDC client.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result:
+![](public/img/readme-pictures/WEB-RI_home.png)
 
 ### Register a verifiable credential in the Wallet
-When choosing the "Register" button in authentication page, you can register a new verifiable credential in the wallet. For that, you must choose the role and set the desired username. Then, Web-RI will call the Wallet to add the new verifiable credential.
+When choosing the "Register" button in authentication page, you will be redirected to the Register page where you can register a new verifiable credential in the wallet. For that, you must choose the role and set the desired username:
 
-If the information was successfully, you will be redirected to the Login page.
+![](public/img/readme-pictures/WEB-RI_register.png)
+
+Then, Web-RI will call the Wallet to add the new verifiable credential:
+
+Note: you need at least one identity created in the wallet.
+
+![](public/img/readme-pictures/Wallet_register_credential.png)
+
+If the information was successfully created, you will be redirected to the Login page.
+
 
 ### Login with the Wallet
-When choosing the "Login" button in authentication page, you can log in using a verifiable credential from the wallet. For that, you must choose the role and then Web-RI will call the Wallet to sign with the desired role.
+When choosing the "Login" button in authentication page, you can log in using a verifiable credential from the wallet. For that, you must choose the role and then Web-RI will call the Wallet to sign with the desired role:
 
-With successful login, you will be redirected to the Web-RI homepage.
+![](public/img/readme-pictures/WEB-RI_login_wallet.png)
+
+With successful login, you will be redirected to the Web-RI homepage:
+
+![](public/img/readme-pictures/WEB-RI_home.png)
+
 
 ## Run in Docker
 To run WEB-RI as docker, first you must define the following environment variables in docker-compose.yml file:

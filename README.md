@@ -1,5 +1,5 @@
 # WEB-RI
-This repository is for the Web-RI project. 
+This repository is for the Web-RI project.
 
 The Web-RI is a web interface that allows the users to interact with the functionalities provided by the SDK-RI. It can be reused and customized as part of each pilot specification and implementation needs.
 
@@ -37,32 +37,26 @@ npm install
 ```
 Note: Web-RI instance must run in same port as the registered OIDC client.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result:
-![](public/img/readme-pictures/WEB-RI_home.png)
+Web-RI can be accessible from localhost:3000:
+![](public/img/readme-pictures/WEB-RI_auth.png)
 
 ### Register a verifiable credential in the Wallet
 When choosing the "Register" button in authentication page, you will be redirected to the Register page where you can register a new verifiable credential in the wallet. For that, you must choose the role and set the desired username:
-
 ![](public/img/readme-pictures/WEB-RI_register.png)
 
 Then, Web-RI will call the Wallet to add the new verifiable credential:
-
-Note: you need at least one identity created in the wallet.
-
 ![](public/img/readme-pictures/Wallet_register_credential.png)
+Note: you need at least one identity created in the wallet.
 
 If the information was successfully created, you will be redirected to the Login page.
 
 
 ### Login with the Wallet
 When choosing the "Login" button in authentication page, you can log in using a verifiable credential from the wallet. For that, you must choose the role and then Web-RI will call the Wallet to sign with the desired role:
-
 ![](public/img/readme-pictures/WEB-RI_login_wallet.png)
 
-With successful login, you will be redirected to the Web-RI homepage:
-
+After successful login, you will be redirected to the Web-RI homepage:
 ![](public/img/readme-pictures/WEB-RI_home.png)
-
 
 ## Run in Docker
 To run WEB-RI as docker, first you must define the following environment variables in docker-compose.yml file:
@@ -81,38 +75,3 @@ Then,
 ```javascript
 docker-compose up
 ```
-
-### Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-### Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-### Lint with auto-fix
-Run the following command to auto-fix some eslint warnings:
-```bash
-make lint
-```
-
-## Credits
-This repository has been created by:
-
-Márcio Mateus [marcio.mateus@unparallel.pt](mailto:marcio.mateus@unparallel.pt)
-
-Pedro Ferreira [pedro.ferreira@unparallel.pt](mailto:marcio.mateus@unparallel.pt)
-
-## License
-The code in ths repository is licensed under the [MIT License](https://opensource.org/licenses/MIT).
-
-___
-###### This work was done in the context of i3-MARKET Research Project, which has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 871754
-

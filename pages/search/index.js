@@ -4,7 +4,7 @@ import Layout from '/components/layout/Layout.js';
 import Error from '/components/layout/Error.js';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import OfferingCard from '../../components/offering/OfferingCard';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 
@@ -12,11 +12,12 @@ function Search(props) {
     const router = useRouter();
     const {
         offerings, providers, categories, searchType,
-        category, providerId, isLoading, user
+        category, textSearch, providerId, isLoading, user
     } = props;
     const [ _searchType, setSearchType ] = useState(searchType);
     const [ _providerId, setProviderId ] = useState(providerId);
     const [ _category, setCategory ] = useState(category);
+    const [ _text, setText ] = useState(textSearch);
 
     useEffect(() => {
         setSearchType(searchType);
@@ -29,6 +30,10 @@ function Search(props) {
     useEffect(() => {
         setProviderId(providerId);
     }, [providerId]);
+
+    useEffect(() => {
+        setText(textSearch);
+    }, [textSearch]);
 
     const selectOneEl = <option key={0}>Select One</option>;
 
@@ -54,19 +59,32 @@ function Search(props) {
 
     if (_searchType === 'provider') {
         selectEl = (<Form.Control as="select"
-            className="mr-3 dropdown-custom" name="providerId"
-            value={_providerId} onChange={e => setProviderId(e.target.value)}>
+                                  className="mr-3 dropdown-custom" name="providerId"
+                                  value={_providerId} onChange={e => setProviderId(e.target.value)}>
             { providerEl }
         </Form.Control>);
     }
 
     if (_searchType === 'category') {
         selectEl = (<Form.Control as="select"
-            className="mr-3 dropdown-custom" name="category"
-            value={_category} onChange={e => setCategory(e.target.value)}>
+                                  className="mr-3 dropdown-custom" name="category"
+                                  value={_category} onChange={e => setCategory(e.target.value)}>
             { categoriesEl }
         </Form.Control>);
     }
+
+    if (_searchType === 'text') {
+        // selectEl = (<Form.Control as="select"
+        //                           className="mr-3 dropdown-custom" name="category"
+        //                           value={_category} onChange={e => setCategory(e.target.value)}>
+        //     { categoriesEl }
+        // </Form.Control>);
+
+        selectEl = (<Col md="3">
+            <Form.Control type="text" name="textSearch" placeholder="Search by offering title or dataset keywords..." defaultValue={_text} />
+        </Col>)
+    }
+
 
     const loading = <LoadingSpinner />;
 
@@ -84,16 +102,16 @@ function Search(props) {
         <div className="px-5 flex-grow-1 d-flex flex-column">
             <Form className="d-inline-flex mb-5" onSubmit={onSubmit}>
                 <Form.Control as="select" onChange={onChange}
-                    className="mr-3 bg-primary text-white dropdown-custom"
-                    name="searchType" value={_searchType}
+                              className="mr-3 bg-primary text-white dropdown-custom"
+                              name="searchType" value={_searchType}
                 >
                     <option value="provider">Provider</option>
                     <option value="category">Category</option>
+                    <option value="text">Free Text</option>
                 </Form.Control>
                 { selectEl }
                 <Button type="submit">Search</Button>
             </Form>
-
             { offeringsEl }
         </div>
     </Layout>);
@@ -109,8 +127,10 @@ function Search(props) {
         if (
             fd.get('providerId') === 'Select One'
             || fd.get('category') === 'Select One'
+            || fd.get('textSearch') === ''
         )
             return false;
+
 
         router.push(`/search?${fd2qs(fd)}`);
     }
@@ -118,7 +138,7 @@ function Search(props) {
 
 export default function SearchPage() {
     const router = useRouter();
-    const { searchType = 'provider', providerId, category, page, size } = router.query;
+    const { searchType = 'provider', providerId, category, textSearch, page, size } = router.query;
     const { data, error } = useData(`/api/search?${qs(router.query)}`);
 
     if (error)
@@ -126,10 +146,10 @@ export default function SearchPage() {
 
     if (!data)
         return <Search offerings={[]} providers={[]} categories={[]}
-            searchType={searchType} providerId={providerId} isLoading
-            category={category ? category.toLowerCase() : category} />;
+                       searchType={searchType} providerId={providerId} isLoading
+                       category={category ? category.toLowerCase() : category} />;
 
     return <Search {...data} searchType={searchType}
-        category={category ? category.toLowerCase() : category}
-        providerId={providerId} />;
+                   category={category ? category.toLowerCase() : category}
+                   providerId={providerId} textSearch={textSearch}/>;
 }

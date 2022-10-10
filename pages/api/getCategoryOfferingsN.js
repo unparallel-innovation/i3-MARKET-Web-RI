@@ -7,7 +7,8 @@ export default catchErrors(async (req, res) => {
     const user = session.user;
     let totalOfferings = '-';
     if (user) {
-        const offerings = await connector.getCategoryOfferings(user.access_token, user.id_token, category, 0, 50);
+        // const offerings = await connector.getCategoryOfferings(user.access_token, user.id_token, category, 0, 50);
+        const offerings = await connector.getFederatedCategoryActiveOfferings(user.access_token, user.id_token, category, 0, 50);
         totalOfferings = offerings.length;
     }
     return {

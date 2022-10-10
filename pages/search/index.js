@@ -141,8 +141,8 @@ export default function SearchPage() {
     const { searchType = 'provider', providerId, category, textSearch, page, size } = router.query;
     const { data, error } = useData(`/api/search?${qs(router.query)}`);
 
-    if (error)
-        return <Error error={error} />;
+    // if (error)
+    //    return <Error error={error} />;
 
     if (!data)
         return <Search offerings={[]} providers={[]} categories={[]}

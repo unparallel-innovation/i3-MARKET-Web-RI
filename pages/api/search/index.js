@@ -9,21 +9,21 @@ export default catchErrors(async (req, res) => {
 
     if (user) {
         if (searchType === 'provider' && providerId) {
-            offerings = await connector.getProviderOfferings(user.access_token, user.id_token, providerId, page, size);
-            // offerings = await connector.getFederatedProviderActiveOfferings(user.access_token, user.id_token, providerId); // TODO federated
+            // offerings = await connector.getProviderOfferings(user.access_token, user.id_token, providerId, page, size);
+            offerings = await connector.getFederatedProviderActiveOfferings(user.access_token, user.id_token, providerId);
         }
 
         if (searchType === 'category' && category) {
-            offerings = await connector.getCategoryOfferings(user.access_token, user.id_token, category, page, size);
-            // offerings = await connector.getFederatedCategoryActiveOfferings(user.access_token, user.id_token, category); // TODO federated
+            // offerings = await connector.getCategoryOfferings(user.access_token, user.id_token, category, page, size);
+            offerings = await connector.getFederatedCategoryActiveOfferings(user.access_token, user.id_token, category);
         }
 
         if (searchType === 'text' && textSearch){
             offerings = await connector.getOfferingsByText(user.access_token, user.id_token, textSearch);
+            // TODO pending federated method
         }
-
         categories = await connector.getCategories(user.access_token, user.id_token);
-        providers = await connector.getProviders(user.access_token, user.id_token, 0, 50);
+        providers = await connector.getProviders(user.access_token, user.id_token, page, size);
     }
 
     return {

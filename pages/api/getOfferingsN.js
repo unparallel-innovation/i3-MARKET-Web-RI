@@ -7,6 +7,7 @@ export default catchErrors(async (req, res) => {
     let totalOfferings = '-';
     if (user) {
         const offerings = await connector.getOfferings(user.access_token, user.id_token, 0, 50);
+        // TODO return federated active offerings
         totalOfferings = offerings.length;
     }
     return {

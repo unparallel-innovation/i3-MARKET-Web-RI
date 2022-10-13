@@ -51,7 +51,7 @@ export default function General(props) {
             <Col>
                 <Form.Group controlId="marketId">
                     <CustomLabel value="Market" tooltip="This is the market name Id, which is uniquely identified a marketplace" required />
-                    <Form.Control type="text" name="marketId" defaultValue={marketId ? marketId : market_name} />
+                    <Form.Control type="text" name="market" defaultValue={marketId ? marketId : market_name} />
                     <input type="hidden" defaultValue={marketId ? marketId : market_name} name="market" />
                 </Form.Group>
             </Col>

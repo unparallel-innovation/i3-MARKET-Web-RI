@@ -67,24 +67,17 @@ function Search(props) {
 
     if (_searchType === 'category') {
         selectEl = (<Form.Control as="select"
-                                  className="mr-3 dropdown-custom" name="category"
-                                  value={_category} onChange={e => setCategory(e.target.value)}>
+                        className="mr-3 dropdown-custom" name="category"
+                        value={_category} onChange={e => setCategory(e.target.value)}>
             { categoriesEl }
         </Form.Control>);
     }
 
     if (_searchType === 'text') {
-        // selectEl = (<Form.Control as="select"
-        //                           className="mr-3 dropdown-custom" name="category"
-        //                           value={_category} onChange={e => setCategory(e.target.value)}>
-        //     { categoriesEl }
-        // </Form.Control>);
-
         selectEl = (<Col md="3">
             <Form.Control type="text" name="textSearch" placeholder="Search by offering title or dataset keywords..." defaultValue={_text} />
         </Col>)
     }
-
 
     const loading = <LoadingSpinner />;
 
@@ -130,7 +123,6 @@ function Search(props) {
             || fd.get('textSearch') === ''
         )
             return false;
-
 
         router.push(`/search?${fd2qs(fd)}`);
     }

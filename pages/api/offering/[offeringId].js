@@ -18,6 +18,7 @@ export default catchErrors(async (req, res) => {
             case 'PATCH':
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
                 offering.status = 'Active';
+                offering.active = true;
                 return await connector.updateOffering(user.access_token, user.id_token, offering);
             default:
                 return null;

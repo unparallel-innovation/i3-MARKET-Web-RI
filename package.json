@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@i3m/non-repudiation-library": "^2.0.0",
-    "@i3m/wallet-protocol": "^1.1.7",
-    "@i3m/wallet-protocol-api": "^1.1.7",
-    "@i3m/wallet-protocol-utils": "^1.1.7",
+    "@i3m/wallet-protocol": "^2.3.1",
+    "@i3m/wallet-protocol-api": "^2.3.1",
+    "@i3m/wallet-protocol-utils": "^2.3.1",
     "@unparallel/connector-ri": "1.2.1-alpha.2",
     "bootstrap": "^4.6.1",
     "connect-mongo": "^4.6.0",

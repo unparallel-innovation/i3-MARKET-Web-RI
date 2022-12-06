@@ -24,11 +24,15 @@ export default function ContractTemplate(props) {
         const fd = new FormData(form);
         const res = formDataPurchaseRequest(fd);
 
+        // TODO generate public/private keys
+        // send public key to backend
+
         fetch(form.action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(res),
         }).then(res => {
+
             fetch('/api/notificationWebhook').then(n => {
                 router.back();
             });

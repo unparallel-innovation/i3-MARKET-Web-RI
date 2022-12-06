@@ -11,6 +11,24 @@ import Auth from './auth';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
+function getFromLS(defaultValue) {
+    let ret = defaultValue;
+
+    if (typeof window === 'undefined')
+        return ret;
+
+    try {
+        let val = JSON.parse(localStorage.getItem('homeLayouts'));
+        if (val)
+            ret = val;
+    } catch (e) {
+    }
+
+    // console.log('getFromLS', defaultValue, ret);
+
+    return ret;
+}
+
 const layoutA = {
     i: 'a', w: 5, h: 4, isResizable: false
 };
@@ -112,11 +130,28 @@ function Home() {
 }
 
 function HomeContent(props) {
-    const { categories = [], user = {} } = props;
+    const {
+        categories = [],
+        user = {}
+    } = props;
 
     const layouts = useMemo(() => {
         return getInitialLayouts(categories);
     }, [categories]);
+
+    // const [ _layouts, setLayouts ] = useState(getFromLS(layouts));
+
+    // useEffect(() => {
+    //   // setLayouts(layouts);
+    //   setLayouts(getFromLS(layouts));
+    // }, [categories]);
+
+    function onLayoutChange(layout, layouts) {
+        // setLayouts(layouts);
+        // console.log('onChange', layouts, categories);
+        // if (categories.length)
+        //   localStorage.setItem("homeLayouts", JSON.stringify(layouts));
+    }
 
     const categoryEl = categories.map((category, idx) => (
         <div key={'category' + idx}>
@@ -131,6 +166,7 @@ function HomeContent(props) {
                 cols={{ lg: 11, md: 10, sm: 6, xs: 4, xxs: 3 }}
                 layouts={layouts}
                 rowHeight={100}
+                onLayoutChange={onLayoutChange}
             >
                 <Card key="a" className="welcome-card d-flex align-items-center justify-content-center">
                     <Image src="/img/homepage_banner_logo.png" alt="WEB-RI logo"

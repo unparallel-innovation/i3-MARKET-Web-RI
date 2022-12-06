@@ -19,8 +19,8 @@ export default catchErrors(async (req, res) => {
         }
 
         if (searchType === 'text' && textSearch){
-            offerings = await connector.getOfferingsByText(user.access_token, user.id_token, textSearch);
-            // TODO pending federated method
+            // offerings = await connector.getOfferingsByText(user.access_token, user.id_token, textSearch);
+            offerings = await connector.getFederatedTextActiveOfferings(user.access_token, user.id_token, textSearch);
         }
         categories = await connector.getCategories(user.access_token, user.id_token);
         providers = await connector.getProviders(user.access_token, user.id_token, page, size);

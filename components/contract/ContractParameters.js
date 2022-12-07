@@ -5,20 +5,30 @@ import CustomLabel from '../common/CustomLabel';
 
 export default function ContractParameters(props) {
     const {
-        dataOfferingDescription, parties, purpose, duration,
-        obligations, intendedUse, licenseGrant, dataStream,
-        personalData, pricingModel, dataExchangeAgreement,
-        offering, user, disableInput
+        dataExchangeAgreement, dataOfferingDescription, duration, intendedUse,
+        licenseGrant, parties, personalData, pricingModel, purpose, signatures,
+        dataStream, offering, user, disableInput
     } = props;
 
-    const [dataAvailability, setDataAvailability] = useState(obligations.dataAvailability);
     const [process, setProcessData] = useState(intendedUse.processData);
     const [share, setShareData] = useState(intendedUse.shareDataWithThirdParty);
     const [edit, setEditData] = useState(intendedUse.editData);
-    const [cd, setCopyData] = useState(licenseGrant.copyData);
     const [tf, setTransferable] = useState(licenseGrant.transferable);
     const [excl, setExclusiveness] = useState(licenseGrant.exclusiveness);
+    const [paid, setPaidUp] = useState(licenseGrant.paidUp);
     const [rev, setRevocable] = useState(licenseGrant.revocable);
+    const [proc, setProcessing] = useState(licenseGrant.processing);
+    const [mod, setModifying] = useState(licenseGrant.modifying);
+    const [analyze, setAnalyzing] = useState(licenseGrant.analyzing);
+    const [storeData, setStoringData] = useState(licenseGrant.storingData);
+    const [storeCopy, setStoringCopy] = useState(licenseGrant.storingCopy);
+    const [reproduce, setReproducing] = useState(licenseGrant.reproducing);
+    const [dist, setDistributing] = useState(licenseGrant.distributing);
+    const [loan, setLoaning] = useState(licenseGrant.loaning);
+    const [sell, setSelling] = useState(licenseGrant.selling);
+    const [rent, setRenting] = useState(licenseGrant.renting);
+    const [furtherLicense, setFurtherLicensing] = useState(licenseGrant.furtherLicensing);
+    const [lease, setLeasing] = useState(licenseGrant.leasing);
     const [ds, setDataStream] = useState(dataStream);
 
     return (
@@ -156,38 +166,6 @@ export default function ContractParameters(props) {
                 </Col>
             </Row>
 
-            <h5 className="mt-4">Duties / Obligations</h5>
-
-            <hr className="mt-2 mb-4" />
-
-            <Row>
-                <Col>
-                    <Form.Group controlId="qualityOfData">
-                        <Form.Label>Quality Of Data</Form.Label>
-                        <Form.Control type="text" name="qualityOfData" defaultValue={obligations.qualityOfData} disabled={disableInput}/>
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="characteristics">
-                        <Form.Label>Characteristics</Form.Label>
-                        <Form.Control type="text" name="characteristics" defaultValue={obligations.characteristics} disabled={disableInput}/>
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="dataAvailability">
-                        <Form.Label>Data Availability</Form.Label>
-                        <Form.Group controlId={'dataAvailability'}>
-                            <Form.Control as="select" value={dataAvailability} name={'dataAvailability'}
-                                onChange={e => { setDataAvailability(e.target.value); }} disabled={disableInput}
-                            >
-                                <option value="false">False</option>
-                                <option value="true">True</option>
-                            </Form.Control>
-                        </Form.Group>
-                    </Form.Group>
-                </Col>
-            </Row>
-
             <h5 className="mt-4">Has Intended Use</h5>
             <hr className="mt-2 mb-4" />
 
@@ -233,10 +211,22 @@ export default function ContractParameters(props) {
 
             <Row>
                 <Col>
-                    <Form.Group controlId={'copyData'}>
-                        <Form.Label>Copy Data</Form.Label>
-                        <Form.Control as="select" value={cd} name={'copyData'}
-                            onChange={e => { setCopyData(e.target.value); }} disabled={disableInput}
+                    <Form.Group controlId={'paidUp'}>
+                        <CustomLabel value="Paid Up" tooltip="If licence grant to paidUp" />
+                        <Form.Control as="select" value={paid} name={'paidUp'}
+                                      onChange={e => { setPaidUp(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+
+                <Col>
+                    <Form.Group controlId={'transferable'}>
+                        <CustomLabel value="Transferable" tooltip="If license is transferable" />
+                        <Form.Control as="select" value={tf} name={'transferable'}
+                                      onChange={e => { setTransferable(e.target.value); }}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -244,10 +234,21 @@ export default function ContractParameters(props) {
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Form.Group controlId={'transferable'}>
-                        <Form.Label>Transferable</Form.Label>
-                        <Form.Control as="select" value={tf} name={'transferable'}
-                            onChange={e => { setTransferable(e.target.value); }} disabled={disableInput}
+                    <Form.Group controlId={'exclusiveness'}>
+                        <CustomLabel value="Exclusiveness" tooltip="If license grant exclusiveness" />
+                        <Form.Control as="select" value={excl} name={'exclusiveness'}
+                                      onChange={e => { setExclusiveness(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={'revocable'}>
+                        <CustomLabel value="Revocable" tooltip="If license is revocable" />
+                        <Form.Control as="select" value={rev} name={'revocable'}
+                                      onChange={e => { setRevocable(e.target.value); }}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -257,10 +258,10 @@ export default function ContractParameters(props) {
             </Row>
             <Row>
                 <Col>
-                    <Form.Group controlId={'exclusiveness'}>
-                        <Form.Label>Exclusiveness</Form.Label>
-                        <Form.Control as="select" value={excl} name={'exclusiveness'}
-                            onChange={e => { setExclusiveness(e.target.value); }} disabled={disableInput}
+                    <Form.Group controlId={'processing'}>
+                        <CustomLabel value="Processing" tooltip="If license grant data to be processed" />
+                        <Form.Control as="select" value={proc} name={'processing'}
+                                      onChange={e => { setProcessing(e.target.value); }}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -268,10 +269,125 @@ export default function ContractParameters(props) {
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Form.Group controlId={'revocable'}>
-                        <Form.Label>Revocable</Form.Label>
-                        <Form.Control as="select" value={rev} name={'revocable'}
-                            onChange={e => { setRevocable(e.target.value); }} disabled={disableInput}
+                    <Form.Group controlId={'modifying'}>
+                        <CustomLabel value="Modifying" tooltip="If license grant data to be modified" />
+                        <Form.Control as="select" value={mod} name={'modifying'}
+                                      onChange={e => { setModifying(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={'analyzing'}>
+                        <CustomLabel value="Analyzing" tooltip="If license grant data to be analyzed" />
+                        <Form.Control as="select" value={analyze} name={'analyzing'}
+                                      onChange={e => { setAnalyzing(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={'storingData'}>
+                        <CustomLabel value="Storing Data" tooltip="If license grant to store data" />
+                        <Form.Control as="select" value={storeData} name={'storingData'}
+                                      onChange={e => { setStoringData(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Form.Group controlId={'storingCopy'}>
+                        <CustomLabel value="Storing Copy" tooltip="If license grant to store a copy data" />
+                        <Form.Control as="select" value={storeCopy} name={'storingCopy'}
+                                      onChange={e => { setStoringCopy(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={'reproducing'}>
+                        <CustomLabel value="Reproducing" tooltip="If license grant to reproduce data" />
+                        <Form.Control as="select" value={reproduce} name={'reproducing'}
+                                      onChange={e => { setReproducing(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+
+                <Col>
+                    <Form.Group controlId={'distributing'}>
+                        <CustomLabel value="Distributing" tooltip="If license grant to distribute data" />
+                        <Form.Control as="select" value={dist} name={'distributing'}
+                                      onChange={e => { setDistributing(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={'loaning'}>
+                        <CustomLabel value="Loaning" tooltip="If license grant to loan data" />
+                        <Form.Control as="select" value={loan} name={'loaning'}
+                                      onChange={e => { setLoaning(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Form.Group controlId={'selling'}>
+                        <CustomLabel value="Selling" tooltip="If license grant to sell data" />
+                        <Form.Control as="select" value={sell} name={'selling'}
+                                      onChange={e => { setSelling(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={'renting'}>
+                        <CustomLabel value="Renting" tooltip="If license grant to rent data" />
+                        <Form.Control as="select" value={rent} name={'renting'}
+                                      onChange={e => { setRenting(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={'furtherLicensing'}>
+                        <CustomLabel value="Further Licensing" tooltip="If license grant for further Licensing" />
+                        <Form.Control as="select" value={furtherLicense} name={'furtherLicensing'}
+                                      onChange={e => { setFurtherLicensing(e.target.value); }}
+                        >
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group controlId={'leasing'}>
+                        <CustomLabel value="Leasing" tooltip="If license grant to lease data" />
+                        <Form.Control as="select" value={lease} name={'leasing'}
+                                      onChange={e => { setLeasing(e.target.value); }}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -320,20 +436,20 @@ export default function ContractParameters(props) {
                 </Col>
             </Row>
 
-            <Row>
-                <Col>
-                    <Form.Group controlId="ledgerContractAddress">
-                        <Form.Label>Ledger Contract Address</Form.Label>
-                        <Form.Control type="text" name="ledgerContractAddress" defaultValue={dataExchangeAgreement.ledgerContractAddress} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="ledgerSignerAddress">
-                        <Form.Label>Ledger Signer Address</Form.Label>
-                        <Form.Control type="text" name="ledgerSignerAddress" defaultValue={dataExchangeAgreement.ledgerSignerAddress} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-            </Row>
+            {/*<Row>*/}
+            {/*    <Col>*/}
+            {/*        <Form.Group controlId="ledgerContractAddress">*/}
+            {/*            <Form.Label>Ledger Contract Address</Form.Label>*/}
+            {/*            <Form.Control type="text" name="ledgerContractAddress" defaultValue={dataExchangeAgreement.ledgerContractAddress} disabled={disableInput} />*/}
+            {/*        </Form.Group>*/}
+            {/*    </Col>*/}
+            {/*    <Col>*/}
+            {/*        <Form.Group controlId="ledgerSignerAddress">*/}
+            {/*            <Form.Label>Ledger Signer Address</Form.Label>*/}
+            {/*            <Form.Control type="text" name="ledgerSignerAddress" defaultValue={dataExchangeAgreement.ledgerSignerAddress} disabled={disableInput} />*/}
+            {/*        </Form.Group>*/}
+            {/*    </Col>*/}
+            {/*</Row>*/}
 
             <Row>
                 <Col>
@@ -356,6 +472,27 @@ export default function ContractParameters(props) {
                 </Col>
             </Row>
 
+            <h5 className="mt-4">Signatures</h5>
+            <hr className="mt-2 mb-4" />
+
+            <Row>
+                <Col>
+                    <Form.Group controlId="providerSignature">
+                        <Form.Label>Provider</Form.Label>
+                        <Form.Control type="text" name="providerSignature" defaultValue={signatures.providerSignature} />
+                    </Form.Group>
+                </Col>
+
+                <Col>
+                    <Form.Group controlId="consumerSignature">
+                        <Form.Label>Consumer</Form.Label>
+                        <Form.Control type="text" name="consumerSignature" defaultValue={signatures.consumerSignature} />
+                    </Form.Group>
+                </Col>
+            </Row>
+
+            <input type="hidden" name="ledgerContractAddress" defaultValue={dataExchangeAgreement.ledgerContractAddress} />
+            <input type="hidden" name="ledgerSignerAddress" defaultValue={dataExchangeAgreement.ledgerSignerAddress} />
             <input type="hidden" name="orig" defaultValue={dataExchangeAgreement.orig} />
             <input type="hidden" name="dest" defaultValue={dataExchangeAgreement.dest} />
         </>

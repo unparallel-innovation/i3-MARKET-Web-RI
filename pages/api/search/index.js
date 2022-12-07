@@ -18,7 +18,7 @@ export default catchErrors(async (req, res) => {
             offerings = await connector.getFederatedCategoryActiveOfferings(user.access_token, user.id_token, category);
         }
 
-        if (searchType === 'text' && textSearch){
+        if (searchType === 'text' && textSearch) {
             // offerings = await connector.getOfferingsByText(user.access_token, user.id_token, textSearch);
             offerings = await connector.getFederatedTextActiveOfferings(user.access_token, user.id_token, textSearch);
         }

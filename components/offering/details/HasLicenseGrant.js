@@ -2,7 +2,7 @@ import { Accordion, Card, Row } from 'react-bootstrap';
 import CustomToggle from '../../common/CustomToggle';
 import KVCol from '../../common/KVCol';
 
-export default  function HasLicenseGrant(props) {
+export default function HasLicenseGrant(props) {
     const {
         transferable, exclusiveness, paidUp, revocable, processing,
         modifying, analyzing, storingData, storingCopy, reproducing,

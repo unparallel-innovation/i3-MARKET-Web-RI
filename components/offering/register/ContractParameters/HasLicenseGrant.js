@@ -41,7 +41,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'paidUp'}>
                                     <CustomLabel value="Paid Up" tooltip="If licence grant to paidUp" />
                                     <Form.Control as="select" value={paid} name={eventKey + 'paidUp'}
-                                                  onChange={e => { setPaidUp(e.target.value); }}
+                                        onChange={e => { setPaidUp(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -53,7 +53,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'transferable'}>
                                     <CustomLabel value="Transferable" tooltip="If license is transferable" />
                                     <Form.Control as="select" value={tf} name={eventKey + 'transferable'}
-                                                  onChange={e => { setTransferable(e.target.value); }}
+                                        onChange={e => { setTransferable(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -64,7 +64,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'exclusiveness'}>
                                     <CustomLabel value="Exclusiveness" tooltip="If license grant exclusiveness" />
                                     <Form.Control as="select" value={excl} name={eventKey + 'exclusiveness'}
-                                                  onChange={e => { setExclusiveness(e.target.value); }}
+                                        onChange={e => { setExclusiveness(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -75,7 +75,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'revocable'}>
                                     <CustomLabel value="Revocable" tooltip="If license is revocable" />
                                     <Form.Control as="select" value={rev} name={eventKey + 'revocable'}
-                                                  onChange={e => { setRevocable(e.target.value); }}
+                                        onChange={e => { setRevocable(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -88,7 +88,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'processing'}>
                                     <CustomLabel value="Processing" tooltip="If license grant data to be processed" />
                                     <Form.Control as="select" value={proc} name={eventKey + 'processing'}
-                                                  onChange={e => { setProcessing(e.target.value); }}
+                                        onChange={e => { setProcessing(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -99,7 +99,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'modifying'}>
                                     <CustomLabel value="Modifying" tooltip="If license grant data to be modified" />
                                     <Form.Control as="select" value={mod} name={eventKey + 'modifying'}
-                                                  onChange={e => { setModifying(e.target.value); }}
+                                        onChange={e => { setModifying(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -110,7 +110,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'analyzing'}>
                                     <CustomLabel value="Analyzing" tooltip="If license grant data to be analyzed" />
                                     <Form.Control as="select" value={analyze} name={eventKey + 'analyzing'}
-                                                  onChange={e => { setAnalyzing(e.target.value); }}
+                                        onChange={e => { setAnalyzing(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -121,7 +121,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'storingData'}>
                                     <CustomLabel value="Storing Data" tooltip="If license grant to store data" />
                                     <Form.Control as="select" value={storeData} name={eventKey + 'storingData'}
-                                                  onChange={e => { setStoringData(e.target.value); }}
+                                        onChange={e => { setStoringData(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -134,7 +134,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'storingCopy'}>
                                     <CustomLabel value="Storing Copy" tooltip="If license grant to store a copy data" />
                                     <Form.Control as="select" value={storeCopy} name={eventKey + 'storingCopy'}
-                                                  onChange={e => { setStoringCopy(e.target.value); }}
+                                        onChange={e => { setStoringCopy(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -145,7 +145,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'reproducing'}>
                                     <CustomLabel value="Reproducing" tooltip="If license grant to reproduce data" />
                                     <Form.Control as="select" value={reproduce} name={eventKey + 'reproducing'}
-                                                  onChange={e => { setReproducing(e.target.value); }}
+                                        onChange={e => { setReproducing(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -157,7 +157,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'distributing'}>
                                     <CustomLabel value="Distributing" tooltip="If license grant to distribute data" />
                                     <Form.Control as="select" value={dist} name={eventKey + 'distributing'}
-                                                  onChange={e => { setDistributing(e.target.value); }}
+                                        onChange={e => { setDistributing(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -168,7 +168,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'loaning'}>
                                     <CustomLabel value="Loaning" tooltip="If license grant to loan data" />
                                     <Form.Control as="select" value={loan} name={eventKey + 'loaning'}
-                                                  onChange={e => { setLoaning(e.target.value); }}
+                                        onChange={e => { setLoaning(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -181,7 +181,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'selling'}>
                                     <CustomLabel value="Selling" tooltip="If license grant to sell data" />
                                     <Form.Control as="select" value={sell} name={eventKey + 'selling'}
-                                                  onChange={e => { setSelling(e.target.value); }}
+                                        onChange={e => { setSelling(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -192,7 +192,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'renting'}>
                                     <CustomLabel value="Renting" tooltip="If license grant to rent data" />
                                     <Form.Control as="select" value={rent} name={eventKey + 'renting'}
-                                                  onChange={e => { setRenting(e.target.value); }}
+                                        onChange={e => { setRenting(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -203,7 +203,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'furtherLicensing'}>
                                     <CustomLabel value="Further Licensing" tooltip="If license grant for further Licensing" />
                                     <Form.Control as="select" value={furtherLicense} name={eventKey + 'furtherLicensing'}
-                                                  onChange={e => { setFurtherLicensing(e.target.value); }}
+                                        onChange={e => { setFurtherLicensing(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>
@@ -214,7 +214,7 @@ export default function HasLicenseGrant(props) {
                                 <Form.Group controlId={eventKey + 'leasing'}>
                                     <CustomLabel value="Leasing" tooltip="If license grant to lease data" />
                                     <Form.Control as="select" value={lease} name={eventKey + 'leasing'}
-                                                  onChange={e => { setLeasing(e.target.value); }}
+                                        onChange={e => { setLeasing(e.target.value); }}
                                     >
                                         <option value="false">False</option>
                                         <option value="true">True</option>

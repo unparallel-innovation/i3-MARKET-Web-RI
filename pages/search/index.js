@@ -59,16 +59,16 @@ function Search(props) {
 
     if (_searchType === 'provider') {
         selectEl = (<Form.Control as="select"
-                                  className="mr-3 dropdown-custom" name="providerId"
-                                  value={_providerId} onChange={e => setProviderId(e.target.value)}>
+            className="mr-3 dropdown-custom" name="providerId"
+            value={_providerId} onChange={e => setProviderId(e.target.value)}>
             { providerEl }
         </Form.Control>);
     }
 
     if (_searchType === 'category') {
         selectEl = (<Form.Control as="select"
-                        className="mr-3 dropdown-custom" name="category"
-                        value={_category} onChange={e => setCategory(e.target.value)}>
+            className="mr-3 dropdown-custom" name="category"
+            value={_category} onChange={e => setCategory(e.target.value)}>
             { categoriesEl }
         </Form.Control>);
     }
@@ -76,7 +76,7 @@ function Search(props) {
     if (_searchType === 'text') {
         selectEl = (<Col md="3">
             <Form.Control type="text" name="textSearch" placeholder="Search by offering title or dataset keywords..." defaultValue={_text} />
-        </Col>)
+        </Col>);
     }
 
     const loading = <LoadingSpinner />;
@@ -95,8 +95,8 @@ function Search(props) {
         <div className="px-5 flex-grow-1 d-flex flex-column">
             <Form className="d-inline-flex mb-5" onSubmit={onSubmit}>
                 <Form.Control as="select" onChange={onChange}
-                              className="mr-3 bg-primary text-white dropdown-custom"
-                              name="searchType" value={_searchType}
+                    className="mr-3 bg-primary text-white dropdown-custom"
+                    name="searchType" value={_searchType}
                 >
                     <option value="provider">Provider</option>
                     <option value="category">Category</option>
@@ -138,10 +138,10 @@ export default function SearchPage() {
 
     if (!data)
         return <Search offerings={[]} providers={[]} categories={[]}
-                       searchType={searchType} providerId={providerId} isLoading
-                       category={category ? category.toLowerCase() : category} />;
+            searchType={searchType} providerId={providerId} isLoading
+            category={category ? category.toLowerCase() : category} />;
 
     return <Search {...data} searchType={searchType}
-                   category={category ? category.toLowerCase() : category}
-                   providerId={providerId} textSearch={textSearch}/>;
+        category={category ? category.toLowerCase() : category}
+        providerId={providerId} textSearch={textSearch}/>;
 }

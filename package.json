@@ -1,6 +1,6 @@
 {
   "name": "i3market-web-ri",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@i3m/non-repudiation-library": "^2.0.0",
-    "@i3m/wallet-protocol": "^2.3.1",
-    "@i3m/wallet-protocol-api": "^2.3.1",
-    "@i3m/wallet-protocol-utils": "^2.3.1",
+    "@i3m/wallet-protocol": "1.1.7",
+    "@i3m/wallet-protocol-api": "1.1.7",
+    "@i3m/wallet-protocol-utils": "1.1.7",
     "@unparallel/connector-ri": "1.2.2-alpha.1",
     "bootstrap": "^4.6.1",
     "connect-mongo": "^4.6.0",

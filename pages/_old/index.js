@@ -3,11 +3,11 @@ import Layout from '/components/layout/Layout.js';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Card, Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
-import OfferingsNumberCard from '../components/home/OfferingsNumberCard';
-import ProvidersNumberCard from '../components/home/ProvidersNumberCard';
-import CategoryCard from '../components/home/CategoryCard';
-import { useData } from '../lib/hooks';
-import Auth from './auth';
+import { useData } from '../../lib/hooks';
+import Auth from '../auth';
+import CategoryCard from '../../components/home/CategoryCard';
+import ProvidersNumberCard from '../../components/home/ProvidersNumberCard';
+import OfferingsNumberCard from '../../components/home/OfferingsNumberCard';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 

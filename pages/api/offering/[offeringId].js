@@ -19,6 +19,7 @@ export default catchErrors(async (req, res) => {
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
                 offering.status = 'Active';
                 offering.active = true;
+                delete offering.createdAt;
                 return await connector.updateOffering(user.access_token, user.id_token, offering);
             default:
                 return null;

@@ -8,8 +8,9 @@ export default catchErrors(async (req, res) => {
     let totalOfferings = '-';
     if (user) {
         // const offerings = await connector.getCategoryOfferings(user.access_token, user.id_token, category, 0, 50);
-        const offerings = await connector.getFederatedCategoryActiveOfferings(user.access_token, user.id_token, category, 0, 50);
+        const offerings = await connector.getFederatedCategoryActiveOfferings(user.access_token, user.id_token, category);
         totalOfferings = offerings.length;
+        console.log(`Category: ${category}, offerings: ${offerings.map(a => a.dataOfferingId)}`);
     }
     return {
         offeringsN: totalOfferings

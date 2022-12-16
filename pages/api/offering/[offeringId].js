@@ -13,8 +13,6 @@ export default catchErrors(async (req, res) => {
                     offering: await connector.getOffering(user.access_token, user.id_token, offeringId),
                     user
                 };
-            case 'DELETE':
-                return await connector.deleteOffering(user.access_token, user.id_token, offeringId);
             case 'PATCH':
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
                 offering.status = 'Active';

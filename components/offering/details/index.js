@@ -55,7 +55,7 @@ function Offering(props) {
     }
 
     function onDelete(e) {
-        fetch(`/api/offering/${offeringId}`, {
+        fetch(`/api/offering/delete/${offeringId}`, {
             method: 'DELETE',
         }).then(res => {
             router.back();
@@ -82,14 +82,14 @@ function Offering(props) {
                         { user.provider ? (
                             <div className="ml-4 d-flex">
                                 |
-                                <div className="ml-4">
+                                <div className="ml-4" title={'Activate Offering'}>
                                     <Eye color={colors.primary} size={24} onClick={() => setShowActivate(true)} cursor="pointer"
-                                        pointerEvents={(status !== 'Active') ? 'auto' : 'none'} />
+                                        pointerEvents={(status !== 'Active') ? 'auto' : 'none'}/>
                                 </div>
-                                <div className="ml-3">
+                                <div className="ml-3" title={'Edit Offering'}>
                                     <Pencil color={colors.primary} size={20} onClick={onUpdate} cursor="pointer" />
                                 </div>
-                                <div className="ml-3">
+                                <div className="ml-3" title={'Delete Offering'}>
                                     <Trash color={colors.primary} size={20} onClick={() => setShowDelete(true)} cursor="pointer"
                                         pointerEvents={(status !== 'ToBeDeleted' || status !== 'Deleted') ? 'auto' : 'none'} />
                                 </div>

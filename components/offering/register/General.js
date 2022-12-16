@@ -14,6 +14,7 @@ export default function General(props) {
 
     const [personal, setPersonal] = useState(personalData);
     const [shared, setShared] = useState(inSharedNetwork);
+    const [act, setActive] = useState(active);
 
     const categoryEl = categories.map(({ name }) => (
         <option key={name} value={name}>{ name }</option>
@@ -81,14 +82,14 @@ export default function General(props) {
         <Row>
             <Col>
                 <Form.Group controlId="ownerConsentForm"><
-                    CustomLabel value="Owner Consent Form" tooltip="Hashtag string to report the information about the explicit user consent form documentations" required />
-                <Form.Control type="text" name="ownerConsentForm" defaultValue={ownerConsentForm} required />
+                    CustomLabel value="Owner Consent Form" tooltip="Hashtag string to report the information about the explicit user consent form documentations" />
+                <Form.Control type="text" name="ownerConsentForm" defaultValue={ownerConsentForm} />
                 </Form.Group>
             </Col>
             <Col>
                 <Form.Group controlId="personalData">
-                    <CustomLabel value="Personal Data" tooltip="To define if the data offering offer dataset that contain personal data" required />
-                    <Form.Control as="select" value={personal} name={'personalData'} onChange={e => { setPersonal(e.target.value); }} required >
+                    <CustomLabel value="Personal Data" tooltip="To define if the data offering offer dataset that contain personal data" />
+                    <Form.Control as="select" value={personal} name={'personalData'} onChange={e => { setPersonal(e.target.value); }} >
                         <option value="false">False</option>
                         <option value="true">True</option>
                     </Form.Control>
@@ -96,8 +97,8 @@ export default function General(props) {
             </Col>
             <Col>
                 <Form.Group controlId="inSharedNetwork">
-                    <CustomLabel value="In Shared Network" tooltip="To define if the DataOffering is shared by Marketplace to be visible and consumable by all actors in the i3-Market Network" required />
-                    <Form.Control as="select" value={shared} name={'inSharedNetwork'} onChange={e => { setShared(e.target.value); }} required >
+                    <CustomLabel value="In Shared Network" tooltip="To define if the DataOffering is shared by Marketplace to be visible and consumable by all actors in the i3-Market Network" />
+                    <Form.Control as="select" value={shared} name={'inSharedNetwork'} onChange={e => { setShared(e.target.value); }} >
                         <option value="false">False</option>
                         <option value="true">True</option>
                     </Form.Control>
@@ -119,6 +120,15 @@ export default function General(props) {
                     <CustomLabel value="Expiration Time" tooltip="Expiration Time of dataOffering in case" required />
                     <Form.Control type="date" name="expirationTime"
                         defaultValue={moment(dataOfferingExpirationTime).format('yyyy-MM-DD')} required />
+                </Form.Group>
+            </Col>
+            <Col>
+                <Form.Group controlId="active">
+                    <CustomLabel value="Active" tooltip="Boolean to define if the DataOffering is ready to be visible" />
+                    <Form.Control as="select" value={act} name={'active'} onChange={e => { setActive(e.target.value); }} >
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </Form.Control>
                 </Form.Group>
             </Col>
         </Row>

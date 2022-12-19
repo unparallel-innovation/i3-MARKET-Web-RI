@@ -7,7 +7,7 @@ export default catchErrors(async (req, res) => {
     const user = session.user;
 
     if (user) {
-        await connector.updateOffering(user.access_token, user.id_token, data);
+        return await connector.updateOffering(user.access_token, user.id_token, data);
     }
     return null;
 });

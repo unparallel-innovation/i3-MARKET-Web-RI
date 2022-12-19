@@ -9,6 +9,7 @@ export default catchErrors(async (req, res) => {
     if (user) {
         const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
         offering.status = 'ToBeDeleted';
+        offering.active = false;
         delete offering.createdAt;
         return await connector.updateOffering(user.access_token, user.id_token, JSON.stringify(offering));
     }

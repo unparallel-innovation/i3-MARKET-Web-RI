@@ -31,7 +31,7 @@ function Register(props) {
         const res = formRegister(fd, toUpdate);
 
         fetch(form.action, {
-            method: 'POST',
+            method: toUpdate ? 'PATCH' : 'POST',
             body: JSON.stringify(res),
         }).then(() => {
             router.push('/offerings');
@@ -45,7 +45,7 @@ function Register(props) {
     return (
         <Layout className="d-flex flex-column">
             <Form className="px-5 pb-3 d-flex flex-column flex-grow-1"
-                onSubmit={onSubmit} action={toUpdate ? '/api/offerings/update' : '/api/offerings/register'}>
+                onSubmit={onSubmit} action={toUpdate ? '/api/offering/update' : '/api/offerings/register'}>
                 <div className="d-flex">
                     <h3 className="flex-grow-1 mb-0">{toUpdate ? 'Update Offering' : 'Register New Offering'}</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>

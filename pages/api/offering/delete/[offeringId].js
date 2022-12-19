@@ -10,8 +10,7 @@ export default catchErrors(async (req, res) => {
         const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
         offering.status = 'ToBeDeleted';
         delete offering.createdAt;
-        return await connector.updateOffering(user.access_token, user.id_token, offering);
+        return await connector.updateOffering(user.access_token, user.id_token, JSON.stringify(offering));
     }
     return null;
 });
-

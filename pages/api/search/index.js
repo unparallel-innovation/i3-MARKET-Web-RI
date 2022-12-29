@@ -10,17 +10,17 @@ export default catchErrors(async (req, res) => {
     if (user) {
         if (searchType === 'provider' && providerId) {
             // offerings = await connector.getProviderOfferings(user.access_token, user.id_token, providerId, page, size);
-            offerings = await connector.getFederatedProviderActiveOfferings(user.access_token, user.id_token, providerId);
+            offerings = await connector.getFederatedProviderActiveOfferings(user.access_token, user.id_token, providerId, page, size);
         }
 
         if (searchType === 'category' && category) {
             // offerings = await connector.getCategoryOfferings(user.access_token, user.id_token, category, page, size);
-            offerings = await connector.getFederatedCategoryActiveOfferings(user.access_token, user.id_token, category);
+            offerings = await connector.getFederatedCategoryActiveOfferings(user.access_token, user.id_token, category, page, size);
         }
 
         if (searchType === 'text' && textSearch) {
             // offerings = await connector.getOfferingsByText(user.access_token, user.id_token, textSearch);
-            offerings = await connector.getFederatedTextActiveOfferings(user.access_token, user.id_token, textSearch);
+            offerings = await connector.getFederatedTextActiveOfferings(user.access_token, user.id_token, textSearch, page, size);
         }
         categories = await connector.getCategories(user.access_token, user.id_token);
         providers = await connector.getProviders(user.access_token, user.id_token, page, size);

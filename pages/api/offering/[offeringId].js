@@ -11,6 +11,7 @@ export default catchErrors(async (req, res) => {
             case 'GET':
                 return {
                     offering: await connector.getOffering(user.access_token, user.id_token, offeringId),
+                    // offering: await connector.getFederatedOffering(user.access_token, user.id_token, offeringId), TODO replace when endpoint is fixed
                     user
                 };
             case 'PATCH':

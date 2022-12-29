@@ -67,20 +67,20 @@ function Layout(props) {
                                         <Nav.Link>Offerings</Nav.Link>
                                     </Link>
                                 ) : null }
-                                { user.consumer ? (
-                                    <Link href="/contracts" passHref>
-                                        <Nav.Link>Contracts</Nav.Link>
-                                    </Link>
-                                ) : null }
-                                <Link href="/transactions" passHref>
-                                    <Nav.Link>Transactions</Nav.Link>
-                                </Link>
+                                {/*{ user.consumer ? (*/}
+                                {/*    <Link href="/contracts" passHref>*/}
+                                {/*        <Nav.Link>Contracts</Nav.Link>*/}
+                                {/*    </Link>*/}
+                                {/*) : null }*/}
+                                {/*<Link href="/transactions" passHref>*/}
+                                {/*    <Nav.Link>Transactions</Nav.Link>*/}
+                                {/*</Link>*/}
                                 <Link href="/search" passHref>
                                     <Nav.Link>Search</Nav.Link>
                                 </Link>
-                                <Link href="/alerts" passHref>
-                                    <Nav.Link>Alerts</Nav.Link>
-                                </Link>
+                                {/*<Link href="/alerts" passHref>*/}
+                                {/*    <Nav.Link>Alerts</Nav.Link>*/}
+                                {/*</Link>*/}
                                 <Link href="/" passHref>
                                     <NavDropdown id="basic-nav-dropdown" title={<PersonCircle size={24}/>} alignRight>
                                         <NavDropdown.Item disabled>

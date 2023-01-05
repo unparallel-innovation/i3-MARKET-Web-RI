@@ -6,9 +6,6 @@
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -24,7 +21,6 @@
 	// "forwardPorts": [3000, 27017],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
 	"postCreateCommand": "npm install next@12.3.4",
 
 	"containerEnv": {
@@ -34,7 +30,4 @@
 		"VC_URL": "https://identity1.i3-market.eu/release2/vc",
 		"MARKET_NAME": "WEB-RI"
 	}	
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
 }

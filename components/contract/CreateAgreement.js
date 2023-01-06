@@ -5,10 +5,12 @@ import Error from '../layout/Error';
 import { walletApi } from '../../lib/walletApi';
 import { useState } from 'react';
 import ContractParameters from './ContractParameters';
+import * as nonRepudiationLibrary from '@i3m/non-repudiation-library';
 
 export default function CreateAgreement(props) {
     const router = useRouter();
     const { id, data, offering, user } = props;
+    const template = data.template;
     const [showReject, setShowReject] = useState(false);
     const [rejectNotes, setRejectNotes] = useState('');
 
@@ -29,8 +31,8 @@ export default function CreateAgreement(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 notificationId: id,
-                offeringId: data.template.dataOfferingDescription.dataOfferingId,
-                consumerDid: data.template.parties.consumerDid,
+                offeringId: template.dataOfferingDescription.dataOfferingId,
+                consumerDid: template.parties.consumerDid,
                 notes: rejectNotes
             })
         }).then(() => {
@@ -41,43 +43,59 @@ export default function CreateAgreement(props) {
 
     async function onSubmit(e) {
         e.preventDefault();
-        const api = await walletApi();
-        const info = await api.identities.info({ did: user.DID });
-        const ethereumAddress = info.addresses[0];
 
-        fetch('/api/offerings/createAgreement', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                template: data.template,
-                senderAddress: ethereumAddress
-            })
-        }).then(res => {
-            res.json().then(async rawTransaction => {
-                const body = {
-                    type: 'Transaction',
-                    data: rawTransaction
-                };
-                const signRes = await api.identities.sign({ did: user.DID }, body);
+        // generate provider keys
+        const signingAlg = template.dataExchangeAgreement.signingAlg;
+        const providerKeys = await nonRepudiationLibrary.generateKeys(signingAlg);
 
-                fetch('/api/offerings/deployTransaction', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(signRes),
-                }).then(res => {
-                    res.json().then(deployRes => {
-                        console.log('transaction deployed', deployRes);
+        // add provider public key to template
+        // const contractTemplate = {
+        //     ...template,
+        //     dataExchangeAgreement: {
+        //         ...template.dataExchangeAgreement,
+        //         orig: `${JSON.stringify(providerPublicKey)}`
+        //     }
+        // };
 
-                        fetch('/api/notifications', {
-                            method: 'DELETE',
-                            body: JSON.stringify({ notificationId: id })
-                        }).then(() => {
-                            router.back();
-                        });
-                    });
-                });
-            });
-        });
+
+
+        // const api = await walletApi();
+        // const info = await api.identities.info({ did: user.DID });
+        // const ethereumAddress = info.addresses[0];
+        //
+        // fetch('/api/offerings/createAgreement', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({
+        //         template: data.template,
+        //         senderAddress: ethereumAddress
+        //     })
+        // }).then(res => {
+        //     res.json().then(async rawTransaction => {
+        //         const body = {
+        //             type: 'Transaction',
+        //             data: rawTransaction
+        //         };
+        //         const signRes = await api.identities.sign({ did: user.DID }, body);
+        //
+        //         fetch('/api/offerings/deployTransaction', {
+        //             method: 'POST',
+        //             headers: { 'Content-Type': 'application/json' },
+        //             body: JSON.stringify(signRes),
+        //         }).then(res => {
+        //             res.json().then(deployRes => {
+        //                 console.log('transaction deployed', deployRes);
+        //
+        //                 fetch('/api/notifications', {
+        //                     method: 'DELETE',
+        //                     body: JSON.stringify({ notificationId: id })
+        //                 }).then(() => {
+        //                     router.back();
+        //                 });
+        //             });
+        //         });
+        //     });
+        // });
     }
 
     return (

@@ -4,7 +4,6 @@ import colors from '../../lib/colors';
 import { CheckCircle, Trash, XCircle } from 'react-bootstrap-icons';
 import { useState } from 'react';
 import { ISOtoDate } from '../../lib/utils';
-import { walletApi } from '../../lib/walletApi';
 
 export default function NotificationCard(props) {
     const router = useRouter();
@@ -55,40 +54,40 @@ export default function NotificationCard(props) {
     }
 
     async function onSign() {
-        const api = await walletApi();
-        const info = await api.identities.info({ did: receptor });
-        const ethereumAddress = info.addresses[0];
-
-        fetch('/api/offerings/signAgreement', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                'agreement_id': agreement,
-                'consumer_id': receptor,
-                'consumer_ethereum_address': ethereumAddress
-            })
-        }).then(res => {
-            res.json().then(async rawTransaction => {
-                const body = {
-                    type: 'Transaction',
-                    data: rawTransaction
-                };
-                const signRes = await api.identities.sign({ did: receptor }, body);
-
-                fetch('/api/offerings/deployTransaction', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(signRes),
-                }).then(res => {
-                    res.json().then(deployRes => {
-                        console.log('transaction deployed', deployRes);
-                        setAgreement('');
-                        setShowSign(false);
-                        onDelete();
-                    });
-                });
-            });
-        });
+        // const api = await walletApi();
+        // const info = await api.identities.info({ did: receptor });
+        // const ethereumAddress = info.addresses[0];
+        //
+        // fetch('/api/offerings/signAgreement', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({
+        //         'agreement_id': agreement,
+        //         'consumer_id': receptor,
+        //         'consumer_ethereum_address': ethereumAddress
+        //     })
+        // }).then(res => {
+        //     res.json().then(async rawTransaction => {
+        //         const body = {
+        //             type: 'Transaction',
+        //             data: rawTransaction
+        //         };
+        //         const signRes = await api.identities.sign({ did: receptor }, body);
+        //
+        //         fetch('/api/offerings/deployTransaction', {
+        //             method: 'POST',
+        //             headers: { 'Content-Type': 'application/json' },
+        //             body: JSON.stringify(signRes),
+        //         }).then(res => {
+        //             res.json().then(deployRes => {
+        //                 console.log('transaction deployed', deployRes);
+        //                 setAgreement('');
+        //                 setShowSign(false);
+        //                 onDelete();
+        //             });
+        //         });
+        //     });
+        // });
     }
 
     // TODO: set background color based on 'action'

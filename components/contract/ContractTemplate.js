@@ -29,7 +29,7 @@ export default function ContractTemplate(props) {
         const signingAlg = res.dataExchangeAgreement.signingAlg;
         const consumerKeys = await nonRepudiationLibrary.generateKeys(signingAlg);
 
-        // update contract template object
+        // add consumer public key to template
         const template = {
             ...res,
             dataExchangeAgreement: {

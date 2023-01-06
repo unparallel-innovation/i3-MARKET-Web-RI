@@ -214,7 +214,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'paidUp'}>
                         <CustomLabel value="Paid Up" tooltip="If licence grant to paidUp" />
                         <Form.Control as="select" value={paid} name={'paidUp'}
-                            onChange={e => { setPaidUp(e.target.value); }}
+                            onChange={e => { setPaidUp(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -226,7 +226,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'transferable'}>
                         <CustomLabel value="Transferable" tooltip="If license is transferable" />
                         <Form.Control as="select" value={tf} name={'transferable'}
-                            onChange={e => { setTransferable(e.target.value); }}
+                            onChange={e => { setTransferable(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -237,7 +237,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'exclusiveness'}>
                         <CustomLabel value="Exclusiveness" tooltip="If license grant exclusiveness" />
                         <Form.Control as="select" value={excl} name={'exclusiveness'}
-                            onChange={e => { setExclusiveness(e.target.value); }}
+                            onChange={e => { setExclusiveness(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -248,7 +248,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'revocable'}>
                         <CustomLabel value="Revocable" tooltip="If license is revocable" />
                         <Form.Control as="select" value={rev} name={'revocable'}
-                            onChange={e => { setRevocable(e.target.value); }}
+                            onChange={e => { setRevocable(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -261,7 +261,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'processing'}>
                         <CustomLabel value="Processing" tooltip="If license grant data to be processed" />
                         <Form.Control as="select" value={proc} name={'processing'}
-                            onChange={e => { setProcessing(e.target.value); }}
+                            onChange={e => { setProcessing(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -272,7 +272,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'modifying'}>
                         <CustomLabel value="Modifying" tooltip="If license grant data to be modified" />
                         <Form.Control as="select" value={mod} name={'modifying'}
-                            onChange={e => { setModifying(e.target.value); }}
+                            onChange={e => { setModifying(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -283,7 +283,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'analyzing'}>
                         <CustomLabel value="Analyzing" tooltip="If license grant data to be analyzed" />
                         <Form.Control as="select" value={analyze} name={'analyzing'}
-                            onChange={e => { setAnalyzing(e.target.value); }}
+                            onChange={e => { setAnalyzing(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -294,7 +294,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'storingData'}>
                         <CustomLabel value="Storing Data" tooltip="If license grant to store data" />
                         <Form.Control as="select" value={storeData} name={'storingData'}
-                            onChange={e => { setStoringData(e.target.value); }}
+                            onChange={e => { setStoringData(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -307,7 +307,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'storingCopy'}>
                         <CustomLabel value="Storing Copy" tooltip="If license grant to store a copy data" />
                         <Form.Control as="select" value={storeCopy} name={'storingCopy'}
-                            onChange={e => { setStoringCopy(e.target.value); }}
+                            onChange={e => { setStoringCopy(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -318,7 +318,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'reproducing'}>
                         <CustomLabel value="Reproducing" tooltip="If license grant to reproduce data" />
                         <Form.Control as="select" value={reproduce} name={'reproducing'}
-                            onChange={e => { setReproducing(e.target.value); }}
+                            onChange={e => { setReproducing(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -330,7 +330,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'distributing'}>
                         <CustomLabel value="Distributing" tooltip="If license grant to distribute data" />
                         <Form.Control as="select" value={dist} name={'distributing'}
-                            onChange={e => { setDistributing(e.target.value); }}
+                            onChange={e => { setDistributing(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -341,7 +341,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'loaning'}>
                         <CustomLabel value="Loaning" tooltip="If license grant to loan data" />
                         <Form.Control as="select" value={loan} name={'loaning'}
-                            onChange={e => { setLoaning(e.target.value); }}
+                            onChange={e => { setLoaning(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -354,7 +354,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'selling'}>
                         <CustomLabel value="Selling" tooltip="If license grant to sell data" />
                         <Form.Control as="select" value={sell} name={'selling'}
-                            onChange={e => { setSelling(e.target.value); }}
+                            onChange={e => { setSelling(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -365,7 +365,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'renting'}>
                         <CustomLabel value="Renting" tooltip="If license grant to rent data" />
                         <Form.Control as="select" value={rent} name={'renting'}
-                            onChange={e => { setRenting(e.target.value); }}
+                            onChange={e => { setRenting(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -376,7 +376,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'furtherLicensing'}>
                         <CustomLabel value="Further Licensing" tooltip="If license grant for further Licensing" />
                         <Form.Control as="select" value={furtherLicense} name={'furtherLicensing'}
-                            onChange={e => { setFurtherLicensing(e.target.value); }}
+                            onChange={e => { setFurtherLicensing(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -387,7 +387,7 @@ export default function ContractParameters(props) {
                     <Form.Group controlId={'leasing'}>
                         <CustomLabel value="Leasing" tooltip="If license grant to lease data" />
                         <Form.Control as="select" value={lease} name={'leasing'}
-                            onChange={e => { setLeasing(e.target.value); }}
+                            onChange={e => { setLeasing(e.target.value); }} disabled={disableInput}
                         >
                             <option value="false">False</option>
                             <option value="true">True</option>
@@ -479,14 +479,14 @@ export default function ContractParameters(props) {
                 <Col>
                     <Form.Group controlId="providerSignature">
                         <Form.Label>Provider</Form.Label>
-                        <Form.Control type="text" name="providerSignature" defaultValue={signatures.providerSignature} />
+                        <Form.Control type="text" name="providerSignature" defaultValue={signatures.providerSignature} disabled={disableInput} />
                     </Form.Group>
                 </Col>
 
                 <Col>
                     <Form.Group controlId="consumerSignature">
                         <Form.Label>Consumer</Form.Label>
-                        <Form.Control type="text" name="consumerSignature" defaultValue={signatures.consumerSignature} />
+                        <Form.Control type="text" name="consumerSignature" defaultValue={signatures.consumerSignature} disabled={disableInput} />
                     </Form.Group>
                 </Col>
             </Row>

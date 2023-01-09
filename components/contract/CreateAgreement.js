@@ -10,7 +10,6 @@ import * as nonRepudiationLibrary from '@i3m/non-repudiation-library';
 export default function CreateAgreement(props) {
     const router = useRouter();
     const { id, data, offering, user } = props;
-    const template = data.template;
     const [showReject, setShowReject] = useState(false);
     const [rejectNotes, setRejectNotes] = useState('');
 
@@ -31,8 +30,8 @@ export default function CreateAgreement(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 notificationId: id,
-                offeringId: template.dataOfferingDescription.dataOfferingId,
-                consumerDid: template.parties.consumerDid,
+                offeringId: data.template.dataOfferingDescription.dataOfferingId,
+                consumerDid: data.template.parties.consumerDid,
                 notes: rejectNotes
             })
         }).then(() => {
@@ -44,32 +43,77 @@ export default function CreateAgreement(props) {
     async function onSubmit(e) {
         e.preventDefault();
 
+        const wallet = await walletApi();
+
+        // retrieve ethereumAddress from wallet
+        const info = await wallet.identities.info({ did: user.DID });
+        const ethereumAddress = info.addresses[0];
+
         // generate provider keys
-        const signingAlg = template.dataExchangeAgreement.signingAlg;
+        const signingAlg = data.template.dataExchangeAgreement.signingAlg;
         const providerKeys = await nonRepudiationLibrary.generateKeys(signingAlg);
 
-        // add provider public key to template
-        // const contractTemplate = {
-        //     ...template,
-        //     dataExchangeAgreement: {
-        //         ...template.dataExchangeAgreement,
-        //         orig: `${JSON.stringify(providerPublicKey)}`
+        // add provider public key and ledgerSignerAddress to template
+        const template = {
+            ...data.template,
+            dataExchangeAgreement: {
+                ...data.template.dataExchangeAgreement,
+                orig: `${JSON.stringify(providerKeys.publicJwk)}`,
+                ledgerSignerAddress: ethereumAddress
+            }
+        };
+
+        // save provider keys in wallet
+
+        // save as object
+        // const resource = {
+        //     type: 'Object',
+        //     name: 'Provider KeyPair',
+        //     identity: props.user.DID,
+        //     resource: {
+        //         keyPair: {
+        //             privateJwk: providerKeys.privateJwk,
+        //             publicJwk: providerKeys.publicJwk
+        //         }
         //     }
         // };
+        // save as keyPair
+        const resource = {
+            type: 'KeyPair',
+            name: 'Provider KeyPair',
+            identity: props.user.DID,
+            resource: {
+                keyPair: {
+                    privateJwk: providerKeys.privateJwk,
+                    publicJwk: providerKeys.publicJwk
+                }
+            }
+        };
+        await wallet.resources.create(resource);
 
-
-
-        // const api = await walletApi();
-        // const info = await api.identities.info({ did: user.DID });
-        // const ethereumAddress = info.addresses[0];
-        //
-        // fetch('/api/offerings/createAgreement', {
+        // // create agreement
+        // fetch('/api/offering/createAgreement', {
         //     method: 'POST',
         //     headers: { 'Content-Type': 'application/json' },
         //     body: JSON.stringify({
-        //         template: data.template,
+        //         template: template,
         //         senderAddress: ethereumAddress
         //     })
+        // }).then(res => {
+        //     // sign agreement
+        //     res.json().then(async rawTransaction => {
+        //         console.log('transaction to be signed and deployed ');
+        //
+        //         const signRes = await wallet.identities.deployTransaction({ did: user.DID }, rawTransaction);
+        //
+        //         // TODO send signed agreement to consumer
+        //         // TODO delete provider notification
+        //
+        //         console.log('transaction signed and deployed');
+        //
+        //     });
+        // });
+
         // }).then(res => {
         //     res.json().then(async rawTransaction => {
         //         const body = {
@@ -105,7 +149,7 @@ export default function CreateAgreement(props) {
                     <h3 className="flex-grow-1 mb-0">{'Create Data Agreement'}</h3>
                     <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
                     <Button variant="danger" className="mr-3" onClick={() => setShowReject(true)}>Reject</Button>
-                    <Button type="submit">Create</Button>
+                    <Button type="submit">Accept</Button>
                 </div>
                 <ContractParameters {...data.template} offering={offering} user={user} disableInput/>
             </Form>

@@ -95,7 +95,7 @@ export default function DataExchangeSpec(props) {
                     </Card.Body>
                 </Accordion.Collapse>
 
-                <input type="hidden" name={eventKey + 'ledgerContractAddress'} defaultValue={ledgerContractAddress} />
+                {/*<input type="hidden" name={eventKey + 'ledgerContractAddress'} defaultValue={ledgerContractAddress} />*/}
                 <input type="hidden" name={eventKey + 'ledgerSignerAddress'} defaultValue={user.ledgerAddress} />
 
             </Card>

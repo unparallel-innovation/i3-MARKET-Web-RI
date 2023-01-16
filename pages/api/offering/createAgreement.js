@@ -6,13 +6,8 @@ export default catchErrors(async (req, res) => {
     const user = session.user;
 
     if (user) {
-        console.log('create agreement raw transaction backend');
-
-        const { senderAddress, template } = req.body;
-        const res = await connector.createAgreementRawTransaction(user.access_token, user.id_token, senderAddress, template);
-        console.log(res);
-
-        return {};
+        const { senderAddress, dataSharingAgreement } = req.body;
+        return await connector.createAgreementRawTransaction(user.access_token, user.id_token, senderAddress, dataSharingAgreement);
     }
     return null;
 });

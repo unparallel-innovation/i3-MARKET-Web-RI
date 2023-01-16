@@ -16,8 +16,8 @@ export default catchErrors(async (req, res) => {
 
 async function sendNotificationProvider(template, user) {
     const message = {
-        msg: `Agreement pending for offering ${template.dataOfferingDescription.dataOfferingId}`,
-        template: template
+        msg: `Agreement pending for offering "${template.dataOfferingDescription.title}"`,
+        dataSharingAgreement: template
     };
     await connector.createNotification(user.access_token, user.id_token, 'web-ri', template.parties.providerDid, 'agreement.pending', message, 'OK');
 }

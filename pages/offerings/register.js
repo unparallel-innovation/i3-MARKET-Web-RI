@@ -4,7 +4,7 @@ import { Loading } from '/components/layout/Loading';
 import Register from '/components/offering/register';
 
 export default function RegisterPage({ edit = false }) {
-    const { data, error } = useData('/api/offerings/register');
+    const { data, error } = useData('/api/offering/register');
 
     if (error)
         return <Error error={error} />;

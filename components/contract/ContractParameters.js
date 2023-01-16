@@ -492,7 +492,6 @@ export default function ContractParameters(props) {
             </Row>
 
             <input type="hidden" name="ledgerContractAddress" defaultValue={dataExchangeAgreement.ledgerContractAddress} />
-            <input type="hidden" name="ledgerSignerAddress" defaultValue={dataExchangeAgreement.ledgerSignerAddress} />
             <input type="hidden" name="orig" defaultValue={dataExchangeAgreement.orig} />
             <input type="hidden" name="dest" defaultValue={dataExchangeAgreement.dest} />
         </>

@@ -19,7 +19,7 @@ function Layout(props) {
         let destroy = false;
 
         function getData() {
-            fetch('/api/notifications', {
+            fetch('/api/notification', {
                 method: 'GET'
             }).then(res=>{
                 res.json().then(json=>{

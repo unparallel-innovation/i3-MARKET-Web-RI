@@ -7,7 +7,7 @@ import NotificationCard from '../../components/notification/NotificationCard';
 import { useState } from 'react';
 
 export default function Notifications() {
-    const { data, error } = useData('/api/notifications');
+    const { data, error } = useData('/api/notification');
     const [ type, setType ] = useState('all');
     const [ ref, setRef ] = useState('');
 

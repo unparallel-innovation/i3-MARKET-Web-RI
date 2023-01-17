@@ -25,12 +25,9 @@ export default function Auth() {
                                 <Col><Button className="w-100 bg-secondary" type="submit" href={'/register'}>Register</Button></Col>
                                 <Col/>
                             </Row>
-
                         </div>
                     </div>
-
                 </Form>
-
             </div>
             <Footer />
         </div>

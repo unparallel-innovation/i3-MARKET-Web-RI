@@ -5,11 +5,7 @@ import { CheckCircle, Trash, XCircle } from 'react-bootstrap-icons';
 import { useState } from 'react';
 import { ISOtoDate } from '../../lib/utils';
 import { walletApi } from '../../lib/walletApi';
-import {
-    validateDataExchange,
-    validateDataExchangeAgreement,
-    validateDataSharingAgreementSchema
-} from '@i3m/non-repudiation-library';
+import { validateDataSharingAgreementSchema } from '@i3m/non-repudiation-library';
 
 export default function NotificationCard(props) {
     const router = useRouter();
@@ -87,7 +83,7 @@ export default function NotificationCard(props) {
                             {/*Status: {status}*/}
                             {ISOtoDate(dateCreated)}
                         </div>
-                        <Card.Title className="mt-3">{data.msg}</Card.Title>
+                        <Card.Title className="mt-3">{data.msg}{data.notes ? `. Reason: ${data.notes}` : ''}</Card.Title>
                     </Card.Body>
                     <div className="d-flex bg-light">
                         <div className="flex-grow-1">

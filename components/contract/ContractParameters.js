@@ -2,6 +2,7 @@ import { Col, Form, Row } from 'react-bootstrap';
 import { getDateValue } from '../../lib/utils';
 import { useState } from 'react';
 import CustomLabel from '../common/CustomLabel';
+import moment from 'moment/moment';
 
 export default function ContractParameters(props) {
     const {
@@ -30,6 +31,17 @@ export default function ContractParameters(props) {
     const [furtherLicense, setFurtherLicensing] = useState(licenseGrant.furtherLicensing);
     const [lease, setLeasing] = useState(licenseGrant.leasing);
     const [ds, setDataStream] = useState(dataStream);
+
+    const creationDate = duration.creationDate > 0 ? getDateValue(duration.creationDate) : getDateValue(Date.now());
+    const startDate = duration.startDate > 0 ? getDateValue(duration.startDate) : getDateValue(Date.now());
+    let endDate;
+    if (duration.endDate > 0)
+        endDate = getDateValue(duration.endDate);
+    else {
+        const newDate = new Date();
+        newDate.setMonth(newDate.getMonth() + 6);
+        endDate = moment(newDate).format('yyyy-MM-DD');
+    }
 
     return (
         <>
@@ -146,22 +158,22 @@ export default function ContractParameters(props) {
             <Row>
                 <Col>
                     <Form.Group controlId="creationDate">
-                        <CustomLabel value="Creation Date" required />
-                        <Form.Control type="date" name="creationDate" defaultValue={getDateValue(duration.creationDate)} required disabled={disableInput}/>
+                        <CustomLabel value="Creation Date" />
+                        <Form.Control type="date" name="creationDate" defaultValue={creationDate} disabled={disableInput}/>
                     </Form.Group>
                 </Col>
 
                 <Col>
                     <Form.Group controlId="startDate">
-                        <CustomLabel value="Start Date" required />
-                        <Form.Control type="date" name="startDate" defaultValue={getDateValue(duration.startDate)} required disabled={disableInput}/>
+                        <CustomLabel value="Start Date" />
+                        <Form.Control type="date" name="startDate" defaultValue={startDate} required disabled={disableInput}/>
                     </Form.Group>
                 </Col>
 
                 <Col>
                     <Form.Group controlId="endDate">
-                        <CustomLabel value="End Date" required />
-                        <Form.Control type="date" name="endDate" defaultValue={getDateValue(duration.endDate)} required disabled={disableInput}/>
+                        <CustomLabel value="End Date" />
+                        <Form.Control type="date" name="endDate" defaultValue={endDate} required disabled={disableInput}/>
                     </Form.Group>
                 </Col>
             </Row>

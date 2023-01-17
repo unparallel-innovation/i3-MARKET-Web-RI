@@ -20,7 +20,7 @@ function Layout(props) {
 
         function getData() {
             fetch('/api/notification', {
-                method: 'GET'
+                method: 'GET',
             }).then(res=>{
                 res.json().then(json=>{
                     setNotifications(json.unreadNotifications.length);
@@ -38,6 +38,35 @@ function Layout(props) {
             destroy = true;
         };
     },[]);
+
+    // useEffect(() => {
+    //
+    //     let destroy = false;
+    //     async function getData() {
+    //         const wallet = await walletApi();
+    //         const resources = await wallet.resources.list({ type: 'KeyPair', identity: data.user.DID });
+    //
+    //         fetch(`/api/notification?keys=${JSON.stringify(resources)}`, {
+    //             method: 'GET',
+    //         }).then(res=>{
+    //             res.json().then(json=>{
+    //                 setNotifications(json.unreadNotifications.length);
+    //                 setTimeout(()=>{
+    //                     if (destroy) {
+    //                         return;
+    //                     }
+    //                     getData();
+    //                 },1 * 60 * 1000);
+    //             });
+    //         });
+    //
+    //     }
+    //
+    //     getData();
+    //     return function cleanup() {
+    //         destroy = true;
+    //     };
+    // }, []);
 
     if (data) {
         const user = data.user;

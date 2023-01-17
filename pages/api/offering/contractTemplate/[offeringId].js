@@ -7,8 +7,6 @@ export default catchErrors(async (req, res) => {
     const session = await getSession(req, res);
     const user = session.user;
 
-    console.log('Get Contract Template (backend)', offeringId);
-
     if (user) {
         switch (req.method) {
             case 'GET':

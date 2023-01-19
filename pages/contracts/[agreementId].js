@@ -17,7 +17,7 @@ export default function ContractPage() {
     if (error)
         return <Error error={error} />;
 
-    function onCancel() {
+    function onBack() {
         router.back();
     }
 
@@ -25,8 +25,8 @@ export default function ContractPage() {
         <Layout>
             <Form className="px-5 pb-3 d-flex flex-column flex-grow-1">
                 <div className="d-flex">
-                    <h3 className="flex-grow-1 mb-0">{'Contract Information'}</h3>
-                    <Button variant="secondary" className="mr-3" onClick={onCancel}>Cancel</Button>
+                    <h3 className="flex-grow-1 mb-0">Contract Details</h3>
+                    <Button variant="secondary" onClick={onBack}>Back</Button>
                 </div>
                 <ContractParameters {...data} disableInput isAgreement/>
             </Form>

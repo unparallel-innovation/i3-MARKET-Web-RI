@@ -12,5 +12,5 @@ export default function Contracts(props) {
     if (error)
         return <Error error={error} />;
 
-    return <ContractsPage contracts={data.contracts} user={data.user}/>;
+    return <ContractsPage {...data}/>;
 }

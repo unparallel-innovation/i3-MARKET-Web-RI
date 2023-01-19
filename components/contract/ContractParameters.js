@@ -1,5 +1,5 @@
 import { Col, Form, Row } from 'react-bootstrap';
-import { getDateValue } from '../../lib/utils';
+import { getAgreementState, getDateValue } from '../../lib/utils';
 import { useState } from 'react';
 import CustomLabel from '../common/CustomLabel';
 import moment from 'moment/moment';
@@ -8,7 +8,8 @@ export default function ContractParameters(props) {
     const {
         dataExchangeAgreement, dataOfferingDescription, duration, intendedUse,
         licenseGrant, parties, personalData, pricingModel, purpose, signatures,
-        dataStream, offering, user, disableInput
+        dataStream, offering, user, disableInput, isAgreement,
+        dataOffering, agreementDates, state
     } = props;
 
     const [process, setProcessData] = useState(intendedUse.processData);
@@ -32,15 +33,22 @@ export default function ContractParameters(props) {
     const [lease, setLeasing] = useState(licenseGrant.leasing);
     const [ds, setDataStream] = useState(dataStream);
 
-    const creationDate = duration.creationDate > 0 ? getDateValue(duration.creationDate) : getDateValue(Date.now());
-    const startDate = duration.startDate > 0 ? getDateValue(duration.startDate) : getDateValue(Date.now());
-    let endDate;
-    if (duration.endDate > 0)
-        endDate = getDateValue(duration.endDate);
-    else {
-        const newDate = new Date();
-        newDate.setMonth(newDate.getMonth() + 6);
-        endDate = moment(newDate).format('yyyy-MM-DD');
+    let creationDate, startDate, endDate;
+    if (duration) {
+        creationDate = duration.creationDate > 0 ? getDateValue(duration.creationDate) : getDateValue(Date.now());
+        startDate = duration.startDate > 0 ? getDateValue(duration.startDate) : getDateValue(Date.now());
+        if (duration.endDate > 0)
+            endDate = getDateValue(duration.endDate);
+        else {
+            const newDate = new Date();
+            newDate.setMonth(newDate.getMonth() + 6);
+            endDate = moment(newDate).format('yyyy-MM-DD');
+        }
+    }
+    else if (agreementDates) {
+        creationDate = getDateValue(agreementDates[0]);
+        startDate = getDateValue(agreementDates[1]);
+        endDate = getDateValue(agreementDates[2]);
     }
 
     return (
@@ -53,33 +61,41 @@ export default function ContractParameters(props) {
                 <Col>
                     <Form.Group controlId="offeringId">
                         <Form.Label>Data Offering ID</Form.Label>
-                        <Form.Control type="text" name="offeringId" defaultValue={dataOfferingDescription.dataOfferingId} disabled />
-                        <input type="hidden" name="offeringId" defaultValue={dataOfferingDescription.dataOfferingId} />
+                        <Form.Control type="text" name="offeringId" defaultValue={dataOfferingDescription ? dataOfferingDescription.dataOfferingId : dataOffering.dataOfferingId} disabled />
+                        <input type="hidden" name="offeringId" defaultValue={dataOfferingDescription ? dataOfferingDescription.dataOfferingId : dataOffering.dataOfferingId} />
                     </Form.Group>
                 </Col>
                 <Col>
                     <Form.Group controlId="version">
                         <Form.Label>Version</Form.Label>
-                        <Form.Control type="text" name="version" defaultValue={dataOfferingDescription.version} disabled />
-                        <input type="hidden" name="version" defaultValue={dataOfferingDescription.version} />
+                        <Form.Control type="text" name="version" defaultValue={dataOfferingDescription ? dataOfferingDescription.version : dataOffering.dataOfferingVersion } disabled />
+                        <input type="hidden" name="version" defaultValue={dataOfferingDescription ? dataOfferingDescription.version : dataOffering.dataOfferingVersion} />
                     </Form.Group>
                 </Col>
+
+                {isAgreement
+                    ? <Col>
+                        <Form.Group controlId="state">
+                            <Form.Label>State</Form.Label>
+                            <Form.Control type="text" name="state" defaultValue={getAgreementState(state) } disabled />
+                        </Form.Group>
+                    </Col> : null }
 
             </Row>
             <Row>
                 <Col>
                     <Form.Group controlId="category">
                         <Form.Label>Category</Form.Label>
-                        <Form.Control type="text" name="category" defaultValue={dataOfferingDescription.category} disabled />
-                        <input type="hidden" name="category" defaultValue={dataOfferingDescription.category} />
+                        <Form.Control type="text" name="category" defaultValue={offering.category} disabled />
+                        <input type="hidden" name="category" defaultValue={offering.category} />
                     </Form.Group>
                 </Col>
 
                 <Col>
                     <Form.Group controlId="active">
                         <Form.Label>Active</Form.Label>
-                        <Form.Control type="text" name="active" defaultValue={dataOfferingDescription.active} disabled />
-                        <input type="hidden" name="active" defaultValue={dataOfferingDescription.active} />
+                        <Form.Control type="text" name="active" defaultValue={offering.active} disabled />
+                        <input type="hidden" name="active" defaultValue={offering.active} />
                     </Form.Group>
                 </Col>
             </Row>
@@ -93,30 +109,15 @@ export default function ContractParameters(props) {
                     </Form.Group>
                 </Col>
 
-                <Col>
-                    <Form.Group controlId="dataConsumer">
-                        <Form.Label>Consumer</Form.Label>
-                        <Form.Control type="text" name="dataConsumer" defaultValue={user.username} disabled />
-                        <input type="hidden" name="dataConsumer" defaultValue={user.username} />
-                    </Form.Group>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col>
-                    <Form.Group controlId="providerDid">
-                        <Form.Label>Provider Did</Form.Label>
-                        <Form.Control type="text" name="providerDid" defaultValue={parties.providerDid} disabled/>
-                        <input type="hidden" name="providerDid" defaultValue={parties.providerDid} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="consumerDid">
-                        <Form.Label>Consumer Did</Form.Label>
-                        <Form.Control type="text" name="consumerDid" defaultValue={user.DID} disabled />
-                        <input type="hidden" name="consumerDid" defaultValue={user.DID} />
-                    </Form.Group>
-                </Col>
+                {isAgreement ? null
+                    : <Col>
+                        <Form.Group controlId="dataConsumer">
+                            <Form.Label>Consumer</Form.Label>
+                            <Form.Control type="text" name="dataConsumer" defaultValue={user.username} disabled />
+                            <input type="hidden" name="dataConsumer" defaultValue={user.username} />
+                        </Form.Group>
+                    </Col>
+                }
             </Row>
 
             <Form.Group controlId="offeringTitle">
@@ -424,88 +425,62 @@ export default function ContractParameters(props) {
                 </Col>
             </Row>
 
-            <h5 className="mt-4">Data Exchange Agreement</h5>
-            <hr className="mt-2 mb-4" />
+            {!isAgreement ? (
+                <>
+                    <h5 className="mt-4">Data Exchange Agreement</h5>
+                    <hr className="mt-2 mb-4" />
 
-            <Row>
-                <Col>
-                    <Form.Group controlId="encAlg">
-                        <Form.Label>Encryption Algorithm</Form.Label>
-                        <Form.Control type="text" name="encAlg" defaultValue={dataExchangeAgreement.encAlg} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="signingAlg">
-                        <Form.Label>Signing Algorithm</Form.Label>
-                        <Form.Control type="text" name="signingAlg" defaultValue={dataExchangeAgreement.signingAlg} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="hashAlg">
-                        <Form.Label>Hash Algorithm</Form.Label>
-                        <Form.Control type="text" name="hashAlg" defaultValue={dataExchangeAgreement.hashAlg} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-            </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group controlId="encAlg">
+                                <Form.Label>Encryption Algorithm</Form.Label>
+                                <Form.Control type="text" name="encAlg" defaultValue={dataExchangeAgreement.encAlg} disabled={disableInput} />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId="signingAlg">
+                                <Form.Label>Signing Algorithm</Form.Label>
+                                <Form.Control type="text" name="signingAlg" defaultValue={dataExchangeAgreement.signingAlg} disabled={disableInput} />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId="hashAlg">
+                                <Form.Label>Hash Algorithm</Form.Label>
+                                <Form.Control type="text" name="hashAlg" defaultValue={dataExchangeAgreement.hashAlg} disabled={disableInput} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
 
-            {/*<Row>*/}
-            {/*    <Col>*/}
-            {/*        <Form.Group controlId="ledgerContractAddress">*/}
-            {/*            <Form.Label>Ledger Contract Address</Form.Label>*/}
-            {/*            <Form.Control type="text" name="ledgerContractAddress" defaultValue={dataExchangeAgreement.ledgerContractAddress} disabled={disableInput} />*/}
-            {/*        </Form.Group>*/}
-            {/*    </Col>*/}
-            {/*    <Col>*/}
-            {/*        <Form.Group controlId="ledgerSignerAddress">*/}
-            {/*            <Form.Label>Ledger Signer Address</Form.Label>*/}
-            {/*            <Form.Control type="text" name="ledgerSignerAddress" defaultValue={dataExchangeAgreement.ledgerSignerAddress} disabled={disableInput} />*/}
-            {/*        </Form.Group>*/}
-            {/*    </Col>*/}
-            {/*</Row>*/}
+                    <Row>
+                        <Col>
+                            <Form.Group controlId="pooToPorDelay">
+                                <Form.Label>PoO to PoR delay</Form.Label>
+                                <Form.Control type="text" name="pooToPorDelay" defaultValue={dataExchangeAgreement.pooToPorDelay} disabled={disableInput} />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId="pooToPopDelay">
+                                <Form.Label>PoP to PoR delay</Form.Label>
+                                <Form.Control type="text" name="pooToPopDelay" defaultValue={dataExchangeAgreement.pooToPopDelay} disabled={disableInput} />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId="pooToSecretDelay">
+                                <Form.Label>PoO to Secret delay</Form.Label>
+                                <Form.Control type="text" name="pooToSecretDelay" defaultValue={dataExchangeAgreement.pooToSecretDelay} disabled={disableInput} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                </>
+            ) : null }
 
-            <Row>
-                <Col>
-                    <Form.Group controlId="pooToPorDelay">
-                        <Form.Label>PoO to PoR delay</Form.Label>
-                        <Form.Control type="text" name="pooToPorDelay" defaultValue={dataExchangeAgreement.pooToPorDelay} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="pooToPopDelay">
-                        <Form.Label>PoP to PoR delay</Form.Label>
-                        <Form.Control type="text" name="pooToPopDelay" defaultValue={dataExchangeAgreement.pooToPopDelay} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group controlId="pooToSecretDelay">
-                        <Form.Label>PoO to Secret delay</Form.Label>
-                        <Form.Control type="text" name="pooToSecretDelay" defaultValue={dataExchangeAgreement.pooToSecretDelay} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-            </Row>
-
-            <h5 className="mt-4">Signatures</h5>
-            <hr className="mt-2 mb-4" />
-
-            <Row>
-                <Col>
-                    <Form.Group controlId="providerSignature">
-                        <Form.Label>Provider</Form.Label>
-                        <Form.Control type="text" name="providerSignature" defaultValue={signatures.providerSignature} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-
-                <Col>
-                    <Form.Group controlId="consumerSignature">
-                        <Form.Label>Consumer</Form.Label>
-                        <Form.Control type="text" name="consumerSignature" defaultValue={signatures.consumerSignature} disabled={disableInput} />
-                    </Form.Group>
-                </Col>
-            </Row>
-
-            <input type="hidden" name="ledgerContractAddress" defaultValue={dataExchangeAgreement.ledgerContractAddress} />
-            <input type="hidden" name="orig" defaultValue={dataExchangeAgreement.orig} />
-            <input type="hidden" name="dest" defaultValue={dataExchangeAgreement.dest} />
+            {!isAgreement ? (
+                <>
+                    <input type="hidden" name="ledgerContractAddress" defaultValue={dataExchangeAgreement.ledgerContractAddress} />
+                    <input type="hidden" name="orig" defaultValue={dataExchangeAgreement.orig} />
+                    <input type="hidden" name="dest" defaultValue={dataExchangeAgreement.dest} />
+                </>
+            ) : null}
         </>
     );
 }
@@ -518,17 +493,19 @@ function getPricingModel(data) {
 
             {getBasicPrice(data)}
 
-            {getPaymentOnSubscription(data)}
+            {/*{getPaymentOnSubscription(data)}*/}
 
-            {getFreePrice(data)}
+            {/*{getFreePrice(data)}*/}
         </>
     );
 }
 
 function getBasicPrice(data) {
-    const { pricingModelName, basicPrice, fee, currency } = data;
+    const { pricingModelName, basicPrice, fee, currency, price } = data;
 
-    if (basicPrice > 0) {
+    const bPrice = basicPrice ? basicPrice : price;
+
+    if (bPrice > 0) {
         return (
             <>
                 <Form.Group controlId="pricingModelName">
@@ -541,8 +518,8 @@ function getBasicPrice(data) {
                     <Col>
                         <Form.Group controlId="basicPrice">
                             <Form.Label>Basic Price</Form.Label>
-                            <Form.Control type="text" name="basicPrice" defaultValue={basicPrice} disabled />
-                            <input type="hidden" name="basicPrice" defaultValue={basicPrice} />
+                            <Form.Control type="text" name="basicPrice" defaultValue={bPrice} disabled />
+                            <input type="hidden" name="basicPrice" defaultValue={bPrice} />
                         </Form.Group>
                     </Col>
 
@@ -571,7 +548,7 @@ function getBasicPrice(data) {
 }
 
 function getPaymentOnSubscription(data) {
-    const { hasPaymentOnSubscription, currency } = data;
+    const { hasPaymentOnSubscription, paymentOnSubscription, price, currency } = data;
 
     const {
         paymentOnSubscriptionName, paymentType, timeDuration,

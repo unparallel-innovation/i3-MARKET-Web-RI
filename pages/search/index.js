@@ -1,7 +1,6 @@
 import { useData } from '/lib/hooks.js';
 import { fd2qs, qs } from '/lib/utils.js';
 import Layout from '/components/layout/Layout.js';
-import Error from '/components/layout/Error.js';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Col, Form, Row } from 'react-bootstrap';
@@ -74,7 +73,7 @@ function Search(props) {
     }
 
     if (_searchType === 'text') {
-        selectEl = (<Col md="3">
+        selectEl = (<Col className="pl-0" md="3">
             <Form.Control type="text" name="textSearch" placeholder="Search by offering title or dataset keywords..." defaultValue={_text} />
         </Col>);
     }

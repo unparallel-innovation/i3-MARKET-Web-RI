@@ -6,8 +6,16 @@ export default function OfferingCard(props) {
     const router = useRouter();
     const {
         dataOfferingId, dataOfferingTitle, dataOfferingDescription, status,
-        contracts = '-', hideContracts
+        contracts = [], hideContracts
     } = props;
+
+    // 0 - created
+    // 1 - active
+    // 2 - updated
+    // 3 - violated
+    // 4 - terminated
+    // 5 - pending ?
+    const activeContracts = contracts.filter(c => c.state === 1).length;
 
     // let warningIconEl = null;
     // if (hasContractWarning) {
@@ -29,7 +37,9 @@ export default function OfferingCard(props) {
     }
 
     function onContractsClick() {
-        router.push('/offerings/contracts/' + dataOfferingId);
+        // TODO fix path, should be offerings/offeringId/contracts
+        // if (activeContracts > 0)
+            router.push('/offerings/contracts/' + dataOfferingId);
     }
 
     return (
@@ -47,7 +57,7 @@ export default function OfferingCard(props) {
                     <span className="flex-grow-1">
                         {!hideContracts ? (
                             <Badge pill variant="primary" onClick={onContractsClick}>
-                                {contracts} Contracts
+                                {activeContracts} Contracts
                             </Badge>) : null
                         }
                     </span>

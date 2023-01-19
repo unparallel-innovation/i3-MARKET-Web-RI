@@ -14,7 +14,7 @@ function Offerings(props) {
     ));
 
     function onClick() {
-        router.push('/offering/register');
+        router.push('/offerings/register');
     }
 
     return (

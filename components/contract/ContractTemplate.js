@@ -50,7 +50,6 @@ export default function ContractTemplate(props) {
         await wallet.resources.create(resource);
         console.log('Key Pair saved in Wallet (Consumer)');
 
-
         // create data purchase request
         fetch('/api/offering/purchaseRequest', {
             method: 'POST',

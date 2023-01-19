@@ -160,7 +160,8 @@ export default function ContractParameters(props) {
                 <Col>
                     <Form.Group controlId="creationDate">
                         <CustomLabel value="Creation Date" />
-                        <Form.Control type="date" name="creationDate" defaultValue={creationDate} disabled={disableInput}/>
+                        <Form.Control type="date" name="creationDate" defaultValue={creationDate} disabled/>
+                        <input type="hidden" name="creationDate" defaultValue={creationDate} />
                     </Form.Group>
                 </Col>
 
@@ -476,6 +477,8 @@ export default function ContractParameters(props) {
 
             {!isAgreement ? (
                 <>
+                    <input type="hidden" name="providerDid" defaultValue={parties.providerDid} />
+                    <input type="hidden" name="consumerDid" defaultValue={user.DID} />
                     <input type="hidden" name="ledgerContractAddress" defaultValue={dataExchangeAgreement.ledgerContractAddress} />
                     <input type="hidden" name="orig" defaultValue={dataExchangeAgreement.orig} />
                     <input type="hidden" name="dest" defaultValue={dataExchangeAgreement.dest} />

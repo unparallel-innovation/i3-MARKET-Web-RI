@@ -303,6 +303,8 @@ export default function NotificationCard(props) {
                 const info = await wallet.identities.info({ did: user.DID });
                 const ethereumAddress = info.addresses[0];
 
+                console.log('CreateAgreement', dataSharingAgreement);
+
                 // create agreement
                 fetch('/api/offering/createAgreement', {
                     method: 'POST',

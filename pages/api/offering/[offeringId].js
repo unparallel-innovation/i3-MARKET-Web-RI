@@ -12,7 +12,8 @@ export default catchErrors(async (req, res) => {
                 return {
                     // offering: await connector.getOffering(user.access_token, user.id_token, offeringId),
                     offering: await connector.getFederatedOffering(user.access_token, user.id_token, offeringId),
-                    user
+                    user,
+                    providerRating: {providerRating: 3.75, roundedRating: 4.5}
                 };
             case 'PATCH':
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);

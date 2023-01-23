@@ -9,6 +9,7 @@ import { getOfferingStatusIcon, ts2date } from '../../../lib/utils';
 import ContractParameters from './ContractParameters';
 import KVCol2 from '../../common/KVCol2';
 import PricingModel from './PricingModel';
+import StarRating from '../../common/StarRating.js';
 
 export default
 function Offering(props) {
@@ -16,7 +17,7 @@ function Offering(props) {
     const { offeringId } = router.query;
     const {
         dataOfferingTitle, dataOfferingDescription, status, ownerConsentForm, active,
-        personalData, inSharedNetwork, category, provider, providerDid, marketId, marketDid,
+        personalData, inSharedNetwork, category, provider, providerDid, providerRating, marketId, marketDid,
         owner, ownerDid, dataOfferingExpirationTime, hasDataset, hasPricingModel, contractParameters, user
     } = props;
 
@@ -104,18 +105,22 @@ function Offering(props) {
                     <KVCol2 title="Provider">
                         { provider }
                     </KVCol2>
-                    <KVCol2 title="Provider DID">
+                    <KVCol2 title="Provider DID" colspan="6">
                         { providerDid }
                     </KVCol2>
-
+                    <StarRating title="Provider Rating" rating={providerRating}>
+                    </StarRating>
                 </Row>
 
                 <Row className="text-center mb-3">
                     <KVCol2 title="Market">
                         { marketId }
                     </KVCol2>
-                    <KVCol2 title="Market DID">
+                    <KVCol2 title="Market DID" colspan="6">
                         { marketDid }
+                    </KVCol2>
+                    <KVCol2 colspan="3" >
+                        { ' ' }
                     </KVCol2>
                 </Row>
 
@@ -123,8 +128,11 @@ function Offering(props) {
                     <KVCol2 title="Owner">
                         { owner }
                     </KVCol2>
-                    <KVCol2 title="Owner DID">
+                    <KVCol2 title="Owner DID" colspan="6">
                         { ownerDid }
+                    </KVCol2>
+                    <KVCol2 colspan="3" >
+                        { ' ' }
                     </KVCol2>
                 </Row>
 
@@ -132,8 +140,11 @@ function Offering(props) {
                     <KVCol2 title="Category">
                         { category }
                     </KVCol2>
-                    <KVCol2 title="Expiration Time">
+                    <KVCol2 title="Expiration Time" colspan="6">
                         { ts2date(dataOfferingExpirationTime) }
+                    </KVCol2>
+                    <KVCol2 colspan="3" >
+                        { ' ' }
                     </KVCol2>
                 </Row>
 
@@ -141,7 +152,7 @@ function Offering(props) {
                     <KVCol2 title="Owner Consent From">
                         { ownerConsentForm }
                     </KVCol2>
-                    <KVCol2 title="Personal Data">
+                    <KVCol2 title="Personal Data" colspan="6">
                         { personalData }
                     </KVCol2>
                     <KVCol2 title="In Shared Network">

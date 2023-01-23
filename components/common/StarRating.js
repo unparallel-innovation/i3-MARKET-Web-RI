@@ -6,7 +6,7 @@ function StarRating(props) {
     const { title, rating, colspan } = props;
 
     const ratingContainer = (rating && rating > 0) ?
-    <span className='ratingMargins'>
+    <span className='ratingMargins' style={{userSelect:'none'}}>
         <ReactStars
             classNames={'align-top'}
             count = {5}

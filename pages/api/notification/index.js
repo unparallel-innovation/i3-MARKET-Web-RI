@@ -1,6 +1,5 @@
 import { getSession } from '../../../lib/session';
 import { catchErrors, connector } from '../../../lib/server';
-import jsonrepair from 'jsonrepair';
 
 export default catchErrors(async (req, res) => {
     const session = await getSession(req, res);
@@ -14,14 +13,14 @@ export default catchErrors(async (req, res) => {
                 let unreadNotifications = await connector.getUserUnreadNotifications(user.access_token, user.id_token, user.DID);
 
                 // retrieve notifications associated to publicKeys
-                const keys = req.query.keys ? JSON.parse(req.query.keys) : [];
-                if (keys.length > 0) {
+                const keys = req.query.consumerPublicKeys ? JSON.parse(req.query.consumerPublicKeys) : [];
+                if (keys) {
                     for (let i = 0; i < keys.length; i++) {
-                        const publicKey = keys[i].resource.keyPair.publicJwk;
+                        const publicKey = keys[i];
 
                         const userNotifications = await connector.getUserNotifications(user.access_token, user.id_token, publicKey);
 
-                        if (userNotifications) {
+                        if (userNotifications.length > 0) {
                             const userNotification = userNotifications[0];
 
                             if (userNotification.unread) {
@@ -39,8 +38,6 @@ export default catchErrors(async (req, res) => {
                 return await connector.markNotificationsAsUnread(user.access_token, user.id_token, notificationId);
             case 'DELETE':
                 return await connector.deleteNotification(user.access_token, user.id_token, notificationId);
-            case 'POST':
-                return {};
         }
     }
     return null;

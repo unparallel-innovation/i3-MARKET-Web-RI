@@ -12,5 +12,6 @@ export default function UserDid(props) {
     if (!data)
         return <Loading />;
 
+    // now with user DID, is required to retrieve the list of public keys from the wallet
     return <UserPublicKeys {...props} {...data} />;
 }

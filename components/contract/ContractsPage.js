@@ -2,27 +2,21 @@ import { useState } from 'react';
 import BigText from '../common/BigText';
 import ContractCard from './ContractCard';
 import Layout from '../layout/Layout';
+import { useData } from '../../lib/hooks';
+import Error from '../layout/Error';
+import { Loading } from '../layout/Loading';
+import UserPublicKeys from '../user/UserPublicKeys';
+import ContractsList from './ContractsList';
 
 export default function ContractsPage(props) {
-    const { contracts, user } = props;
-    const [c, setC] = useState(contracts);
+    const { keys } = props;
+    const { data, error } = useData(`/api/contracts?searchType=consumer&consumerPublicKeys=${JSON.stringify(keys)}`);
 
-    if (c.length === 0)
-        return <BigText>No contracts found!</BigText>;
+    if (error)
+        return <Error error={error} />;
 
-    // TODO add filters
-    // consumer: state and provider (filter) end date (sort)
-    // provider: state (filter) end date (sort)
+    if (!data)
+        return <Loading />;
 
-    const contractsEl = c.map(contract => (
-        <ContractCard key={contract.agreementId} {...contract} user={user}/>
-    ));
-
-    return (
-        <Layout>
-            <div className="d-flex flex-column px-5">
-                { contractsEl }
-            </div>
-        </Layout>
-    );
+    return <ContractsList {...data} />;
 }

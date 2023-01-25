@@ -2,21 +2,43 @@ import { useRouter } from 'next/router';
 import { Button, Card, Col, Modal } from 'react-bootstrap';
 import colors from '../../lib/colors';
 import { CheckCircle, Trash, XCircle } from 'react-bootstrap-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ISOtoDate } from '../../lib/utils';
+
+import { jweDecrypt, validateDataSharingAgreementSchema } from '@i3m/non-repudiation-library';
 import { walletApi } from '../../lib/walletApi';
-import { validateDataSharingAgreementSchema } from '@i3m/non-repudiation-library';
 
 export default function NotificationCard(props) {
     const router = useRouter();
-    const { id, data, status, receptor, action, unread, origin, dateCreated, user } = props;
+    const {
+        id, data, status, receptor, action,
+        unread, origin, dateCreated, keyPair, user
+    } = props;
     const [ showDelete, setShowDelete ] = useState(false);
     const [ showRead, setShowRead ] = useState(false);
     const [ showUnread, setShowUnread ] = useState(false);
     const [ showSign, setShowSign ] = useState(false);
     const [ showCreateAgreement, setShowCreateAgreement ] = useState(false);
     const [ offering, setOffering ] = useState('');
+    const [ msg, setMsg] = useState(data.msg);
     const dataSharingAgreement = data.dataSharingAgreement;
+
+    // decrypt notification message
+    useEffect(() => {
+        async function decryptJwe() {
+            if (data.jwe) {
+                // retrieve private key matching public key (receptor)
+                const privateKey = keyPair.find(el=>el.publicJwk === receptor).privateJwk;
+                if (privateKey) {
+                    const uint8Decrypted = await jweDecrypt(data.jwe, JSON.parse(privateKey));
+                    const strDecrypted = new TextDecoder().decode(new Uint8Array(uint8Decrypted.plaintext));
+                    const jsonDecrypted = JSON.parse(strDecrypted);
+                    setMsg(jsonDecrypted.msg);
+                }
+            }
+        }
+        decryptJwe();
+    }, []);
 
     // TODO: set background color based on 'action'
     // TODO: set read/unread color
@@ -83,7 +105,7 @@ export default function NotificationCard(props) {
                             {/*Status: {status}*/}
                             {ISOtoDate(dateCreated)}
                         </div>
-                        <Card.Title className="mt-3">{data.msg}{data.notes ? `. Reason: ${data.notes}` : ''}</Card.Title>
+                        <Card.Title className="mt-3">{msg}{data.notes ? `. Reason: ${data.notes}` : ''}</Card.Title>
                     </Card.Body>
                     <div className="d-flex bg-light">
                         <div className="flex-grow-1">

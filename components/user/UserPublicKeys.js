@@ -6,16 +6,16 @@ import NotificationsPage from '../notification/NotificationsPage';
 
 export default function UserPublicKeys(props) {
     const { user, showContracts } = props;
-    const [keys, setPublicKeys] = useState(null);
+    const [keyPair, setKeyPair] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function getPublicKeys() {
             const wallet = await walletApi();
             const resources = await wallet.resources.list({ type: 'KeyPair', identity: user.DID });
-            const publicKeys = resources.map(obj => obj.resource.keyPair.publicJwk);
+            const keyPair = resources.map(obj => obj.resource.keyPair);
 
-            setPublicKeys(publicKeys);
+            setKeyPair(keyPair);
             setLoading(false);
         }
         getPublicKeys();
@@ -27,7 +27,7 @@ export default function UserPublicKeys(props) {
 
     // with the list of public keys, is possible to retrieve the list of contracts or notifications for a user
     if (showContracts)
-        return <ContractsPage keys={keys}/>;
+        return <ContractsPage keyPair={keyPair}/>;
 
-    return <NotificationsPage keys={keys} />;
+    return <NotificationsPage keyPair={keyPair}/>;
 }

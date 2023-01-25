@@ -13,7 +13,8 @@ export default catchErrors(async (req, res) => {
                 let unreadNotifications = await connector.getUserUnreadNotifications(user.access_token, user.id_token, user.DID);
 
                 // retrieve notifications associated to publicKeys
-                const keys = req.query.consumerPublicKeys ? JSON.parse(req.query.consumerPublicKeys) : [];
+                const keys = req.query.userPublicKeys ? JSON.parse(req.query.userPublicKeys) : [];
+
                 if (keys) {
                     for (let i = 0; i < keys.length; i++) {
                         const publicKey = keys[i];

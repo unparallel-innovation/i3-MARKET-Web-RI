@@ -4,7 +4,7 @@ import { Button, Form, Row } from 'react-bootstrap';
 import Layout from '../layout/Layout';
 
 export default function NotificationsList(props) {
-    const { allNotifications, user } = props;
+    const { allNotifications, keyPair, user } = props;
     const [ type, setType ] = useState('all');
     const [ ref, setRef ] = useState('');
 
@@ -35,7 +35,7 @@ export default function NotificationsList(props) {
             return notification;
         return notification.action === type;
     }).map(function (notification) {
-        return <NotificationCard key={notification.id} {... notification} user={user} />;
+        return <NotificationCard key={notification.id} {... notification} keyPair={keyPair} user={user} />;
     });
 
     const notificationsEl = notificationCards.length > 0

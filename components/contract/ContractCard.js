@@ -1,5 +1,5 @@
 import { Button, Card, Col } from 'react-bootstrap';
-import { getAgreementState, ts2date } from '../../lib/utils';
+import { getAgreementState, secondsToDate } from '../../lib/utils';
 import { useRouter } from 'next/router';
 
 export default function ContractCard(props) {
@@ -32,19 +32,19 @@ export default function ContractCard(props) {
                         <Col>
                             <div className="d-flex flex-column align-items-center">
                                 <div>Creation Date</div>
-                                {ts2date(agreementDates[0], 'MM/DD/YYYY')}
+                                {secondsToDate(agreementDates[0], 'MM/DD/YYYY')}
                             </div>
                         </Col>
                         <Col>
                             <div className="d-flex flex-column align-items-center">
                                 <div>Start Date</div>
-                                {ts2date(agreementDates[1], 'MM/DD/YYYY')}
+                                {secondsToDate(agreementDates[1], 'MM/DD/YYYY')}
                             </div>
                         </Col>
                         <Col>
                             <div className="d-flex flex-column align-items-center">
                                 <div>End Date</div>
-                                {ts2date(agreementDates[2], 'MM/DD/YYYY')}
+                                {secondsToDate(agreementDates[2], 'MM/DD/YYYY')}
                             </div>
                         </Col>
                     </div>

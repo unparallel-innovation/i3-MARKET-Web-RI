@@ -1,6 +1,5 @@
 import { catchErrors, connector } from '/lib/server.js';
 import { getSession } from '../../../../lib/session';
-import template from '../../../../lib/template.json';
 
 export default catchErrors(async (req, res) => {
     const { offeringId } = req.query;

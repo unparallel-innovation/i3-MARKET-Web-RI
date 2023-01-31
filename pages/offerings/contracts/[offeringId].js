@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useData } from '../../../lib/hooks';
 import { Loading } from '../../../components/layout/Loading';
 import Error from '../../../components/layout/Error';
-import ContractsPage from '../../../components/contract/ContractsPage';
+import ContractsList from '../../../components/contract/ContractsList';
 
 export default function Contracts() {
     const router = useRouter();
@@ -15,5 +15,5 @@ export default function Contracts() {
     if (error)
         return <Error error={error} />;
 
-    return <ContractsPage {...data} />;
+    return <ContractsList {...data}/>;
 }

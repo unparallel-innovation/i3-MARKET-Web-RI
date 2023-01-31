@@ -18,8 +18,8 @@ export default catchErrors(async (req, res) => {
             return { contracts, user };
         }
         else {
-            const contracts = await connector.getAgreementsByOffering(user.access_token, user.id_token, offeringId);
-            return { contracts, user };
+            const result = await connector.getAgreementsByOffering(user.access_token, user.id_token, offeringId);
+            return { contracts: [...result.agreements, ...result.pendingAgreements], user };
         }
     }
     return null;

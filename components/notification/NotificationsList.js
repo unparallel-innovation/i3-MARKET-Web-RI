@@ -8,10 +8,6 @@ export default function NotificationsList(props) {
     const [ type, setType ] = useState('all');
     const [ ref, setRef ] = useState('');
 
-    function onChange(e) {
-        setRef(e.target.value);
-    }
-
     const notificationTypes = [
         'all',
         'offering.new',
@@ -41,6 +37,10 @@ export default function NotificationsList(props) {
     const notificationsEl = notificationCards.length > 0
         ? <Row>{notificationCards}</Row>
         : <div className="d-flex h-100 h3 text-lightgray justify-content-center align-items-center">No results!</div>;
+
+    function onChange(e) {
+        setRef(e.target.value);
+    }
 
     return (
         <Layout>

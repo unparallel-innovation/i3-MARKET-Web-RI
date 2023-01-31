@@ -9,11 +9,9 @@ export default catchErrors(async (req, res) => {
     if (user) {
         switch (req.method) {
             case 'GET':
-                return {
-                    // offering: await connector.getOffering(user.access_token, user.id_token, offeringId),
-                    offering: await connector.getFederatedOffering(user.access_token, user.id_token, offeringId),
-                    user
-                };
+                //const offering: await connector.getOffering(user.access_token, user.id_token, offeringId),
+                const federateOffering = await connector.getFederatedOffering(user.access_token, user.id_token, offeringId);
+                return { ...federateOffering, user };
             case 'PATCH':
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
                 offering.status = 'Active';

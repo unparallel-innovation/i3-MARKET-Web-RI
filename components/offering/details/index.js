@@ -17,11 +17,20 @@ function Offering(props) {
     const {
         dataOfferingTitle, dataOfferingDescription, status, ownerConsentForm, active,
         personalData, inSharedNetwork, category, provider, providerDid, marketId, marketDid,
-        owner, ownerDid, dataOfferingExpirationTime, hasDataset, hasPricingModel, contractParameters, user
+        owner, ownerDid, dataOfferingExpirationTime, hasDataset, hasPricingModel, contractParameters,
+        contracts, pendingContracts, user
     } = props;
 
     const [ showDelete, setShowDelete ] = useState(false);
     const [ showActivate, setShowActivate ] = useState(false);
+
+    // 0 - created
+    // 1 - active
+    // 2 - updated
+    // 3 - violated
+    // 4 - terminated
+    // 5 - pending (notification)
+    const activeContracts = contracts.filter(c => c.state === 1).length;
 
     const statusIconEl = getOfferingStatusIcon(status);
 
@@ -68,6 +77,10 @@ function Offering(props) {
         router.push('/offerings/contractTemplate/' + offeringId);
     }
 
+    function onViewContracts() {
+        router.push('/offerings/contracts/' + offeringId);
+    }
+
     return (
         <Layout>
             <div className="px-5 pb-3">
@@ -79,7 +92,7 @@ function Offering(props) {
 
                         { statusIconEl } <div className="ml-2">{ status }</div>
 
-                        { user.provider && user.username === provider ? (
+                        { user.provider ? (
                             <div className="ml-4 d-flex">
                                 |
                                 <div className="ml-4" title={'Activate Offering'}>
@@ -97,6 +110,19 @@ function Offering(props) {
                         ) : null }
                     </div>
                 </div>
+
+                { user.provider ? <>
+                    <hr />
+                    <div className="d-flex align-items-center">
+                        <Button style={{ borderRadius: '8px' }} size="sm" onClick={onViewContracts}>View all Contracts</Button>
+                        <span className="ml-2 mr-2">{ activeContracts || 0 } Active</span> |
+                        <span className="ml-2">{ pendingContracts.length || 0 } Pending</span>
+                    </div>
+                </>
+                    : null
+                }
+
+                <hr />
 
                 <p>{ dataOfferingDescription }</p>
 

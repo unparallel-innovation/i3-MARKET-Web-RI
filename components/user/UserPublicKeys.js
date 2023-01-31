@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { walletApi } from '../../lib/walletApi';
 import { Loading } from '../layout/Loading';
-import ContractsPage from '../contract/ContractsPage';
+import UserContracts from '../contract/UserContracts';
 import NotificationsPage from '../notification/NotificationsPage';
 
 export default function UserPublicKeys(props) {
@@ -27,7 +27,7 @@ export default function UserPublicKeys(props) {
 
     // with the list of public keys, is possible to retrieve the list of contracts or notifications for a user
     if (showContracts)
-        return <ContractsPage keyPair={keyPair}/>;
+        return <UserContracts keyPair={keyPair}/>;
 
     return <NotificationsPage keyPair={keyPair}/>;
 }

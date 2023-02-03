@@ -11,5 +11,4 @@ export default catchErrors(async (req, res) => {
 
     // logout from oidc
     res.redirect(passport.logout(user.id_token));
-    // TODO redirect to auth
 });

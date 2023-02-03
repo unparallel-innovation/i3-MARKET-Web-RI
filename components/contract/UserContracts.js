@@ -4,8 +4,9 @@ import { Loading } from '../layout/Loading';
 import ContractsList from './ContractsList';
 
 export default function UserContracts(props) {
-    const { keys } = props;
-    const { data, error } = useData(`/api/contracts?searchType=consumer&consumerPublicKeys=${JSON.stringify(keys)}`);
+    const { keyPair } = props;
+    const publicKeys = keyPair.map(k=>k.publicJwk);
+    const { data, error } = useData(`/api/contracts?searchType=consumer&consumerPublicKeys=${JSON.stringify(publicKeys)}`);
 
     if (error)
         return <Error error={error} />;

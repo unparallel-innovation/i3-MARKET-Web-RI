@@ -103,7 +103,7 @@ export default function NotificationCard(props) {
                         <div className="d-flex">
                             <Card.Text className="flex-grow-1">{action}</Card.Text>
                             {/*Status: {status}*/}
-                            {ISOtoDate(dateCreated)}
+                            {ISOtoDate(dateCreated, 'YYYY-MM-DD HH:mm:ss')}
                         </div>
                         <Card.Title className="mt-3">{msg}{data.notes ? `. Reason: ${data.notes}` : ''}</Card.Title>
                     </Card.Body>

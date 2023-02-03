@@ -7,7 +7,6 @@ export default catchErrors(async (req, res) => {
 
     if (user) {
         const template = req.body;
-        await connector.createDataPurchase(user.access_token, user.id_token, 'web-ri', user.DID, '', template);
         return await sendNotificationProvider(template, user);
     }
     return null;

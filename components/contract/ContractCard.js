@@ -1,12 +1,12 @@
-import { Card, Col } from 'react-bootstrap';
-import { getAgreementState, secondsToDate } from '../../lib/utils';
+import { Button, Card, Col } from 'react-bootstrap';
+import { getAgreementState, ISOtoDate, secondsToDate } from '../../lib/utils';
 import { useRouter } from 'next/router';
 
 export default function ContractCard(props) {
     const router = useRouter();
     const {
-        agreementId, dataOffering, state, providerId, agreementDates,
-        id, data, dateCreated, user
+        agreementId, dataOffering, state, agreementDates,
+        id, data, dateCreated, user, offering
     } = props;
 
     function onClick() {
@@ -16,10 +16,10 @@ export default function ContractCard(props) {
             router.push('/offerings/dataPurchaseRequest/' + id);
     }
 
-    function getOfferingId() {
+    function getOfferingTitle() {
         if (dataOffering)
-            return dataOffering.dataOfferingId;
-        return data.dataSharingAgreement.dataOfferingDescription.dataOfferingId;
+            return dataOffering.dataOfferingTitle;
+        return data.dataSharingAgreement.dataOfferingDescription.title;
     }
 
     function getStatus() {
@@ -28,19 +28,26 @@ export default function ContractCard(props) {
         return 'Pending';
     }
 
+    function getProvider() {
+        if (user.consumer) {
+            return <Card.Text>Provider: {offering.provider}</Card.Text>;
+        }
+        return null;
+    }
+
     return (
         <>
             <Col className="col-md-12">
                 <Card className="overflow-hidden cursor-pointer mb-3" >
                     <Card.Body onClick={onClick}>
                         <div className="d-flex">
-                            <Card.Text className="flex-grow-1">Offering: {getOfferingId()}</Card.Text>
+                            <Card.Text className="flex-grow-1">Offering: {getOfferingTitle()}</Card.Text>
                             Status: {getStatus()}
                         </div>
 
                         <div className="d-flex mt-3">
                             <div className="flex-grow-1">
-                                { !user.provider ? (<Card.Text>Provider: {providerId}</Card.Text>) : null }
+                                {getProvider()}
                             </div>
                             {/*<Button size='sm' style={{borderRadius: 10}}> Rating </Button>*/}
                         </div>
@@ -65,6 +72,18 @@ export default function ContractCard(props) {
                                 <div className="d-flex flex-column align-items-center">
                                     <div>End Date</div>
                                     {secondsToDate(agreementDates[2], 'MM/DD/YYYY')}
+                                </div>
+                            </Col>
+                        </div> : null
+                    }
+
+                    { dateCreated
+                        ? <div className="d-flex bg-light">
+                            <Col>
+                                <div className="d-flex flex-column align-items-center">
+                                    <div>Purchase Request Date</div>
+                                    {ISOtoDate(dateCreated, 'MM/DD/YYYY')}
+
                                 </div>
                             </Col>
                         </div> : null

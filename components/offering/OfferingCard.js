@@ -7,7 +7,7 @@ export default function OfferingCard(props) {
     const router = useRouter();
     const {
         dataOfferingId, dataOfferingTitle, dataOfferingDescription, status,
-        contracts = [], pendingContracts, hideContracts
+        contracts = [], pendingContracts = [], hideContracts
     } = props;
 
     // 0 - created
@@ -38,7 +38,10 @@ export default function OfferingCard(props) {
     function onContractsClick() {
         // TODO fix path, should be offerings/offeringId/contracts
         // if (activeContracts > 0)
-        router.push('/offerings/contracts/' + dataOfferingId);
+        if (hideContracts)
+            onClick();
+        else
+            router.push('/offerings/contracts/' + dataOfferingId);
     }
 
     return (
@@ -53,14 +56,11 @@ export default function OfferingCard(props) {
                         { dataOfferingDescription }
                     </Card.Text>
                 </Card.Body>
-                <div className="d-flex bg-light px-3 p-2 py-1 align-items-center">
-
+                <div className="d-flex bg-light px-3 p-2 py-1 align-items-center" onClick={onContractsClick}>
                     <span className="flex-grow-1">
-                        {!hideContracts ? (
-                            <Badge pill variant="primary" onClick={onContractsClick}>
-                                {activeContracts} Contracts
-                            </Badge>) : null
-                        }
+                        <Badge pill variant="primary" className={hideContracts ? 'invisible' : ''}>
+                            {activeContracts} Contracts
+                        </Badge>
                     </span>
                     { warningIconEl }
                 </div>

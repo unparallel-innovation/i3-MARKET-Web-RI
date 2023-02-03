@@ -1,4 +1,4 @@
-import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useState } from 'react';
 import { InfoCircle } from 'react-bootstrap-icons';
 

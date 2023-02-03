@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { formDataPurchaseRequest } from '../../lib/forms/dataPurchaseRequest';
 import ContractParameters from './ContractParameters';
 import Error from '../layout/Error';
-import { parseJwk, generateKeys } from '@i3m/non-repudiation-library';
+import { generateKeys, parseJwk } from '@i3m/non-repudiation-library';
 import { walletApi } from '../../lib/walletApi';
 
 export default function ContractTemplate(props) {

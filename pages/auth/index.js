@@ -1,7 +1,18 @@
 import { Button, Col, Form, Image, Row } from 'react-bootstrap';
 import Footer from '../../components/common/Footer';
+import { walletApi } from '../../lib/walletApi';
+import { useEffect } from 'react';
 
 export default function Auth() {
+
+    // initialize wallet pairing
+    useEffect(() => {
+        async function initializeWallet() {
+            await walletApi();
+        }
+        initializeWallet();
+    }, []);
+
     return (
         <div className="vh-100 d-flex flex-column">
             <div className="vh-100 d-flex flex-column justify-content-center align-items-center">

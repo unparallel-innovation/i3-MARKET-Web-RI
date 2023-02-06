@@ -9,22 +9,21 @@ export default catchErrors(async (req, res) => {
     if (user) {
         const { offeringId, consumerPublicKeys, searchType } = req.query;
         if (searchType === 'consumer') {
+            // retrieve agreements based on consumer public keys
+            const data = {
+                'public_keys': JSON.parse(consumerPublicKeys),
+                'active': false
+            };
+            const agreements = await connector.getAgreementsByConsumer(user.access_token, user.id_token, data);
 
+            // retrieve the information about the offering associated to each agreement
             let contracts = [];
-
             for (let i = 0; i < agreements.length; i++) {
                 const agreement = agreements[i];
                 agreement.offering = await connector.getFederatedOffering(user.access_token, user.id_token, agreement.dataOffering.dataOfferingId);
                 contracts.push(agreement);
             }
-
             return { contracts, user };
-
-            // TODO change after SDK-RI fix
-            // const parsedPublicKeys = JSON.parse(consumerPublicKeys);
-            // const strPublicKeys = `.${parsedPublicKeys.join('.')}`;
-            // const contracts = await connector.getAgreementsByConsumer(user.access_token, user.id_token, strPublicKeys, false);
-            // return { contracts, user };
         }
         else {
             // contracts

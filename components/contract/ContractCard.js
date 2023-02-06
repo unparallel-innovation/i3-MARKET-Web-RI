@@ -83,7 +83,6 @@ export default function ContractCard(props) {
                                 <div className="d-flex flex-column align-items-center">
                                     <div>Purchase Request Date</div>
                                     {ISOtoDate(dateCreated, 'MM/DD/YYYY')}
-
                                 </div>
                             </Col>
                         </div> : null

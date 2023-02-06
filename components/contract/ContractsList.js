@@ -18,8 +18,7 @@ export default function ContractsList(props) {
         return <BigText>No contracts found!</BigText>;
 
     // TODO add filters
-    // consumer: state and provider (filter) end date (sort)
-    // provider: state (filter) end date (sort)
+    // consumer: provider (filter)
 
     const agreementStates = [
         'all',
@@ -84,13 +83,13 @@ export default function ContractsList(props) {
             <div className="d-flex flex-column px-5 h-100">
                 { user.provider
                     ? <>
-                        <div className="d-flex mb-3">
+                        <div className="d-flex">
                             <h3 className="flex-grow-1">Contract List for {getOfferingTitle()}</h3>
                             <Button variant="secondary" onClick={onCancel}>Back</Button>
                         </div>
                         <hr/>
                     </> : null }
-                <div className="d-flex mb-3">
+                <div className="d-flex my-3">
                     <Form.Control ref={setRef} as="select" className="dropdown-custom mr-3" onChange={onChange}>
                         {states}
                     </Form.Control>

@@ -8,6 +8,7 @@ export default catchErrors(async (req, res) => {
     if (user) {
         const { agreementId } = req.query;
         const agreement = await connector.getAgreement(user.access_token, user.id_token, agreementId);
+        agreement.stateValue = await connector.getAgreementState(user.access_token, user.id_token, agreement.agreementId);
         const offering = await connector.getFederatedOffering(user.access_token, user.id_token, agreement.dataOffering.dataOfferingId);
         return { ...agreement, offering };
     }

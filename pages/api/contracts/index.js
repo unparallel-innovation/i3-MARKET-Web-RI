@@ -16,10 +16,11 @@ export default catchErrors(async (req, res) => {
             };
             const agreements = await connector.getAgreementsByConsumer(user.access_token, user.id_token, data);
 
-            // retrieve the information about the offering associated to each agreement
+            // retrieve offering and state value
             let contracts = [];
             for (let i = 0; i < agreements.length; i++) {
                 const agreement = agreements[i];
+                agreement.stateValue = await connector.getAgreementState(user.access_token, user.id_token, agreement.agreementId);
                 agreement.offering = await connector.getFederatedOffering(user.access_token, user.id_token, agreement.dataOffering.dataOfferingId);
                 contracts.push(agreement);
             }
@@ -27,7 +28,15 @@ export default catchErrors(async (req, res) => {
         }
         else {
             // contracts
-            const contracts = await connector.getAgreementsByOffering(user.access_token, user.id_token, offeringId);
+            const agreements = await connector.getAgreementsByOffering(user.access_token, user.id_token, offeringId);
+
+            // retrieve state value
+            let contracts = [];
+            for (let i = 0; i < agreements.length; i++) {
+                const agreement = agreements[i];
+                agreement.stateValue = await connector.getAgreementState(user.access_token, user.id_token, agreement.agreementId);
+                contracts.push(agreement);
+            }
 
             // pending contracts
             let pendingContracts = [];

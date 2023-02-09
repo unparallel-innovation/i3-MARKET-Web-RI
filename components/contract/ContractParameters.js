@@ -1,5 +1,5 @@
 import { Col, Form, Row } from 'react-bootstrap';
-import { getAgreementState, getDateValue } from '../../lib/utils';
+import { getDateValue } from '../../lib/utils';
 import { useState } from 'react';
 import CustomLabel from '../common/CustomLabel';
 import moment from 'moment/moment';
@@ -9,7 +9,7 @@ export default function ContractParameters(props) {
         dataExchangeAgreement, dataOfferingDescription, duration, intendedUse,
         licenseGrant, parties, personalData, pricingModel, purpose, signatures,
         dataStream, offering, user, disableInput, isAgreement,
-        dataOffering, agreementDates, state
+        dataOffering, agreementDates, state, stateValue
     } = props;
 
     const [process, setProcessData] = useState(intendedUse.processData);
@@ -77,7 +77,7 @@ export default function ContractParameters(props) {
                     ? <Col>
                         <Form.Group controlId="state">
                             <Form.Label>State</Form.Label>
-                            <Form.Control type="text" name="state" defaultValue={getAgreementState(state) } disabled />
+                            <Form.Control type="text" name="state" defaultValue={stateValue} disabled />
                         </Form.Group>
                     </Col> : null }
 

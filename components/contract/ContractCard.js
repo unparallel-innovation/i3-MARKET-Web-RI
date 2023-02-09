@@ -1,11 +1,11 @@
 import { Card, Col } from 'react-bootstrap';
-import { getAgreementState, ISOtoDate, secondsToDate } from '../../lib/utils';
+import { ISOtoDate, secondsToDate } from '../../lib/utils';
 import { useRouter } from 'next/router';
 
 export default function ContractCard(props) {
     const router = useRouter();
     const {
-        agreementId, dataOffering, state, agreementDates,
+        agreementId, dataOffering, state, stateValue, agreementDates,
         id, data, dateCreated, user, offering
     } = props;
 
@@ -24,7 +24,7 @@ export default function ContractCard(props) {
 
     function getStatus() {
         if (state !== undefined)
-            return getAgreementState(state);
+            return stateValue;
         return 'Pending';
     }
 

@@ -4,7 +4,6 @@ import BigText from '../common/BigText';
 import ContractCard from './ContractCard';
 import Layout from '../layout/Layout';
 import { Button, Form, Row } from 'react-bootstrap';
-import { getAgreementState } from '../../lib/utils';
 import { ArrowDown, ArrowUp } from 'react-bootstrap-icons';
 
 export default function ContractsList(props) {
@@ -42,7 +41,7 @@ export default function ContractsList(props) {
         else if (state === 'pending')
             return contract.status === 'Pending';
         else
-            return getAgreementState(contract.state).toLowerCase() === state;
+            return contract.stateValue === state;
     }).sort((a,b) => {
         if (sort === 'up') {
             if (a.data || b.data)

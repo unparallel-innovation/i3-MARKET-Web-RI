@@ -18,7 +18,7 @@ function Offering(props) {
         dataOfferingTitle, dataOfferingDescription, status, ownerConsentForm, active,
         personalData, inSharedNetwork, category, provider, providerDid, marketId, marketDid,
         owner, ownerDid, dataOfferingExpirationTime, hasDataset, hasPricingModel, contractParameters,
-        contracts, pendingContracts, user
+        contracts = [], pendingContracts = [], user
     } = props;
 
     const [ showDelete, setShowDelete ] = useState(false);
@@ -30,7 +30,7 @@ function Offering(props) {
     // 3 - violated
     // 4 - terminated
     // 5 - pending (notification)
-    const activeContracts = contracts.filter(c => c.state === 1).length;
+    const activeContracts = contracts.filter(c => c.state === 0).length;
 
     const statusIconEl = getOfferingStatusIcon(status);
 

@@ -9,7 +9,7 @@ export default function ContractParameters(props) {
         dataExchangeAgreement, dataOfferingDescription, duration, intendedUse,
         licenseGrant, parties, personalData, pricingModel, purpose, signatures,
         dataStream, offering, user, disableInput, isAgreement,
-        dataOffering, agreementDates, state, stateValue
+        dataOffering, agreementDates, stateValue
     } = props;
 
     const [process, setProcessData] = useState(intendedUse.processData);

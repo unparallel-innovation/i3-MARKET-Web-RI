@@ -20,11 +20,14 @@ export default catchErrors(async (req, res) => {
             let contracts = [];
             for (let i = 0; i < agreements.length; i++) {
                 const agreement = agreements[i];
-                agreement.stateValue = await connector.getAgreementState(user.access_token, user.id_token, agreement.agreementId);
-                agreement.offering = await connector.getFederatedOffering(user.access_token, user.id_token, agreement.dataOffering.dataOfferingId);
+                const agreementState = await connector.getAgreementState(user.access_token, user.id_token, agreement.agreementId);
+                agreement.stateValue = agreementState.state;
+                const offering = await connector.getFederatedOffering(user.access_token, user.id_token, agreement.dataOffering.dataOfferingId);
+                agreement.provider = offering.provider;
                 contracts.push(agreement);
             }
-            return { contracts, user };
+            // console.log(contracts)
+            return { contracts: contracts, user };
         }
         else {
             // contracts
@@ -34,7 +37,8 @@ export default catchErrors(async (req, res) => {
             let contracts = [];
             for (let i = 0; i < agreements.length; i++) {
                 const agreement = agreements[i];
-                agreement.stateValue = await connector.getAgreementState(user.access_token, user.id_token, agreement.agreementId);
+                const agreementState = await connector.getAgreementState(user.access_token, user.id_token, agreement.agreementId);
+                agreement.stateValue = agreementState.state;
                 contracts.push(agreement);
             }
 

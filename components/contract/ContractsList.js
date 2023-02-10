@@ -21,9 +21,7 @@ export default function ContractsList(props) {
 
     const agreementStates = [
         'all',
-        'created',
         'active',
-        'updated',
         'violated',
         'terminated',
         'pending'

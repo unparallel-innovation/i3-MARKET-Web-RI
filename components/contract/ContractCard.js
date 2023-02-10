@@ -1,12 +1,12 @@
 import { Card, Col } from 'react-bootstrap';
-import { ISOtoDate, secondsToDate } from '../../lib/utils';
+import { capitalize, ISOtoDate, secondsToDate } from '../../lib/utils';
 import { useRouter } from 'next/router';
 
 export default function ContractCard(props) {
     const router = useRouter();
     const {
         agreementId, dataOffering, state, stateValue, agreementDates,
-        id, data, dateCreated, user, offering
+        id, data, dateCreated, user, provider
     } = props;
 
     function onClick() {
@@ -24,13 +24,13 @@ export default function ContractCard(props) {
 
     function getStatus() {
         if (state !== undefined)
-            return stateValue;
+            return capitalize(stateValue);
         return 'Pending';
     }
 
     function getProvider() {
         if (user.consumer) {
-            return <Card.Text>Provider: {offering.provider}</Card.Text>;
+            return <Card.Text>Provider: {provider}</Card.Text>;
         }
         return null;
     }

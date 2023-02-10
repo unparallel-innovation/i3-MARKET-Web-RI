@@ -9,6 +9,12 @@ export default catchErrors(async (req, res) => {
     if (user) {
         switch (req.method) {
             case 'GET':
+                // if consumer only retrieve offering information
+                if (user.consumer)
+                    return await connector.getFederatedOffering(user.access_token, user.id_token, offeringId);
+
+                // if provider retrieve offering, contracts and pending contracts
+
                 // offering
                 const federateOffering = await connector.getFederatedOffering(user.access_token, user.id_token, offeringId);
                 // created contracts

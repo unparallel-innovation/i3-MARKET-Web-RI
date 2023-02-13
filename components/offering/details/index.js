@@ -24,12 +24,9 @@ function Offering(props) {
     const [ showDelete, setShowDelete ] = useState(false);
     const [ showActivate, setShowActivate ] = useState(false);
 
-    // 0 - created
-    // 1 - active
-    // 2 - updated
-    // 3 - violated
-    // 4 - terminated
-    // 5 - pending (notification)
+    // 0 - active
+    // 1 - violated
+    // 2 - terminated
     const activeContracts = contracts.filter(c => c.state === 0).length;
 
     const statusIconEl = getOfferingStatusIcon(status);

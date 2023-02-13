@@ -10,13 +10,10 @@ export default function OfferingCard(props) {
         contracts = [], pendingContracts = [], hideContracts
     } = props;
 
-    // 0 - created
-    // 1 - active
-    // 2 - updated
-    // 3 - violated
-    // 4 - terminated
-    // 5 - pending (notification)
-    const activeContracts = contracts.filter(c => c.state === 1).length;
+    // 0 - active
+    // 1 - violated
+    // 2 - terminated
+    const activeContracts = contracts.filter(c => c.state === 0).length;
 
     let warningIconEl = null;
     if (pendingContracts.length > 0) {

@@ -130,27 +130,11 @@ function Offering(props) {
                     <KVCol2 title="Provider">
                         { provider }
                     </KVCol2>
-                    <KVCol2 title="Provider DID">
-                        { providerDid }
-                    </KVCol2>
-
-                </Row>
-
-                <Row className="text-center mb-3">
                     <KVCol2 title="Market">
                         { marketId }
                     </KVCol2>
-                    <KVCol2 title="Market DID">
-                        { marketDid }
-                    </KVCol2>
-                </Row>
-
-                <Row className="text-center mb-3">
                     <KVCol2 title="Owner">
                         { owner }
-                    </KVCol2>
-                    <KVCol2 title="Owner DID">
-                        { ownerDid }
                     </KVCol2>
                 </Row>
 

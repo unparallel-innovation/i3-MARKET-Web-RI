@@ -1,5 +1,5 @@
 import { Col, Form, Row } from 'react-bootstrap';
-import { getDateValue } from '../../lib/utils';
+import { getAgreementDateValue } from '../../lib/utils';
 import { useState } from 'react';
 import CustomLabel from '../common/CustomLabel';
 import moment from 'moment/moment';
@@ -8,7 +8,7 @@ export default function ContractParameters(props) {
     const {
         dataExchangeAgreement, dataOfferingDescription, duration, intendedUse,
         licenseGrant, parties, personalData, pricingModel, purpose, signatures,
-        dataStream, offering, user, disableInput, isAgreement,
+        offering, user, disableInput, isAgreement,
         dataOffering, agreementDates, stateValue
     } = props;
 
@@ -31,14 +31,14 @@ export default function ContractParameters(props) {
     const [rent, setRenting] = useState(licenseGrant.renting);
     const [furtherLicense, setFurtherLicensing] = useState(licenseGrant.furtherLicensing);
     const [lease, setLeasing] = useState(licenseGrant.leasing);
-    const [ds, setDataStream] = useState(dataStream);
 
+    // process dates
     let creationDate, startDate, endDate;
     if (duration) {
-        creationDate = duration.creationDate > 0 ? getDateValue(duration.creationDate) : getDateValue(Date.now());
-        startDate = duration.startDate > 0 ? getDateValue(duration.startDate) : getDateValue(Date.now());
+        creationDate = duration.creationDate > 0 ? getAgreementDateValue(duration.creationDate) : getAgreementDateValue(Date.now() / 1000);
+        startDate = duration.startDate > 0 ? getAgreementDateValue(duration.startDate) : getAgreementDateValue(Date.now() / 1000);
         if (duration.endDate > 0)
-            endDate = getDateValue(duration.endDate);
+            endDate = getAgreementDateValue(duration.endDate);
         else {
             const newDate = new Date();
             newDate.setMonth(newDate.getMonth() + 6);
@@ -46,10 +46,14 @@ export default function ContractParameters(props) {
         }
     }
     else if (agreementDates) {
-        creationDate = getDateValue(agreementDates[0]);
-        startDate = getDateValue(agreementDates[1]);
-        endDate = getDateValue(agreementDates[2]);
+        creationDate = getAgreementDateValue(agreementDates[0]);
+        startDate = getAgreementDateValue(agreementDates[1]);
+        endDate = getAgreementDateValue(agreementDates[2]);
     }
+
+    // check if is batch data or data stream
+    const dataStream = pricingModel.hasPaymentOnSubscription
+        && pricingModel.hasPaymentOnSubscription.hasSubscriptionPrice > 0;
 
     return (
         <>
@@ -141,6 +145,20 @@ export default function ContractParameters(props) {
             </Form.Group>
 
             {getPricingModel(pricingModel)}
+
+            <h5 className="mt-4">Data Stream</h5>
+            <hr className="mt-2 mb-4" />
+
+            <Row>
+                <Col className="col-md-6">
+                    <Form.Group controlId={'dataStream'}>
+                        <Form.Control as="select" value={dataStream} name={'dataStream'} disabled>
+                            <option value="false">False</option>
+                            <option value="true">True</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+            </Row>
 
             <h4 className="mt-4">Dynamic Parameters</h4>
             <hr className="mt-2 mb-4" />
@@ -410,22 +428,6 @@ export default function ContractParameters(props) {
                 </Col>
             </Row>
 
-            <h5 className="mt-4">Data Stream</h5>
-            <hr className="mt-2 mb-4" />
-
-            <Row>
-                <Col className="col-md-6">
-                    <Form.Group controlId={'dataStream'}>
-                        <Form.Control as="select" value={ds} name={'dataStream'}
-                            onChange={e => { setDataStream(e.target.value); }} disabled={disableInput}
-                        >
-                            <option value="false">False</option>
-                            <option value="true">True</option>
-                        </Form.Control>
-                    </Form.Group>
-                </Col>
-            </Row>
-
             {!isAgreement ? (
                 <>
                     <h5 className="mt-4">Data Exchange Agreement</h5>
@@ -482,6 +484,7 @@ export default function ContractParameters(props) {
                     <input type="hidden" name="ledgerContractAddress" defaultValue={dataExchangeAgreement.ledgerContractAddress} />
                     <input type="hidden" name="orig" defaultValue={dataExchangeAgreement.orig} />
                     <input type="hidden" name="dest" defaultValue={dataExchangeAgreement.dest} />
+                    <input type="hidden" name="dataStream" defaultValue={dataStream} />
                 </>
             ) : null}
         </>

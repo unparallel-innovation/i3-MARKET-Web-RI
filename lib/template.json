@@ -1,0 +1,78 @@
+{
+  "dataOfferingDescription": {
+    "dataOfferingId": "63c51e3ff762242150a481e1",
+    "version": 0,
+    "title": "Offering Web-RI",
+    "category": "regions",
+    "active": true
+  },
+  "parties": {
+    "providerDid": "did:ethr:i3m:0x035d4453358b170fbeb7babdcd3a6887977fb65b39cd53fc6724b53ceb8935f6a9",
+    "consumerDid": "string"
+  },
+  "purpose": "",
+  "duration": {
+    "creationDate": 0,
+    "startDate": 0,
+    "endDate": 0
+  },
+  "intendedUse": {
+    "processData": false,
+    "shareDataWithThirdParty": false,
+    "editData": false
+  },
+  "licenseGrant": {
+    "transferable": false,
+    "exclusiveness": false,
+    "paidUp": true,
+    "revocable": false,
+    "processing": false,
+    "modifying": false,
+    "analyzing": true,
+    "storingData": false,
+    "storingCopy": false,
+    "reproducing": true,
+    "distributing": false,
+    "loaning": false,
+    "selling": false,
+    "renting": false,
+    "furtherLicensing": false,
+    "leasing": false
+  },
+  "dataStream": false,
+  "personalData": false,
+  "pricingModel": {
+    "paymentType": "one-time purchase",
+    "pricingModelName": "Single Purchase",
+    "basicPrice": 400,
+    "currency": "EUR",
+    "fee": 20,
+    "hasPaymentOnSubscription": {
+      "paymentOnSubscriptionName": "",
+      "paymentType": "",
+      "timeDuration": "",
+      "description": "",
+      "repeat": "",
+      "hasSubscriptionPrice": 0
+    },
+    "hasFreePrice": {
+      "hasPriceFree": false
+    }
+  },
+  "dataExchangeAgreement": {
+    "orig": "string",
+    "dest": "string",
+    "encAlg": "A128GCM",
+    "signingAlg": "ES256",
+    "hashAlg": "SHA-256",
+    "ledgerContractAddress": "0x8d407A1722633bDD1dcf221474be7a44C05d7c2F",
+    "ledgerSignerAddress": "",
+    "pooToPorDelay": 100000,
+    "pooToPopDelay": 30000,
+    "pooToSecretDelay": 180000
+  },
+  "signatures": {
+    "providerSignature": "string",
+    "consumerSignature": "string"
+  }
+}

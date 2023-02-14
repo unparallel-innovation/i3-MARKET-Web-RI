@@ -6,9 +6,9 @@ import { useState } from 'react';
 export default function DataExchangeSpec(props) {
     const {
         encAlg, signingAlg, hashAlg,
-        ledgerContractAddress = '0x8d407a1722633bdd1dcf221474be7a44c05d7c2f',
+        ledgerContractAddress = '0x8d407A1722633bDD1dcf221474be7a44C05d7c2F',
         pooToPorDelay = 100000, pooToPopDelay = 30000, pooToSecretDelay = 180000,
-        user, eventKey
+        eventKey
     } = props;
 
     const [encryption, setEncryption] = useState(encAlg);
@@ -35,7 +35,7 @@ export default function DataExchangeSpec(props) {
                             </Col>
                             <Col>
                                 <Form.Group controlId={eventKey + 'signingAlg'}>
-                                    <CustomLabel value="Signing Algorithm" tooltip="Signing algorithm used to sign the proofs. It'e ECDSA secp256r1 with key lengths: either 'ES256', 'ES384', or 'ES512'" />
+                                    <CustomLabel value="Signing Algorithm" tooltip="Signing algorithm used to sign the proofs. Like ECDSA secp256r1 with key lengths: either 'ES256', 'ES384', or 'ES512'" />
                                     <Form.Control as="select" value={signing} name={eventKey + 'signingAlg'} onChange={e => { setSigning(e.target.value); }} >
                                         <option value="ES256">ES256</option>
                                         <option value="ES384">ES384</option>
@@ -54,23 +54,6 @@ export default function DataExchangeSpec(props) {
                                 </Form.Group>
                             </Col>
                         </Row>
-
-                        {/*<Row>*/}
-                        {/*    <Col>*/}
-                        {/*        <Form.Group controlId={eventKey + 'ledgerContractAddress'}>*/}
-                        {/*            <CustomLabel value="Ledger Contract Address" tooltip="The ledger smart contract address (hexadecimal) on the DLT" />*/}
-                        {/*            <Form.Control type="text" name={eventKey + 'ledgerContractAddress'} defaultValue={ledgerContractAddress} disabled />*/}
-                        {/*            <input type="hidden" name={eventKey + 'ledgerContractAddress'} defaultValue={ledgerContractAddress} />*/}
-                        {/*        </Form.Group>*/}
-                        {/*    </Col>*/}
-                        {/*    <Col>*/}
-                        {/*        <Form.Group controlId={eventKey + 'ledgerSignerAddress'}>*/}
-                        {/*            <CustomLabel value="Ledger Signer Address" tooltip="The orig (data provider) address in the DLT (hexadecimal)" />*/}
-                        {/*            <Form.Control type="text" name={eventKey + 'ledgerSignerAddress'} defaultValue={user.ledgerAddress} disabled />*/}
-                        {/*            <input type="hidden" name={eventKey + 'ledgerSignerAddress'} defaultValue={user.ledgerAddress} />*/}
-                        {/*        </Form.Group>*/}
-                        {/*    </Col>*/}
-                        {/*</Row>*/}
 
                         <Row>
                             <Col>
@@ -96,7 +79,6 @@ export default function DataExchangeSpec(props) {
                 </Accordion.Collapse>
 
                 <input type="hidden" name={eventKey + 'ledgerContractAddress'} defaultValue={ledgerContractAddress} />
-                <input type="hidden" name={eventKey + 'ledgerSignerAddress'} defaultValue={user.ledgerAddress} />
 
             </Card>
         </Accordion>

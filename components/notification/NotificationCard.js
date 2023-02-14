@@ -2,26 +2,55 @@ import { useRouter } from 'next/router';
 import { Button, Card, Col, Modal } from 'react-bootstrap';
 import colors from '../../lib/colors';
 import { CheckCircle, Trash, XCircle } from 'react-bootstrap-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ISOtoDate } from '../../lib/utils';
+
+import { jweDecrypt, validateDataSharingAgreementSchema } from '@i3m/non-repudiation-library';
 import { walletApi } from '../../lib/walletApi';
 
 export default function NotificationCard(props) {
     const router = useRouter();
-    const { id, data, status, receptor, action, unread, origin, dateCreated, user } = props;
+    const {
+        id, data, status, receptor, action,
+        unread, origin, dateCreated, keyPair, user
+    } = props;
     const [ showDelete, setShowDelete ] = useState(false);
     const [ showRead, setShowRead ] = useState(false);
     const [ showUnread, setShowUnread ] = useState(false);
     const [ showSign, setShowSign ] = useState(false);
-    const [ agreement, setAgreement ] = useState('');
+    const [ showCreateAgreement, setShowCreateAgreement ] = useState(false);
+    const [ offering, setOffering ] = useState('');
+    const [ msg, setMsg] = useState(data.msg);
+    const dataSharingAgreement = data.dataSharingAgreement;
+
+    // decrypt notification message
+    useEffect(() => {
+        async function decryptJwe() {
+            if (data.jwe) {
+                // retrieve private key matching public key (receptor)
+                const privateKey = keyPair.find(el=>el.publicJwk === receptor).privateJwk;
+                if (privateKey) {
+                    const uint8Decrypted = await jweDecrypt(data.jwe, JSON.parse(privateKey));
+                    const strDecrypted = new TextDecoder().decode(new Uint8Array(uint8Decrypted.plaintext));
+                    const jsonDecrypted = JSON.parse(strDecrypted);
+                    setMsg(jsonDecrypted.msg);
+                }
+            }
+        }
+        decryptJwe();
+    }, []);
+
+    // TODO: set background color based on 'action'
+    // TODO: set read/unread color
 
     function markNotification(id, action) {
         const body = {
             notificationId: id,
             action: action
         };
-        fetch('/api/notifications', {
+        fetch('/api/notification', {
             method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         }).then(() => {
             router.reload();
@@ -29,15 +58,16 @@ export default function NotificationCard(props) {
     }
 
     function onClick(action) {
-        if (user.consumer && action === 'agreement.pending' && origin === 'scm') { //TODO check by agreementId
-            // workaround to retrieve agreement id from notification msg
-            const agreementTxt = data.msg;
-            const agreementId = agreementTxt.match(/\d/g)[0];
-            setAgreement(agreementId);
+        if (user.consumer && action === 'agreement.pending' && origin === 'web-ri') {
+            setOffering(dataSharingAgreement.dataOfferingDescription.title);
             setShowSign(true);
         }
-        else if (user.provider && action === 'agreement.pending' && data.template) {
-            router.push('/offerings/createAgreement/' + id);
+        else if (user.provider && action === 'agreement.pending' && origin === 'web-ri') {
+            router.push('/offerings/dataPurchaseRequest/' + id);
+        }
+        else if (user.provider && action === 'agreement.accepted' && origin === 'web-ri') {
+            setOffering(dataSharingAgreement.dataOfferingDescription.title);
+            setShowCreateAgreement(true);
         }
         else if (action === 'agreement.rejected') {
             // TODO show rejection notes
@@ -46,53 +76,24 @@ export default function NotificationCard(props) {
     }
 
     function onDelete() {
-        fetch('/api/notifications', {
+        fetch('/api/notification', {
             method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ notificationId: id })
         }).then(() => {
             router.reload();
         });
     }
 
-    async function onSign() {
-        const api = await walletApi();
-        const info = await api.identities.info({ did: receptor });
-        const ethereumAddress = info.addresses[0];
-
-        fetch('/api/offerings/signAgreement', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                'agreement_id': agreement,
-                'consumer_id': receptor,
-                'consumer_ethereum_address': ethereumAddress
-            })
-        }).then(res => {
-            res.json().then(async rawTransaction => {
-                const body = {
-                    type: 'Transaction',
-                    data: rawTransaction
-                };
-                const signRes = await api.identities.sign({ did: receptor }, body);
-
-                fetch('/api/offerings/deployTransaction', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(signRes),
-                }).then(res => {
-                    res.json().then(deployRes => {
-                        console.log('transaction deployed', deployRes);
-                        setAgreement('');
-                        setShowSign(false);
-                        onDelete();
-                    });
-                });
-            });
-        });
+    async function onSign(e) {
+        e.preventDefault();
+        await consumerSign();
     }
 
-    // TODO: set background color based on 'action'
-    // TODO: set read/unread color
+    async function onCreate(e) {
+        e.preventDefault();
+        await providerCreateAgreement();
+    }
 
     return (
         <>
@@ -102,9 +103,9 @@ export default function NotificationCard(props) {
                         <div className="d-flex">
                             <Card.Text className="flex-grow-1">{action}</Card.Text>
                             {/*Status: {status}*/}
-                            {ISOtoDate(dateCreated)}
+                            {ISOtoDate(dateCreated, 'YYYY-MM-DD HH:mm:ss')}
                         </div>
-                        <Card.Title className="mt-3">{data.msg}</Card.Title>
+                        <Card.Title className="mt-3">{msg}{data.notes ? `. Reason: ${data.notes}` : ''}</Card.Title>
                     </Card.Body>
                     <div className="d-flex bg-light">
                         <div className="flex-grow-1">
@@ -188,7 +189,7 @@ export default function NotificationCard(props) {
                         Sign Agreement
                     </Modal.Header>
                     <Modal.Body>
-                        Do you want to sign the agreement {agreement} ?
+                        Do you want to confirm the purchase for offering <strong>{offering}</strong>?
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowSign(false)}>
@@ -200,7 +201,162 @@ export default function NotificationCard(props) {
                     </Modal.Footer>
                 </Modal>
             );
+        } else if (showCreateAgreement) {
+            return (
+                <Modal show={showCreateAgreement} onHide={() => setShowCreateAgreement(false)}>
+                    <Modal.Header closeButton>
+                        Create Agreement
+                    </Modal.Header>
+                    <Modal.Body>
+                        Do you want to create the agreement for offering <strong>{offering}</strong>?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowCreateAgreement(false)}>
+                            Cancel
+                        </Button>
+                        <Button variant="primary" onClick={onCreate}>
+                            Create
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            );
+        }
+    }
+    async function consumerSign() {
+        const wallet = await walletApi();
+        // create payload object (equal to dataSharingAgreement but without signatures)
+        const { signatures, ...payload } = dataSharingAgreement;
+        // consumer verifies provider's signature using the wallet
+        const verifySignature = await wallet.didJwt.verify({ jwt: signatures.providerSignature, expectedPayloadClaims: payload });
+
+        // verification.verification === 'success'
+        // verification.decodedJwt.iss === dataSharingAgreeement.parties.providerDid
+        // verification.decodedJwt.iat is an acceptable timestamp (likely close to now or within an agreed period)
+        if (verifySignature.verification === 'success'
+            && verifySignature.decodedJwt.iss === dataSharingAgreement.parties.providerDid
+            && verifySignature.decodedJwt.iat <= Date.now()
+        ) {
+            // sign the payload with the wallet
+            const walletSign = await wallet.identities.sign({ did: props.user.DID }, { type: 'JWT', data: { payload } });
+
+            // add the consumer signature to dataSharingAgreement
+            dataSharingAgreement.signatures.consumerSignature = walletSign.signature;
+
+            // get list of consumer keys from wallet
+            const consumerKeys = await wallet.resources.list({ type: 'KeyPair', identity: user.DID });
+
+            // get keyPair according to dataExchangeAgreement.dest
+            const selectedKeyPair = consumerKeys.find(res => res.resource.keyPair.publicJwk === dataSharingAgreement.dataExchangeAgreement.dest).resource.keyPair;
+
+            // validate dataSharingAgreementSchema
+            const dataSharingSchemaAgreementErrors = await validateDataSharingAgreementSchema(dataSharingAgreement);
+
+            console.log('dataSharingAgreement schema errors', dataSharingSchemaAgreementErrors);
+
+            if (dataSharingSchemaAgreementErrors.length === 0 && selectedKeyPair) {
+                console.log('[Consumer] selected keyPair', selectedKeyPair);
+
+                // save contract with dataSharingAgreement and keyPair in the Wallet
+                const resource = {
+                    type: 'Contract',
+                    name: 'Consumer Contract',
+                    identity: user.DID,
+                    resource: {
+                        dataSharingAgreement: dataSharingAgreement,
+                        keyPair: selectedKeyPair
+                    }
+                };
+                await wallet.resources.create(resource);
+                console.log('Data Sharing Agreement saved in Wallet (Consumer)');
+
+                // send signed agreement to provider
+                fetch('/api/offering/sendAgreementProvider', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dataSharingAgreement),
+                }).then(r => {
+                    // delete consumer notification
+                    onDelete();
+                });
+            }
         }
     }
 
+    async function providerCreateAgreement() {
+        const wallet = await walletApi();
+        // create payload object (equal to dataSharingAgreement but without signatures)
+        const { signatures, ...payload } = dataSharingAgreement;
+        // provider verifies consumer's signature using the wallet
+        const verifySignature = await wallet.didJwt.verify({ jwt: signatures.consumerSignature, expectedPayloadClaims: payload });
+
+        if (verifySignature.verification === 'success'
+            && verifySignature.decodedJwt.iss === dataSharingAgreement.parties.consumerDid
+            && verifySignature.decodedJwt.iat <= Date.now()
+        ) {
+            // get list of provider keys from wallet
+            const providerKeys = await wallet.resources.list({ type: 'KeyPair', identity: user.DID });
+
+            // get keyPair according to dataExchangeAgreement.orig
+            const selectedKeyPair = providerKeys.find(res => res.resource.keyPair.publicJwk === dataSharingAgreement.dataExchangeAgreement.orig).resource.keyPair;
+
+            // validate dataSharingAgreementSchema
+            const dataSharingSchemaAgreementErrors = await validateDataSharingAgreementSchema(dataSharingAgreement);
+
+            console.log('dataSharingAgreement schema errors', dataSharingSchemaAgreementErrors);
+
+            if (dataSharingSchemaAgreementErrors.length === 0 && selectedKeyPair) {
+
+                console.log('[Provider] selected keyPair', selectedKeyPair);
+
+                // save contract with dataSharingAgreement and keyPair in the Wallet
+                const resource = {
+                    type: 'Contract',
+                    name: 'Provider Contract',
+                    identity: user.DID,
+                    resource: {
+                        dataSharingAgreement: dataSharingAgreement,
+                        keyPair: selectedKeyPair
+                    }
+                };
+                await wallet.resources.create(resource);
+                console.log('Data Sharing Agreement saved in Wallet (Provider)');
+
+                // retrieve ethereumAddress from wallet
+                const info = await wallet.identities.info({ did: user.DID });
+                const ethereumAddress = info.addresses[0];
+
+                console.log('CreateAgreement', dataSharingAgreement);
+
+                // create agreement
+                fetch('/api/offering/createAgreement', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        senderAddress: ethereumAddress,
+                        dataSharingAgreement
+                    }),
+                }).then(res1 => {
+                    res1.json().then(async rawTransaction => {
+                        console.log('RawTransaction', rawTransaction);
+
+                        const signTransaction = await wallet.identities.sign({ did: props.user.DID }, { type: 'Transaction', data: rawTransaction });
+                        console.log('Sign RawTransaction', signTransaction);
+
+                        fetch('/api/offering/deployTransaction', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(signTransaction),
+                        }).then(res2 => {
+                            res2.json().then(deployRes => {
+                                console.log('transaction deployed', deployRes);
+
+                                // TODO add loading
+                                onDelete();
+                            });
+                        });
+                    });
+                });
+            }
+        }
+    }
 }

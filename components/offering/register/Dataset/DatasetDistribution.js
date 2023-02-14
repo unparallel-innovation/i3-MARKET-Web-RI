@@ -16,7 +16,7 @@ export default function DatasetDistribution(props) {
     const [ dataExchangeSpecC ] = useMap(eventKey, 'dataExchangeSpec');
 
     const accessServiceEl = <AccessService key={'accessServiceKey'} eventKey={eventKey + 'accessService0'} {...accessService} />;
-    const dataExchangeSpecEl = <DataExchangeSpec key={'dataExchangeSpecKey'} eventKey={eventKey + 'dataExchangeSpec0'} {...dataExchangeSpec} user={user} />;
+    const dataExchangeSpecEl = <DataExchangeSpec key={'dataExchangeSpecKey'} eventKey={eventKey + 'dataExchangeSpec0'} {...dataExchangeSpec} />;
 
     return (
         <Accordion>

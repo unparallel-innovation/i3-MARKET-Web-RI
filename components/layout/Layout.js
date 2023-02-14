@@ -19,8 +19,8 @@ function Layout(props) {
         let destroy = false;
 
         function getData() {
-            fetch('/api/notifications', {
-                method: 'GET'
+            fetch('/api/notification', {
+                method: 'GET',
             }).then(res=>{
                 res.json().then(json=>{
                     setNotifications(json.unreadNotifications.length);
@@ -38,6 +38,35 @@ function Layout(props) {
             destroy = true;
         };
     },[]);
+
+    // useEffect(() => {
+    //
+    //     let destroy = false;
+    //     async function getData() {
+    //         const wallet = await walletApi();
+    //         const resources = await wallet.resources.list({ type: 'KeyPair', identity: data.user.DID });
+    //
+    //         fetch(`/api/notification?keys=${JSON.stringify(resources)}`, {
+    //             method: 'GET',
+    //         }).then(res=>{
+    //             res.json().then(json=>{
+    //                 setNotifications(json.unreadNotifications.length);
+    //                 setTimeout(()=>{
+    //                     if (destroy) {
+    //                         return;
+    //                     }
+    //                     getData();
+    //                 },1 * 60 * 1000);
+    //             });
+    //         });
+    //
+    //     }
+    //
+    //     getData();
+    //     return function cleanup() {
+    //         destroy = true;
+    //     };
+    // }, []);
 
     if (data) {
         const user = data.user;
@@ -67,20 +96,14 @@ function Layout(props) {
                                         <Nav.Link>Offerings</Nav.Link>
                                     </Link>
                                 ) : null }
-                                {/*{ user.consumer ? (*/}
-                                {/*    <Link href="/contracts" passHref>*/}
-                                {/*        <Nav.Link>Contracts</Nav.Link>*/}
-                                {/*    </Link>*/}
-                                {/*) : null }*/}
-                                {/*<Link href="/transactions" passHref>*/}
-                                {/*    <Nav.Link>Transactions</Nav.Link>*/}
-                                {/*</Link>*/}
+                                { user.consumer ? (
+                                    <Link href="/contracts" passHref>
+                                        <Nav.Link>Contracts</Nav.Link>
+                                    </Link>
+                                ) : null }
                                 <Link href="/search" passHref>
                                     <Nav.Link>Search</Nav.Link>
                                 </Link>
-                                {/*<Link href="/alerts" passHref>*/}
-                                {/*    <Nav.Link>Alerts</Nav.Link>*/}
-                                {/*</Link>*/}
                                 <Link href="/" passHref>
                                     <NavDropdown id="basic-nav-dropdown" title={<PersonCircle size={24}/>} alignRight>
                                         <NavDropdown.Item disabled>

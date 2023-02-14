@@ -1,6 +1,5 @@
 import { catchErrors, connector } from '/lib/server.js';
 import { getSession } from '../../../../lib/session';
-import * as nonRepudiationLibrary from '@i3m/non-repudiation-library';
 
 export default catchErrors(async (req, res) => {
     const { offeringId } = req.query;
@@ -11,7 +10,7 @@ export default catchErrors(async (req, res) => {
         switch (req.method) {
             case 'GET':
                 const template = await connector.getContractTemplate(user.access_token, user.id_token, offeringId);
-                const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);
+                const offering = await connector.getFederatedOffering(user.access_token, user.id_token, offeringId);
                 return { ...template, offering, user };
         }
     }

@@ -3,9 +3,9 @@ import { useData } from '../../../lib/hooks';
 import { Loading } from '../../../components/layout/Loading';
 import BigText from '../../../components/common/BigText';
 import Error from '../../../components/layout/Error';
-import CreateAgreement from '../../../components/contract/CreateAgreement';
+import DataPurchaseRequest from '../../../components/contract/DataPurchaseRequest';
 
-export default function CreateAgreementPage() {
+export default function DataPurchaseRequestPage() {
     const router = useRouter();
     const { notificationId } = router.query;
     const { data, error, isValidating } = useData(`/api/notification/${notificationId}`);
@@ -19,5 +19,5 @@ export default function CreateAgreementPage() {
     if (error)
         return <Error error={error} />;
 
-    return <CreateAgreement {...data} />;
+    return <DataPurchaseRequest {...data} />;
 }

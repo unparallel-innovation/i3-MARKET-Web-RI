@@ -1,7 +1,18 @@
 import { Button, Col, Form, Image, Row } from 'react-bootstrap';
 import Footer from '../../components/common/Footer';
+import { walletApi } from '../../lib/walletApi';
+import { useEffect } from 'react';
 
 export default function Auth() {
+
+    // initialize wallet pairing
+    useEffect(() => {
+        async function initializeWallet() {
+            await walletApi();
+        }
+        initializeWallet();
+    }, []);
+
     return (
         <div className="vh-100 d-flex flex-column">
             <div className="vh-100 d-flex flex-column justify-content-center align-items-center">
@@ -25,12 +36,9 @@ export default function Auth() {
                                 <Col><Button className="w-100 bg-secondary" type="submit" href={'/register'}>Register</Button></Col>
                                 <Col/>
                             </Row>
-
                         </div>
                     </div>
-
                 </Form>
-
             </div>
             <Footer />
         </div>

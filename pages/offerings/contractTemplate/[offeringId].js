@@ -13,11 +13,11 @@ export default function ContractTemplatePage() {
     if (isValidating)
         return <Loading />;
 
-    if (!data)
-        return <BigText>Contract template for offering {offeringId} not found</BigText>;
-
     if (error)
         return <Error error={error} />;
+
+    if (!data)
+        return <BigText>Contract template for offering {offeringId} not found</BigText>;
 
     return <ContractTemplate {...data} />;
 }

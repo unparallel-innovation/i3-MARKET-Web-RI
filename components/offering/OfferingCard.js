@@ -1,25 +1,29 @@
 import { useRouter } from 'next/router';
 import { Badge, Card, Col } from 'react-bootstrap';
 import { getOfferingStatusIcon } from '../../lib/utils';
+import { ExclamationCircle } from 'react-bootstrap-icons';
 
 export default function OfferingCard(props) {
     const router = useRouter();
     const {
         dataOfferingId, dataOfferingTitle, dataOfferingDescription, status,
-        contracts = '-', hideContracts
+        contracts = [], pendingContracts = [], hideContracts
     } = props;
 
-    // let warningIconEl = null;
-    // if (hasContractWarning) {
-    //     warningIconEl = (
-    //         <span className="p-2 px-3 bg-warning">
-    //             <ExclamationCircle size={24}/>
-    //         </span>
-    //     );
-    // }
+    // 0 - active
+    // 1 - violated
+    // 2 - terminated
+    const activeContracts = contracts.filter(c => c.state === 0).length;
+
+    let warningIconEl = null;
+    if (pendingContracts.length > 0) {
+        warningIconEl = (
+            <ExclamationCircle className="text-warning" size={24}/>
+        );
+    }
 
     const iconStatusEl = (
-        <span className="p-2 px-3 ">
+        <span className="">
             {getOfferingStatusIcon(status)}
         </span>
     );
@@ -29,7 +33,12 @@ export default function OfferingCard(props) {
     }
 
     function onContractsClick() {
-        router.push('/offerings/contracts/' + dataOfferingId);
+        // TODO fix path, should be offerings/offeringId/contracts
+        // if (activeContracts > 0)
+        if (hideContracts)
+            onClick();
+        else
+            router.push('/offerings/contracts/' + dataOfferingId);
     }
 
     return (
@@ -38,20 +47,19 @@ export default function OfferingCard(props) {
                 <Card.Body onClick={onClick}>
                     <Card.Title className="d-flex justify-content-between line-clamp-2 h3rem">
                         { dataOfferingTitle }
+                        { iconStatusEl }
                     </Card.Title>
                     <Card.Text className="line-clamp-2 h3rem">
                         { dataOfferingDescription }
                     </Card.Text>
                 </Card.Body>
-                <div className="d-flex bg-light px-3 py-1 align-items-center">
+                <div className="d-flex bg-light px-3 p-2 py-1 align-items-center" onClick={onContractsClick}>
                     <span className="flex-grow-1">
-                        {!hideContracts ? (
-                            <Badge pill variant="primary" onClick={onContractsClick}>
-                                {contracts} Contracts
-                            </Badge>) : null
-                        }
+                        <Badge pill variant="primary" className={hideContracts ? 'invisible' : ''}>
+                            {activeContracts} Contracts
+                        </Badge>
                     </span>
-                    {iconStatusEl}
+                    { warningIconEl }
                 </div>
             </Card>
         </Col>

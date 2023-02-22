@@ -1,12 +1,14 @@
 import { Card, Col } from 'react-bootstrap';
 import { capitalize, ISOtoDate, secondsToDate } from '../../lib/utils';
 import { useRouter } from 'next/router';
+import StarRating from '../common/StarRating';
+import { getAverage } from '../../lib/utils';
 
 export default function ContractCard(props) {
     const router = useRouter();
     const {
         agreementId, dataOffering, state, stateValue, agreementDates,
-        id, data, dateCreated, user, provider
+        id, data, dateCreated, user, provider, rating
     } = props;
 
     function onClick() {
@@ -72,6 +74,12 @@ export default function ContractCard(props) {
                                 <div className="d-flex flex-column align-items-center">
                                     <div>End Date</div>
                                     {secondsToDate(agreementDates[2], 'MM/DD/YYYY')}
+                                </div>
+                            </Col>
+                            <Col>
+                                <div className="d-flex flex-column align-items-center">
+                                    <div>Rating</div>
+                                    <StarRating rating={ getAverage(rating.subRatings) } style={{ marginTop: '-10px' }}></StarRating>
                                 </div>
                             </Col>
                         </div> : null

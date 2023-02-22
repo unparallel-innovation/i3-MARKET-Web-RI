@@ -17,7 +17,7 @@ function Offering(props) {
     const { offeringId } = router.query;
     const {
         dataOfferingTitle, dataOfferingDescription, status, ownerConsentForm, active,
-        personalData, inSharedNetwork, category, provider, providerDid, marketId, marketDid,
+        personalData, inSharedNetwork, category, provider, providerDid, providerRating, marketId, marketDid,
         owner, ownerDid, dataOfferingExpirationTime, hasDataset, hasPricingModel, contractParameters,
         contracts = [], pendingContracts = [], user
     } = props;
@@ -131,7 +131,7 @@ function Offering(props) {
                     <KVCol2 title="Provider DID" colspan="6">
                         { providerDid }
                     </KVCol2>
-                    <StarRating title="Provider Rating" rating={providerRating}>
+                    <StarRating title="Provider Rating" rating={ providerRating.roundedRating }>
                     </StarRating>
                 </Row>
 

@@ -15,7 +15,7 @@ export default catchErrors(async (req, res) => {
                     return {
                         ...offering,
                         user,
-                        providerRating:{providerRating: 3.75, roundedRating: 4.5}
+                        providerRating:{ providerRating: 3.75, roundedRating: 4.5 }
                     };
                 }
 
@@ -47,7 +47,7 @@ export default catchErrors(async (req, res) => {
                     contracts,
                     pendingContracts,
                     user,
-                    providerRating:{providerRating: 3.75, roundedRating: 4.5}
+                    providerRating:{ providerRating: 3.75, roundedRating: 4.5 }
                 };
             case 'PATCH':
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);

@@ -3,10 +3,9 @@ import { useData } from '../../lib/hooks';
 import Error from '../../components/layout/Error';
 import ContractParameters from '../../components/contract/ContractParameters';
 import RatingInfo from '../../components/contract/RatingInfo';
-import { Button, Form} from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import Layout from '../../components/layout/Layout';
 import { Loading } from '../../components/layout/Loading';
-import { useState } from 'react';
 
 export default function ContractPage() {
     const router = useRouter();

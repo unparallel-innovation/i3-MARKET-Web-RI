@@ -12,12 +12,12 @@ export default function RatingInfo(props) {
     } = props;
     const { user } = useData('/api/user').data;
     const avgRating = getAverage(subRatings);
-    const state = {subRatings:[]};
+    const state = { subRatings:[] };
     state.comment = useState(comment);
     state.response = useState(response);
     for (let i = 0; i < subRatings.length; i++) {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        state.subRatings[i] = useState(subRatings[i]);
+        state.subRatings[i] = useState(subRatings[i] || 0);
     }
 
     [state.commentDisabled, state.setCommentDisabled] = useState(true);
@@ -127,15 +127,15 @@ export default function RatingInfo(props) {
                         state.subRatings[0][0],
                         state.subRatings[1][0],
                         state.subRatings[2][0],
-                        state.subRatings[3][0],
+                        state.subRatings[3][0]
                     ],
-                    msg : state.comment };
+                    msg : state.comment[0] };
                 console.log(ratingObj);
                 //edit rating endpoint
             }
             /*provider edits response*/
             else if (user.provider) {
-                const rating = { response : state.response };
+                const rating = { response : state.response[0] };
                 console.log(rating);
             }
         /*If there is not an existing id, post a new rating*/
@@ -146,13 +146,14 @@ export default function RatingInfo(props) {
                     forProvider: forProvider,
                     onTransaction: onTransaction,
                     subRatings: [
-                        5,
-                        5,
-                        5,
-                        5
+                        state.subRatings[0][0],
+                        state.subRatings[1][0],
+                        state.subRatings[2][0],
+                        state.subRatings[3][0]
                     ],
-                    msg: state.comment
+                    msg: state.comment[0]
                 };
+                console.log(ratingObj);
             }
         }
     }

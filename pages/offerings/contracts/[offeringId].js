@@ -8,7 +8,6 @@ export default function Contracts() {
     const router = useRouter();
     const { offeringId } = router.query;
     const { data, error, isValidating } = useData(`/api/contracts?offeringId=${offeringId}&searchType=offering`);
-
     if (isValidating)
         return <Loading />;
 

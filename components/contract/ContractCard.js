@@ -79,7 +79,10 @@ export default function ContractCard(props) {
                             <Col>
                                 <div className="d-flex flex-column align-items-center">
                                     <div>Rating</div>
-                                    <StarRating rating={ getAverage(rating.subRatings) } style={{ marginTop: '-10px' }}></StarRating>
+                                    {(rating.isRated)
+                                        ? <StarRating rating={ getAverage(rating.subRatings) } style={{ marginTop: '-10px' }}></StarRating>
+                                        : <>Not rated</>
+                                    }
                                 </div>
                             </Col>
                         </div> : null

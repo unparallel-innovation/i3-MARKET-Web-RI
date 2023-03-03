@@ -89,7 +89,7 @@ function Offering(props) {
 
                         { statusIconEl } <div className="ml-2">{ status }</div>
 
-                        { user.provider ? (
+                        { user.provider && user.DID === providerDid ? (
                             <div className="ml-4 d-flex">
                                 |
                                 <div className="ml-4" title={'Activate Offering'}>
@@ -108,7 +108,7 @@ function Offering(props) {
                     </div>
                 </div>
 
-                { user.provider ? <>
+                { user.provider && user.DID === providerDid ? <>
                     <hr />
                     <div className="d-flex align-items-center">
                         <Button style={{ borderRadius: '8px' }} size="sm" onClick={onViewContracts}>View all Contracts</Button>

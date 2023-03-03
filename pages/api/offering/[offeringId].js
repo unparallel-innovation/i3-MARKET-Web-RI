@@ -12,10 +12,12 @@ export default catchErrors(async (req, res) => {
                 // if consumer only retrieve offering information
                 if (user.consumer) {
                     const offering = await connector.getFederatedOffering(user.access_token, user.id_token, offeringId);
+                    const providerRating = await connector.getProviderTotalRating(offering.providerDid, user.access_token, user.id_token);
+                    console.log(providerRating);
                     return {
                         ...offering,
                         user,
-                        providerRating:{ providerRating: 3.75, roundedRating: 4.5 }
+                        providerRating: providerRating.data.totalRating
                     };
                 }
 
@@ -23,6 +25,7 @@ export default catchErrors(async (req, res) => {
 
                 // offering
                 const federateOffering = await connector.getFederatedOffering(user.access_token, user.id_token, offeringId);
+                const providerRating = await connector.getProviderTotalRating(federateOffering.providerDid, user.access_token, user.id_token);
                 // created contracts
                 const contracts = await connector.getAgreementsByOffering(user.access_token, user.id_token, offeringId);
                 // pending contracts
@@ -47,7 +50,7 @@ export default catchErrors(async (req, res) => {
                     contracts,
                     pendingContracts,
                     user,
-                    providerRating:{ providerRating: 3.75, roundedRating: 4.5 }
+                    providerRating: providerRating.data.totalRating
                 };
             case 'PATCH':
                 const offering = await connector.getOffering(user.access_token, user.id_token, offeringId);

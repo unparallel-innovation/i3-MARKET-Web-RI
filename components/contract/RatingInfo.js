@@ -25,7 +25,7 @@ export default function RatingInfo(props) {
     [state.ratingVisible, state.setRatingVisible] = useState(_id);
     [state.responseVisible, state.setResponseVisible] = useState(_id);
 
-    const main_button = ()=>{
+    const mainButton = ()=>{
         if (_id) {
             return (<Button variant="secondary" onClick={onEdit}>Edit</Button>);
         } else if (!_id && user.consumer) {
@@ -44,7 +44,6 @@ export default function RatingInfo(props) {
                         onChange={(value)=>{
                             /*update the stateful rating of the element*/
                             state.subRatings[i][1](value);
-                            //console.log(state.subRatings)
                         }} rating={subRatings[i]}></EditableStarRating>
                 </Col>
             </Row>
@@ -64,7 +63,17 @@ export default function RatingInfo(props) {
     const provResponse = (state.ratingVisible && state.responseVisible)
         ? <>
             <hr className="mt-2" />
-            <h4 className="mt-4">Provider Response</h4>
+            <Row className="d-flex mb-0 mt-4">
+                <Col md={11}>
+                    <h4>Provider Response</h4>
+                </Col>
+                {(user.role === 'Provider')
+                    ? <Col md={1}>
+                        <Button variant="secondary" onClick={onEdit}>Edit</Button>
+                    </Col>
+                    : <></>
+                }
+            </Row>
             <hr className="mt-2 mb-4" />
             <Form.Control as="textarea" rows={3} name="response"
                 defaultValue={response} disabled={state.responseDisabled} onChange={handleTextChange}/>
@@ -84,7 +93,7 @@ export default function RatingInfo(props) {
                     }
                 </Col>
                 <Col md={1}>
-                    {main_button()}
+                    {(user.role === 'Consumer') ? mainButton() : <></>}
                 </Col>
             </Row>
             {(state.ratingVisible)
@@ -113,7 +122,7 @@ export default function RatingInfo(props) {
     }
 
     function handleStarChange(event) {
-        console.log(event);
+        //console.log(event);
     }
 
     function onSubmit() {
@@ -121,39 +130,59 @@ export default function RatingInfo(props) {
         if (_id) {
             /*consumer edits subRatings and comment*/
             if (user.consumer) {
-                const ratingObj
-                = {
-                    subRatings: [
-                        state.subRatings[0][0],
-                        state.subRatings[1][0],
-                        state.subRatings[2][0],
-                        state.subRatings[3][0]
-                    ],
-                    msg : state.comment[0] };
-                console.log(ratingObj);
-                //edit rating endpoint
+                const subRatings = [
+                    state.subRatings[0][0],
+                    state.subRatings[1][0],
+                    state.subRatings[2][0],
+                    state.subRatings[3][0]
+                ];
+                fetch('/api/rating/editRating', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: _id,
+                        subRatings: subRatings,
+                        comment: state.comment[0]
+                    }),
+                }).then(res => {
+                    window.location.reload();
+                });
             }
             /*provider edits response*/
             else if (user.provider) {
-                const rating = { response : state.response[0] };
-                console.log(rating);
+                fetch('/api/rating/editRatingResponse', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: _id,
+                        response : state.response[0]
+                    }),
+                }).then(res => {
+                    window.location.reload();
+                });
             }
         /*If there is not an existing id, post a new rating*/
         } else {
             if (user.consumer) {
-                const ratingObj = {
-                    byConsumer: user.DID,
-                    forProvider: forProvider,
-                    onTransaction: onTransaction,
-                    subRatings: [
-                        state.subRatings[0][0],
-                        state.subRatings[1][0],
-                        state.subRatings[2][0],
-                        state.subRatings[3][0]
-                    ],
-                    msg: state.comment[0]
-                };
-                console.log(ratingObj);
+                const subRatings = [
+                    state.subRatings[0][0],
+                    state.subRatings[1][0],
+                    state.subRatings[2][0],
+                    state.subRatings[3][0]
+                ];
+                fetch('/api/rating/createRating', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        forProvider: forProvider,
+                        onTransaction: onTransaction,
+                        subRatings: subRatings,
+                        comment: state.comment[0]
+                    }),
+                }).then(res => {
+                    console.log(res.data);
+                    window.location.reload();
+                });
             }
         }
     }

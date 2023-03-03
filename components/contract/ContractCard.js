@@ -8,9 +8,10 @@ export default function ContractCard(props) {
     const router = useRouter();
     const {
         agreementId, dataOffering, state, stateValue, agreementDates,
-        id, data, dateCreated, user, provider, rating
+        id, data, dateCreated, user, provider, rating, isRated
     } = props;
 
+    console.log(rating);
     function onClick() {
         if (dataOffering)
             router.push('/contracts/' + agreementId);
@@ -79,7 +80,7 @@ export default function ContractCard(props) {
                             <Col>
                                 <div className="d-flex flex-column align-items-center">
                                     <div>Rating</div>
-                                    {(rating.isRated)
+                                    {(isRated)
                                         ? <StarRating rating={ getAverage(rating.subRatings) } style={{ marginTop: '-10px' }}></StarRating>
                                         : <>Not rated</>
                                     }

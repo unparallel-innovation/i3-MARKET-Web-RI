@@ -22,15 +22,10 @@ export default catchErrors(async (req, res) => {
                 'onTransaction' : agreementId,
             };
         };
-        const questions = [
-            'Was the dataset provided as described in the listing?',
-            'Was the data transfer within the expected timeframe?',
-            'Was the data provider open and clear in their communication?',
-            'Were they any other issues or concerns in the transaction?'
-        ];
+        const questions = await connector.getQuestions(user.access_token, user.id_token);
         agreement.isRated = isRated;
         agreement.rating = rating;
-        agreement.rating.questions = questions;
+        agreement.rating.questions = questions.data.questions;
         const offering = await connector.getFederatedOffering(user.access_token, user.id_token, agreement.dataOffering.dataOfferingId);
         return { ...agreement, offering };
     }

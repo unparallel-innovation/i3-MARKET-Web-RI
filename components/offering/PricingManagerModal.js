@@ -23,14 +23,12 @@ export default function PricingManagerModal(props) {
             'Rarity': rarity
         };
 
-        fetch('/api/price', {
-            method: 'POST',
-            body: JSON.stringify(parameters),
-        }).then(res => {
-            res.json().then(r => {
-                setPrice(r);
+        fetch(`/api/price?parameters=${JSON.stringify(parameters)}`).
+            then(res => {
+                res.json().then(r => {
+                    setPrice(r);
+                });
             });
-        });
     }
 
     function onConfirm() {

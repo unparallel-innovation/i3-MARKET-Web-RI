@@ -6,7 +6,7 @@ export default catchErrors(async (req, res) => {
     const user = session.user;
 
     if (user) {
-        const parameters = req.body;
+        const { parameters } = req.query;
         return await connector.getPrice(user.access_token, user.id_token, parameters);
     }
     return null;

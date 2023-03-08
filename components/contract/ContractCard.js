@@ -52,8 +52,11 @@ export default function ContractCard(props) {
                                 {getProvider()}
                             </div>
                             {/*<Button size='sm' style={{borderRadius: 10}}> Rating </Button>*/}
+                            {(isRated)
+                                ? <StarRating rating={ getAverage(rating.subRatings) } style={{ marginTop: '-10px' }}></StarRating>
+                                : <>Rating: Not rated</>
+                            }
                         </div>
-
                     </Card.Body>
 
                     { agreementDates
@@ -74,15 +77,6 @@ export default function ContractCard(props) {
                                 <div className="d-flex flex-column align-items-center">
                                     <div>End Date</div>
                                     {secondsToDate(agreementDates[2], 'MM/DD/YYYY')}
-                                </div>
-                            </Col>
-                            <Col>
-                                <div className="d-flex flex-column align-items-center">
-                                    <div>Rating</div>
-                                    {(isRated)
-                                        ? <StarRating rating={ getAverage(rating.subRatings) } style={{ marginTop: '-10px' }}></StarRating>
-                                        : <>Not rated</>
-                                    }
                                 </div>
                             </Col>
                         </div> : null

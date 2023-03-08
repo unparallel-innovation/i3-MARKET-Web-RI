@@ -52,7 +52,7 @@ function Offering(props) {
             method: 'PATCH',
         }).then(res => {
             router.back();
-        })
+        });
     }
 
     function onUpdate(e) {
@@ -64,7 +64,7 @@ function Offering(props) {
             method: 'DELETE',
         }).then(res => {
             router.back();
-        })
+        });
     }
 
     function onBuyOffering(e) {
@@ -142,8 +142,6 @@ function Offering(props) {
                         { ts2date(dataOfferingExpirationTime) }
                     </KVCol2>
                 </Row>
-
-
 
                 <Row className="text-center mb-3">
                     <KVCol2 title="Owner Consent From">

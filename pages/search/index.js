@@ -95,7 +95,7 @@ function Search(props) {
     );
 
     const offeringsEl = offerings.length > 0 ? (<Row>{ offerings.map(offering => (
-        <OfferingCard key={offering.dataOfferingId} {...offering} hideContracts/>
+        <OfferingCard key={offering.dataOfferingId} {...offering} hideContracts localNodeSearch={localNodeSearch}/>
     )) }</Row>) : searchPlaceholder;
 
     return (

@@ -11,7 +11,6 @@ export default function ContractCard(props) {
         id, data, dateCreated, user, provider, rating, isRated
     } = props;
 
-    console.log(rating);
     function onClick() {
         if (dataOffering)
             router.push('/contracts/' + agreementId);

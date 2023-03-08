@@ -52,9 +52,7 @@ function Offering(props) {
             method: 'PATCH',
         }).then(res => {
             router.back();
-        }).catch(error => {
-            console.log('ERROR', error);
-        });
+        })
     }
 
     function onUpdate(e) {
@@ -66,9 +64,7 @@ function Offering(props) {
             method: 'DELETE',
         }).then(res => {
             router.back();
-        }).catch(error => {
-            console.log('ERROR', error);
-        });
+        })
     }
 
     function onBuyOffering(e) {
@@ -128,8 +124,8 @@ function Offering(props) {
                     <KVCol2 title="Provider">
                         { provider }
                     </KVCol2>
-                    <KVCol2 title="Provider DID" colspan="6">
-                        { providerDid }
+                    <KVCol2 title="Owner">
+                        { owner }
                     </KVCol2>
                     <StarRating title="Provider Rating" rating={ providerRating.roundedRating }>
                     </StarRating>
@@ -139,43 +135,21 @@ function Offering(props) {
                     <KVCol2 title="Market">
                         { marketId }
                     </KVCol2>
-                    <KVCol2 title="Market DID" colspan="6">
-                        { marketDid }
-                    </KVCol2>
-                    <KVCol2 colspan="3" >
-                        { ' ' }
-                    </KVCol2>
-                </Row>
-
-                <Row className="text-center mb-3">
-                    <KVCol2 title="Owner">
-                        { owner }
-                    </KVCol2>
-                    <KVCol2 title="Owner DID" colspan="6">
-                        { ownerDid }
-                    </KVCol2>
-                    <KVCol2 colspan="3" >
-                        { ' ' }
-                    </KVCol2>
-                </Row>
-
-                <Row className="text-center mb-3">
                     <KVCol2 title="Category">
                         { category }
                     </KVCol2>
-                    <KVCol2 title="Expiration Time" colspan="6">
+                    <KVCol2 title="Expiration Time">
                         { ts2date(dataOfferingExpirationTime) }
                     </KVCol2>
-                    <KVCol2 colspan="3" >
-                        { ' ' }
-                    </KVCol2>
                 </Row>
+
+
 
                 <Row className="text-center mb-3">
                     <KVCol2 title="Owner Consent From">
                         { ownerConsentForm }
                     </KVCol2>
-                    <KVCol2 title="Personal Data" colspan="6">
+                    <KVCol2 title="Personal Data">
                         { personalData }
                     </KVCol2>
                     <KVCol2 title="In Shared Network">

@@ -1,5 +1,4 @@
-import { Col } from 'react-bootstrap';
-import ReactStars from 'react-rating-stars-component';
+import ReactStars from 'react-rating-stars-component';
 
 export default
 function StarRating(props) {
@@ -14,7 +13,7 @@ function StarRating(props) {
                 isHalf = {true}
                 edit = {false}
                 a11y = {false}
-                size = {32}
+                size = {24}
             />
         </span>
         : <span>
@@ -22,7 +21,7 @@ function StarRating(props) {
         </span>;
 
     return (
-        <div className='d-inline-block' md={ colspan } style={ style }>
+        <div className="d-inline-block" style={ style }>
             <div className="row">
                 <span className="text-muted mr-3">{ title }</span>
                 {ratingContainer}

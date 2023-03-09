@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import colors from '/lib/colors.js';
 import Dataset from './Dataset.js';
-import { Button, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Modal, Row } from 'react-bootstrap';
 import { Eye, Pencil, Trash } from 'react-bootstrap-icons';
 import Layout from '/components/layout/Layout.js';
 import { getOfferingStatusIcon, ts2date } from '../../../lib/utils';
@@ -127,8 +127,10 @@ function Offering(props) {
                     <KVCol2 title="Owner">
                         { owner }
                     </KVCol2>
-                    <StarRating title="Provider Rating" rating={ providerRating.roundedRating }>
-                    </StarRating>
+                    <Col className='text-center p-2'>
+                        <StarRating title="Provider Rating" rating={ providerRating.roundedRating }>
+                        </StarRating>
+                    </Col>
                 </Row>
 
                 <Row className="text-center mb-3">

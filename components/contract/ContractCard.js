@@ -53,7 +53,7 @@ export default function ContractCard(props) {
                             </div>
                             {/*<Button size='sm' style={{borderRadius: 10}}> Rating </Button>*/}
                             {(isRated)
-                                ? <StarRating rating={ getAverage(rating.subRatings) } style={{ marginTop: '-10px' }}></StarRating>
+                                ? <StarRating rating={ getAverage(rating.subRatings) } style={{ marginTop: '-5px', paddingRight:'8px' }}></StarRating>
                                 : <>Rating: Not rated</>
                             }
                         </div>

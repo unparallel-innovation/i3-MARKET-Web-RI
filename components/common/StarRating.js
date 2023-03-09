@@ -18,15 +18,15 @@ function StarRating(props) {
             />
         </span>
         : <span>
-            No information
+            Not rated
         </span>;
 
     return (
-        <Col className="p-2 row" md={ colspan } style={ style }>
-            <div className="col row justify-content-center">
+        <div className='d-inline-block' md={ colspan } style={ style }>
+            <div className="row">
                 <span className="text-muted mr-3">{ title }</span>
                 {ratingContainer}
             </div>
-        </Col>
+        </div>
     );
 }

@@ -38,7 +38,7 @@ export default function NotificationCard(props) {
             }
         }
         decryptJwe();
-    }, []);
+    }, [data.jwe, keyPair, receptor]);
 
     // TODO: set background color based on 'action'
     // TODO: set read/unread color

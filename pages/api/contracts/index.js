@@ -22,6 +22,8 @@ export default catchErrors(async (req, res) => {
                 const agreement = agreements[i];
                 const agreementState = await connector.getAgreementState(user.access_token, user.id_token, agreement.agreementId);
                 agreement.stateValue = agreementState.state;
+                const offering = await connector.getFederatedOffering(user.access_token, user.id_token, agreement.dataOffering.dataOfferingId);
+                agreement.provider = offering.provider;
 
                 let isRated = await connector.getAgreementIsRated(agreement.agreementId, user.access_token, user.id_token);
                 isRated = isRated.data;

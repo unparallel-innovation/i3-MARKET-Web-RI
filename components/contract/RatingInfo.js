@@ -39,7 +39,7 @@ export default function RatingInfo(props) {
         details.push(
             <Row key={questions[i] + state.commentDisabled}>
                 <Col md={7}>{questions[i]}</Col>
-                <Col md={4} className='text-center'>
+                <Col md={4} className="text-center">
                     <EditableStarRating edit={!state.commentDisabled}
                         onChange={(value)=>{
                             /*update the stateful rating of the element*/

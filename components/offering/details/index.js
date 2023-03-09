@@ -127,7 +127,7 @@ function Offering(props) {
                     <KVCol2 title="Owner">
                         { owner }
                     </KVCol2>
-                    <Col className='text-center p-2'>
+                    <Col className="text-center p-2">
                         <StarRating title="Provider Rating" rating={ providerRating.roundedRating }>
                         </StarRating>
                     </Col>

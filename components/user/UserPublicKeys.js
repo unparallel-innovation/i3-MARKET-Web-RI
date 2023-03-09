@@ -19,7 +19,7 @@ export default function UserPublicKeys(props) {
             setLoading(false);
         }
         getPublicKeys();
-    }, []);
+    }, [user.DID]);
 
     if (loading) {
         return <Loading />;

@@ -104,7 +104,7 @@ function Layout(props) {
                                 <Link href="/search" passHref>
                                     <Nav.Link>Search</Nav.Link>
                                 </Link>
-                                <Link href="/" >
+                                <Link href="/" passHref >
                                     <NavDropdown id="basic-nav-dropdown" title={<PersonCircle size={24}/>} alignRight>
                                         <NavDropdown.Item disabled>
                                             <Nav.Item>{user.username}</Nav.Item>

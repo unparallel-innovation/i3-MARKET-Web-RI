@@ -113,15 +113,15 @@ export default function ContractParameters(props) {
                     </Form.Group>
                 </Col>
 
-                {isAgreement ? null
-                    : <Col>
-                        <Form.Group controlId="dataConsumer">
-                            <Form.Label>Consumer</Form.Label>
-                            <Form.Control type="text" name="dataConsumer" defaultValue={user.username} disabled />
-                            <input type="hidden" name="dataConsumer" defaultValue={user.username} />
-                        </Form.Group>
-                    </Col>
-                }
+                {/*{isAgreement ? null*/}
+                {/*    : <Col>*/}
+                {/*        <Form.Group controlId="dataConsumer">*/}
+                {/*            <Form.Label>Consumer</Form.Label>*/}
+                {/*            <Form.Control type="text" name="dataConsumer" defaultValue={user.username} disabled />*/}
+                {/*            <input type="hidden" name="dataConsumer" defaultValue={user.username} />*/}
+                {/*        </Form.Group>*/}
+                {/*    </Col>*/}
+                {/*}*/}
             </Row>
 
             <Form.Group controlId="offeringTitle">

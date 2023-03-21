@@ -9,19 +9,17 @@ function getPaymentType(props) {
 
     if (basicPrice > 0)
         return 'oneTime';
-    else if (hasPaymentOnSubscription.hasSubscriptionPrice > 0)
+    else if (hasPaymentOnSubscription && hasPaymentOnSubscription.hasSubscriptionPrice > 0)
         return 'subscription';
-    else if (hasFreePrice.hasPriceFree)
+    else if (hasFreePrice && hasFreePrice.hasPriceFree)
         return 'free';
+    return 'oneTime';
 }
 
 export default function PricingModel(props) {
-    const { toUpdate, eventKey } = props;
+    const { hasPaymentOnSubscription, eventKey } = props;
 
-    let previousType = 'oneTime';
-
-    if (toUpdate)
-        previousType = getPaymentType(props);
+    const previousType = getPaymentType(props);
 
     const [type, setType] = useState(previousType);
 
@@ -32,10 +30,10 @@ export default function PricingModel(props) {
             paymentTypeEl = <OneTimePayment {...props}/>;
             break;
         case 'subscription':
-            paymentTypeEl = <PaymentOnSubscription eventKey={eventKey + 'paymentSubscription0'} />;
+            paymentTypeEl = <PaymentOnSubscription {...hasPaymentOnSubscription} eventKey={eventKey + 'paymentSubscription0'} />;
             break;
         case 'free':
-            paymentTypeEl = <input type="hidden" value={'true'} name={eventKey + 'freePrice0hasPriceFree'} />
+            paymentTypeEl = <input type="hidden" value={'true'} name={eventKey + 'freePrice0hasPriceFree'} />;
             break;
     }
 
@@ -45,7 +43,7 @@ export default function PricingModel(props) {
                 <Col>
                     <CustomLabel value="Payment Type" required />
                     <Form.Group controlId={'paymentType'}>
-                        <Form.Control as="select" value={type} onChange={e => { setType(e.target.value); }} disabled={toUpdate}>
+                        <Form.Control as="select" value={type} onChange={e => { setType(e.target.value); }} >
                             <option value="oneTime">One-Time Payment</option>
                             <option value="subscription">Payment On Subscription</option>
                             <option value="free">Free Price</option>

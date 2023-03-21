@@ -31,8 +31,8 @@ export default function PricingManagerModal(props) {
             });
     }
 
-    function onConfirm() {
-        onSubmit(price);
+    function onConfirm(e) {
+        onSubmit(price, e);
     }
 
     return (
@@ -120,7 +120,7 @@ export default function PricingManagerModal(props) {
 
             <div className="float-right">
                 <Button variant="secondary" onClick={onClose}>Cancel</Button>
-                <Button className="ml-2" variant="primary" onClick={onConfirm}>Submit</Button>
+                <Button className="ml-2" variant="primary" onClick={onConfirm}>Use</Button>
             </div>
         </>
     );

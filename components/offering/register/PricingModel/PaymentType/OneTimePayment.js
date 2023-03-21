@@ -8,7 +8,8 @@ export default function OneTimePayment(props) {
     const [ show, setShow ] = useState(false);
     const [ price, setPrice ] = useState(basicPrice);
 
-    function onSubmit(price) {
+    function onSubmit(price,e) {
+        e.preventDefault();
         setPrice(Math.round(price));
         onClose();
     }
@@ -43,7 +44,7 @@ export default function OneTimePayment(props) {
                             <CustomLabel value="Basic Price" tooltip="The generic basic price for the traded data for basic cost of trade" />
                             <Button size="sm" className="ml-2" style={{ marginTop: -4 }} onClick={() => setShow(true)}> Get Recommended Price </Button>
                         </div>
-                        <Form.Control type="number" name={eventKey + 'basicPrice'} min={0} defaultValue={price} onChange={(e) => setPrice(Number(e.target.value))} />
+                        <Form.Control type="number" name={eventKey + 'basicPrice'} min={0} value={price} onChange={(e) => setPrice(Number(e.target.value))} />
                     </Form.Group>
                 </Col>
                 <Col>

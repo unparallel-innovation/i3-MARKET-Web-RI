@@ -57,8 +57,6 @@ export default function ContractParameters(props) {
 
     return (
         <>
-            <hr className="mt-2" />
-            <h4 className="mt-4">Static Parameters</h4>
             <hr className="mt-2 mb-4" />
 
             <Row>
@@ -112,16 +110,6 @@ export default function ContractParameters(props) {
                         <input type="hidden" name="dataProvider" defaultValue={offering.provider} />
                     </Form.Group>
                 </Col>
-
-                {/*{isAgreement ? null*/}
-                {/*    : <Col>*/}
-                {/*        <Form.Group controlId="dataConsumer">*/}
-                {/*            <Form.Label>Consumer</Form.Label>*/}
-                {/*            <Form.Control type="text" name="dataConsumer" defaultValue={user.username} disabled />*/}
-                {/*            <input type="hidden" name="dataConsumer" defaultValue={user.username} />*/}
-                {/*        </Form.Group>*/}
-                {/*    </Col>*/}
-                {/*}*/}
             </Row>
 
             <Form.Group controlId="offeringTitle">
@@ -159,9 +147,6 @@ export default function ContractParameters(props) {
                     </Form.Group>
                 </Col>
             </Row>
-
-            <h4 className="mt-4">Dynamic Parameters</h4>
-            <hr className="mt-2 mb-4" />
 
             <h5 className="mt-4">Purpose</h5>
             <hr className="mt-2 mb-4" />

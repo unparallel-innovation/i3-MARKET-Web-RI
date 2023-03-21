@@ -7,7 +7,7 @@ export default catchErrors(async (req, res) => {
     let totalProviders = '-';
     if (user) {
         // const providers = await connector.getProviders(user.access_token, user.id_token, 0, 50);
-        const providers = await connector.getFederatedProviders(user.access_token, user.id_token, 0, 50);
+        const providers = await connector.getFederatedProviders(user.access_token, user.id_token);
         totalProviders = providers.length;
     }
     return {

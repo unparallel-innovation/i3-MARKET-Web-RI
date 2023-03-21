@@ -6,21 +6,20 @@ export default catchErrors(async (req, res) => {
     const session = await getSession(req, res);
     const user = session.user;
 
-    switch (req.method) {
-        case 'GET':
-            let categoriesList = [];
-            if (user) {
-                categoriesList = await connector.getCategories(user.access_token, user.id_token);
-            }
-            return {
-                categories: categoriesList,
-                market_name: process.env.MARKET_NAME,
-                user
-            };
-        case 'POST':
-            if (user) {
+    if (user) {
+        switch (req.method) {
+            case 'GET':
+                const categoriesList = await connector.getCategories(user.access_token, user.id_token);
+
+                return {
+                    categories: categoriesList,
+                    market_name: process.env.MARKET_NAME,
+                    user
+                };
+            case 'POST':
                 await connector.registerOffering(user.access_token, user.id_token, data);
-            }
-            return null;
+        }
     }
+    return null;
+
 });

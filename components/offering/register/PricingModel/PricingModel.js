@@ -1,12 +1,11 @@
 import { Col, Form, Row } from 'react-bootstrap';
 import { useState } from 'react';
-import FreePrice from './PaymentType/FreePrice';
 import OneTimePayment from './PaymentType/OneTimePayment';
 import PaymentOnSubscription from './PaymentType/PaymentOnSubscription';
 import CustomLabel from '../../../common/CustomLabel';
 
 function getPaymentType(props) {
-    const { basicPrice, hasPaymentOnSubscription, hasFreePrice, toUpdate, eventKey } = props;
+    const { basicPrice, hasPaymentOnSubscription, hasFreePrice } = props;
 
     if (basicPrice > 0)
         return 'oneTime';
@@ -36,7 +35,7 @@ export default function PricingModel(props) {
             paymentTypeEl = <PaymentOnSubscription eventKey={eventKey + 'paymentSubscription0'} />;
             break;
         case 'free':
-            paymentTypeEl = <FreePrice eventKey={eventKey + 'freePrice0'}/>;
+            paymentTypeEl = <input type="hidden" value={'true'} name={eventKey + 'freePrice0hasPriceFree'} />
             break;
     }
 

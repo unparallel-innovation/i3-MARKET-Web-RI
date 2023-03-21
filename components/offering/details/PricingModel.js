@@ -90,10 +90,10 @@ export default function PricingModel(props) {
 
     let paymentTypeEl = '';
 
-    if (basicPrice) {
+    if (basicPrice > 0) {
         paymentTypeEl = <OneTimePayment {...props} />;
     }
-    else if (hasPaymentOnSubscription) {
+    else if (hasPaymentOnSubscription && hasPaymentOnSubscription.hasSubscriptionPrice > 0) {
         paymentTypeEl = <PaymentOnSubscription {...hasPaymentOnSubscription} />;
     }
     else {

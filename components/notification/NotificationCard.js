@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Button, Card, Col, Modal } from 'react-bootstrap';
+import { Button, Card, Col, Modal, Spinner } from 'react-bootstrap';
 import colors from '../../lib/colors';
 import { CheckCircle, Trash, XCircle } from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
@@ -21,6 +21,7 @@ export default function NotificationCard(props) {
     const [ showCreateAgreement, setShowCreateAgreement ] = useState(false);
     const [ offering, setOffering ] = useState('');
     const [ msg, setMsg] = useState(data.msg);
+    const [ showLoading, setShowLoading] = useState(false);
     const dataSharingAgreement = data.dataSharingAgreement;
 
     // decrypt notification message
@@ -87,11 +88,13 @@ export default function NotificationCard(props) {
 
     async function onSign(e) {
         e.preventDefault();
+        setShowLoading(true);
         await consumerSign();
     }
 
     async function onCreate(e) {
         e.preventDefault();
+        setShowLoading(true);
         await providerCreateAgreement();
     }
 
@@ -189,7 +192,14 @@ export default function NotificationCard(props) {
                         Sign Agreement
                     </Modal.Header>
                     <Modal.Body>
-                        Do you want to confirm the purchase for offering <strong>{offering}</strong>?
+                        <div className="d-flex flex-column">
+                            <div>Do you want to confirm the purchase for offering <strong>{offering}</strong>?</div>
+                            { showLoading
+                                ? <div className="d-flex justify-content-center text-lightgray">
+                                    <Spinner className="" style={{ width: '5rem', height:'5rem' }} animation="border" />
+                                </div> : null
+                            }
+                        </div>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowSign(false)}>
@@ -208,7 +218,14 @@ export default function NotificationCard(props) {
                         Create Agreement
                     </Modal.Header>
                     <Modal.Body>
-                        Do you want to create the agreement for offering <strong>{offering}</strong>?
+                        <div className="d-flex flex-column">
+                            <div>Do you want to create the agreement for offering <strong>{offering}</strong>?</div>
+                            { showLoading
+                                ? <div className="d-flex justify-content-center text-lightgray">
+                                    <Spinner className="" style={{ width: '5rem', height:'5rem' }} animation="border" />
+                                </div> : null
+                            }
+                        </div>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowCreateAgreement(false)}>

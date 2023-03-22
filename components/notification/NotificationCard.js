@@ -44,7 +44,7 @@ export default function NotificationCard(props) {
     // TODO: set background color based on 'action'
     // TODO: set read/unread color
 
-    function markNotification(id, action) {
+    function markNotification(id, action, reload = true) {
         const body = {
             notificationId: id,
             action: action
@@ -54,18 +54,19 @@ export default function NotificationCard(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         }).then(() => {
-            router.reload();
+            if (reload)
+                router.reload();
         });
     }
 
     function onClick(action) {
-        if (action.includes('offering') && msg.includes('rating')) {
+        if (action === 'offering.new' && msg.includes('rating')) {
             const words = msg.split(' ');
             const transactionID = words[words.indexOf('transaction') + 1];
-            markNotification(id, 'read')
+            markNotification(id, 'read', false);
             router.push('/contracts/' + transactionID);
         }
-        if (user.consumer && action === 'agreement.pending' && origin === 'web-ri') {
+        else if (user.consumer && action === 'agreement.pending' && origin === 'web-ri') {
             setOffering(dataSharingAgreement.dataOfferingDescription.title);
             setShowSign(true);
         }
@@ -119,10 +120,10 @@ export default function NotificationCard(props) {
                     <div className="d-flex bg-light">
                         <div className="flex-grow-1">
                         </div>
-                        <span className="p-2 px-3">
-                            <CheckCircle color={colors.primary} size={24} onClick={() => setShowRead(true)}/>
-                            <XCircle className="ml-4" color={colors.primary} size={24} onClick={() => setShowUnread(true)}/>
-                            <Trash className="ml-4" color={colors.primary} size={22} onClick={() => setShowDelete(true)}/>
+                        <span className="d-flex align-items-center p-2 px-3">
+                            <div title="Mark as Read"><CheckCircle color={colors.primary} size={24} onClick={() => setShowRead(true)}/></div>
+                            <div title="Mark as Unread"><XCircle className="ml-4" color={colors.primary} size={24} onClick={() => setShowUnread(true)}/></div>
+                            <div title="Delete"><Trash className="ml-4" color={colors.primary} size={22} onClick={() => setShowDelete(true)}/></div>
                         </span>
                     </div>
                 </Card>

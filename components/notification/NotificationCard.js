@@ -59,6 +59,12 @@ export default function NotificationCard(props) {
     }
 
     function onClick(action) {
+        if (action.includes('offering') && msg.includes('rating')) {
+            const words = msg.split(' ');
+            const transactionID = words[words.indexOf('transaction') + 1];
+            markNotification(id, 'read')
+            router.push('/contracts/' + transactionID);
+        }
         if (user.consumer && action === 'agreement.pending' && origin === 'web-ri') {
             setOffering(dataSharingAgreement.dataOfferingDescription.title);
             setShowSign(true);

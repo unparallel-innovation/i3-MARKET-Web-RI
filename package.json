@@ -1,6 +1,6 @@
 {
   "name": "i3market-web-ri",
-  "version": "2.9.3",
+  "version": "2.9.4",
   "private": true,
   "scripts": {
     "dev": "next dev",

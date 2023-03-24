@@ -60,7 +60,7 @@ export default function NotificationCard(props) {
     }
 
     function onClick(action) {
-        if (action === 'offering.new' && msg.includes('rating')) {
+        if ((action === 'offering.new' || action === 'offering.update')  && msg.includes('rating')) {
             const words = msg.split(' ');
             const transactionID = words[words.indexOf('transaction') + 1];
             markNotification(id, 'read', false);

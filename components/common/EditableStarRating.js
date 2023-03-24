@@ -16,7 +16,7 @@ function EditableStarRating(props) {
                         edit = {edit}
                         isHalf = {false}
                         a11y = {false}
-                        size = {32}
+                        size = {24}
                         onChange = {onChange}
                     />
                 </span>
